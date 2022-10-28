@@ -9,7 +9,7 @@ import Create_Course from "./CreateCourse/Create_Course"
 
 const Admin_Dashboard = () =>{
 
-    const backendServer = `http://172.29.234.130:3000/courses`
+    const backendServer = `http://172.29.108.195:3000/courses`
     const [Course,setCourse] = useState([])
 
     const Navigate = useNavigate();
@@ -33,12 +33,15 @@ const Admin_Dashboard = () =>{
     const createNewCourse = ({a}) =>{
         
         
-        // console.log(a)    
-        axios.post(backendServer,a).then(res=>{
-            // console.log(res)
+        console.log(a)
+        const fd = new FormData();
+        fd.append('image',a)
+
+        axios.post("http://172.29.108.195:3000/course",a).then(res=>{
+            console.log(res)
             setCourse(Course => [...Course, a]);
         }).catch(err=>{
-            console.log(err)
+            console.log("err")
         })
         // console.log(unpublished_course)    
 }

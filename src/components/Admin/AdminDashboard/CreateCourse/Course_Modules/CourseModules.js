@@ -7,12 +7,13 @@ import NewModule from './NewModule';
 function Module(props) {
 
     const { slug } = useParams();
-    const addModuleURL = `http://172.29.234.130:3000/addModule/${slug}`
-    const moduleURL = `http://172.29.234.130:3000/course/${slug}`
+    const addModuleURL = `http://172.29.108.195:3000/addModule/${slug}`
+    const moduleURL = `http://172.29.108.195:3000/course/${slug}`
+    const Lecture = `http://172.29.108.195:3000/upload/${slug}`
 
-    const [selectedFile, setSelectedFile] = useState();
+    const [selectedFile, setSelectedFile] = useState(null);
 	const [isSelected, setIsSelected] = useState(false);
-
+    const [Warning,setWarning] = useState("")
 
     const [modules,setModules] = useState(null)
 
@@ -22,7 +23,7 @@ function Module(props) {
         
         // console.log(a)    
         axios.post(addModuleURL,a).then(res=>{
-            console.log(res)
+            // console.log(res)
             if(res.status == 200){
                 setModules(modules => [...modules, a]);
             }
@@ -37,8 +38,10 @@ function Module(props) {
     useEffect(()=>{
         axios.get(moduleURL).then(res=>{
             // console.log(res.data)"http://172.29.233.109:3000/course"
-            setModules(res.data.modules)
-            console.log(res.data.modules)
+            if(res.data.modules.length > 0){
+                setModules(res.data.modules)
+                // console.log(res.data.modules)
+            }            
             }).catch(err=>console.log("error"))
         },[])
 
@@ -47,12 +50,31 @@ function Module(props) {
         setIsSelected(true);
     };
 
+   
+    const handleSubmission = (id) => {
+        const formData = new FormData();
+
+        formData.append('File', selectedFile);
+        console.log(formData)
+        console.log(id)
+        if(id && selectedFile){
+            // console.log("Hello")
+            axios.post(`${Lecture}/${id}`,formData).then(res=>{
+                // setWarning("")
+                console.log('Success:');
+            })
+            .catch((error) => {
+                    console.error('Error:',error);
+                    setWarning("file didn't uploaded")
+                });
+        }
+    };
+
+    
 
     return (
 
         <>
-        
-
 
         <div className=' relative'>
             <aside className="flex">
@@ -73,6 +95,7 @@ function Module(props) {
                         <NewModule createNewCourse={createNewModule}/>
                     
                     {modules ? (modules.map(item => {
+                        
                         return(
 
                             <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
@@ -82,6 +105,23 @@ function Module(props) {
                                         {item.name}
                                     </summary>
                                     
+                                    <div>
+                                            {isSelected ? (
+                                                <div>
+                                                    <p>Filename: {selectedFile.name}</p>
+                                                    <p>Filetype: {selectedFile.type}</p>
+                                                    <p>Size in bytes: {selectedFile.size}</p>
+                                                    <p>
+                                                        lastModifiedDate:{' '}
+                                                        {selectedFile.lastModifiedDate.toLocaleDateString()}
+                                                    </p>
+                                                </div>
+                                            ) : (
+                                                <p>Select a file to show details</p>
+                                            )}
+                                    </div>
+
+
                                     <label
                                         className=" max-w-4xl flex mx-auto justify-center w-full h-32  bg-gray-600 border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
                                         <span className="flex items-center ">
@@ -97,26 +137,12 @@ function Module(props) {
                                         </span>
                                         <input type="file" name="file_upload" className="hidden" onChange={changeHandler}/>
                                     </label>
-                                        <div>
-                                            {isSelected ? (
-                                                <div>
-                                                    <p>Filename: {selectedFile.name}</p>
-                                                    <p>Filetype: {selectedFile.type}</p>
-                                                    <p>Size in bytes: {selectedFile.size}</p>
-                                                    <p>
-                                                        lastModifiedDate:{' '}
-                                                        {selectedFile.lastModifiedDate.toLocaleDateString()}
-                                                    </p>
-                                                </div>
-                                            ) : (
-                                                <p>Select a file to show details</p>
-                                            )}
-                                        </div>
+                                        
 
                                     <div className='flex items-center justify-end p-6'>
                                     <button
                                         className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
-                                        type="button">
+                                        type="button" onClick={()=>handleSubmission(item._id)}>
                                         Submit
                                     </button>
                                     </div>
@@ -124,7 +150,11 @@ function Module(props) {
                                 </div>
                         )
         })):(
-                <div>There are no modules</div>
+            <div>
+            <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{textAlign:"center"}}>
+            There are no modules
+        </h1>
+        </div>
         )        
     }
 

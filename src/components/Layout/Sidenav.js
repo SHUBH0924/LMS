@@ -21,7 +21,7 @@ const Sidenav = () => {
         { name: "Modules", link: "/", icon: MdViewModule ,role:"User"},
         { name: "Logout", link: "/", icon: ImExit, role:"User" },
     ];
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     
     return (
