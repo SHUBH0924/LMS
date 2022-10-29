@@ -10,7 +10,7 @@ function Register() {
       }, []);
     const Navigate = useNavigate();
     const NavigateToLogin = () => {
-        Navigate('/');
+        Navigate('/Login');
       };
     const [username,setusername] = useState("")
     const [password,setpassword] = useState("")
@@ -38,9 +38,15 @@ function Register() {
             console.log("")
             setWarning("Password didn't match")
         }else{
-            axios.post("http://172.29.234.129:3000/register",data).then(res=>console.log(res))
-            console.log(data)
-            NavigateToLogin()
+            axios.post("http://172.29.234.130:3000/register",data).then(
+                res=>{
+                    console.log(res)
+                    if(res.status == 201){
+                        NavigateToLogin()
+                    }
+                }
+                )
+            // console.log(data)
         }
     }
     return (

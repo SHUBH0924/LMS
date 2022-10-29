@@ -12,7 +12,7 @@ function Login() {
     Navigate('/register');
   };
   const NavigateToAdmin = () => {
-    Navigate('/dashboard');
+    Navigate('/AdminDashboard');
   };
 
   const [email,setemail] = useState("")    
@@ -26,7 +26,7 @@ function Login() {
         password:password,
     }
 
-        axios.post("http://172.29.234.129:3000/login",data).then(res=>{
+        axios.post("http://172.29.234.130:3000/login",data).then(res=>{
           console.log(res)
           if (res.data === 'Authorised'){
             NavigateToAdmin()

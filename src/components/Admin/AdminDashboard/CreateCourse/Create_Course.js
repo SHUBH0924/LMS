@@ -5,13 +5,14 @@ import FileUploader from '../../../hoc/fileHandler';
 
 const Create_Course = (props) =>{
   const [showModal, setShowModal] = React.useState(false);
+  
   const [a,seta] = useState({
         // _id:uuid(),
         name:"",
         license:"Private(CopyRight)",
         published:false,
         price:0,
-        file:null
+        imgFile:null
     })
 
     const Create_Course = () =>{
@@ -21,7 +22,7 @@ const Create_Course = (props) =>{
             license:"Private(CopyRight)",
             published:false,
             price:0,
-            file:null
+            imgFile:null
         })
         setShowModal(!showModal)
     }
@@ -75,7 +76,7 @@ const Create_Course = (props) =>{
                           {/* <label for="Course" class="block mb-2 text-sm font-medium text-gray-300">/image</label> */}
                           {/* <input type="file" name="file" id="file" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.file} onChange={FileSet} /> */}
                           <FileUploader
-                            onFileSelectSuccess={(file) => seta({...a,file})}
+                            onFileSelectSuccess={(imgFile) => seta({...a,imgFile})}
                             onFileSelectError={({ error }) => alert(error)}
                           />
                       </div>
