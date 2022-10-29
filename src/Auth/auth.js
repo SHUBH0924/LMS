@@ -17,8 +17,8 @@ export const AuthProvider = ({children}) => {
 
     const isAuthenticate = () =>{
         const userData = Cookies.get('userData')
-        const Token = Cookies.get('userData')
-        // console.log()
+        const Token = Cookies.get('token')
+        
         if(userData){
             setuser(userData)
             setToken(Token)
