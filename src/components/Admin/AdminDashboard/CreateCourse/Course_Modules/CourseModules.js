@@ -82,7 +82,6 @@ function Module(props) {
     
 
     return (
-
         <>
 
         <div className=' relative'>

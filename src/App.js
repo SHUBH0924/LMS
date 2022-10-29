@@ -10,6 +10,7 @@ import Admin_Dashboard from './components/Admin/AdminDashboard/Admin_Dashboard';
 import CourseModule from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/CourseModules';
 import {Toaster} from 'react-hot-toast';
 import { useEffect } from 'react';
+import Protected from './components/Layout/Protected';
 
 
 const App = () => {
@@ -18,7 +19,8 @@ const App = () => {
   useEffect(()=>{
     auth.isAuthenticate()
   },[])
-  console.log(process.env.ServerUrl)
+
+  
   return (
     <div className='App'>
       <div><Toaster
@@ -26,36 +28,55 @@ const App = () => {
             reverseOrder={false}        
           />
     </div>
-
+    
         <Routes>
             
-              {auth.user === "Admin" &&
-                <Route path="/AdminDashboard" element={<Admin_Dashboard />} />
-              }
+              <Route path="/AdminDashboard" element={
+              <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
+                <Admin_Dashboard />
+              </Protected> }
+              />
               
-              {auth.user === "User" &&
-              <Route index path="/" element={<Dashboard/>} />
-              }
+              
+              <Route index path="/" element={
+              <Protected isLoggedIn={auth.user==="User"} replace="Login">
+                <Dashboard/>
+              </Protected> }
+             />
+              
 
-              {!auth.user &&
-                <Route path="/Login" element={<Login />} />
-              }
+              
+                <Route path="/Login" element={
+                <Protected isLoggedIn={!auth.user} replace="">
+                  <Login />
+                </Protected>
+              } 
+                />
+              
 
-              {!auth.user &&
-                <Route path="/register" element={<Register />} />
-              }
-
+              
+                <Route path="/register" element={
+                <Protected isLoggedIn={!auth.user} replace="">
+                  <Register />
+                </Protected>
+                } />
+              
+{/* 
               {auth.user &&
                 <Route path="/settings" element={<Settings />} />
               }
               
               {auth.user &&
                 <Route path="/detail" element={<Detail />} />
-              }
+              } */}
 
-              {auth.user &&
-                <Route path="/course/:slug" element={<CourseModule />} /> 
-              }
+              
+                <Route path="/course/:slug" element={
+                <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
+                  <CourseModule />
+                </Protected>}
+               /> 
+              
               
           </Routes>
     </div>

@@ -11,8 +11,8 @@ export const AuthProvider = ({children}) => {
         console.log(UserData.token)
         setuser(UserData.role)
         setToken(UserData.token)
-        Cookies.set('userData',UserData.role, { expires: 7,secure: true })
-        Cookies.set('token',UserData.token, { expires: 7,secure: true })
+        Cookies.set('userData',UserData.role, { expires: 1,secure: true })
+        Cookies.set('token',UserData.token, { expires: 1,secure: true })
     }
 
     const isAuthenticate = () =>{
