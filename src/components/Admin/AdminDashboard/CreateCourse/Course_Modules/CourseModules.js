@@ -4,8 +4,12 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import NewModule from './NewModule';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../../../../Auth/auth';
 
-function Module(props) {
+const Module = (props) => {    
+    
+    const auth = useAuth()
+    const token = auth.token
 
     const { slug } = useParams();
     const addModuleURL = `http://172.29.108.195:3000/addModule/${slug}`
@@ -23,7 +27,11 @@ function Module(props) {
         
         
         // console.log(a)    
-        axios.post(addModuleURL,a).then(res=>{
+        axios.post(addModuleURL,a,{
+            headers: {
+              'Authorization': token
+            }
+          }).then(res=>{
             // console.log(res)
             if(res.status == 200){
                 setModules(modules => [...modules, a]);
@@ -41,7 +49,11 @@ function Module(props) {
 
     
     useEffect(()=>{
-        axios.get(moduleURL).then(res=>{
+        axios.get(moduleURL,{
+            headers: {
+              'Authorization': token
+            }
+          }).then(res=>{
             // console.log(res.data)"http://172.29.233.109:3000/course"
             if(res.data.modules.length > 0){
                 setModules(res.data.modules)
@@ -64,7 +76,11 @@ function Module(props) {
         // console.log(formData)
         // console.log(id)
         if(id && selectedFile){
-            axios.post(`${Lecture}/${id}`,formData).then(res=>{
+            axios.post(`${Lecture}/${id}`,formData,{
+                headers: {
+                  'Authorization': token
+                }
+              }).then(res=>{
                 console.log(res.data);
                 toast.success("Lecture added!")
                 setSelectedFile(null)

@@ -35,12 +35,12 @@ function Login() {
               
               if(res.data.status === "Authorised"){
                 auth.login(res.data)
-                  if (res.data.role === "Admin"){
-                    Navigate('/AdminDashboard');
-                  }
-                  if (res.data.role === "User"){
+                  // if (res.data.role === "Admin"){
+                  //   Navigate('/AdminDashboard');
+                  // }
+                  // if (res.data.role === "User"){
                     Navigate('/');
-                  }
+                  // }
               }
               else{
                 setWarning("Invalid credentials")

@@ -2,7 +2,7 @@ import './App.css';
 import { useAuth } from './Auth/auth';
 import Register from './components/Register';
 import Login from './components/Login';
-import Dashboard from './components/User/Dashboard'
+import Dashboard from './Dashboard'
 import Settings from './components/User/Settings';
 import Detail from './components/Course/Detail';
 import {Routes, Route } from "react-router-dom";
@@ -31,17 +31,19 @@ const App = () => {
     
         <Routes>
             
-              <Route path="/AdminDashboard" element={
-              <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
+              {/* <Route path="/AdminDashboard" element={
+              // <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
                 <Admin_Dashboard />
-              </Protected> }
-              />
+              // </Protected> 
+            }
+              /> */}
               
               
               <Route index path="/" element={
-              <Protected isLoggedIn={auth.user==="User"} replace="Login">
+              <Protected isLoggedIn={auth.user} replace="Login">
                 <Dashboard/>
-              </Protected> }
+              </Protected> 
+            }
              />
               
 

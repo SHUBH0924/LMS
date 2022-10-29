@@ -21,6 +21,7 @@ const Sidenav = () => {
 
     const Lgout = () =>{
         auth.logout()
+        // History.push('/Login')
     }
 
     
@@ -67,8 +68,9 @@ const Sidenav = () => {
                     ))}
                     {
                         <Link
-                        to={Logout?.link}
+                        
                         onClick={Lgout}
+                        // to="/Login"
                         // key={i}
                         className={` ${Logout?.margin && "mt-5"
                             } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
