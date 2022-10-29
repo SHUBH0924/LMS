@@ -2,9 +2,12 @@ import React from 'react'
 import Card from '../Card/Card'
 import Sidenav from '../Layout/Sidenav'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../Auth/auth';
+
 
 function Dashboard() {
-
+    const auth = useAuth()
+    
     const course = [{
         Title:"Cybersecurity course for the beginners",
         Rate:5,
@@ -21,6 +24,9 @@ function Dashboard() {
         price:999
     }
     ]
+
+
+
 
 
     return (

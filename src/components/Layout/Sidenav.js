@@ -10,16 +10,16 @@ import { Link } from "react-router-dom";
 const Sidenav = () => {
     const menus = [
         { name: "Dashboard", link: "/", icon: MdSpaceDashboard , role:"User"},
-        { name: "Account", link: "/Login", icon: RiUser3Fill , role:"User"},
+        // { name: "Account", link: "/Login", icon: RiUser3Fill , role:"User"},
         { name: "Admin", link: "/AdminDashboard", icon: RiUser3Fill , role:"User"},
-        { name: "Announcements", link: "/", icon: RiMessage2Fill ,role:"User"},
-        { name: "Grades", link: "/", icon: SiGoogleanalytics, margin: true ,role:"User"},
-        { name: "Courses", link: "/", icon: AiFillBook ,role:"User"},
-        { name: "Settings", link: "/settings", icon: RiSettings2Fill ,role:"User"},
-        { name: "Quizzes", link: "/", icon: MdQuiz ,role:"User", role:"User"},
-        { name: "Calendar", link: "/", icon: RiCalendarFill, role:"User" },
-        { name: "Modules", link: "/", icon: MdViewModule ,role:"User"},
-        { name: "Logout", link: "/", icon: ImExit, role:"User" },
+        // { name: "Announcements", link: "/", icon: RiMessage2Fill ,role:"User"},
+        // { name: "Grades", link: "/", icon: SiGoogleanalytics, margin: true ,role:"User"},
+        // { name: "Courses", link: "/", icon: AiFillBook ,role:"User"},
+        // { name: "Settings", link: "/settings", icon: RiSettings2Fill ,role:"User"},
+        // { name: "Quizzes", link: "/", icon: MdQuiz ,role:"User", role:"User"},
+        // { name: "Calendar", link: "/", icon: RiCalendarFill, role:"User" },
+        // { name: "Modules", link: "/", icon: MdViewModule ,role:"User"},
+        { name: "Logout", icon: ImExit, role:"User" },
     ];
     const [open, setOpen] = useState(false);
 
@@ -40,6 +40,7 @@ const Sidenav = () => {
                 
                 <div className="mt-4 flex flex-col gap-4 ">
                     {menus?.map((menu, i) => (
+                        
                          <Link
                             to={menu?.link}
                             key={i}

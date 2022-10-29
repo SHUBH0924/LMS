@@ -1,20 +1,39 @@
 import {createContext,useContext,useState } from "react";
+import Cookies from 'js-cookie'
 
 const AuthContext = createContext(null)
-
 export const AuthProvider = ({children}) => {
     const [user,setuser] = useState(null)
+    const [token,setToken] = useState(null)
     
-    const login = (user) =>{
-        setuser(user)
+    
+    const login = (UserData) =>{
+        console.log(UserData.token)
+        setuser(UserData.role)
+        setToken(UserData.token)
+        Cookies.set('userData',UserData.role, { expires: 7,secure: true })
+        Cookies.set('token',UserData.token, { expires: 7,secure: true })
+    }
+
+    const isAuthenticate = () =>{
+        const userData = Cookies.get('userData')
+        const Token = Cookies.get('userData')
+        // console.log()
+        if(userData){
+            setuser(userData)
+            setToken(Token)
+        }
     }
 
     const logout = (user) =>{
         setuser(null)
+        setToken(null)
+        Cookies.remove('userData')
+        Cookies.remove('token')
     }
 
     return(
-        <AuthContext.Provider value={{user,login,logout}}>
+        <AuthContext.Provider value={{user,login,logout,isAuthenticate,token}}>
             {children}
         </AuthContext.Provider>
     );
