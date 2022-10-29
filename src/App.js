@@ -3,8 +3,6 @@ import { useAuth } from './Auth/auth';
 import Register from './components/Register';
 import Login from './components/Login';
 import Dashboard from './components/User/Dashboard'
-import Settings from './components/User/Settings';
-import Detail from './components/Course/Detail';
 import {Routes, Route } from "react-router-dom";
 import Admin_Dashboard from './components/Admin/AdminDashboard/Admin_Dashboard';
 import CourseModule from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/CourseModules';
