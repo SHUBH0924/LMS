@@ -4,21 +4,23 @@ import axios from 'axios'
 import Card from '../Card/Card'
 import Sidenav from '../Layout/Sidenav'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../Auth/auth';
+
 
 function Dashboard() {
 
     // const course = [{
-    //     name:"Cybersecurity course for the beginners",
+    //     Title:"Cybersecurity course for the beginners",
     //     Rate:5,
     //     price:599
     // },
     // {
-    //     name:"Cybersecurity course for the Intermediate",
+    //     Title:"Cybersecurity course for the Intermediate",
     //     Rate:4.5,
     //     price:799
     // },
     // {
-    //     name:"Cybersecurity course for the Advance",
+    //     Title:"Cybersecurity course for the Advance",
     //     Rate:4.5,
     //     price:999
     // }
@@ -33,6 +35,9 @@ function Dashboard() {
             console.log(res.data) 
             })
         },[])
+
+
+
 
     return (
         <div className='relative'>

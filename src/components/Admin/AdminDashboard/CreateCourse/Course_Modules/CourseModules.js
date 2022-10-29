@@ -3,6 +3,7 @@ import Sidenav from "../../../../Layout/Sidenav"
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import NewModule from './NewModule';
+import toast from 'react-hot-toast';
 
 function Module(props) {
 
@@ -26,8 +27,12 @@ function Module(props) {
             // console.log(res)
             if(res.status == 200){
                 setModules(modules => [...modules, a]);
+                toast.success("Module Created");
+            }else{
+                toast.error("unable to create Module")    
             }
         }).catch(err=>{
+            toast.error("unable to create Module")
             console.log(err)
         })
         // console.log(unpublished_course)    
@@ -48,6 +53,7 @@ function Module(props) {
     const changeHandler = (event) => {
         setSelectedFile(event.target.files[0]);
         setIsSelected(true);
+
     };
 
    
@@ -55,18 +61,21 @@ function Module(props) {
         const formData = new FormData();
 
         formData.append('File', selectedFile);
-        console.log(formData)
-        console.log(id)
+        // console.log(formData)
+        // console.log(id)
         if(id && selectedFile){
-            // console.log("Hello")
             axios.post(`${Lecture}/${id}`,formData).then(res=>{
-                // setWarning("")
-                console.log('Success:');
+                console.log(res.data);
+                toast.success("Lecture added!")
+                setSelectedFile(null)
+                setIsSelected(false)
             })
             .catch((error) => {
                     console.error('Error:',error);
                     setWarning("file didn't uploaded")
                 });
+        }else{
+            toast.error("Please select a file")
         }
     };
 

@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../../../Auth/auth"
 import Card from "../../Card/Card"
 import Sidenav from "../../Layout/Sidenav"
 import classes from "./Admin_Dashboard.module.css"
@@ -9,13 +10,19 @@ import Create_Course from "./CreateCourse/Create_Course"
 
 const Admin_Dashboard = () =>{
 
-    const backendServer = `http://172.29.108.195:3000/courses`
+    const auth = useAuth()
+    const backendServer = `http://172.29.234.176:3000/courses`
     const [Course,setCourse] = useState([])
-
+    const token = auth.token
     const Navigate = useNavigate();
 
     useEffect(()=>{
-    axios.get(backendServer).then(res=>{
+        console.log(token)
+    axios.get(backendServer,{
+        headers: {
+          'Authorization': token
+        }
+      }).then(res=>{
         // console.log(res.data)
         setCourse(res.data)
         // console.log(Course) 
@@ -37,18 +44,18 @@ const Admin_Dashboard = () =>{
         const fd = new FormData();
         fd.append('image',a)
 
-        axios.post("http://172.29.108.195:3000/course",a).then(res=>{
+        axios.post("http://172.29.234.176:3000/course",a).then(res=>{
             console.log(res)
             setCourse(Course => [...Course, a]);
         }).catch(err=>{
             console.log("err")
         })
         // console.log(unpublished_course)    
-}
+    }
 
 
     const [CourseToggle,setCourseToggle]= useState(false)
-
+    
     return(
         <div className='relative'>
         <aside className="flex">

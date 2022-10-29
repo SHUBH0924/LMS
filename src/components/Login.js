@@ -2,45 +2,54 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect,useState } from "react";
 import axios from "axios";
+import { AuthProvider } from '../Auth/auth';
+import { useAuth } from '../Auth/auth';
+
 
 function Login() {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  }, []);
-  const Navigate = useNavigate();
-  const NavigateToRegister = () => {
-    Navigate('/register');
-  };
-  const NavigateToAdmin = () => {
-    Navigate('/AdminDashboard');
-  };
+      useEffect(() => {
+        document.body.style.overflow = "hidden";
+      }, []);
 
-  const [email,setemail] = useState("")    
-  const [password,setpassword] = useState("")
-  const [warning,setWarning] = useState("")
+      const auth = useAuth()
+      
+      const Navigate = useNavigate();
+      const NavigateToRegister = () => {
+        Navigate('/register');
+      };
 
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-    const data = {
-        email:email,
-        password:password,
-    }
+      const [email,setemail] = useState("")    
+      const [password,setpassword] = useState("")
+      const [warning,setWarning] = useState("")
 
-        axios.post("http://172.29.234.130:3000/login",data).then(res=>{
-          console.log(res)
-          if (res.data === 'Authorised'){
-            NavigateToAdmin()
-          }
-          else{
-            setWarning("Invalid credentials")
-          }
-        }).catch(e=>{
-          setWarning("Invalid credentials")
-        });
-        
-       
+      const handleSubmit = (e)=>{
+            e.preventDefault();
+            const data = {
+                email:email,
+                password:password,
+            }
 
-}
+            axios.post("http://172.29.234.176:3000/login",data).then(res=>{
+              console.log(res)
+
+              
+              if(res.data.status === "Authorised"){
+                auth.login(res.data)
+                  if (res.data.role === "Admin"){
+                    Navigate('/AdminDashboard');
+                  }
+                  if (res.data.role === "User"){
+                    Navigate('/');
+                  }
+              }
+              else{
+                setWarning("Invalid credentials")
+              }
+            }).catch(e=>{
+              console.log(e)
+              setWarning("Invalid credentials")
+            });
+        }
 
 
   return (

@@ -18,12 +18,6 @@ function Register() {
     const [Cpassword,setCpassword] = useState("")
     const [warning,setWarning] = useState("")
     const [phone,setPhone] = useState("")
-    // const [userdata,setUserData] = useState({
-    //     username:"",
-    //     password:"",
-    //     Cpassword:"",
-    //     email:""
-    // })
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -38,7 +32,7 @@ function Register() {
             console.log("")
             setWarning("Password didn't match")
         }else{
-            axios.post("http://172.29.234.130:3000/register",data).then(
+            axios.post("http://172.29.108.195:3000/register",data).then(
                 res=>{
                     console.log(res)
                     if(res.status == 201){
