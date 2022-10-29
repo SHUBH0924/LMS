@@ -4,17 +4,19 @@ import { FcStart } from "react-icons/fc";
 
 function Detail() {
     return (
-        <div className='flex flex-row relative bg-gray-300'>
-            <aside className="flex gap-6 mb-3">
-                <div className='fixed'>
-                    <Sidenav />
-                </div>
-                <div className='ml-80 relative'>
-                    <h1 className='m-3 text-4xl text-gray-900 font-semibold '>
-                        Course Detail
+        <div className='relative'>
+            <aside className="flex">
+
+                <Sidenav />
+
+
+                <div className='flex flex-col w-full'>
+
+                    <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
+                        details
                     </h1>
-                    <hr />
-                    <div className='container mt-3'>
+                    <hr className="w-1/3 mx-auto" />
+                    <div className='flex mx-auto container mt-3'>
                         <div className='row'>
                             <div className='col-4'>
                                 <img src="/assets/course.png" className="h-80 w-100" alt="..." />
@@ -42,7 +44,7 @@ function Detail() {
                                                 <span className="flex-1 pl-2 mx-auto whitespace-nowrap">Introduction</span>
                                                 <button className="py-0 flex justify-end hover:bg-red-700">
                                                     <FcStart
-                                                        size={50} 
+                                                        size={50}
                                                     />
                                                 </button>
                                             </a>
@@ -53,7 +55,7 @@ function Detail() {
                                                 <span className="flex-1 pl-2 mx-auto whitespace-nowrap">Lecture 1</span>
                                                 <button className="py-0 flex justify-end hover:bg-red-700">
                                                     <FcStart
-                                                        size={50} 
+                                                        size={50}
                                                     />
                                                 </button>
                                             </a>
@@ -63,7 +65,7 @@ function Detail() {
                                                 <span className="flex-1 pl-2 mx-auto whitespace-nowrap">Lecture 2</span>
                                                 <button className="py-0 flex justify-end hover:bg-red-700">
                                                     <FcStart
-                                                        size={50} 
+                                                        size={50}
                                                     />
                                                 </button>
                                             </a>
@@ -73,7 +75,7 @@ function Detail() {
                                                 <span className="flex-1 pl-2 mx-auto whitespace-nowrap">Lecture 3</span>
                                                 <button className="py-0 flex justify-end hover:bg-red-700">
                                                     <FcStart
-                                                        size={50} 
+                                                        size={50}
                                                     />
                                                 </button>
                                             </a>
@@ -81,9 +83,11 @@ function Detail() {
                                     </ul>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
+
             </aside>
         </div>
     )

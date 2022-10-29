@@ -18,7 +18,7 @@ const Admin_Dashboard = () =>{
     axios.get(backendServer).then(res=>{
         // console.log(res.data)
         setCourse(res.data)
-        // console.log(Course)
+        // console.log(Course) 
         })
     },[])
 
@@ -66,7 +66,7 @@ const Admin_Dashboard = () =>{
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         published Courses
                     </h1>
-                    <hr className="w-1/3 mx-auto"/>
+                    <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 "/>
                     <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                         <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
                             {Course.filter(item=>{
@@ -82,7 +82,7 @@ const Admin_Dashboard = () =>{
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         unPublished Courses
                     </h1>
-                    <hr className="w-1/3 mx-auto"/>
+                    <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 "/>
                     <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                         <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
                             {Course.filter(item=>{
