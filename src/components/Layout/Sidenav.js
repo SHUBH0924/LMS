@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcList } from "react-icons/fc";
-import { FcPodiumWithSpeaker, FcServices, FcOpenedFolder, FcAssistant, FcKey, FcExport, FcDatabase } from "react-icons/fc";
+import { FcPodiumWithSpeaker, FcServices, FcOpenedFolder, FcVoicePresentation, FcKey, FcExport, FcDatabase } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Sidenav = () => {
@@ -9,18 +9,18 @@ const Sidenav = () => {
         { name: "Account", link: "/Login", icon: FcPodiumWithSpeaker , role:"User"},
         { name: "Admin", link: "/AdminDashboard", icon: FcKey , role:"User"},
         { name: "Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
-        { name: "Settings", link: "/settings", icon: FcServices ,role:"User"},
-        { name: "Help", link: "/settings", icon: FcAssistant ,role:"User"},
+        { name: "Profile", link: "/settings", icon: FcServices ,role:"User"},
+        { name: "Help", link: "/settings", icon: FcVoicePresentation ,role:"User"},
         
         { name: "Logout", link: "/", icon: FcExport, role:"User" },
     ];
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     
     return (
         <section className="flex min-h-screen gap-6 overflow-hidden">
             <div
-                className={`bg-[#0e0e31] min-h-fit ${open ? "w-64" : "w-20"
+                className={`bg-[#0e0e31] min-h-fit ${open ? "w-72" : "w-20"
                     } duration-500 text-gray-100 px-4`}
             >
                 <div className="py-4 flex justify-end ">
@@ -29,6 +29,7 @@ const Sidenav = () => {
                         className="cursor-pointer"
                         onClick={() => setOpen(!open)}
                     />
+                    
                 </div>
                 
                 <div className="mt-4 flex flex-col gap-8 ">

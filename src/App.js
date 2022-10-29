@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Admin_Dashboard from './components/Admin/AdminDashboard/Admin_Dashboard';
 import Sidenav from './components/Layout/Sidenav';
 import CourseModule from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/CourseModules';
-
+import Courses from './components/Course/Courses';
 
 
 const App = () => {
@@ -28,7 +28,8 @@ const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/detail" element={<Detail />} />
-              <Route path="/course/:slug" element={<CourseModule />} /> 
+              <Route path="/course/:slug" element={<CourseModule />} />
+              <Route path="/courses" element={<Courses />} /> 
               
           </Routes>
           {/* </BrowserRouter> */}

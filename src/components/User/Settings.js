@@ -3,17 +3,15 @@ import Sidenav from '../Layout/Sidenav'
 
 const Settings = () => {
     return (
-        <div className='flex flex-row relative'>
-            <aside className="flex gap-6 mb-3">
-                <div className='fixed'>
-                    <Sidenav />
-                </div>
-                <div className='ml-80 relative'>
-                        <h1 className='m-3 mt-5 ml-6 text-3xl text-gray-900 font-semibold '>
-                            Profile Settings
-                        </h1>
-                        <hr />
-                        <form className="mt-6 ml-6 w-full max-w-7xl justify-center">
+        <div className='relative'>
+        <aside className="flex">
+                <Sidenav />
+            <div className='flex flex-col w-full'>
+            <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
+                       profile settings
+                    </h1>
+                    <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 "/>
+                        <form className="mt-6 ml-16 w-4/5 max-w-7xl justify-center">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Photo</label>
                                 <div className="mt-3 flex items-center mb-5">
