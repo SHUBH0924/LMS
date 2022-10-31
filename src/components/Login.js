@@ -7,9 +7,9 @@ import { useAuth } from '../Auth/auth';
 
 
 function Login() {
-      useEffect(() => {
-        document.body.style.overflow = "hidden";
-      }, []);
+      // useEffect(() => {
+      //   document.body.style.overflow = "hidden";
+      // }, []);
 
       const auth = useAuth()
       
@@ -57,8 +57,8 @@ function Login() {
       <div className="min-h-screen bg-gray-800 flex justify-center items-center">
         <div className="absolute w-60 h-60 rounded-xl bg-green-600 -top-5 -left-16 z-0 transform rotate-45 hidden md:block">
         </div>
-        <div className="absolute w-48 h-48 rounded-xl bg-green-600 -bottom-6 -right-10 transform rotate-12 hidden md:block">
-        </div>
+        {/* <div className="absolute w-48 h-48 rounded-xl bg-green-600 -bottom-6 -right-10 transform rotate-12 hidden md:block">
+        </div> */}
           <div className="py-12 px-12 bg-gray-300 rounded-2xl shadow-xl z-20">
             <div>
               <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Login</h1>
