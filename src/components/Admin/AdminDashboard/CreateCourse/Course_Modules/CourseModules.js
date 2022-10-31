@@ -4,13 +4,17 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import NewModule from './NewModule';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../../../../Auth/auth';
 
-function Module(props) {
+const Module = (props) => {    
+    
+    const auth = useAuth()
+    const token = auth.token
 
     const { slug } = useParams();
-    const addModuleURL = `http://172.29.108.195:3000/addModule/${slug}`
-    const moduleURL = `http://172.29.108.195:3000/course/${slug}`
-    const Lecture = `http://172.29.108.195:3000/upload/${slug}`
+    const addModuleURL = `http://172.29.234.176:3000/addModule/${slug}`
+    const moduleURL = `http://172.29.234.176:3000/course/${slug}`
+    const Lecture = `http://172.29.234.176:3000/upload/${slug}`
 
     const [selectedFile, setSelectedFile] = useState(null);
 	const [isSelected, setIsSelected] = useState(false);
@@ -23,7 +27,11 @@ function Module(props) {
         
         
         // console.log(a)    
-        axios.post(addModuleURL,a).then(res=>{
+        axios.post(addModuleURL,a,{
+            headers: {
+              'Authorization': token
+            }
+          }).then(res=>{
             // console.log(res)
             if(res.status == 200){
                 setModules(modules => [...modules, a]);
@@ -41,7 +49,11 @@ function Module(props) {
 
     
     useEffect(()=>{
-        axios.get(moduleURL).then(res=>{
+        axios.get(moduleURL,{
+            headers: {
+              'Authorization': token
+            }
+          }).then(res=>{
             // console.log(res.data)"http://172.29.233.109:3000/course"
             if(res.data.modules.length > 0){
                 setModules(res.data.modules)
@@ -64,7 +76,11 @@ function Module(props) {
         // console.log(formData)
         // console.log(id)
         if(id && selectedFile){
-            axios.post(`${Lecture}/${id}`,formData).then(res=>{
+            axios.post(`${Lecture}/${id}`,formData,{
+                headers: {
+                  'Authorization': token
+                }
+              }).then(res=>{
                 console.log(res.data);
                 toast.success("Lecture added!")
                 setSelectedFile(null)
@@ -137,6 +153,7 @@ function Module(props) {
                                                 stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                    <input type="file" name="file_upload" className="hidden" onChange={changeHandler}/>
                                             </svg>
                                             <span className="font-medium text-white">
                                                 Drop files to Attach, or

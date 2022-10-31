@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcList } from "react-icons/fc";
-import { FcPodiumWithSpeaker, FcServices, FcOpenedFolder, FcVoicePresentation, FcKey, FcExport, FcDatabase } from "react-icons/fc";
+import { FcPodiumWithSpeaker, FcServices, FcOpenedFolder, FcVoicePresentation, FcCalendar, FcExport, FcDatabase } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/auth";
 
@@ -9,9 +9,9 @@ const Sidenav = () => {
     const menus = [
         { name: "Dashboard", link: "/", icon: FcDatabase , role:"User"},
         { name: "Account", link: "/Login", icon: FcPodiumWithSpeaker , role:"User"},
-        { name: "Admin", link: "/AdminDashboard", icon: FcKey , role:"User"},
-        { name: "Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
-        { name: "Profile", link: "/settings", icon: FcServices ,role:"User"},
+        { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
+        { name: "Profile", link: "/profile", icon: FcServices ,role:"User"},
+        { name: "Calendar", link: "/", icon: FcCalendar ,role:"User"},
         { name: "Help", link: "/settings", icon: FcVoicePresentation ,role:"User"},
         
     ];
@@ -21,6 +21,7 @@ const Sidenav = () => {
 
     const Lgout = () =>{
         auth.logout()
+        // History.push('/Login')
     }
 
     
@@ -68,8 +69,9 @@ const Sidenav = () => {
                     ))}
                     {
                         <Link
-                        to={Logout?.link}
+                        
                         onClick={Lgout}
+                        // to="/Login"
                         // key={i}
                         className={` ${Logout?.margin && "mt-5"
                             } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}

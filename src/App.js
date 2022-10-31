@@ -2,10 +2,13 @@ import './App.css';
 import { useAuth } from './Auth/auth';
 import Register from './components/Register';
 import Login from './components/Login';
-import Dashboard from './components/User/Dashboard'
+import Dashboard from './Dashboard'
+import Profile from './components/User/Profile';
+import Detail from './components/Course/Detail';
 import {Routes, Route } from "react-router-dom";
 import Admin_Dashboard from './components/Admin/AdminDashboard/Admin_Dashboard';
 import CourseModule from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/CourseModules';
+import Courses from './components/Course/Courses';
 import {Toaster} from 'react-hot-toast';
 import { useEffect } from 'react';
 import Protected from './components/Layout/Protected';
@@ -29,17 +32,19 @@ const App = () => {
     
         <Routes>
             
-              <Route path="/AdminDashboard" element={
-              <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
+              {/* <Route path="/AdminDashboard" element={
+              // <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
                 <Admin_Dashboard />
-              </Protected> }
-              />
+              // </Protected> 
+            }
+              /> */}
               
               
               <Route index path="/" element={
-              <Protected isLoggedIn={auth.user==="User"} replace="Login">
+              <Protected isLoggedIn={auth.user} replace="Login">
                 <Dashboard/>
-              </Protected> }
+              </Protected> 
+            }
              />
               
 
@@ -59,12 +64,16 @@ const App = () => {
                 </Protected>
                 } />
               
-{/* 
+
               {auth.user &&
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/profile" element={<Profile />} />
               }
               
               {auth.user &&
+                <Route path="/courses" element={<Courses />} />
+              }
+              
+              {/* {auth.user &&
                 <Route path="/detail" element={<Detail />} />
               } */}
 

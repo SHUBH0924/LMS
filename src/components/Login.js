@@ -7,9 +7,9 @@ import { useAuth } from '../Auth/auth';
 
 
 function Login() {
-      useEffect(() => {
-        document.body.style.overflow = "hidden";
-      }, []);
+      // useEffect(() => {
+      //   document.body.style.overflow = "hidden";
+      // }, []);
 
       const auth = useAuth()
       
@@ -35,12 +35,12 @@ function Login() {
               
               if(res.data.status === "Authorised"){
                 auth.login(res.data)
-                  if (res.data.role === "Admin"){
-                    Navigate('/AdminDashboard');
-                  }
-                  if (res.data.role === "User"){
+                  // if (res.data.role === "Admin"){
+                  //   Navigate('/AdminDashboard');
+                  // }
+                  // if (res.data.role === "User"){
                     Navigate('/');
-                  }
+                  // }
               }
               else{
                 setWarning("Invalid credentials")
@@ -53,11 +53,11 @@ function Login() {
 
 
   return (
-    <div>
+    <div className='overflow-hidden'>
       <div className="min-h-screen bg-gray-800 flex justify-center items-center">
         <div className="absolute w-60 h-60 rounded-xl bg-green-600 -top-5 -left-16 z-0 transform rotate-45 hidden md:block">
         </div>
-        <div className="absolute w-48 h-48 rounded-xl bg-green-600 -bottom-6 -right-10 transform rotate-12 hidden md:block">
+        <div className="absolute w-40 h-40 rounded-xl bg-green-600 -bottom-0 -right-0 transform rotate-9 hidden md:block">
         </div>
           <div className="py-12 px-12 bg-gray-300 rounded-2xl shadow-xl z-20">
             <div>

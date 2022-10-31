@@ -31,7 +31,7 @@ const Courses = () => {
         <Sidenav />
         <section className="flex min-h-screen ">
             <div
-                className="bg-[#30304b] min-h-fit w-48 text-gray-400 px-4"
+                className="bg-[#232338] min-h-fit w-48 text-gray-400 px-4"
             >
 
                 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidenav from '../Layout/Sidenav'
 
-const Settings = () => {
+const Profile = () => {
     return (
         <div className='relative'>
         <aside className="flex">
@@ -9,7 +9,7 @@ const Settings = () => {
             <div className='flex flex-col w-full'>
             <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                        profile settings
-                    </h1>
+                       </h1>
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 "/>
                         <form className="mt-6 ml-16 w-4/5 max-w-7xl justify-center">
                             <div>
@@ -95,5 +95,5 @@ const Settings = () => {
     )
 }
 
-export default Settings;
+export default Profile;
 

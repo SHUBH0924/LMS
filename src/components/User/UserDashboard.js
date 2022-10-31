@@ -8,28 +8,17 @@ import { useAuth } from '../../Auth/auth';
 
 
 function Dashboard() {
-
-    // const course = [{
-    //     Title:"Cybersecurity course for the beginners",
-    //     Rate:5,
-    //     price:599
-    // },
-    // {
-    //     Title:"Cybersecurity course for the Intermediate",
-    //     Rate:4.5,
-    //     price:799
-    // },
-    // {
-    //     Title:"Cybersecurity course for the Advance",
-    //     Rate:4.5,
-    //     price:999
-    // }
-    // ]
+    const auth = useAuth()
+    const [token,setToken] = useState(auth.token)
 
     const backendServer = `http://172.29.234.176:3000/courses`
     const [course,setCourse] = useState([])
     useEffect(()=>{
-        axios.get(backendServer).then(res=>{
+        axios.get(backendServer,{
+            headers: {
+              'Authorization': token
+            }
+          }).then(res=>{
             // console.log(res.data)
             setCourse(res.data)
             console.log(res.data) 
@@ -69,11 +58,11 @@ function Dashboard() {
                     <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                         <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
                             {course.map(item =>{
-                                    
-                                    return(
-                                        <Card item={item} Button="Purchase"/>
-                                        )
-                                })}
+                                
+                                return(
+                                    <Card item={item} Button="Purchase"/>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
