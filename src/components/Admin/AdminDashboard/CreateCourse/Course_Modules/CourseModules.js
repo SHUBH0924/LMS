@@ -104,19 +104,7 @@ const Module = (props) => {
             <aside className="flex">
                 <Sidenav />
                 <div className='flex flex-col w-full'>
-                    {/* <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold'>
-                        Cybersecurity
-                    </h1>
-                    <hr className='w-1/3 mx-auto rounded-full h-2 bg-gradient-to-r from-blue-800' />
-                    <div className='mt-5 mb-5 mx-auto'>
-                        <img src="/assets/course.png" className="h-80 w-100" alt="..." />
-                    </div>{
-                        <Create_Course createNewCourse={createNewCourse}/>
-                    }
-                    <hr className='w-2/3 mx-auto rounded-full h-2 bg-gradient-to-r from-blue-800' /> */}
-                    
-                    
-                        <NewModule createNewCourse={createNewModule}/>
+                    <NewModule createNewCourse={createNewModule}/>
                     
                     {modules ? (modules.map(item => {
                         

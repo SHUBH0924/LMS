@@ -12,7 +12,7 @@ const Create_Course = (props) =>{
         license:"Private(CopyRight)",
         published:false,
         price:0,
-        imgFile:null
+        // imgFile:null
     })
 
     const Create_Course = () =>{
@@ -75,10 +75,10 @@ const Create_Course = (props) =>{
                       <div>
                           {/* <label for="Course" class="block mb-2 text-sm font-medium text-gray-300">/image</label> */}
                           {/* <input type="file" name="file" id="file" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.file} onChange={FileSet} /> */}
-                          <FileUploader
+                          {/* <FileUploader
                             onFileSelectSuccess={(imgFile) => seta({...a,imgFile})}
                             onFileSelectError={({ error }) => alert(error)}
-                          />
+                          /> */}
                       </div>
                   </form>
 

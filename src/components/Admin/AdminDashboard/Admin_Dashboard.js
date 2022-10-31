@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../../Auth/auth"
 import Card from "../../Card/Card"
@@ -11,14 +12,14 @@ import Create_Course from "./CreateCourse/Create_Course"
 const Admin_Dashboard = () =>{
 
     const auth = useAuth()
-    const backendServer = `http://172.29.234.176:3000/courses`
+    const backendServer = `http://172.29.234.176:3000`
     const [Course,setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();
 
     useEffect(()=>{
         console.log(token)
-    axios.get(backendServer,{
+    axios.get(`${backendServer}/courses`,{
         headers: {
           'Authorization': token
         }
@@ -37,17 +38,22 @@ const Admin_Dashboard = () =>{
         // console.log({id},"Clicked")
     }
 
-    const createNewCourse = ({a}) =>{
+    const createNewCourse = async ({a}) =>{
         
-        
-        console.log(a)
-        const fd = new FormData();
-        fd.append('image',a)
+        // console.log(a)
+        // const fd = new FormData();
+        // fd.append('image',a)
 
-        axios.post("http://172.29.234.176:3000/course",a).then(res=>{
-            console.log(res)
+        await axios.post(`${backendServer}/course`,a,{
+            headers: {
+              'Authorization': token
+            }
+          }).then(res=>{
+            // console.log(res)
             setCourse(Course => [...Course, a]);
+            toast.success("Course created")
         }).catch(err=>{
+            toast.error("Course not created")
             console.log("err")
         })
         // console.log(unpublished_course)    
