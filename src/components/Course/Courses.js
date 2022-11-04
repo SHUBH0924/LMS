@@ -34,8 +34,8 @@ const Courses = () => {
                 className="bg-[#232338] min-h-fit w-48 text-gray-400 px-4"
             >
 
-                
-                <div className="mt-16 flex flex-col gap-5 ">
+              <hr className=" h-1 rounded-full mt-14 bg-slate-300"/>  
+                <div className="mt-6 flex flex-col gap-5 ">
                     {menus?.map((menu, i) => (
                          <Link
                             to={menu?.link}

@@ -12,6 +12,7 @@ import Courses from './components/Course/Courses';
 import {Toaster} from 'react-hot-toast';
 import { useEffect } from 'react';
 import Protected from './components/Layout/Protected';
+import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileInput';
 
 
 const App = () => {
@@ -68,6 +69,10 @@ const App = () => {
               {auth.user &&
                 <Route path="/profile" element={<Profile />} />
               }
+
+              {/* {auth.user && */}
+                <Route path="/DropFileInput" element={<DropFileInput />} />
+              {/* } */}
               
               {auth.user &&
                 <Route path="/courses" element={<Courses />} />

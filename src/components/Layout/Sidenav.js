@@ -31,7 +31,7 @@ const Sidenav = () => {
                 className={`bg-[#0e0e31] min-h-fit ${open ? "w-72" : "w-20"
                     } duration-500 text-gray-100 px-4`}
             >
-                <div className="py-4 flex justify-end ">
+                <div className="pt-3 pb-2 flex justify-end ">
                     <FcList
                         size={36}
                         className="cursor-pointer"
@@ -39,7 +39,7 @@ const Sidenav = () => {
                     />
                     
                 </div>
-                
+                <hr className="w-full h-1 bg-slate-300"/>
                 <div className="mt-4 flex flex-col gap-8 ">
                     {menus?.map((menu, i) => (
                         
