@@ -11,6 +11,7 @@ import CourseModule from './components/Admin/AdminDashboard/CreateCourse/Course_
 import {Toaster} from 'react-hot-toast';
 import { useEffect } from 'react';
 import Protected from './components/Layout/Protected';
+import Page from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/Page/Page';
 
 
 const App = () => {
@@ -46,6 +47,13 @@ const App = () => {
             }
              />
               
+
+              <Route index path="/Page" element={
+              // <Protected isLoggedIn={auth.user} replace="Login">
+                <Page />
+              // {/* </Protected>  */}
+            }
+             />
 
               
                 <Route path="/Login" element={

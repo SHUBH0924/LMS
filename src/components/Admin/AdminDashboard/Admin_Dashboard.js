@@ -12,7 +12,7 @@ import Create_Course from "./CreateCourse/Create_Course"
 const Admin_Dashboard = () =>{
 
     const auth = useAuth()
-    const backendServer = `http://172.29.234.176:3000`
+    const backendServer = `http://172.29.110.87:3000`
     const [Course,setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();

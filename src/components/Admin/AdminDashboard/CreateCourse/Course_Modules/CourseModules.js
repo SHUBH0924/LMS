@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Sidenav from "../../../../Layout/Sidenav"
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NewModule from './NewModule';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../../../../Auth/auth';
+
 
 const Module = (props) => {    
     
     const auth = useAuth()
     const token = auth.token
-
+    const Navigate = useNavigate();
     const { slug } = useParams();
-    const addModuleURL = `http://172.29.234.176:3000/addModule/${slug}`
-    const moduleURL = `http://172.29.234.176:3000/course/${slug}`
-    const Lecture = `http://172.29.234.176:3000/upload/${slug}`
+    const addModuleURL = `http://172.29.110.87:3000/addModule/${slug}`
+    const moduleURL = `http://172.29.110.87:3000/course/${slug}`
+    const Lecture = `http://172.29.110.87:3000/upload/${slug}`
 
     const [selectedFile, setSelectedFile] = useState(null);
 	const [isSelected, setIsSelected] = useState(false);
@@ -95,6 +96,11 @@ const Module = (props) => {
         }
     };
 
+
+    const onFileOpen = () =>{
+        console.log("clicked")
+        Navigate('/Page')
+    }
     
 
     return (
@@ -127,6 +133,7 @@ const Module = (props) => {
                                                         lastModifiedDate:{' '}
                                                         {selectedFile.lastModifiedDate.toLocaleDateString()}
                                                     </p>
+                                                    <button onClick={onFileOpen} >Button</button>
                                                 </div>
                                             ) : (
                                                 <p>Select a file to show details</p>
