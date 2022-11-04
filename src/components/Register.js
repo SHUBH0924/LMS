@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import {useState} from "react";
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function Register() {
     useEffect(() => {
@@ -36,6 +37,7 @@ function Register() {
                 res=>{
                     console.log(res)
                     if(res.status == 201){
+                        toast.success("registered")
                         NavigateToLogin()
                     }
                 }
