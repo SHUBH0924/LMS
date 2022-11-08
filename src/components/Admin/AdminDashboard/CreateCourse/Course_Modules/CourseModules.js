@@ -13,9 +13,9 @@ const Module = (props) => {
     const token = auth.token
 
     const { slug } = useParams();
-    const addModuleURL = `http://172.29.110.87:3000/addModule/${slug}`
-    const moduleURL = `http://172.29.110.87:3000/course/${slug}`
-    const Lecture = `http://172.29.110.87:3000/upload/${slug}`
+    const addModuleURL = `http://172.29.111.23:3000/addModule/${slug}`
+    const moduleURL = `http://172.29.111.23:3000/course/${slug}`
+    const Lecture = `http://172.29.111.23:3000/upload/${slug}`
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [isSelected, setIsSelected] = useState(false);
@@ -111,10 +111,10 @@ const Module = (props) => {
 
                             return (
 
-                                <div className="container flex flex-col justify-center px-4 py-4 mx-auto md:p-8">
+                                <div className="container flex flex-col justify-center px-4  mx-auto md:p-6">
 
                                     <details className="w-full mb-1 bg-gray-600 rounded-lg ring-1 ring-blue-600">
-                                        <summary className="px-4 text-white py-6">
+                                        <summary className="px-6 capitalize text-white font-semibold py-6">
                                             {item.name}
                                         </summary>
 
@@ -136,24 +136,15 @@ const Module = (props) => {
 
 
                                         <div className='flex flex-col'>
+                                            <DropFileInput />                                                
+                                            <div className='flex items-center justify-end p-6'>
+                                                <button
+                                                    className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
+                                                    type="button" onClick={() => handleSubmission(item._id)}>
+                                                    Submit
+                                                </button>
+                                            </div>
 
-                                            {/* <span className=" max-w-4xl flex mx-auto justify-center w-full h-auto "> */}
-                                                <DropFileInput />
-
-                                            {/* </span> */}
-
-
-
-
-                                            
-                                                <div className='flex items-center justify-end p-6'>
-                                                    <button
-                                                        className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
-                                                        type="button" onClick={() => handleSubmission(item._id)}>
-                                                        Submit
-                                                    </button>
-                                                </div>
-                                            
                                         </div>
                                     </details>
                                 </div>

@@ -32,7 +32,7 @@ function Register() {
             console.log("")
             setWarning("Password didn't match")
         }else{
-            axios.post("http://172.29.110.87:3000/register",data).then(
+            axios.post("http://172.29.111.23:3000/register",data).then(
                 res=>{
                     console.log(res)
                     if(res.status == 201){
@@ -56,7 +56,7 @@ function Register() {
                         enjoy all the services</p>
                     <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer" style={{color:"#FF0000"}}>{warning}</p>
                 </div>
-                <form action='http://172.29.110.87:3000/register' method='post'>
+                <form action='http://172.29.111.23:3000/register' method='post'>
                 <div className="space-y-4">
                     <input type="text" placeholder="Full Name" value={username} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
                     <input type="email" placeholder="Email Address" value={email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />

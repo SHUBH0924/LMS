@@ -6,6 +6,8 @@ import { AuthProvider } from '../Auth/auth';
 import { useAuth } from '../Auth/auth';
 
 
+
+
 function Login() {
       // useEffect(() => {
       //   document.body.style.overflow = "hidden";
@@ -29,7 +31,7 @@ function Login() {
                 password:password,
             }
 
-            axios.post("http://172.29.110.87:3000/login",data).then(res=>{
+            axios.post("http://172.29.111.23:3000/login",data).then(res=>{
               console.log(res)
 
               
@@ -83,7 +85,8 @@ function Login() {
           <div
             className="w-20 h-40 absolute bg-green-600 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
           </div>
-      </div>
+       </div>
+      
     </div>
   )
 }
