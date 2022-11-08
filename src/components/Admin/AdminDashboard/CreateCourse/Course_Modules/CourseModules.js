@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import NewModule from './NewModule';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../../../../Auth/auth';
-
+import DropFileInput from '../../Drag_Drop/DropFileInput';
 
 const Module = (props) => {    
     
@@ -13,34 +13,34 @@ const Module = (props) => {
     const token = auth.token
     const Navigate = useNavigate();
     const { slug } = useParams();
-    const addModuleURL = `http://172.29.110.87:3000/addModule/${slug}`
-    const moduleURL = `http://172.29.110.87:3000/course/${slug}`
-    const Lecture = `http://172.29.110.87:3000/upload/${slug}`
+    const addModuleURL = `http://192.168.0.103:3000/addModule/${slug}`
+    const moduleURL = `http://192.168.0.103:3000/course/${slug}`
+    const Lecture = `http://192.168.0.103:3000/upload/${slug}`
 
     const [selectedFile, setSelectedFile] = useState(null);
-	const [isSelected, setIsSelected] = useState(false);
-    const [Warning,setWarning] = useState("")
+    const [isSelected, setIsSelected] = useState(false);
+    const [Warning, setWarning] = useState("")
 
-    const [modules,setModules] = useState(null)
+    const [modules, setModules] = useState(null)
 
 
-    const createNewModule = ({a}) =>{
-        
-        
+    const createNewModule = ({ a }) => {
+
+
         // console.log(a)    
-        axios.post(addModuleURL,a,{
+        axios.post(addModuleURL, a, {
             headers: {
-              'Authorization': token
+                'Authorization': token
             }
-          }).then(res=>{
+        }).then(res => {
             // console.log(res)
-            if(res.status == 200){
+            if (res.status == 200) {
                 setModules(modules => [...modules, a]);
                 toast.success("Module Created");
-            }else{
-                toast.error("unable to create Module")    
+            } else {
+                toast.error("unable to create Module")
             }
-        }).catch(err=>{
+        }).catch(err => {
             toast.error("unable to create Module")
             console.log(err)
         })
@@ -48,20 +48,20 @@ const Module = (props) => {
     }
 
 
-    
-    useEffect(()=>{
-        axios.get(moduleURL,{
+
+    useEffect(() => {
+        axios.get(moduleURL, {
             headers: {
-              'Authorization': token
+                'Authorization': token
             }
-          }).then(res=>{
+        }).then(res => {
             // console.log(res.data)"http://172.29.233.109:3000/course"
-            if(res.data.modules.length > 0){
+            if (res.data.modules.length > 0) {
                 setModules(res.data.modules)
                 // console.log(res.data.modules)
-            }            
-            }).catch(err=>console.log("error"))
-        },[])
+            }
+        }).catch(err => console.log("error"))
+    }, [])
 
     const changeHandler = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -69,61 +69,56 @@ const Module = (props) => {
 
     };
 
-   
+
     const handleSubmission = (id) => {
         const formData = new FormData();
 
         formData.append('File', selectedFile);
         // console.log(formData)
         // console.log(id)
-        if(id && selectedFile){
-            axios.post(`${Lecture}/${id}`,formData,{
+        if (id && selectedFile) {
+            axios.post(`${Lecture}/${id}`, formData, {
                 headers: {
-                  'Authorization': token
+                    'Authorization': token
                 }
-              }).then(res=>{
+            }).then(res => {
                 console.log(res.data);
                 toast.success("Lecture added!")
                 setSelectedFile(null)
                 setIsSelected(false)
             })
-            .catch((error) => {
-                    console.error('Error:',error);
+                .catch((error) => {
+                    console.error('Error:', error);
                     setWarning("file didn't uploaded")
                 });
-        }else{
+        } else {
             toast.error("Please select a file")
         }
     };
 
-
-    const onFileOpen = () =>{
-        console.log("clicked")
-        Navigate('/Page')
-    }
     
 
     return (
         <>
 
-        <div className=' relative'>
-            <aside className="flex">
-                <Sidenav />
-                <div className='flex flex-col w-full'>
-                    <NewModule createNewCourse={createNewModule}/>
-                    
-                    {modules ? (modules.map(item => {
-                        
-                        return(
+            <div className=' relative'>
+                <aside className="flex">
+                    <Sidenav />
+                    <div className='flex flex-col w-full'>
+                        <NewModule createNewCourse={createNewModule} />
 
-                            <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
-                            
-                                <details className="w-full mb-11 bg-gray-500 rounded-lg ring-1 ring-blue-600">
-                                    <summary className="px-4 text-white py-6">
-                                        {item.name}
-                                    </summary>
-                                    
-                                    <div>
+                        {modules ? (modules.map(item => {
+
+                            return (
+
+                                <div className="container flex flex-col justify-center px-4 py-4 mx-auto md:p-8">
+
+                                    <details className="w-full mb-1 bg-gray-600 rounded-lg ring-1 ring-blue-600">
+                                        <summary className="px-4 text-white py-6">
+                                            {item.name}
+                                        </summary>
+
+                                        <div>
                                             {isSelected ? (
                                                 <div>
                                                     <p>Filename: {selectedFile.name}</p>
@@ -133,58 +128,54 @@ const Module = (props) => {
                                                         lastModifiedDate:{' '}
                                                         {selectedFile.lastModifiedDate.toLocaleDateString()}
                                                     </p>
-                                                    <button onClick={onFileOpen} >Button</button>
+                                                    {/* <button onClick={onFileOpen} >Button</button> */}
                                                 </div>
                                             ) : (
-                                                <p>Select a file to show details</p>
+                                                <p></p>
                                             )}
-                                    </div>
+                                        </div>
 
 
-                                    <label
-                                        className=" max-w-4xl flex mx-auto justify-center w-full h-32  bg-gray-600 border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                                        <span className="flex items-center ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-black" fill="white" viewBox="0 0 24 24"
-                                                stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                            <span className="font-medium text-white">
-                                                Drop files to Attach, or
-                                                <span className="text-blue-400 ml-2 underline">browse</span>
-                                            </span>
-                                        </span>
-                                        <input type="file" name="file_upload" className="hidden" onChange={changeHandler}/>
-                                    </label>
-                                        
+                                        <div className='flex flex-col'>
 
-                                    <div className='flex items-center justify-end p-6'>
-                                    <button
-                                        className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
-                                        type="button" onClick={()=>handleSubmission(item._id)}>
-                                        Submit
-                                    </button>
-                                    </div>
-                                </details>
+                                            {/* <span className=" max-w-4xl flex mx-auto justify-center w-full h-auto "> */}
+                                                <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
+
+                                            {/* </span> */}
+
+
+
+
+                                            
+                                                <div className='flex items-center justify-end p-6'>
+                                                    <button
+                                                        className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
+                                                        type="button" onClick={() => handleSubmission(item._id)}>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            
+                                        </div>
+                                    </details>
                                 </div>
+                            )
+                        })) : (
+                            <div>
+                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                    There are no modules
+                                </h1>
+                            </div>
                         )
-        })):(
-            <div>
-            <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{textAlign:"center"}}>
-            There are no modules
-        </h1>
-        </div>
-        )        
-    }
+                        }
 
 
-                    
-                </div>
-            </aside>
-        </div>
-        
+
+                    </div>
+                </aside>
+            </div>
+
         </>
     )
 }
 
-export default Module
+export default Module;

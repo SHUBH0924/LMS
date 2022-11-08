@@ -3,13 +3,12 @@ import React, { useState } from "react";
 import {  MdQuiz,  } from "react-icons/md";
 import {  RiPagesFill, RiDiscussFill } from "react-icons/ri";
 import { AiFillBook } from "react-icons/ai";
-import { SiGoogleanalytics } from "react-icons/si";
+import { SiGoogleanalytics, SiHomeadvisor } from "react-icons/si";
 import { HiSpeakerphone } from "react-icons/hi";
 import { BsFillPeopleFill } from "react-icons/bs";
-import { SiHomeadvisor } from "react-icons/si";
 import { MdAssignment } from "react-icons/md";
-import { Link } from "react-router-dom";
 import Sidenav from '../Layout/Sidenav'
+import { Link } from "react-router-dom";
 
 const Courses = () => {
     const menus = [
@@ -30,14 +29,13 @@ const Courses = () => {
     <div className='relative'>
     <aside className="flex">
         <Sidenav />
-        <section className="flex min-h-screen gap-2 overflow-hidden">
+        <section className="flex min-h-screen ">
             <div
-                className={`bg-[#30304b] min-h-fit ${open ? "w-56" : "w-16"
-                    } duration-500 text-gray-100 px-4`}
+                className="bg-[#232338] min-h-fit w-48 text-gray-400 px-4"
             >
 
-                
-                <div className="mt-16 flex flex-col gap-5 ">
+              <hr className=" h-1 rounded-full mt-14 bg-slate-300"/>  
+                <div className="mt-6 flex flex-col gap-5 ">
                     {menus?.map((menu, i) => (
                          <Link
                             to={menu?.link}

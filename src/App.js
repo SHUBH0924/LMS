@@ -3,15 +3,17 @@ import { useAuth } from './Auth/auth';
 import Register from './components/Register';
 import Login from './components/Login';
 import Dashboard from './Dashboard'
-import Settings from './components/User/Settings';
+import Profile from './components/User/Profile';
 import Detail from './components/Course/Detail';
 import {Routes, Route } from "react-router-dom";
 import Admin_Dashboard from './components/Admin/AdminDashboard/Admin_Dashboard';
 import CourseModule from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/CourseModules';
+import Courses from './components/Course/Courses';
 import {Toaster} from 'react-hot-toast';
 import { useEffect } from 'react';
 import Protected from './components/Layout/Protected';
 import Page from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/Page/Page';
+import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileInput';
 
 
 const App = () => {
@@ -50,7 +52,7 @@ const App = () => {
 
               <Route index path="/Page" element={
               // <Protected isLoggedIn={auth.user} replace="Login">
-                <Page />
+                  <Page />
               // {/* </Protected>  */}
             }
              />
@@ -71,12 +73,20 @@ const App = () => {
                 </Protected>
                 } />
               
-{/* 
+
               {auth.user &&
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/profile" element={<Profile />} />
               }
+
+              {/* {auth.user && */}
+                <Route path="/DropFileInput" element={<DropFileInput />} />
+              {/* } */}
               
               {auth.user &&
+                <Route path="/courses" element={<Courses />} />
+              }
+              
+              {/* {auth.user &&
                 <Route path="/detail" element={<Detail />} />
               } */}
 

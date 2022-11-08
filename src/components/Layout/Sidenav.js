@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcList } from "react-icons/fc";
-import { FcPodiumWithSpeaker, FcServices, FcOpenedFolder, FcAssistant, FcKey, FcExport, FcDatabase } from "react-icons/fc";
+import { FcPodiumWithSpeaker, FcServices, FcOpenedFolder, FcVoicePresentation, FcCalendar, FcExport, FcDatabase } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/auth";
 
@@ -9,10 +9,10 @@ const Sidenav = () => {
     const menus = [
         { name: "Dashboard", link: "/", icon: FcDatabase , role:"User"},
         { name: "Account", link: "/Login", icon: FcPodiumWithSpeaker , role:"User"},
-        { name: "Admin", link: "/AdminDashboard", icon: FcKey , role:"User"},
-        { name: "Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
-        { name: "Settings", link: "/settings", icon: FcServices ,role:"User"},
-        { name: "Help", link: "/settings", icon: FcAssistant ,role:"User"},
+        { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
+        { name: "Profile", link: "/profile", icon: FcServices ,role:"User"},
+        { name: "Calendar", link: "/", icon: FcCalendar ,role:"User"},
+        { name: "Help", link: "/settings", icon: FcVoicePresentation ,role:"User"},
         
     ];
     const Logout = { name: "Logout", link: "/Login", icon: FcExport, role:"User" }
@@ -28,17 +28,18 @@ const Sidenav = () => {
     return (
         <section className="flex min-h-screen gap-6 overflow-hidden">
             <div
-                className={`bg-[#0e0e31] min-h-fit ${open ? "w-64" : "w-20"
+                className={`bg-[#0e0e31] min-h-fit ${open ? "w-72" : "w-20"
                     } duration-500 text-gray-100 px-4`}
             >
-                <div className="py-4 flex justify-end ">
+                <div className="pt-3 pb-2 flex justify-end ">
                     <FcList
                         size={36}
                         className="cursor-pointer"
                         onClick={() => setOpen(!open)}
                     />
+                    
                 </div>
-                
+                <hr className="w-full h-1 bg-slate-300"/>
                 <div className="mt-4 flex flex-col gap-8 ">
                     {menus?.map((menu, i) => (
                         
