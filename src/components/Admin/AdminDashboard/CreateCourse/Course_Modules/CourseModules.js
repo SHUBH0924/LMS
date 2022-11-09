@@ -108,7 +108,6 @@ const Module = (props) => {
                         'Authorization': token
                     }
                 }).then(res => {
-                    // console.log(res.data)"http://172.29.233.109:3000/course"
                     if (res.data.modules.length > 0) {
                         setModules(res.data.modules)
                         // console.log(res.data.modules)
@@ -129,11 +128,33 @@ const Module = (props) => {
     const fileRemove = (ModuleId,LectureID) =>{
         console.log("course id",slug,"id",ModuleId,"key",LectureID)
         var payload = {
-            courseID:{slug},
-            moduleID:{ModuleId},
-            Index:{LectureID}
+            courseId:slug,
+            moduleId:ModuleId,
+            lecId:LectureID
         }
-        // axios.delete(``, payload, hea);
+        axios.delete(`${URL}/lecture`,{
+            headers: {
+                'Authorization': token
+            },
+            data:payload
+        }).then(res=>{
+            if(res.status === 200){
+                toast.success("Lecture Deleted")
+                axios.get(`${URL}/course/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    if (res.data.modules.length > 0) {
+                        setModules(res.data.modules)
+                        // console.log(res.data.modules)
+                    }
+                }).catch(err => console.log("error"))
+            }
+            console.log(res)
+        }).catch(err=>{
+            toast.error(err.message)
+        })
     }
 
     return (
@@ -164,7 +185,7 @@ const Module = (props) => {
                                         {
                                             
                                             item.lectures.map((items,key)=>{
-                                                console.log(items,key)
+                                                // console.log(items,key)
                                                 return(
                                                     <div className="drop-file-preview__item">
                                                         {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}

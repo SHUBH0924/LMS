@@ -11,7 +11,7 @@ function Profile() {
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
     useEffect(() => {
-        axios.get('http://192.168.0.103:3000/profile', {
+        axios.get('http://192.168.0.104:3000/profile', {
                 headers: {
                     'Authorization': token
                 }
@@ -32,7 +32,7 @@ function Profile() {
             address: address,
             phone: phone
         }
-        axios.put('http://192.168.0.103:3000/profile',data,{
+        axios.put('http://192.168.0.104:3000/profile',data,{
             headers: {
               'Authorization': token
             }
