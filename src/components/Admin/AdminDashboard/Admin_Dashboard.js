@@ -18,7 +18,8 @@ const Admin_Dashboard = () =>{
     const Navigate = useNavigate();
 
     useEffect(()=>{
-        console.log(token)
+        // console.log(process.env.REACT_SERVER)
+        // console.log(token)
     axios.get(`${backendServer}/courses`,{
         headers: {
           'Authorization': token
