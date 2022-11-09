@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcList } from "react-icons/fc";
-import { FcPodiumWithSpeaker, FcServices, FcOpenedFolder, FcVoicePresentation, FcCalendar, FcExport, FcDatabase } from "react-icons/fc";
+import { FcServices, FcOpenedFolder, FcVoicePresentation, FcCalendar, FcExport, FcDatabase } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/auth";
 
@@ -8,7 +8,6 @@ const Sidenav = () => {
     const auth = useAuth()
     const menus = [
         { name: "Dashboard", link: "/", icon: FcDatabase , role:"User"},
-        { name: "Account", link: "/Login", icon: FcPodiumWithSpeaker , role:"User"},
         { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
         { name: "Profile", link: "/profile", icon: FcServices ,role:"User"},
         { name: "Calendar", link: "/", icon: FcCalendar ,role:"User"},
@@ -29,9 +28,9 @@ const Sidenav = () => {
         <section className="flex min-h-screen gap-6 overflow-hidden">
             <div
                 className={`bg-[#0e0e31] min-h-fit ${open ? "w-72" : "w-20"
-                    } duration-500 text-gray-100 px-4`}
+                    } duration-500 text-gray-100 px-3`}
             >
-                <div className="pt-3 pb-2 flex justify-end ">
+                <div className="pt-3 pb-2 flex justify-end mr-2 ">
                     <FcList
                         size={36}
                         className="cursor-pointer"
@@ -39,7 +38,7 @@ const Sidenav = () => {
                     />
                     
                 </div>
-                <hr className="w-full h-1 bg-slate-300"/>
+                <hr className="w-full h-1 rounded-full bg-gray-200"/>
                 <div className="mt-4 flex flex-col gap-8 ">
                     {menus?.map((menu, i) => (
                         

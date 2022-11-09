@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import {useState} from "react";
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function Register() {
     useEffect(() => {
@@ -32,10 +33,11 @@ function Register() {
             console.log("")
             setWarning("Password didn't match")
         }else{
-            axios.post("http://172.29.111.23:3000/register",data).then(
+            axios.post("http://192.168.0.103:3000/register",data).then(
                 res=>{
                     console.log(res)
                     if(res.status == 201){
+                        toast.success("registered")
                         NavigateToLogin()
                     }
                 }

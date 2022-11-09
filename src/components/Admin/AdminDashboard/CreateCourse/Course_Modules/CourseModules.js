@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Sidenav from "../../../../Layout/Sidenav"
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NewModule from './NewModule';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../../../../Auth/auth';
 import DropFileInput from '../../Drag_Drop/DropFileInput';
+import Header from '../../../../Header'
+import Courses from '../../../../Course/Courses';
 
-const Module = (props) => {
-
+const Module = (props) => {    
+    
     const auth = useAuth()
     const token = auth.token
-
+    const Navigate = useNavigate();
     const { slug } = useParams();
-    const addModuleURL = `http://172.29.111.23:3000/addModule/${slug}`
-    const moduleURL = `http://172.29.111.23:3000/course/${slug}`
-    const Lecture = `http://172.29.111.23:3000/upload/${slug}`
+    const addModuleURL = `http://192.168.0.103:3000/addModule/${slug}`
+    const moduleURL = `http://192.168.0.103:3000/course/${slug}`
+    const Lecture = `http://192.168.0.103:3000/upload/${slug}`
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [isSelected, setIsSelected] = useState(false);
@@ -96,14 +98,20 @@ const Module = (props) => {
         }
     };
 
-
+    
 
     return (
         <>
 
-            <div className=' relative'>
-                <aside className="flex">
+            <div className=' relative scrollbar-hide'>
+            <div className='relative  '>
+                <Header />
+                </div>
+                <aside className="flex z-10">
                     <Sidenav />
+                    <div className='scrollbar-hide overflow-scroll '>
+                        <Courses />
+                    </div>
                     <div className='flex flex-col w-full'>
                         <NewModule createNewCourse={createNewModule} />
 
@@ -111,7 +119,7 @@ const Module = (props) => {
 
                             return (
 
-                                <div className="container flex flex-col justify-center px-4  mx-auto md:p-6">
+                                <div className="container flex flex-col justify-center px-4 mx-auto p-4">
 
                                     <details className="w-full mb-1 bg-gray-600 rounded-lg ring-1 ring-blue-600">
                                         <summary className="px-6 capitalize text-white font-semibold py-6">
@@ -128,6 +136,7 @@ const Module = (props) => {
                                                         lastModifiedDate:{' '}
                                                         {selectedFile.lastModifiedDate.toLocaleDateString()}
                                                     </p>
+                                                    {/* <button onClick={onFileOpen} >Button</button> */}
                                                 </div>
                                             ) : (
                                                 <p></p>
@@ -136,15 +145,24 @@ const Module = (props) => {
 
 
                                         <div className='flex flex-col'>
-                                            <DropFileInput />                                                
-                                            <div className='flex items-center justify-end p-6'>
-                                                <button
-                                                    className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
-                                                    type="button" onClick={() => handleSubmission(item._id)}>
-                                                    Submit
-                                                </button>
-                                            </div>
 
+                                            {/* <span className=" max-w-4xl flex mx-auto justify-center w-full h-auto "> */}
+                                                <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
+
+                                            {/* </span> */}
+
+
+
+
+                                            
+                                                <div className='flex items-center justify-end p-6'>
+                                                    <button
+                                                        className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
+                                                        type="button" onClick={() => handleSubmission(item._id)}>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            
                                         </div>
                                     </details>
                                 </div>

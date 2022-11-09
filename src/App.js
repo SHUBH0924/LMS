@@ -12,6 +12,7 @@ import Courses from './components/Course/Courses';
 import {Toaster} from 'react-hot-toast';
 import { useEffect } from 'react';
 import Protected from './components/Layout/Protected';
+import Page from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/Page/Page';
 import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileInput';
 
 
@@ -48,6 +49,13 @@ const App = () => {
             }
              />
               
+
+              <Route index path="/Page" element={
+              // <Protected isLoggedIn={auth.user} replace="Login">
+                  <Page />
+              // {/* </Protected>  */}
+            }
+             />
 
               
                 <Route path="/Login" element={

@@ -11,7 +11,7 @@ function Dashboard() {
     const auth = useAuth()
     const [token,setToken] = useState(auth.token)
 
-    const backendServer = `http://172.29.111.23:3000/courses`
+    const backendServer = `http://192.168.0.103:3000/courses`
     const [course,setCourse] = useState([])
     useEffect(()=>{
         axios.get(backendServer,{
@@ -19,9 +19,11 @@ function Dashboard() {
               'Authorization': token
             }
           }).then(res=>{
-            // console.log(res.data)
-            setCourse(res.data)
-            console.log(res.data) 
+            // console.log(res)
+            if(res.data){
+                setCourse(res.data)
+            }
+            // console.log(res.data) 
             })
         },[])
 
@@ -42,7 +44,7 @@ function Dashboard() {
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 "/>
                     <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                         <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
-                            {course.map(item =>{
+                            {course.map((item,key) =>{
                                 
                                 return(
                                     <Card item={item} Button="Purchase"/>
@@ -57,7 +59,7 @@ function Dashboard() {
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 "/>
                     <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                         <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
-                            {course.map(item =>{
+                            {course.map((item,key) =>{
                                 
                                 return(
                                     <Card item={item} Button="Purchase"/>

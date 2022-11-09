@@ -4,8 +4,7 @@ import { useEffect,useState } from "react";
 import axios from "axios";
 import { AuthProvider } from '../Auth/auth';
 import { useAuth } from '../Auth/auth';
-
-
+import toast from 'react-hot-toast';
 
 
 function Login() {
@@ -22,7 +21,7 @@ function Login() {
 
       const [email,setemail] = useState("")    
       const [password,setpassword] = useState("")
-      const [warning,setWarning] = useState("")
+      // const [warning,setWarning] = useState("")
 
       const handleSubmit = (e)=>{
             e.preventDefault();
@@ -31,7 +30,7 @@ function Login() {
                 password:password,
             }
 
-            axios.post("http://172.29.111.23:3000/login",data).then(res=>{
+            axios.post("http://192.168.0.103:3000/login",data).then(res=>{
               console.log(res)
 
               
@@ -45,13 +44,23 @@ function Login() {
                   // }
               }
               else{
-                setWarning("Invalid credentials")
+                toast.error("Invalid credentials")
+                // setWarning("Invalid credentials")
               }
-            }).catch(e=>{
-              console.log(e)
-              setWarning("Invalid credentials")
+            }).catch(err => {
+              // console.log(e)
+              if(err.request){
+                console.log(err)
+                toast.error("No internet connection")
+              }else{
+                console.log(err.message)
+                toast.error(err.message)
+              }
+              // toast.error("there are some error")
+              // setWarning("Invalid credentials")
             });
         }
+
 
 
   return (
@@ -63,11 +72,11 @@ function Login() {
         </div> */}
           <div className="py-12 px-12 bg-gray-300 rounded-2xl shadow-xl z-20">
             <div>
-              <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Login</h1>
+              <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer" >Login</h1>
               <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Welcome Back
               </p>
-              <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">{warning}
-              </p>
+              {/* <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">{warning}
+              </p> */}
             </div>
             <form action=''>
             <div className="space-y-4">
