@@ -126,15 +126,15 @@ const Module = (props) => {
         }
     };
 
-    // const fileRemove = (ModuleId,LectureID) =>{
-    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
-    //     var payload = {
-    //         courseID:{slug},
-    //         moduleID:{ModuleId},
-    //         Index:{LectureID}
-    //     }
-    //     // axios.delete(``, payload, hea);
-    // }
+    const fileRemove = (ModuleId,LectureID) =>{
+        console.log("course id",slug,"id",ModuleId,"key",LectureID)
+        var payload = {
+            courseID:{slug},
+            moduleID:{ModuleId},
+            Index:{LectureID}
+        }
+        // axios.delete(``, payload, hea);
+    }
 
     return (
         <>
