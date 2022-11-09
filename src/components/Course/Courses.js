@@ -28,13 +28,13 @@ const Courses = () => {
     <div className='relative'>
     <aside className="flex">
 
-        <section className="flex min-h-fit ">
+        <section className="flex min-h-screen ">
             <div
-                className="bg-[#232338] min-h-fit w-48  text-gray-400 px-2"
+                className="bg-[#232338] min-h-fit w-52  text-gray-300 "
             >
 
-              <hr className=" h-1 rounded-full mt-14 bg-slate-300"/>  
-                <div className="mt-6 flex flex-col gap-5 ">
+              <hr className=" h-1 rounded-full mt-4 bg-slate-300"/>  
+                <div className="mt-6 flex flex-col gap-4 px-3">
                     {menus?.map((menu, i) => (
                          <Link
                             to={menu?.link}

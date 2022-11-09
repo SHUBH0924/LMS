@@ -161,16 +161,13 @@ const Module = (props) => {
 
     return (
         <>
-
-            <div className=' relative scrollbar-hide'>
-            <div className='relative  '>
+        <div className='relative'>
+            <div className='relative'>
                 <Header />
                 </div>
                 <aside className="flex z-10">
                     <Sidenav />
-                    <div className='scrollbar-hide overflow-scroll '>
-                        <Courses />
-                    </div>
+                    
                     <div className='flex flex-col w-full'>
                         <NewModule createNewCourse={createNewModule} />
                         <button onClick={Publish}>Publish</button>
@@ -178,9 +175,9 @@ const Module = (props) => {
 
                             return (
 
-                                <div className="container flex flex-col justify-center px-4 mx-auto p-4">
+                                <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details className="w-full mb-1 bg-gray-600 rounded-lg ring-1 ring-blue-600">
+                                    <details className="w-4/5 mx-auto mb-2 bg-gray-600 rounded-lg ring-1 ring-blue-600">
                                         <summary className="px-6 capitalize text-white font-semibold py-6">
                                             {item.name}
                                         </summary>
@@ -206,8 +203,6 @@ const Module = (props) => {
 
 
                                         <div className='flex flex-col'>
-
-                                            {/* <span className=" max-w-4xl flex mx-auto justify-center w-full h-auto "> */}
                                                 <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
 
                                             {/* </span> */}
@@ -229,9 +224,12 @@ const Module = (props) => {
 
 
                     </div>
+                    
+                        <Courses />
+                    
                 </aside>
-            </div>
-
+                
+                </div>
         </>
     )
 }

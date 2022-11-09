@@ -74,11 +74,11 @@ const Admin_Dashboard = () => {
 
     return (
         <div className='relative'>
-            <div className='relative  '>
+            <div className='sticky top-0  '>
                 <Header />
                 </div>
-                <aside className="flex">
-                    <Sidenav />
+                <aside className="flex flex-row">
+                        <Sidenav />
                     <div className='flex flex-col w-full'>
 
                         {/* <button className={classes.Button} onClick={e=>setCourseToggle(!CourseToggle)}>Create Course</button> */}
@@ -86,9 +86,9 @@ const Admin_Dashboard = () => {
                             
                             </div> */}
                         {
-                            <Create_Course createNewCourse={createNewCourse} />
+                            <Create_Course createNewCourse={createNewCourse} className="float-right"/>
                         }
-
+                        <hr className="h-2 -z-10 bg-black mt-4 drop-shadow-2xl"/>
                         <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                             published Courses
                         </h1>

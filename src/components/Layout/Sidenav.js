@@ -25,9 +25,9 @@ const Sidenav = () => {
 
     
     return (
-        <section className="flex min-h-screen gap-6 overflow-hidden">
+        <section className="flex min-h-screen gap-6 ">
             <div
-                className={`bg-[#0e0e31] min-h-fit ${open ? "w-72" : "w-20"
+                className={`bg-[#0e0e31] min-h-fit ${open ? "w-64" : "w-20"
                     } duration-500 text-gray-100 px-3`}
             >
                 <div className="pt-3 pb-2 flex justify-end mr-2 ">
