@@ -7,7 +7,6 @@ import { SiGoogleanalytics, SiHomeadvisor } from "react-icons/si";
 import { HiSpeakerphone } from "react-icons/hi";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { MdAssignment } from "react-icons/md";
-import Sidenav from '../Layout/Sidenav'
 import { Link } from "react-router-dom";
 
 const Courses = () => {
@@ -28,10 +27,10 @@ const Courses = () => {
   return (
     <div className='relative'>
     <aside className="flex">
-        <Sidenav />
-        <section className="flex min-h-screen ">
+
+        <section className="flex min-h-fit ">
             <div
-                className="bg-[#232338] min-h-fit w-48 text-gray-400 px-4"
+                className="bg-[#232338] min-h-fit w-48  text-gray-400 px-2"
             >
 
               <hr className=" h-1 rounded-full mt-14 bg-slate-300"/>  

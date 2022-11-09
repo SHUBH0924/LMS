@@ -7,21 +7,22 @@ const NewModule = (props) =>{
   const [a,seta] = useState({
         // _id:uuid(),
         name:"",
-        desc:""
+        desc:"",
+        lectures:[]
     })
 
     const Create_Course = () =>{
         props.createNewCourse({a})
         seta({...a,
           name:"",
-          desc:""  
+          desc:""
         })
         setShowModal(!showModal)
     }
 
   return (
-    <>
-    <div className='w-64 mx-auto'>
+    <> 
+      <div className='w-64 mr-6'>
       <button
         className="bg-blue-600 text-white active:bg-blue-400 w-full font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
@@ -33,7 +34,7 @@ const NewModule = (props) =>{
       {showModal ? (
         <>
           <div
-            className="  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            className=" backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="  relative w-2/5 my-10 mx-auto ">
               {/* {/content/} */}
               <div className="border-slate-200 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-700 outline-none focus:outline-none">

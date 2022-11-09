@@ -6,6 +6,10 @@ import NewModule from './NewModule';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../../../../Auth/auth';
 import DropFileInput from '../../Drag_Drop/DropFileInput';
+import Header from '../../../../Header'
+import Courses from '../../../../Course/Courses';
+import { ImageConfig } from '../../../../ImageConfig';
+
 
 const Module = (props) => {    
     
@@ -13,29 +17,43 @@ const Module = (props) => {
     const token = auth.token
     const Navigate = useNavigate();
     const { slug } = useParams();
+    const URL = "http://192.168.0.104:3000"
     const addModuleURL = `http://192.168.0.104:3000/addModule/${slug}`
     const moduleURL = `http://192.168.0.104:3000/course/${slug}`
     const Lecture = `http://192.168.0.104:3000/upload/${slug}`
 
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [isSelected, setIsSelected] = useState(false);
-    const [Warning, setWarning] = useState("")
+    // const [selectedFile, setSelectedFile] = useState(null);
+    // const [isSelected, setIsSelected] = useState(false);
+    // const [Warning, setWarning] = useState("")
 
-    const [modules, setModules] = useState(null)
+    const [modules, setModules] = useState([])
 
 
     const createNewModule = ({ a }) => {
 
 
         // console.log(a)    
-        axios.post(addModuleURL, a, {
+        // addModuleURL
+        axios.post(`${URL}/addModule/${slug}`, a, {
             headers: {
                 'Authorization': token
             }
         }).then(res => {
-            // console.log(res)
+            console.log(res)
             if (res.status == 200) {
-                setModules(modules => [...modules, a]);
+                // setModules(modules => [...modules, a]);
+                axios.get(`${URL}/course/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    // console.log(res.data)"http://172.29.233.109:3000/course"
+                    if (res.data.modules.length > 0) {
+                        setModules(res.data.modules)
+                        // console.log(res.data.modules)
+                    }
+                }).catch(err => console.log("error"))
+
                 toast.success("Module Created");
             } else {
                 toast.error("unable to create Module")
@@ -50,7 +68,8 @@ const Module = (props) => {
 
 
     useEffect(() => {
-        axios.get(moduleURL, {
+        // moduleURL
+        axios.get(`${URL}/course/${slug}`, {
             headers: {
                 'Authorization': token
             }
@@ -63,77 +82,104 @@ const Module = (props) => {
         }).catch(err => console.log("error"))
     }, [])
 
-    const changeHandler = (event) => {
-        setSelectedFile(event.target.files[0]);
-        setIsSelected(true);
+    // const changeHandler = (event) => {
+    //     setSelectedFile(event.target.files[0]);
+    //     setIsSelected(true);
 
-    };
+    // };
 
-
-    const handleSubmission = (id) => {
+    const handleSubmission = (id,selectedFile) => {
         const formData = new FormData();
 
         formData.append('File', selectedFile);
-        // console.log(formData)
-        // console.log(id)
+        console.log(selectedFile)
+        console.log(id)
         if (id && selectedFile) {
-            axios.post(`${Lecture}/${id}`, formData, {
+            // ${Lecture}/${id}
+            axios.post(`${URL}/upload/${slug}/${id}`, formData, {
                 headers: {
                     'Authorization': token
                 }
             }).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
+
+                axios.get(`${URL}/course/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    // console.log(res.data)"http://172.29.233.109:3000/course"
+                    if (res.data.modules.length > 0) {
+                        setModules(res.data.modules)
+                        // console.log(res.data.modules)
+                    }
+                }).catch(err => console.log("error"))
+
                 toast.success("Lecture added!")
-                setSelectedFile(null)
-                setIsSelected(false)
+                
             })
                 .catch((error) => {
                     console.error('Error:', error);
-                    setWarning("file didn't uploaded")
                 });
         } else {
             toast.error("Please select a file")
         }
     };
 
-    
+    // const fileRemove = (ModuleId,LectureID) =>{
+    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
+    //     var payload = {
+    //         courseID:{slug},
+    //         moduleID:{ModuleId},
+    //         Index:{LectureID}
+    //     }
+    //     // axios.delete(``, payload, hea);
+    // }
 
     return (
         <>
 
-            <div className=' relative'>
-                <aside className="flex">
+            <div className=' relative scrollbar-hide'>
+            <div className='relative  '>
+                <Header />
+                </div>
+                <aside className="flex z-10">
                     <Sidenav />
+                    <div className='scrollbar-hide overflow-scroll '>
+                        <Courses />
+                    </div>
                     <div className='flex flex-col w-full'>
                         <NewModule createNewCourse={createNewModule} />
 
-                        {modules ? (modules.map(item => {
+                        {modules ? (modules.map((item,key) => {
 
                             return (
 
-                                <div className="container flex flex-col justify-center px-4 py-4 mx-auto md:p-8">
+                                <div className="container flex flex-col justify-center px-4 mx-auto p-4">
 
                                     <details className="w-full mb-1 bg-gray-600 rounded-lg ring-1 ring-blue-600">
-                                        <summary className="px-4 text-white py-6">
+                                        <summary className="px-6 capitalize text-white font-semibold py-6">
                                             {item.name}
                                         </summary>
-
-                                        <div>
-                                            {isSelected ? (
-                                                <div>
-                                                    <p>Filename: {selectedFile.name}</p>
-                                                    <p>Filetype: {selectedFile.type}</p>
-                                                    <p>Size in bytes: {selectedFile.size}</p>
-                                                    <p>
-                                                        lastModifiedDate:{' '}
-                                                        {selectedFile.lastModifiedDate.toLocaleDateString()}
-                                                    </p>
-                                                    {/* <button onClick={onFileOpen} >Button</button> */}
-                                                </div>
-                                            ) : (
-                                                <p></p>
-                                            )}
-                                        </div>
+                                        {
+                                            
+                                            item.lectures.map((items,key)=>{
+                                                console.log(items,key)
+                                                return(
+                                                    <div className="drop-file-preview__item">
+                                                        {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
+                                                        {/* {item.type.split('/')[1]} */}
+                                                        <div className="drop-file-preview__item__info">
+                                                            <p>{items.name}</p>
+                                                            {/* <p>{items.size}B</p> */}
+                                                        </div>
+                                                        <span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>
+                                                        
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        
 
 
                                         <div className='flex flex-col'>
@@ -143,17 +189,6 @@ const Module = (props) => {
 
                                             {/* </span> */}
 
-
-
-
-                                            
-                                                <div className='flex items-center justify-end p-6'>
-                                                    <button
-                                                        className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
-                                                        type="button" onClick={() => handleSubmission(item._id)}>
-                                                        Submit
-                                                    </button>
-                                                </div>
                                             
                                         </div>
                                     </details>
