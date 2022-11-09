@@ -156,7 +156,14 @@ const Module = (props) => {
 
 
     const Publish = () =>{
-        console.log(slug)
+        axios.patch(`${URL}/course/publish`,{
+            courseId:slug
+        },{
+            headers: {
+                'Authorization': token
+            },
+        }).then(res=>console.log(res)).catch(err=>console.log(err))
+        // console.log(slug)
     }
 
     return (
