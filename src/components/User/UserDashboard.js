@@ -11,7 +11,7 @@ function Dashboard() {
     const auth = useAuth()
     const [token,setToken] = useState(auth.token)
 
-    const backendServer = `http://192.168.0.103:3000/courses`
+    const backendServer = `http://192.168.0.104:3000/courses`
     const [course,setCourse] = useState([])
     useEffect(()=>{
         axios.get(backendServer,{
