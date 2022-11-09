@@ -49,11 +49,11 @@ function Login() {
               }
             }).catch(err => {
               // console.log(e)
-              if(err.request){
-                console.log(err)
-                toast.error("No internet connection")
+              if(err.response.status === 401){
+                // console.log(err)
+                toast.error(err.response.data)
               }else{
-                console.log(err.message)
+                // console.log(err.message)
                 toast.error(err.message)
               }
               // toast.error("there are some error")

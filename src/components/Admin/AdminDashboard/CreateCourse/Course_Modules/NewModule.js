@@ -7,14 +7,15 @@ const NewModule = (props) =>{
   const [a,seta] = useState({
         // _id:uuid(),
         name:"",
-        desc:""
+        desc:"",
+        lectures:[]
     })
 
     const Create_Course = () =>{
         props.createNewCourse({a})
         seta({...a,
           name:"",
-          desc:""  
+          desc:""
         })
         setShowModal(!showModal)
     }

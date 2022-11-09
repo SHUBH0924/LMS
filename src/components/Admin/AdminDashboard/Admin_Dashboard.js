@@ -18,7 +18,7 @@ const Admin_Dashboard = () => {
     const Navigate = useNavigate();
 
     useEffect(() => {
-        console.log(token)
+        // console.log(token)
         axios.get(`${backendServer}/courses`, {
             headers: {
                 'Authorization': token
@@ -49,18 +49,28 @@ const Admin_Dashboard = () => {
                 'Authorization': token
             }
         }).then(res => {
-            // console.log(res)
-            setCourse(Course => [...Course, a]);
+            // console.log(a)
+            // setCourse(Course => [...Course, a]);
             toast.success("Course created")
         }).catch(err => {
             toast.error("Course not created")
             console.log("err")
         })
         // console.log(unpublished_course)    
+
+        axios.get(`${backendServer}/courses`, {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res => {
+            // console.log(res.data)
+            setCourse(res.data)
+            // console.log(Course) 
+        })
     }
 
 
-    const [CourseToggle, setCourseToggle] = useState(false)
+    // const [CourseToggle, setCourseToggle] = useState(false)
 
     return (
         <div className='relative'>
@@ -87,9 +97,9 @@ const Admin_Dashboard = () => {
                             <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
                                 {Course.filter(item => {
                                     return item.published === true
-                                }).map(item => {
+                                }).map((item,key) => {
                                     return (
-                                        <Card item={item} Button="Edit" onPublish={onPublish} />
+                                        <Card key={key} item={item} Button="Edit" onPublish={onPublish} />
                                     )
                                 })}
                             </div>
@@ -103,7 +113,7 @@ const Admin_Dashboard = () => {
                             <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
                                 {Course.filter(item => {
                                     return item.published === false
-                                }).map(item => {
+                                }).map((item,key) => {
 
                                     return (
                                         <Card item={item} Button="Publish" onPublish={onPublish} />
