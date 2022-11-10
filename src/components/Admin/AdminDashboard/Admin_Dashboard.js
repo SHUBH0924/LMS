@@ -74,7 +74,7 @@ const Admin_Dashboard = () => {
 
     return (
         <div className='relative'>
-            <div className='sticky top-0  '>
+            <div className='sticky top-0 '>
                 <Header />
                 </div>
                 <aside className="flex flex-row">

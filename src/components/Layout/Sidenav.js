@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcList } from "react-icons/fc";
-import { FcServices, FcOpenedFolder, FcVoicePresentation, FcCalendar, FcExport, FcDatabase } from "react-icons/fc";
+import { FcServices, FcOpenedFolder, FcVoicePresentation, FcCalendar, FcExport, FcDatabase, FcConferenceCall } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/auth";
 
@@ -8,6 +8,7 @@ const Sidenav = () => {
     const auth = useAuth()
     const menus = [
         { name: "Dashboard", link: "/", icon: FcDatabase , role:"User"},
+        { name: "Users", link: "/users", icon: FcConferenceCall , role:"User"},
         { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
         { name: "Profile", link: "/profile", icon: FcServices ,role:"User"},
         { name: "Calendar", link: "/", icon: FcCalendar ,role:"User"},
@@ -39,7 +40,7 @@ const Sidenav = () => {
                     
                 </div>
                 <hr className="w-full h-1 rounded-full bg-gray-200"/>
-                <div className="mt-4 flex flex-col gap-8 ">
+                <div className="mt-4 flex flex-col gap-7 ">
                     {menus?.map((menu, i) => (
                         
                          <Link

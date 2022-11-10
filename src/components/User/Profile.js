@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState , useEffect } from 'react'
 import Sidenav from '../Layout/Sidenav'
 import { useAuth } from '../../Auth/auth'
+import Header from '../Header'
 
 function Profile() {
     const auth = useAuth()
@@ -48,6 +49,9 @@ function Profile() {
     }
     return (
         <div className='relative'>
+            <div className='sticky top-0 '>
+                <Header />
+                </div>
             <aside className="flex">
                 <Sidenav />
                 <div className='flex flex-col w-full'>
@@ -69,7 +73,7 @@ function Profile() {
                                 <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" />
                             </div>
                             <div className="w-full mt-4 ml-3">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
                                 Upload
                             </button>
                             </div>
@@ -105,7 +109,7 @@ function Profile() {
 
                         <div>
                             <div className='mt-8'>
-                                <button className="appearance-none w-36 block mx-auto bg-blue-500 text-white border border-gray-200 rounded-full py-3 px-4 leading-tight focus:outline-none focus:bg-blue-700 focus:border-gray-500" id="update" type="submit" onClick={handleSubmit}>Update</button>
+                                <button className="appearance-none w-36 block mx-auto bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none   ease-linear transition-all duration-150" id="update" type="submit" onClick={handleSubmit}>Update</button>
                             </div>
                         </div>
                     </form>

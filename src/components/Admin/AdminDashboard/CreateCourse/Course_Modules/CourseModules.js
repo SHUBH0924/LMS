@@ -169,15 +169,23 @@ const Module = (props) => {
     return (
         <>
         <div className='relative'>
-            <div className='relative'>
+        <div className='sticky top-0 z-10 '>
                 <Header />
                 </div>
-                <aside className="flex z-10">
+                <aside className="flex">
                     <Sidenav />
                     
                     <div className='flex flex-col w-full'>
-                        <NewModule createNewCourse={createNewModule} />
-                        <button onClick={Publish}>Publish</button>
+                        <div className='flex flex-row justify-between'>
+                            <NewModule createNewCourse={createNewModule} />
+                            <div className='w-56 mr-8 mt-3 '>
+                                <button 
+                                    className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={Publish}>Publish
+                                </button>
+                            </div>    
+                        </div>
                         {modules ? (modules.map((item,key) => {
 
                             return (
@@ -231,9 +239,9 @@ const Module = (props) => {
 
 
                     </div>
-                    
+                    <div className='flex '>
                         <Courses />
-                    
+                    </div>
                 </aside>
                 
                 </div>

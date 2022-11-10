@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import Protected from './components/Layout/Protected';
 import Page from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/Page/Page';
 import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileInput';
-
+import Users from './components/Admin/Users';
 
 const App = () => {
 
@@ -82,6 +82,8 @@ const App = () => {
                 <Route path="/DropFileInput" element={<DropFileInput />} />
               {/* } */}
               
+              <Route path="/users" element={<Users />} />
+
               {auth.user &&
                 <Route path="/courses" element={<Courses />} />
               }
