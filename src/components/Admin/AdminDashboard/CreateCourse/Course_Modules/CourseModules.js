@@ -16,15 +16,12 @@ const Module = (props) => {
     const auth = useAuth()
     const token = auth.token
     const Navigate = useNavigate();
+    // Slug is the course id
     const { slug } = useParams();
     const URL = "http://172.29.110.12:3000"
     const addModuleURL = `http://172.29.110.12:3000/addModule/${slug}`
     const moduleURL = `http://172.29.110.12:3000/course/${slug}`
     const Lecture = `http://172.29.110.12:3000/upload/${slug}`
-
-    // const [selectedFile, setSelectedFile] = useState(null);
-    // const [isSelected, setIsSelected] = useState(false);
-    // const [Warning, setWarning] = useState("")
 
     const [modules, setModules] = useState([])
 
@@ -92,8 +89,8 @@ const Module = (props) => {
         const formData = new FormData();
 
         formData.append('File', selectedFile);
-        console.log(selectedFile)
-        console.log(id)
+        // console.log(selectedFile)
+        // console.log(id)
         if (id && selectedFile) {
             // ${Lecture}/${id}
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
@@ -157,6 +154,18 @@ const Module = (props) => {
         })
     }
 
+
+    const Publish = () =>{
+        axios.patch(`${URL}/course/publish`,{
+            courseId:slug
+        },{
+            headers: {
+                'Authorization': token
+            },
+        }).then(res=>console.log(res)).catch(err=>console.log(err))
+        // console.log(slug)
+    }
+
     return (
         <>
         <div className='relative'>
@@ -168,7 +177,7 @@ const Module = (props) => {
                     
                     <div className='flex flex-col w-full'>
                         <NewModule createNewCourse={createNewModule} />
-
+                        <button onClick={Publish}>Publish</button>
                         {modules ? (modules.map((item,key) => {
 
                             return (

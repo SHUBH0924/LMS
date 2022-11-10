@@ -116,7 +116,7 @@ const Admin_Dashboard = () => {
                                 }).map((item,key) => {
 
                                     return (
-                                        <Card item={item} Button="Publish" onPublish={onPublish} />
+                                        <Card item={item} Button="Edit" onPublish={onPublish} />
                                     )
                                 })}
                             </div>
