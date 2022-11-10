@@ -17,10 +17,10 @@ const Module = (props) => {
     const token = auth.token
     const Navigate = useNavigate();
     const { slug } = useParams();
-    const URL = "http://192.168.0.104:3000"
-    const addModuleURL = `http://192.168.0.104:3000/addModule/${slug}`
-    const moduleURL = `http://192.168.0.104:3000/course/${slug}`
-    const Lecture = `http://192.168.0.104:3000/upload/${slug}`
+    const URL = "http://172.29.110.12:3000"
+    const addModuleURL = `http://172.29.110.12:3000/addModule/${slug}`
+    const moduleURL = `http://172.29.110.12:3000/course/${slug}`
+    const Lecture = `http://172.29.110.12:3000/upload/${slug}`
 
     // const [selectedFile, setSelectedFile] = useState(null);
     // const [isSelected, setIsSelected] = useState(false);
