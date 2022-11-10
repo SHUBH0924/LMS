@@ -49,7 +49,7 @@ const Card = ({item,Button,onPublish}) =>{
                                 <div className="flex items-center justify-between">
                                     <span className="text-3xl font-bold text-gray-900 dark:text-white">Rs. {item.price}</span>
                                     <button
-                                        className="text-white focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onClick={()=>onPublish(item._id)}>{Button}</button>
+                                        className="text-white focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onClick={()=>onPublish(item)}>{Button}</button>
                                 </div>
                             </div>
                         </div>

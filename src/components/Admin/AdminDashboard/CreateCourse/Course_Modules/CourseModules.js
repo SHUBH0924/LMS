@@ -9,22 +9,22 @@ import DropFileInput from '../../Drag_Drop/DropFileInput';
 import Header from '../../../../Header'
 import Courses from '../../../../Course/Courses';
 import { ImageConfig } from '../../../../ImageConfig';
+import {useLocation} from 'react-router-dom';
 
 
 const Module = (props) => {    
     
+    
+    const location = useLocation();
     const auth = useAuth()
     const token = auth.token
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://192.168.0.104:3000"
-    const addModuleURL = `http://192.168.0.104:3000/addModule/${slug}`
-    const moduleURL = `http://192.168.0.104:3000/course/${slug}`
-    const Lecture = `http://192.168.0.104:3000/upload/${slug}`
-
+    const URL = "http://172.29.110.12:3000"
+    
     const [modules, setModules] = useState([])
-
+    const [publish,setPublish] = useState(location.state.Publish)
 
     const createNewModule = ({ a }) => {
 
@@ -66,6 +66,7 @@ const Module = (props) => {
 
     useEffect(() => {
         // moduleURL
+        // console.log(location.state.Publish)
         axios.get(`${URL}/course/${slug}`, {
             headers: {
                 'Authorization': token
@@ -155,14 +156,19 @@ const Module = (props) => {
     }
 
 
-    const Publish = () =>{
+    const onPublish = () =>{
         axios.patch(`${URL}/course/publish`,{
             courseId:slug
         },{
             headers: {
                 'Authorization': token
             },
-        }).then(res=>console.log(res)).catch(err=>console.log(err))
+        }).then(res=>{
+            console.log(res)
+            setPublish(!publish)
+        }).catch(err=>{
+            console.log(err)
+        })
         // console.log(slug)
     }
 
@@ -177,7 +183,10 @@ const Module = (props) => {
                     
                     <div className='flex flex-col w-full'>
                         <NewModule createNewCourse={createNewModule} />
-                        <button onClick={Publish}>Publish</button>
+                        
+                        <button onClick={onPublish}>{publish?"Publish":"UnPublish"}</button>
+                        
+                        
                         {modules ? (modules.map((item,key) => {
 
                             return (
@@ -193,9 +202,8 @@ const Module = (props) => {
                                             item.lectures.map((items,key)=>{
                                                 // console.log(items,key)
                                                 return(
-                                                    <div className="drop-file-preview__item">
-                                                        {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
-                                                        {/* {item.type.split('/')[1]} */}
+                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-400 active:bg-gray-500" style={{width:"80%"}} onClick={()=> Navigate(`/Page`,{state:{}}) }>
+                                                        <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                         <div className="drop-file-preview__item__info">
                                                             <p>{items.name}</p>
                                                             {/* <p>{items.size}B</p> */}

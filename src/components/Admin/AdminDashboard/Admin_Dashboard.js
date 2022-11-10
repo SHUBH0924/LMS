@@ -12,7 +12,7 @@ import Header from '../../Header'
 const Admin_Dashboard = () => {
 
     const auth = useAuth()
-    const backendServer = `http://192.168.0.104:3000`
+    const backendServer = `http://172.29.110.12:3000`
     const [Course, setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();
@@ -31,12 +31,15 @@ const Admin_Dashboard = () => {
     }, [])
 
 
-    const onPublish = (id) => {
+    const onPublish = (item) => {
         // e.preventdefault()
-
-        Navigate(`/course/${id}`)
+        const id = item._id
+        const publish = item.published
+        Navigate(`/course/${id}`,{state:{Publish:publish}})
         // console.log({id},"Clicked")
     }
+
+
 
     const createNewCourse = async ({ a }) => {
 
