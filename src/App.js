@@ -94,9 +94,10 @@ const App = () => {
 
               
                 <Route path="/course/:slug" element={
-                <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
+                // <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
                   <CourseModule />
-                </Protected>}
+                // </Protected>
+              }
                /> 
               
               

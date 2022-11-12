@@ -1,6 +1,6 @@
 import {React,useState,useEffect} from 'react'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom'
 import Card from '../Card/Card'
 import Sidenav from '../Layout/Sidenav'
 import { Link } from 'react-router-dom';
@@ -10,8 +10,8 @@ import { useAuth } from '../../Auth/auth';
 function Dashboard() {
     const auth = useAuth()
     const [token,setToken] = useState(auth.token)
-
-    const backendServer = `http://172.29.235.99:3000/courses`
+    const Navigate = useNavigate()
+    const backendServer = `http://172.29.235.99:3000/course/all`
     const [course,setCourse] = useState([])
     useEffect(()=>{
         axios.get(backendServer,{
@@ -28,7 +28,13 @@ function Dashboard() {
         },[])
 
 
-
+        const onPublish = (item) => {
+            // e.preventdefault()
+            const id = item._id
+            const publish = item.published
+            Navigate(`/course/${id}`)
+            // console.log({id},"Clicked")
+        }
 
     return (
         <div className='relative'>
@@ -47,7 +53,7 @@ function Dashboard() {
                             {course.map((item,key) =>{
                                 
                                 return(
-                                    <Card item={item} Button="Purchase"/>
+                                    <Card item={item} Button="Purchase" onPublish={onPublish}/>
                                 )
                             })}
                         </div>
@@ -62,7 +68,7 @@ function Dashboard() {
                             {course.map((item,key) =>{
                                 
                                 return(
-                                    <Card item={item} Button="Purchase"/>
+                                    <Card item={item} Button="Purchase" onPublish={onPublish}/>
                                 )
                             })}
                         </div>

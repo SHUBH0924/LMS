@@ -18,13 +18,14 @@ const Module = (props) => {
     const location = useLocation();
     const auth = useAuth()
     const token = auth.token
+    const userRole = auth.user
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
     const URL = "http://172.29.235.99:3000"
     
     const [modules, setModules] = useState([])
-    const [publish,setPublish] = useState(location.state.Publish)
+    const [publish,setPublish] = useState()
 
     const createNewModule = ({ a }) => {
 
@@ -62,17 +63,17 @@ const Module = (props) => {
         // console.log(unpublished_course)    
     }
 
-
-
     useEffect(() => {
         // moduleURL
         // console.log(location.state.Publish)
+        if(location.state){
+            setPublish(location.state.Publish)
+        }
         axios.get(`${URL}/course/${slug}`, {
             headers: {
                 'Authorization': token
             }
         }).then(res => {
-            // console.log(res.data)"http://172.29.233.109:3000/course"
             if (res.data.modules.length > 0) {
                 setModules(res.data.modules)
                 // console.log(res.data.modules)
@@ -182,7 +183,7 @@ const Module = (props) => {
                     <Sidenav />
                     
                     <div className='flex flex-col w-full'>
-                        <div className='flex flex-row justify-between'>
+                        {(userRole === "Admin")&&<div className='flex flex-row justify-between'>
                             <NewModule createNewCourse={createNewModule} />
                             <div className='w-56 mr-12 mt-3 '>
                             <button 
@@ -191,7 +192,7 @@ const Module = (props) => {
                                 onClick={onPublish}>{publish?"UnPublish":"Publish"}
                             </button>
                             </div>
-                        </div>
+                        </div>}
                         
 
                         {modules ? (modules.map((item,key) => {
@@ -215,7 +216,7 @@ const Module = (props) => {
                                                             <p>{items.name}</p>
                                                             {/* <p>{items.size}B</p> */}
                                                         </div>
-                                                        <span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>
+                                                        {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>}
                                                         
                                                     </div>
                                                 )

@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 // import doc from "./Ashvani Resume (1).docx"
 import VideoJS from './Video'
 import videojs from 'video.js';
-import PdfFile from './Introduction.pdf'
+// import PdfFile from './Introduction.pdf'
 import {useLocation} from 'react-router-dom';
 import PDFViewer from './PDFViewer';
 
@@ -12,8 +12,6 @@ export default props => {
   const location = useLocation();
   const type = location.state.type
 
-
-  // const source="http://172.29.110.12:3000/playvideo"
 
   const playerRef = React.useRef(null);
 
@@ -34,12 +32,12 @@ export default props => {
     // You can handle player events here, for example:
     player.on('waiting', () => {
       videojs.log('player is waiting');
-      console.log('player is waiting')
+      // console.log('player is waiting')
     });
 
     player.on('dispose', () => {
       videojs.log('player will dispose');
-      console.log('player will dispose')
+      // console.log('player will dispose')
     });
   };
 
@@ -53,14 +51,14 @@ export default props => {
                 <PDFViewer />
             </>):(
             <>
-                <div style={{width:"100%",height:"100vh",background:"green"}}>
+                <div style={{width:"100%",height:"100vh"}}>
                   <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
                 </div>
             </>)
       }
     
     
-    // </>
+    </>
   );
 };
 

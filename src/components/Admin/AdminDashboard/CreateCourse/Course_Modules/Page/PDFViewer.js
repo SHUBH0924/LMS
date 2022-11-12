@@ -7,14 +7,14 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 // Worker
 import { Worker } from '@react-pdf-viewer/core'; // install this library
-import pdf from "./Introduction.pdf"
+// import pdf from "./Introduction.pdf"
 import axios from 'axios';
 
 const PDFViewer = () =>{
 
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
   
-    const [viewPdf, setViewPdf]=useState(pdf);
+    // const [viewPdf, setViewPdf]=useState();
 
  
     return(
