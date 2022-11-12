@@ -74,9 +74,9 @@ const App = () => {
                 } />
               
 
-              {auth.user &&
+              {/* {auth.user && */}
                 <Route path="/profile" element={<Profile />} />
-              }
+              
 
               {/* {auth.user && */}
                 <Route path="/DropFileInput" element={<DropFileInput />} />

@@ -9,22 +9,22 @@ import DropFileInput from '../../Drag_Drop/DropFileInput';
 import Header from '../../../../Header'
 import Courses from '../../../../Course/Courses';
 import { ImageConfig } from '../../../../ImageConfig';
+import {useLocation} from 'react-router-dom';
 
 
 const Module = (props) => {    
     
+    
+    const location = useLocation();
     const auth = useAuth()
     const token = auth.token
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.110.12:3000"
-    const addModuleURL = `http://172.29.110.12:3000/addModule/${slug}`
-    const moduleURL = `http://172.29.110.12:3000/course/${slug}`
-    const Lecture = `http://172.29.110.12:3000/upload/${slug}`
-
+    const URL = "http://172.29.235.99:3000"
+    
     const [modules, setModules] = useState([])
-
+    const [publish,setPublish] = useState(location.state.Publish)
 
     const createNewModule = ({ a }) => {
 
@@ -66,6 +66,7 @@ const Module = (props) => {
 
     useEffect(() => {
         // moduleURL
+        // console.log(location.state.Publish)
         axios.get(`${URL}/course/${slug}`, {
             headers: {
                 'Authorization': token
@@ -155,14 +156,19 @@ const Module = (props) => {
     }
 
 
-    const Publish = () =>{
+    const onPublish = () =>{
         axios.patch(`${URL}/course/publish`,{
             courseId:slug
         },{
             headers: {
                 'Authorization': token
             },
-        }).then(res=>console.log(res)).catch(err=>console.log(err))
+        }).then(res=>{
+            console.log(res)
+            setPublish(!publish)
+        }).catch(err=>{
+            console.log(err)
+        })
         // console.log(slug)
     }
 
@@ -178,14 +184,16 @@ const Module = (props) => {
                     <div className='flex flex-col w-full'>
                         <div className='flex flex-row justify-between'>
                             <NewModule createNewCourse={createNewModule} />
-                            <div className='w-56 mr-8 mt-3 '>
-                                <button 
-                                    className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
-                                    type="button"
-                                    onClick={Publish}>Publish
-                                </button>
-                            </div>    
+                            <div className='w-56 mr-12 mt-3 '>
+                            <button 
+                                className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={onPublish}>{publish?"UnPublish":"Publish"}
+                            </button>
+                            </div>
                         </div>
+                        
+
                         {modules ? (modules.map((item,key) => {
 
                             return (
@@ -201,9 +209,8 @@ const Module = (props) => {
                                             item.lectures.map((items,key)=>{
                                                 // console.log(items,key)
                                                 return(
-                                                    <div className="drop-file-preview__item">
-                                                        {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
-                                                        {/* {item.type.split('/')[1]} */}
+                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-400 active:bg-gray-500" style={{width:"80%"}} onClick={()=> Navigate(`/Page`,{state:{}}) }>
+                                                        <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                         <div className="drop-file-preview__item__info">
                                                             <p>{items.name}</p>
                                                             {/* <p>{items.size}B</p> */}
