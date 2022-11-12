@@ -80,7 +80,7 @@ const Admin_Dashboard = () => {
             <div className='sticky top-0 '>
                 <Header />
                 </div>
-                <aside className="flex flex-row">
+                <aside className="flex flex-row ">
                         <Sidenav />
                     <div className='flex flex-col w-full'>
 

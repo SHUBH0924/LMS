@@ -200,8 +200,8 @@ const Module = (props) => {
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details className="w-4/5 mx-auto mb-2 bg-gray-600 rounded-lg ring-1 ring-blue-600">
-                                        <summary className="px-6 capitalize text-white font-semibold py-6">
+                                    <details className="w-4/5 mx-auto mb-2 bg-gray-600 rounded-lg ring-1 ring-blue-600 ">
+                                        <summary className="px-6 capitalize text-xl text-white font-semibold py-6 ">
                                             {item.name}
                                         </summary>
                                         {
@@ -209,7 +209,7 @@ const Module = (props) => {
                                             item.lectures.map((items,key)=>{
                                                 // console.log(items,key)
                                                 return(
-                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-400 active:bg-gray-500" style={{width:"80%"}} onClick={()=> Navigate(`/Page`,{state:{type:items.type.split('/')[1]}}) }>
+                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-300 active:bg-gray-300" style={{width:"80%"}} onClick={()=> Navigate(`/Page`,{state:{type:items.type.split('/')[1]}}) }>
                                                         <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                         <div className="drop-file-preview__item__info">
                                                             <p>{items.name}</p>
@@ -224,12 +224,8 @@ const Module = (props) => {
                                         
 
 
-                                        <div className='flex flex-col'>
-                                                <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
-
-                                            {/* </span> */}
-
-                                            
+                                        <div className='flex flex-col '>
+                                            <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
                                         </div>
                                     </details>
                                 </div>

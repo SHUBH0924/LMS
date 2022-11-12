@@ -15,6 +15,7 @@ import Protected from './components/Layout/Protected';
 import Page from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/Page/Page';
 import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileInput';
 import Users from './components/Admin/Users';
+import People from './components/Admin/AdminDashboard/CreateCourse/People';
 
 const App = () => {
 
@@ -83,6 +84,7 @@ const App = () => {
               {/* } */}
               
               <Route path="/users" element={<Users />} />
+              <Route path="/people" element={<People />} />
 
               {auth.user &&
                 <Route path="/courses" element={<Courses />} />
