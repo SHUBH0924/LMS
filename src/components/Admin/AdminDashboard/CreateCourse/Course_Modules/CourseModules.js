@@ -21,7 +21,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.110.12:3000"
+    const URL = "http://172.29.235.99:3000"
     
     const [modules, setModules] = useState([])
     const [publish,setPublish] = useState(location.state.Publish)
@@ -184,7 +184,7 @@ const Module = (props) => {
                     <div className='flex flex-col w-full'>
                         <NewModule createNewCourse={createNewModule} />
                         
-                        <button onClick={onPublish}>{publish?"Publish":"UnPublish"}</button>
+                        <button onClick={onPublish}>{publish?"UnPublish":"Publish"}</button>
                         
                         
                         {modules ? (modules.map((item,key) => {
@@ -202,7 +202,7 @@ const Module = (props) => {
                                             item.lectures.map((items,key)=>{
                                                 // console.log(items,key)
                                                 return(
-                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-400 active:bg-gray-500" style={{width:"80%"}} onClick={()=> Navigate(`/Page`,{state:{}}) }>
+                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-400 active:bg-gray-500" style={{width:"80%"}} onClick={()=> Navigate(`/Page`,{state:{type:items.type.split('/')[1]}}) }>
                                                         <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                         <div className="drop-file-preview__item__info">
                                                             <p>{items.name}</p>
