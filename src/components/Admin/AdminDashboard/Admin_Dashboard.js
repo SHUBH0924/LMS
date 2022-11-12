@@ -19,7 +19,7 @@ const Admin_Dashboard = () => {
 
     useEffect(() => {
         // console.log(token)
-        axios.get(`${backendServer}/courses`, {
+        axios.get(`${backendServer}/course/all`, {
             headers: {
                 'Authorization': token
             }
@@ -28,7 +28,7 @@ const Admin_Dashboard = () => {
             setCourse(res.data)
             // console.log(Course) 
         })
-    }, [])
+    }, [Course])
 
 
     const onPublish = (item) => {

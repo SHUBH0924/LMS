@@ -23,7 +23,7 @@ export default props => {
     responsive: true,
     fluid: true,
     sources: [{
-      src: 'http://172.29.110.12:3000/playvideo',
+      src: 'http://172.29.235.99:3000/playvideo',
       type: 'video/mp4'
     }]
   };
@@ -47,8 +47,6 @@ export default props => {
 
   return (
     <>  
-    
-
        
          {type === "pdf"?(
            <>
