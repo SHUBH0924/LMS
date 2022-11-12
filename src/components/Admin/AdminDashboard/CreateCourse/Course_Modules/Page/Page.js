@@ -2,18 +2,17 @@ import React,{useState} from 'react';
 // import doc from "./Ashvani Resume (1).docx"
 import VideoJS from './Video'
 import videojs from 'video.js';
-// import { Document, Page } from 'react-pdf';
 import PdfFile from './Introduction.pdf'
+import {useLocation} from 'react-router-dom';
+import PDFViewer from './PDFViewer';
 
 
 export default props => {
 
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  const location = useLocation();
+  const type = location.state.type
 
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
+
   // const source="http://172.29.110.12:3000/playvideo"
 
   const playerRef = React.useRef(null);
@@ -24,7 +23,7 @@ export default props => {
     responsive: true,
     fluid: true,
     sources: [{
-      src: 'http://172.29.110.12:3000/playvideo',
+      src: 'http://172.29.235.99:3000/playvideo',
       type: 'video/mp4'
     }]
   };
@@ -45,21 +44,23 @@ export default props => {
   };
 
 
+
   return (
-    <div></div>
-    // <>
-    // <div style={{width:"100%",height:"100vh",background:"green"}}>
-    //   <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-    // </div>
+    <>  
+    
 
-
-
-    //   <Document file={PdfFile} onLoadSuccess={onDocumentLoadSuccess}>
-    //     {/* <Page pageNumber={pageNumber} /> */}
-    //   </Document>
-    //   <p>
-    //     Page {pageNumber} of {numPages}
-    //   </p>
+       
+         {type === "pdf"?(
+           <>
+                <PDFViewer />
+            </>):(
+            <>
+                <div style={{width:"100%",height:"100vh",background:"green"}}>
+                  <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+                </div>
+            </>)
+      }
+    
     
     // </>
   );

@@ -12,7 +12,7 @@ function Profile() {
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
     useEffect(() => {
-        axios.get('http://172.29.110.12:3000/profile', {
+        axios.get('http://172.29.235.99:3000/profile', {
                 headers: {
                     'Authorization': token
                 }
