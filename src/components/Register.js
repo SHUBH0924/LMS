@@ -58,7 +58,7 @@ function Register() {
                         enjoy all the services</p>
                     <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer" style={{color:"#FF0000"}}>{warning}</p>
                 </div>
-                <form action='http://192.168.0.104:3000/register' method='post'>
+                <form action='http://172.29.235.99:3000/register' method='post'>
                 <div className="space-y-4">
                     <input type="text" placeholder="Full Name" value={username} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
                     <input type="email" placeholder="Email Address" value={email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
