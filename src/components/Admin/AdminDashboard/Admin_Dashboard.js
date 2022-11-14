@@ -28,7 +28,7 @@ const Admin_Dashboard = () => {
             setCourse(res.data)
             // console.log(Course) 
         })
-    }, [Course])
+    }, [])
 
 
     const onPublish = (item) => {
