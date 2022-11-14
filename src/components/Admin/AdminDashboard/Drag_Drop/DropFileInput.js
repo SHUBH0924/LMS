@@ -106,7 +106,7 @@ const DropFileInput = ({handleSubmission,id}) => {
             }
             
 
-            <div dangerouslySetInnerHTML={{__html: content}} />
+            {/* <div dangerouslySetInnerHTML={{__html: content}} /> */}
 
             <div className='flex items-center justify-end p-6'>
                 <button

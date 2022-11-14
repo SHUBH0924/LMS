@@ -8,12 +8,12 @@ import { useAuth } from "../../Auth/auth";
 const Sidenav = () => {
     const auth = useAuth()
     const menus = [
-        { name: "Dashboard", link: "/", icon: FcDatabase , role:"Student"},
+        { name: "Dashboard", link: "/", icon: FcDatabase , role:"both"},
         { name: "Users", link: "/users", icon: FcConferenceCall , role:"Admin"},
         { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"Student"},
-        { name: "Profile", link: "/profile", icon: FcServices ,role:"Student"},
-        { name: "Calendar", link: "/calendar", icon: FcCalendar ,role:"Student"},
-        { name: "Help", link: "/help", icon: FcVoicePresentation ,role:"Student"},
+        { name: "Profile", link: "/profile", icon: FcServices ,role:"both"},
+        { name: "Calendar", link: "/calendar", icon: FcCalendar ,role:"both"},
+        { name: "Help", link: "/help", icon: FcVoicePresentation ,role:"both"},
    ];
     const userRole = auth.user
     const Logout = { name: "Logout", link: "/Login", icon: FcExport, role:"User" }
@@ -48,7 +48,7 @@ const Sidenav = () => {
                             return(
                                 <>
                                     {
-                                    // ((menu.role===userRole)||(menu.role === "Admin"))&&
+                                    ((menu.role === "both")||(menu.role===userRole))&&
                                     <Link
                                         to={menu.link}
                                         key={i}

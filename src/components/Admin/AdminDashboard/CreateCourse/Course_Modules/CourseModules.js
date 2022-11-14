@@ -31,9 +31,8 @@ const Module = (props) => {
     //     _id:"jcvbwegiwevdskcvnwelvie"
     // }
 
-
-
     const [publish,setPublish] = useState()
+
 
     const createNewModule = ({ a }) => {
 
@@ -84,10 +83,10 @@ const Module = (props) => {
         }).then(res => {
             if (res.data.modules.length > 0) {
                 setModules(res.data.modules)
-                // console.log(res.data.modules)
+                console.log(res.data.modules)
             }
         }).catch(err => console.log("error"))
-    }, [])
+    },[])
 
     // const changeHandler = (event) => {
     //     setSelectedFile(event.target.files[0]);
@@ -104,7 +103,7 @@ const Module = (props) => {
         // console.log(selectedFile)
         // console.log(id,selectedFile,content,Title)
 
-        if (id && selectedFile) {
+        if (id) {
             // ${Lecture}/${id}
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
                 headers: {
@@ -112,6 +111,7 @@ const Module = (props) => {
                 }
             }).then(res => {
                 // console.log(res.data);
+                toast.success("Lecture added!")
 
                 axios.get(`${URL}/course/${slug}`, {
                     headers: {
@@ -124,10 +124,10 @@ const Module = (props) => {
                     }
                 }).catch(err => console.log("error"))
 
-                toast.success("Lecture added!")
                 
             })
                 .catch((error) => {
+                    toast.error("There are some problem in network")
                     console.error('Error:', error);
                 });
         } else {
@@ -221,15 +221,26 @@ const Module = (props) => {
                                             item.lectures.map((items,key)=>{
                                                 // console.log(items,key)
                                                 return(
-                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-300 active:bg-gray-300" style={{width:"80%"}} onClick={()=> Navigate(`/Page`,{state:{type:items.type.split('/')[1]}}) }>
+                                                    <>
+                                                    <div className="drop-file-preview__item mx-auto" style={{width:"80%"}} >
+                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-300 active:bg-gray-300" style={{width:"80%"}} onClick={()=> 
+                                                        Navigate(`/Page`,{state:{
+                                                                                    type:items.type.split('/')[1], 
+                                                                                    lectures:modules, 
+                                                                                    lectureId:items._id,
+                                                                                    courseId:slug,
+                                                                                    moduleId:item._id
+                                                                                }}) 
+                                                        }>
                                                         <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
-                                                        <div className="drop-file-preview__item__info">
-                                                            <p>{items.name}</p>
+                                                        <div className="drop-file-preview__item__info" >
+                                                            <h2>{items.name}</h2>
                                                             {/* <p>{items.size}B</p> */}
                                                         </div>
-                                                        {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>}
-                                                        
                                                     </div>
+                                                        {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>}
+                                                    </div>
+                                                    </>  
                                                 )
                                             })
                                         }
@@ -237,7 +248,7 @@ const Module = (props) => {
 
 
                                         {
-                                            // (userRole==="Admin")&&
+                                            (userRole==="Admin")&&
                                             <div className='flex flex-col'>
                                                     <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
                                             </div>
