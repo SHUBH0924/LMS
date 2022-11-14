@@ -8,7 +8,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Sidenav from "../Sidenav";
-import "./Calendar.css";
+import Header from '../../Header';
+import toast from 'react-hot-toast';
+
 
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
@@ -63,7 +65,7 @@ function App() {
         ((d1 <= d2) && (d2 <= d3)) || ((d1 <= d4) &&
           (d4 <= d3))
       ) {
-        alert("CLASH");
+      toast.error("Clash Event");
         break;
       }
 
@@ -75,24 +77,38 @@ function App() {
 
   return (
     <div className='relative'>
-      <aside className="flex">
+      <div className='sticky top-0 z-20 '>
+        <Header />
+      </div>
+      <aside className="flex flex-row ">
         <Sidenav />
-
-        <div className='flex flex-col w-full'>
-          <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
+        <div className='flex flex-col w-3/4 mx-auto mb-12'>
+          <h1 className='mt-6 mb-2 capitalize text-4xl mx-auto font-bold'>
             Calendar
           </h1>
-          <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
-          <h2 className="mx-auto mt-4">Add New Event</h2>
-          <div>
-            <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-            <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-            <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
-            <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
-              Add Event
-            </button>
+          <hr className="w-1/4 mx-auto h-2 mb-2 rounded-full bg-gradient-to-r from-gray-700 " />
+          
+          <div className="flex flex-col z-10 mt-4 mb-4 border-2 rounded-2xl ">
+            <h2 className="mx-auto mb-2 mt-2 text-3xl font-bold ">Add New Event</h2>
+            <hr />
+              <input className="border mt-4 w-1/5 mx-auto  border-gray-500 bg-gray-200 py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="text" placeholder="Add Title"  value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+              
+              <div className="flex flex-row mt-4 mx-auto">
+                <DatePicker className="border  w-full mx-auto  border-gray-500 bg-gray-200 py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" placeholderText="Start Date" selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                <DatePicker className="border ml-4 w-full mx-auto  border-gray-500 bg-gray-200 py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+              </div>  
+                
+                <div className="mx-auto mt-2 mb-4">
+                  <button  
+                    className="w-36  bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={handleAddEvent}>
+                    Add Event
+                  </button>
+                </div>
+
           </div>
-          <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
+          <Calendar className=" rounded-lg text-lg font-semibold mt-8" localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 600}}  />
         </div>
       </aside>
     </div>

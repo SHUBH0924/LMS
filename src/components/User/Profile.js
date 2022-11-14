@@ -12,7 +12,7 @@ function Profile() {
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
     useEffect(() => {
-        axios.get('http://172.29.235.99:3000/profile', {
+        axios.get('http://172.29.232.53:3000/profile', {
                 headers: {
                     'Authorization': token
                 }
@@ -33,7 +33,7 @@ function Profile() {
             address: address,
             phone: phone
         }
-        axios.put('http://172.29.110.12:3000/profile',data,{
+        axios.put('http://172.29.232.53:3000/profile',data,{
             headers: {
               'Authorization': token
             }
@@ -60,7 +60,7 @@ function Profile() {
                     </h1>
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
                     <form className="mt-6 ml-16 w-4/5 justify-center">
-                        <div className="flex flex-row mx-auto mb-4" >
+                        <div className="flex flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
                             <div className="mt-3 flex items-center mb-5">
                                 <span className="inline-block  h-12 w-12 overflow-hidden rounded-full bg-gray-100">
@@ -72,7 +72,7 @@ function Profile() {
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}
                                 <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" />
                             </div>
-                            <div className="w-full mt-4 ml-3">
+                            <div className=" mt-4 ml-3">
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
                                 Upload
                             </button>

@@ -21,7 +21,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.235.99:3000"
+    const URL = "http://172.29.232.53:3000"
     
     const [modules, setModules] = useState([])
     const [publish,setPublish] = useState(location.state.Publish)

@@ -17,6 +17,8 @@ import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileI
 
 import Calendar from "./components/Layout/Calendar/Calendar";
 import Help from "./components/Help"
+import Users from './components/Admin/Users';
+import People from './components/Admin/AdminDashboard/CreateCourse/People'
 
 
 const App = () => {
@@ -98,6 +100,10 @@ const App = () => {
 
               {/* {auth.user && */}
                 <Route path="/help" element={<Help />} />
+
+                <Route path="/users" element={<Users />} />
+
+                <Route path="/people" element={<People />} />
               
               
               {/* {auth.user &&
@@ -111,13 +117,7 @@ const App = () => {
                 </Protected>}
                /> 
               
-              {auth.user &&
-                <Route path="/calendar" element={<Calendar />} />
-              }
 
-              {auth.user &&
-                <Route path="/help" element={<Help />} />
-              }
               
           </Routes>
     </div>
