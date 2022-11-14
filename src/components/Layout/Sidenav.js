@@ -8,12 +8,21 @@ import { useAuth } from "../../Auth/auth";
 const Sidenav = () => {
     const auth = useAuth()
     const menus = [
+<<<<<<< HEAD
         { name: "Dashboard", link: "/", icon: FcDatabase , role:"Student"},
         { name: "Users", link: "/users", icon: FcConferenceCall , role:"Admin"},
         { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"Student"},
         { name: "Profile", link: "/profile", icon: FcServices ,role:"Student"},
         { name: "Calendar", link: "/", icon: FcCalendar ,role:"Student"},
         { name: "Help", link: "/settings", icon: FcVoicePresentation ,role:"Student"},
+=======
+        { name: "Dashboard", link: "/", icon: FcDatabase , role:"User"},
+        { name: "Users", link: "/users", icon: FcConferenceCall , role:"User"},
+        { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"User"},
+        { name: "Profile", link: "/profile", icon: FcServices ,role:"User"},
+        { name: "Calendar", link: "/calendar", icon: FcCalendar ,role:"User"},
+        { name: "Help", link: "/help", icon: FcVoicePresentation ,role:"User"},
+>>>>>>> 7b0476652fb19e9379b08933492dd6d43bdcdefb
         
     ];
     const userRole = auth.user
