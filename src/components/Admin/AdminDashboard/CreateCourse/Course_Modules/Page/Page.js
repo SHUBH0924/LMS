@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import doc from "./Ashvani Resume (1).docx"
 import VideoJS from './Video'
 import videojs from 'video.js';
-import PdfFile from './Introduction.pdf'
+// import PdfFile from './Introduction.pdf'
 import { useLocation } from 'react-router-dom';
 import PDFViewer from './PDFViewer';
 
