@@ -5,7 +5,7 @@ import Sidenav from '../Layout/Sidenav'
 
 function Users() {
 
-    const URL = "http://172.29.235.99:3000"
+    const URL = "http://172.29.232.53:3000"
 
     const [user,setUser] = useState([])
     useEffect(()=>{

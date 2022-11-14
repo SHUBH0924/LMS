@@ -8,12 +8,8 @@ import toast from 'react-hot-toast';
 
 
 function Login() {
-      // useEffect(() => {
-      //   document.body.style.overflow = "hidden";
-      // }, []);
 
-      const auth = useAuth()
-      
+      const auth = useAuth()      
       const Navigate = useNavigate();
       const NavigateToRegister = () => {
         Navigate('/register');
@@ -30,10 +26,8 @@ function Login() {
                 password:password,
             }
 
-            axios.post("http://172.29.235.99:3000/login",data).then(res=>{
-              console.log(res)
-
-              
+            axios.post("http://172.29.232.53:3000/login",data).then(res=>{
+              // console.log(res) 
               if(res.data.status === "Authorised"){
                 auth.login(res.data)
                   // if (res.data.role === "Admin"){
@@ -85,7 +79,7 @@ function Login() {
             </div>
             </form>
             <div className="text-center mt-6">
-              <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl">Sign in</button>
+              <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-700 active:bg-green-600">Sign in</button>
               <p className="mt-4 text-sm">Need An Account? <span><button onClick={NavigateToRegister} className="py-3 w-50px text-l text-gray-700 bg-gray-300 rounded-2xl">Sign up</button></span>
               </p>
             </div>

@@ -1,11 +1,12 @@
 import {createContext,useContext,useState } from "react";
 import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null)
 export const AuthProvider = ({children}) => {
     const [user,setuser] = useState(null)
     const [token,setToken] = useState(null)
-    
+    // const Navigate = useNavigate()
     
     const login = (UserData) =>{
         console.log(UserData.token)
@@ -30,6 +31,7 @@ export const AuthProvider = ({children}) => {
         setToken(null)
         Cookies.remove('userData')
         Cookies.remove('token')
+        // Navigate('/')
     }
 
     return(

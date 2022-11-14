@@ -17,7 +17,7 @@ function Register() {
     const [password,setpassword] = useState("")
     const [email,setemail] = useState("")    
     const [Cpassword,setCpassword] = useState("")
-    const [warning,setWarning] = useState("")
+    // const [warning,setWarning] = useState("")
     const [phone,setPhone] = useState("")
 
     const handleSubmit = (e)=>{
@@ -31,9 +31,9 @@ function Register() {
         }
         if (password !== Cpassword){
             console.log("")
-            setWarning("Password didn't match")
+            toast.error("Password didn't match")
         }else{
-            axios.post("http://172.29.235.99:3000/register",data).then(
+            axios.post("http://172.29.232.53:3000/register",data).then(
                 res=>{
                     console.log(res)
                     if(res.status == 201){
@@ -56,7 +56,7 @@ function Register() {
                     <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Register</h1>
                     <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Register and
                         enjoy all the services</p>
-                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer" style={{color:"#FF0000"}}>{warning}</p>
+                    {/* <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer" style={{color:"#FF0000"}}>{warning}</p> */}
                 </div>
                 <form method='post'>
                 <div className="space-y-4">
@@ -68,7 +68,7 @@ function Register() {
                 </div>
                 </form>
                 <div className="text-center mt-6">
-                    <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl">Submit</button>
+                    <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-700 active:bg-green-600">Submit</button>
                     <p className="mt-4 text-sm">Already Have An Account? <span><button onClick={NavigateToLogin} className="py-3 w-50px text-l text-gray-700 bg-gray-300 rounded-2xl">Sign in</button></span>
                     </p>
                 </div>

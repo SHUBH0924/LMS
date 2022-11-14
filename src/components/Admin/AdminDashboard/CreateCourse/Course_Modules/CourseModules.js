@@ -22,9 +22,17 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.235.99:3000"
+    const URL = "http://172.29.232.53:3000"
     
     const [modules, setModules] = useState([])
+    // {
+    //     name:"C",
+    //     lectures:[],
+    //     _id:"jcvbwegiwevdskcvnwelvie"
+    // }
+
+
+
     const [publish,setPublish] = useState()
 
     const createNewModule = ({ a }) => {
@@ -87,12 +95,15 @@ const Module = (props) => {
 
     // };
 
-    const handleSubmission = (id,selectedFile) => {
+    const handleSubmission = (id,selectedFile,content,Title) => {
         const formData = new FormData();
 
         formData.append('File', selectedFile);
+        formData.append('Title', Title);
+        formData.append('content', content);
         // console.log(selectedFile)
-        // console.log(id)
+        // console.log(id,selectedFile,content,Title)
+
         if (id && selectedFile) {
             // ${Lecture}/${id}
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
@@ -225,13 +236,12 @@ const Module = (props) => {
                                         
 
 
-                                        <div className='flex flex-col'>
-                                                <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
-
-                                            {/* </span> */}
-
-                                            
-                                        </div>
+                                        {
+                                            // (userRole==="Admin")&&
+                                            <div className='flex flex-col'>
+                                                    <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
+                                            </div>
+                                        }
                                     </details>
                                 </div>
                             )

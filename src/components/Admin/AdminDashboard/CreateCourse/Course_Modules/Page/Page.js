@@ -21,7 +21,7 @@ export default props => {
     responsive: true,
     fluid: true,
     sources: [{
-      src: 'http://172.29.235.99:3000/playvideo',
+      src: 'http://172.29.232.53:3000/playvideo',
       type: 'video/mp4'
     }]
   };

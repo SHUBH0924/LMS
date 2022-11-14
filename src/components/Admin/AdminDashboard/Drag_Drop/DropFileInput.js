@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import  './drop-file-input.css';
 import { ImageConfig } from '../../../ImageConfig'; 
 import uploadImg from '../../../../assets/cloud-upload-regular-240.png';
+import JoditEditor from 'jodit-react';  
+ 
 
 
 const DropFileInput = ({handleSubmission,id}) => {
+
+    const editor = useRef(null)
+    const [content,setContent] = useState('')
+    const [Title,setTitle] = useState('')
 
     const wrapperRef = useRef(null);
 
@@ -39,11 +45,26 @@ const DropFileInput = ({handleSubmission,id}) => {
 
     const submitHandle = () => {
         setFileList(null)
-        handleSubmission(id,fileList)
+        handleSubmission(id,fileList,content,Title)
     }
 
     return (
         <>
+            <div className="w-3/4 mx-auto">
+                <input type="text" value={Title} onChange={e=>setTitle(e.target.value)} placeholder="Title" />
+                <JoditEditor 
+                    ref={editor}
+                    value={content}
+                    onChange={newContent=>{
+                                            setContent(newContent)
+                                            // console.log(newContent)
+                                    }}
+                    // className="w-3/4 mx-auto"
+                />
+            </div>
+
+
+            {/* DRAG&DROP FILE */}
             <div style={{
                 
             }}
@@ -83,6 +104,9 @@ const DropFileInput = ({handleSubmission,id}) => {
                 ) : null
             }
             
+
+            <div dangerouslySetInnerHTML={{__html: content}} />
+
             <div className='flex items-center justify-end p-6'>
                 <button
                     className="mx-auto bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { FcList } from "react-icons/fc";
 import { FcServices, FcOpenedFolder, FcVoicePresentation, FcCalendar, FcExport, FcDatabase, FcConferenceCall } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -18,10 +19,11 @@ const Sidenav = () => {
     const userRole = auth.user
     const Logout = { name: "Logout", link: "/Login", icon: FcExport, role:"User" }
 
-    const [open, setOpen] = useState(false);
+    const [open,setOpen] = useState(false);
 
     const Lgout = () =>{
         auth.logout()
+        toast.success("logged out")
         // History.push('/Login')
     }
 
@@ -46,7 +48,8 @@ const Sidenav = () => {
                         
                             return(
                                 <>
-                                    {((menu.role===userRole)||(userRole === "Admin"))&&<Link
+                                    {((menu.role===userRole)||(menu.role === "Admin"))&&
+                                    <Link
                                         to={menu.link}
                                         key={i}
                                         className={` ${menu.margin && "mt-5"
@@ -75,25 +78,25 @@ const Sidenav = () => {
                         <Link
                         
                         onClick={Lgout}
-                        // to="/Login"
+                        to="/Login"
                         // key={i}
-                        className={` ${Logout?.margin && "mt-5"
+                        className={` ${Logout.margin && "mt-5"
                             } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
-                    >
+                        >
 
-                        <div>{React.createElement(Logout?.icon, { size: "28" })}</div>
+                        <div>{React.createElement(Logout.icon, { size: "28" })}</div>
                         <h2
                             
                             className={`whitespace-pre duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"
                                 }`}
                         >
-                            {Logout?.name}
+                            {Logout.name}
                         </h2>
                         <h2
                             className={`${open && "hidden"
                                 } absolute left-48 bg-gray-900 font-semibold whitespace-pre text-gray-100 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
                         >
-                            {Logout?.name}
+                            {Logout.name}
                         </h2>
                     </Link>
                     }
