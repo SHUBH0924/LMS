@@ -48,7 +48,7 @@ function Users() {
                         return(
                             <form>
 
-                            <div className='flex flex-row ml-20 mt-3'>
+                            <div className='flex flex-row ml-20 '>
                         <div className='w-4/6'>
                             <ul className="items-center w-full border text-gray-900 bg-white  border-gray-600 flex ">
                                 <li className="w-4/5 border-gray-800 ">
@@ -87,7 +87,7 @@ function Users() {
                                         <label for="Educator" className="py-3 ml-2 w-full text-md font-medium text-gray-900 ">Educator</label>
                                     </div>
                                 </li>
-                                <li className="w-4/5 border-gray-600">
+                                <li className="w-4/5 border-gray-600 mb-0">
                                     <div className="flex items-center pl-5">
                                         <input 
                                             id="Student" 

@@ -257,7 +257,7 @@ const Module = (props) => {
 
 
                     </div>
-                    <div className='flex '>
+                    <div className='flex'>
                         <Courses />
                     </div>
                 </aside>

@@ -12,8 +12,8 @@ const Sidenav = () => {
         { name: "Users", link: "/users", icon: FcConferenceCall , role:"Admin"},
         { name: "My Courses", link: "/courses", icon: FcOpenedFolder ,role:"Student"},
         { name: "Profile", link: "/profile", icon: FcServices ,role:"Student"},
-        { name: "Calendar", link: "/", icon: FcCalendar ,role:"Student"},
-        { name: "Help", link: "/settings", icon: FcVoicePresentation ,role:"Student"},
+        { name: "Calendar", link: "/calendar", icon: FcCalendar ,role:"Student"},
+        { name: "Help", link: "/help", icon: FcVoicePresentation ,role:"Student"},
    ];
     const userRole = auth.user
     const Logout = { name: "Logout", link: "/Login", icon: FcExport, role:"User" }

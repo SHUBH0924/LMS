@@ -50,20 +50,22 @@ const DropFileInput = ({handleSubmission,id}) => {
 
     return (
         <>
-            <div className="w-3/4 mx-auto">
-                <input type="text" value={Title} onChange={e=>setTitle(e.target.value)} placeholder="Title" />
-                <JoditEditor 
-                    ref={editor}
-                    value={content}
-                    onChange={newContent=>{
-                                            setContent(newContent)
-                                            // console.log(newContent)
-                                    }}
-                    // className="w-3/4 mx-auto"
-                />
+            <div className="w-4/5 h-20 mx-auto">
+                <hr className='my-4'/>
+                <input className=' border mx-auto my-4 w-1/2  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-gray-800 border-gray-600 placeholder-gray-400 text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' type="text" value={Title} onChange={e=>setTitle(e.target.value)} placeholder="Title" />
             </div>
-
-
+                <div className='w-4/5 mt-4 mb-8 mx-auto'>
+                    <JoditEditor 
+                        style={{height:"200px"}}
+                        ref={editor}
+                        value={content}
+                        onChange={newContent=>{
+                                                setContent(newContent)
+                                                // console.log(newContent)
+                                        }}
+                        // className="w-3/4 mx-auto"
+                    />
+                </div>
             {/* DRAG&DROP FILE */}
             <div style={{
                 
@@ -93,7 +95,6 @@ const DropFileInput = ({handleSubmission,id}) => {
                                     {/* {item.type.split('/')[1]} */}
                                     <div className="drop-file-preview__item__info">
                                         <p>{fileList.name}</p>
-                                        <p>{fileList.size}B</p>
                                     </div>
                                     <span className="drop-file-preview__item__del" onClick={() => fileRemove(fileList)}>x</span>
                                 </div>
