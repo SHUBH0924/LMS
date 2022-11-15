@@ -24,7 +24,7 @@ const Admin_Dashboard = () => {
                 'Authorization': token
             }
         }).then(res => {
-            // console.log(res.data)
+            console.log(res.data)
             setCourse(res.data)
             // console.log(Course) 
         })
@@ -35,7 +35,7 @@ const Admin_Dashboard = () => {
         // e.preventdefault()
         const id = item._id
         const publish = item.published
-        Navigate(`/course/${id}`,{state:{Publish:publish}})
+        Navigate(`/course/${id}`,{state:{Publish:publish,item:item}})
         // console.log({id},"Clicked")
     }
 
