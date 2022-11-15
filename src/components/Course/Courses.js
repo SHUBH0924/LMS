@@ -11,14 +11,14 @@ import { Link } from "react-router-dom";
 
 const Courses = () => {
     const menus = [
-        { name: "Home ", link: "/course", icon: SiHomeadvisor , role:"User"},
-        { name: "Announcements", link: "/", icon: HiSpeakerphone , role:"User"},
+        { name: "Home ", link: "/", icon: SiHomeadvisor , role:"User"},
+        { name: "Announcements", link: "/announcement", icon: HiSpeakerphone , role:"User"},
         { name: "Assignments", link: "/", icon: MdAssignment , role:"User"},
         { name: "Discussion", link: "/", icon: RiDiscussFill , role:"User"},
         { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"User"},
         { name: "Students", link: "/people", icon: BsFillPeopleFill, margin: true ,role:"User"},
         { name: "Pages", link: "/", icon: AiFillBook ,role:"User"},
-        { name: "Quizzes", link: "/", icon: MdQuiz ,role:"User", role:"User"},
+        { name: "Quizzes", link: "/quiz", icon: MdQuiz ,role:"User", role:"User"},
         { name: "Syllabus", link: "/", icon: RiPagesFill, role:"User" },
     ];
     const [open] = useState(true);

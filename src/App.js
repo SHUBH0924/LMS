@@ -19,6 +19,8 @@ import Calendar from "./components/Layout/Calendar/Calendar";
 import Help from "./components/Help"
 import Users from './components/Admin/Users';
 import People from './components/Admin/AdminDashboard/CreateCourse/People'
+import Announcement from './components/Course/Announcement';
+import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz"
 
 
 const App = () => {
@@ -104,6 +106,10 @@ const App = () => {
                 <Route path="/users" element={<Users />} />
 
                 <Route path="/people" element={<People />} />
+
+                <Route path="/announcement" element={<Announcement />} />
+
+                <Route path="/quiz" element={<Quiz />} />
               
               
               {/* {auth.user &&
