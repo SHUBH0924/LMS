@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import Sidenav from '../Layout/Sidenav'
+import { toast } from 'react-hot-toast'
 
 function Users() {
 
@@ -17,13 +18,65 @@ function Users() {
             setUser(res.data)
             // console.log(res.data)
         })
-    },[user])
+    },[])
 
 
-    const UpdateRole = (role) =>{
-        // e.preventDefault()
-        console.log(role)
+    const UpdateRole = (e,key) =>{
+        let usrArr = [...user]
+        
+        usrArr[key].role = e.target.value
+        setUser(usrArr)
+        
     }
+    
+    const SubmitRole = (e,key) =>{
+        e.preventDefault()
+        const usr = user[key]
+        
+        // axios.patch(`${URL}/profile`,usr,{
+        //     Authentication:token
+        // }).then(res=>{
+        //     console.log(res)
+        // })
+        // console.log(usr)
+        axios.patch('http://172.29.232.251:3000/profile',usr,{
+            headers: {
+              'Authorization': token
+            }
+          }).then(res=>{
+            toast.success(res.data)
+          })
+    }
+
+
+    const RemoveUser = (e,userId) =>{
+        e.preventDefault()
+
+        var payload = {
+            userId:userId
+        }
+        axios.delete(`${URL}/user`,{
+            headers: {
+                'Authorization': token
+            },
+            data:payload
+        }).then(res=>{
+            if(res.status === 200){
+                toast.success("User Deleted")
+                axios.get(`${URL}/user`,{
+                    Authentication : token
+                }).then(res=>{
+                    setUser(res.data)
+                })
+                // console.log(res)
+                console.log(res)
+            }
+        }).catch(err=>{
+            toast.error(err.message)
+            console.log(err)
+        })
+    }
+
 
     return (
         <div className='relative'>
@@ -56,62 +109,74 @@ function Users() {
                             <ul className="items-center w-full border text-gray-900 bg-white  border-gray-600 flex ">
                                 <li className="w-4/5 border-gray-800 ">
                                     <div className="flex items-center bg-gray-800 pl-3">
-                                            <label for="Name" className="py-4 pl-3 w-full text-xl font-semibold capitalize text-gray-100 ">{user.name}</label>
+                                            <label htmlFor="Name" className="py-4 pl-3 w-full text-xl font-semibold capitalize text-gray-100 ">{user.name}</label>
                                     </div>
                                 </li>
                                 
-                                <li className="w-4/5 border-gray-600 border-r-2 ">
-                                    <div className="flex items-center pl-5">
-                                        <input 
-                                            id="Admin" 
-                                            type="radio" 
-                                            value={user.role} 
-                                            name={user._id}
-                                            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " 
-                                            // checked ={user.role === "Admin"}
-                                            defaultChecked={user.role === "Admin"}
-                                            onChange={(e)=>UpdateRole(e.target.value)}
-                                        />
-                                        <label for={user.role} className="py-3 ml-2 w-full text-md font-medium text-gray-900 " >Admin</label>
-                                    </div>
-                                </li>
-                                <li className="w-4/5 border-gray-600 border-r-2 ">
-                                    <div className="flex items-center pl-5">
-                                        <input 
-                                            id="Educator" 
-                                            type="radio" 
-                                            value={user.role}
-                                            name={user._id}
-                                            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
-                                            // checked = {user.role === "Educator"}
-                                            defaultChecked={user.role === "Educator"}
-                                            onChange={(e)=>UpdateRole(e.target.value)}
-                                        />
-                                        <label for="Educator" className="py-3 ml-2 w-full text-md font-medium text-gray-900 ">Educator</label>
-                                    </div>
-                                </li>
-                                <li className="w-4/5 border-gray-600 mb-0">
-                                    <div className="flex items-center pl-5">
-                                        <input 
-                                            id="Student" 
-                                            type="radio" 
-                                            value={user.role} 
-                                            name={user._id} 
-                                            defaultChecked = {user.role === "Student"}
-                                            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
-                                            onChange={(e)=>UpdateRole(e.target.value)}
-                                        />
-                                        <label for="Student" className="py-3 ml-2 w-full text-md font-medium text-gray-900 ">Student</label>
-                                    </div>
-                                </li>
+                                    <li className="w-4/5 border-gray-600 border-r-2 ">
+                                        <div className="flex items-center pl-5">
+                                            <input 
+                                                id="Admin" 
+                                                type="radio" 
+                                                value="Admin" 
+                                                name={user._id}
+                                                className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " 
+                                                // checked ={user.role === "Admin"}
+                                                defaultChecked={user.role === "Admin"}
+                                                onChange={e=>UpdateRole(e,key)}
+                                            />
+                                            <label htmlFor={user._id} className="py-3 ml-2 w-full text-md font-medium text-gray-900 " >Admin</label>
+                                        </div>
+                                    </li>
+                                    <li className="w-4/5 border-gray-600 border-r-2 ">
+                                        <div className="flex items-center pl-5">
+                                            <input 
+                                                id="Educator" 
+                                                type="radio" 
+                                                value="Educator" 
+                                                name={user._id}
+                                                className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
+                                                // checked = {user.role === "Educator"}
+                                                defaultChecked={user.role === "Educator"}
+                                                onChange={e=>UpdateRole(e,key)}
+                                            />
+                                            <label htmlFor={user._id} className="py-3 ml-2 w-full text-md font-medium text-gray-900 ">Educator</label>
+                                        </div>
+                                    </li>
+                                    <li className="w-4/5 border-gray-600 mb-0">
+                                        <div className="flex items-center pl-5">
+                                            <input 
+                                                id="Student" 
+                                                type="radio" 
+                                                value="Student"
+                                                name={user._id} 
+                                                defaultChecked = {user.role === "Student"}
+                                                className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
+                                                onChange={e=>UpdateRole(e,key)}
+                                            />
+                                            <label htmlFor={user._id} className="py-3 ml-2 w-full text-md font-medium text-gray-900 ">Student</label>
+                                        </div>
+                                    </li>
+                                
                             </ul>
                         </div>
                         <div className='ml-16 -mt-2'>
                             <button className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="Submit">
+                                    type="Submit" 
+                                    onClick={(e)=>SubmitRole(e,key)}
+                                    >
                             Update
                             </button>
                         </div>
+                        <div className='ml-16 -mt-2'>
+                            <button className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="Submit" 
+                                    onClick={(e)=>RemoveUser(e,user._id)}
+                                    >
+                            Remove
+                            </button>
+                        </div>
+
                     </div>
                     
                     </form>
