@@ -28,19 +28,19 @@ function Help() {
                     <div className='flex flex-col w-1/3 mt-12 mx-auto '>
                        <a href="mailto:enquiry@threatguardians.com" className='animate-bounce flex flex-row rounded-full w-full mb-3 h-20 bg-gray-800'>
                             <FcComments 
-                               className='ml-8 mt-4'
+                               className='ml-4 mt-4'
                                size={48}
                             />
-                             <p className='text-white text-xl font-semibold ml-12 mt-6'>
+                             <p className='text-white text-xl font-semibold mx-auto mt-6'>
                                support@threatguardians.com
                             </p>
                         </a> 
                         <a href="tel:+919616619764" className='animate-bounce flex flex-row rounded-full w-full mb-3 h-20 bg-gray-800'>
                             <FcCallback 
-                               className='ml-8 mt-4'
+                               className='ml-4 mt-4'
                                size={48}
                             />
-                             <p className='text-white text-xl font-semibold ml-24 mt-6'>
+                             <p className='text-white text-xl font-semibold mx-auto mt-6'>
                                 +919616619764
                             </p>
                         </a> 

@@ -225,7 +225,7 @@ const Module = (props) => {
                                                 return(
                                                     <>
                                                     
-                                                    <div className="drop-file-preview__item mx-auto border-2 border-gray-600" style={{width:"80%"}} >
+                                                    <div className="drop-file-preview__item mx-auto border-2 border-gray-500" style={{width:"80%"}} >
                                                     
                                                         <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4" style={{width:"100%"}} onClick={()=> 
                                                             Navigate(`/Page`,{state:{
@@ -236,7 +236,7 @@ const Module = (props) => {
                                                                                         moduleId:item._id
                                                                                     }}) 
                                                             }>
-                                                            <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
+                                                            <img className="opacity-50 w-24" src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                             <div className="drop-file-preview__item__info" >
                                                                 <h2>{items.name}</h2>
                                                                 {/* <p>{items.size}B</p> */}
