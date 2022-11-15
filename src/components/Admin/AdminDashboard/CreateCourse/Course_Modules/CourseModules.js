@@ -32,7 +32,7 @@ const Module = (props) => {
     // }
 
     const [publish,setPublish] = useState()
-
+    const [ Title,setTitle] = useState(location.state.item.name)
 
 
     const createNewModule = ({ a }) => {
@@ -193,8 +193,11 @@ const Module = (props) => {
                 </div>
                 <aside className="flex">
                     <Sidenav />
-                    
+
                     <div className='flex flex-col w-full'>
+                        <div className="px-6 capitalize text-3xl text-black font-semibold py-6 mx-auto">
+                                                {Title}
+                        </div>
                         {(userRole === "Admin")&&<div className='flex flex-row justify-between'>
                             <NewModule createNewCourse={createNewModule} />
                             <div className='w-56 mr-12 mt-3 '>
