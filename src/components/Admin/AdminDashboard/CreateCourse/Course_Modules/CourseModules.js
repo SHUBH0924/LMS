@@ -34,6 +34,7 @@ const Module = (props) => {
     const [publish,setPublish] = useState()
 
 
+
     const createNewModule = ({ a }) => {
 
 
@@ -271,7 +272,7 @@ const Module = (props) => {
 
 
                     </div>
-                    <div className='flex'>
+                    <div className='flex '>
                         <Courses />
                     </div>
                 </aside>
