@@ -5,13 +5,14 @@ import Card from '../Card/Card'
 import Sidenav from '../Layout/Sidenav'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Auth/auth';
+import Header from '../Header'
 
 
 function Dashboard() {
     const auth = useAuth()
     const [token,setToken] = useState(auth.token)
     const Navigate = useNavigate()
-    const backendServer = `http://172.29.232.53:3000/course/all`
+    const backendServer = `http://172.29.232.251:3000/course/all`
     const [course,setCourse] = useState([])
     useEffect(()=>{
         axios.get(backendServer,{
@@ -38,7 +39,10 @@ function Dashboard() {
 
     return (
         <div className='relative'>
-        <aside className="flex">
+            <div className='sticky top-0 '>
+                <Header />
+                </div>
+        <aside className="flex flex-row">
             
                 <Sidenav />
             

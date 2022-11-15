@@ -16,7 +16,7 @@ export default props => {
   const location = useLocation();
   const lec = location.state.lectures
   
-  const URL = "http://172.29.232.53:3000"
+  const URL = "http://172.29.232.251:3000"
   
   const [type,setType] = useState(location.state.type)
   const [id,setId] = useState(location.state.lectureId)
@@ -48,7 +48,7 @@ export default props => {
     responsive: true,
     fluid: true,
     sources: [{
-      src: 'http://172.29.232.53:3000/playvideo',
+      src: 'http://172.29.232.251:3000/playvideo',
       type: 'video/mp4'
     }]
   };

@@ -51,7 +51,7 @@ const DropFileInput = ({handleSubmission,id}) => {
     return (
         <>
             <div className="w-4/5 h-20 mx-auto">
-                <hr className='my-4'/>
+                <hr className='my-4 '/>
                 <input className=' border mx-auto my-4 w-1/2  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-gray-800 border-gray-600 placeholder-gray-400 text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' type="text" value={Title} onChange={e=>setTitle(e.target.value)} placeholder="Title" />
             </div>
                 <div className='w-4/5 mt-4 mb-8 mx-auto'>

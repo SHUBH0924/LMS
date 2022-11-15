@@ -22,7 +22,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.232.53:3000"
+    const URL = "http://172.29.232.251:3000"
     
     const [modules, setModules] = useState([])
     // {
@@ -212,32 +212,35 @@ const Module = (props) => {
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details className="w-4/5 mx-auto mb-2 bg-gray-600 rounded-lg ring-1 ring-blue-600 ">
-                                        <summary className="px-6 capitalize text-xl text-white font-semibold py-6 ">
+                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
+                                        <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.name}
                                         </summary>
+                                        
                                         {
                                             
                                             item.lectures.map((items,key)=>{
                                                 // console.log(items,key)
                                                 return(
                                                     <>
-                                                    <div className="drop-file-preview__item mx-auto" style={{width:"80%"}} >
-                                                    <div className="drop-file-preview__item mx-auto hover:bg-gray-300 active:bg-gray-300" style={{width:"80%"}} onClick={()=> 
-                                                        Navigate(`/Page`,{state:{
-                                                                                    type:items.type.split('/')[1], 
-                                                                                    lectures:modules, 
-                                                                                    lectureId:items._id,
-                                                                                    courseId:slug,
-                                                                                    moduleId:item._id
-                                                                                }}) 
-                                                        }>
-                                                        <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
-                                                        <div className="drop-file-preview__item__info" >
-                                                            <h2>{items.name}</h2>
-                                                            {/* <p>{items.size}B</p> */}
+                                                    
+                                                    <div className="drop-file-preview__item mx-auto border-2 border-gray-600" style={{width:"80%"}} >
+                                                    
+                                                        <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4" style={{width:"100%"}} onClick={()=> 
+                                                            Navigate(`/Page`,{state:{
+                                                                                        type:items.type.split('/')[1], 
+                                                                                        lectures:modules, 
+                                                                                        lectureId:items._id,
+                                                                                        courseId:slug,
+                                                                                        moduleId:item._id
+                                                                                    }}) 
+                                                            }>
+                                                            <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
+                                                            <div className="drop-file-preview__item__info" >
+                                                                <h2>{items.name}</h2>
+                                                                {/* <p>{items.size}B</p> */}
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                         {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>}
                                                     </div>
                                                     </>  
