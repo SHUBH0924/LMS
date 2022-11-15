@@ -1,25 +1,28 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import Sidenav from '../Layout/Sidenav'
 
 function Users() {
 
-    const URL = "http://172.29.232.53:3000"
-
+    const URL = "http://172.29.232.251:3000"
+    const auth = useAuth()
+    const token = auth.token
     const [user,setUser] = useState([])
     useEffect(()=>{
-        axios.get(`${URL}/user`).then(res=>{
+        axios.get(`${URL}/user`,{
+            Authentication : token
+        }).then(res=>{
             setUser(res.data)
             // console.log(res.data)
         })
     },[user])
 
 
-    const ChangeHandler = (e,role) =>{
-        e.preventDefault()
+    const UpdateRole = (role) =>{
+        // e.preventDefault()
         console.log(role)
-        
     }
 
     return (
@@ -44,7 +47,7 @@ function Users() {
 
                     {user.map((user,key)=>{
                         
-                        
+                        let newValue = user.role
                         return(
                             <form>
 
@@ -67,7 +70,7 @@ function Users() {
                                             className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " 
                                             // checked ={user.role === "Admin"}
                                             defaultChecked={user.role === "Admin"}
-                                                                                        
+                                            onChange={(e)=>UpdateRole(e.target.value)}
                                         />
                                         <label for={user.role} className="py-3 ml-2 w-full text-md font-medium text-gray-900 " >Admin</label>
                                     </div>
@@ -82,7 +85,7 @@ function Users() {
                                             className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
                                             // checked = {user.role === "Educator"}
                                             defaultChecked={user.role === "Educator"}
-                                            
+                                            onChange={(e)=>UpdateRole(e.target.value)}
                                         />
                                         <label for="Educator" className="py-3 ml-2 w-full text-md font-medium text-gray-900 ">Educator</label>
                                     </div>
@@ -94,9 +97,9 @@ function Users() {
                                             type="radio" 
                                             value={user.role} 
                                             name={user._id} 
-                                            defaultChecked = {user.role === "User"}
+                                            defaultChecked = {user.role === "Student"}
                                             className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
-                                            
+                                            onChange={(e)=>UpdateRole(e.target.value)}
                                         />
                                         <label for="Student" className="py-3 ml-2 w-full text-md font-medium text-gray-900 ">Student</label>
                                     </div>

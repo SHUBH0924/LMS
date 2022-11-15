@@ -22,7 +22,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.232.53:3000"
+    const URL = "http://172.29.232.251:3000"
     
     const [modules, setModules] = useState([])
     // {
@@ -32,6 +32,7 @@ const Module = (props) => {
     // }
 
     const [publish,setPublish] = useState()
+
 
 
     const createNewModule = ({ a }) => {
@@ -229,7 +230,8 @@ const Module = (props) => {
                                                                                     lectures:modules, 
                                                                                     lectureId:items._id,
                                                                                     courseId:slug,
-                                                                                    moduleId:item._id
+                                                                                    moduleId:item._id,
+                                                                                    Title:item.name
                                                                                 }}) 
                                                         }>
                                                         <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
@@ -268,7 +270,7 @@ const Module = (props) => {
 
 
                     </div>
-                    <div className='flex'>
+                    <div className='flex '>
                         <Courses />
                     </div>
                 </aside>

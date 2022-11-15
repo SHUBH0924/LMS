@@ -16,13 +16,15 @@ export default props => {
   const location = useLocation();
   const lec = location.state.lectures
   
-  const URL = "http://172.29.232.53:3000"
+  const URL = "http://172.29.232.251:3000"
   
   const [type,setType] = useState(location.state.type)
   const [id,setId] = useState(location.state.lectureId)
   const [courseId,setCourseId] = useState(location.state.courseId)
   const [moduleId,setModuleId] = useState(location.state.moduleId)
   const [content,setContent] = useState("")
+  const [Title,setTitle] = useState(location.state.Title)
+  const VideoURL = `${URL}/playvideo/${courseId}/${moduleId}/${id}/${token}`
 
   useEffect(()=>{
     axios.post(`${URL}/course/content`,{
@@ -48,7 +50,7 @@ export default props => {
     responsive: true,
     fluid: true,
     sources: [{
-      src: 'http://172.29.232.53:3000/playvideo',
+      src: `${URL}/playvideo/${courseId}/${moduleId}/${id}/${token}`,
       type: 'video/mp4'
     }]
   };
@@ -109,6 +111,8 @@ export default props => {
                                                           onClick={()=>{
                                                             setId(items._id)
                                                             setModuleId(item._id)
+                                                            setType(items.type.split('/')[1])
+                                                            setTitle(items.name)
                                                           }
                                                                    }>
                                                     
@@ -130,25 +134,27 @@ export default props => {
           })}
               
       </div>
-          <div>
+          <div className='min-w-full' >
 
-
+            <center><h1>{Title}</h1></center>
             <div dangerouslySetInnerHTML={{__html: content}} />
+            
             {
-              
-            }
-            {
-            (type === "pdf")&&(
+            (type === "pdf")?(
               <>
-                <PDFViewer />
-              </>)
+                <PDFViewer courseId={courseId} moduleId={moduleId} id={id} />
+              </>):null
             }  
-            {(type === "mp4")&&(
+            {(type === "mp4")?(
               <>
+                  
                   <div className='w-3/4  content-end'>
                     <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+                    {/* <video>
+                      <source src={VideoURL} ></source>
+                    </video> */}
                   </div>
-              </>)
+              </>):null
             }
           </div>
     </div>
