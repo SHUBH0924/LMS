@@ -16,7 +16,7 @@ export default props => {
   const location = useLocation();
   const lec = location.state.lectures
 
-  const URL = "http://172.29.232.251:3000"
+  const URL = "http://172.29.233.209:3000"
 
   const [type, setType] = useState(location.state.type)
   const [id, setId] = useState(location.state.lectureId)
@@ -149,7 +149,7 @@ export default props => {
           {
             (type === "pdf") ? (
               <div className='ml-12 mr-12'>
-                <PDFViewer courseId={courseId} moduleId={moduleId} id={id} />
+                <PDFViewer courseId={courseId} moduleId={moduleId} id={id} url={`course/lecture/${courseId}/${moduleId}/${id}/${token}`}/>
               </div>) : null
           }
           {(type === "mp4") ? (

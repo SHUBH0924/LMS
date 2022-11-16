@@ -12,7 +12,7 @@ import Header from '../../Header'
 const Admin_Dashboard = () => {
 
     const auth = useAuth()
-    const backendServer = `http://172.29.232.251:3000`
+    const backendServer = `http://172.29.233.209:3000`
     const [Course, setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();
@@ -119,7 +119,7 @@ const Admin_Dashboard = () => {
                                 }).map((item,key) => {
 
                                     return (
-                                        <Card item={item} Button="Edit" onPublish={onPublish} />
+                                        <Card item={item} Button="Edit" key={key} onPublish={onPublish} />
                                     )
                                 })}
                             </div>

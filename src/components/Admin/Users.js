@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 
 function Users() {
 
-    const URL = "http://172.29.232.251:3000"
+    const URL = "http://172.29.233.209:3000"
     const auth = useAuth()
     const token = auth.token
     const [user,setUser] = useState([])
@@ -39,7 +39,7 @@ function Users() {
         //     console.log(res)
         // })
         // console.log(usr)
-        axios.patch('http://172.29.232.251:3000/profile',usr,{
+        axios.patch(`${URL}/profile`,usr,{
             headers: {
               'Authorization': token
             }

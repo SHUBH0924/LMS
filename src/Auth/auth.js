@@ -9,7 +9,7 @@ export const AuthProvider = ({children}) => {
     // const Navigate = useNavigate()
     
     const login = (UserData) =>{
-        console.log(UserData.token)
+        // console.log(UserData.token)
         setuser(UserData.role)
         setToken(UserData.token)
         Cookies.set('userData',UserData.role, { expires: 1,secure: true })

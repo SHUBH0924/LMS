@@ -14,13 +14,13 @@ import { useEffect } from 'react';
 import Protected from './components/Layout/Protected';
 import Page from './components/Admin/AdminDashboard/CreateCourse/Course_Modules/Page/Page';
 import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileInput';
-
 import Calendar from "./components/Layout/Calendar/Calendar";
 import Help from "./components/Help"
 import Users from './components/Admin/Users';
 import People from './components/Admin/AdminDashboard/CreateCourse/People'
 import Announcement from './components/Course/Announcement';
 import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz"
+import Assignment from "./components/Course/Assignment"
 
 
 const App = () => {
@@ -108,6 +108,8 @@ const App = () => {
                 <Route path="/people" element={<People />} />
 
                 <Route path="/announcement" element={<Announcement />} />
+
+                <Route path="/assignment" element={<Assignment />} />
 
                 <Route path="/quiz" element={<Quiz />} />
               
