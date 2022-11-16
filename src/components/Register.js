@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {useState} from "react";
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import SimpleReactValidator from 'simple-react-validator';
+
 
 function Register() {
     useEffect(() => {
@@ -19,6 +21,7 @@ function Register() {
     const [Cpassword,setCpassword] = useState("")
     // const [warning,setWarning] = useState("")
     const [phone,setPhone] = useState("")
+    const simpleValidator = useRef(new SimpleReactValidator())
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -33,7 +36,7 @@ function Register() {
             console.log("")
             toast.error("Password didn't match")
         }else{
-            axios.post("http://172.29.232.251:3000/register",data).then(
+            axios.post("http://172.29.233.209:3000/register",data).then(
                 res=>{
                     console.log(res)
                     if(res.status == 201){
@@ -58,15 +61,22 @@ function Register() {
                         enjoy all the services</p>
                     {/* <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer" style={{color:"#FF0000"}}>{warning}</p> */}
                 </div>
-                <form method='post'>
+                <form method='post' autoComplete='true'>
                 <div className="space-y-4">
-                    <input type="text" placeholder="Full Name" value={username} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                    <input type="email" placeholder="Email Address" value={email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                    <input type="password" placeholder="Password" value={password} onChange={(e)=> setpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                    <input type="password" placeholder="Confirm password" value={Cpassword} onChange={(e)=> setCpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                    <input type="number" placeholder="Phone" value={phone} onChange={(e)=> setPhone(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                    <input type="text" placeholder="Full Name" value={username.name} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('name')}/>
+                    <em className='text-xs text-red-500'>{simpleValidator.current.message('name', username.name, 'required|alpha')}</em>
+                    <input type="email" placeholder="Email Address" value={email.email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('email')} />
+                    <em className='text-xs text-red-500'>{simpleValidator.current.message('email', email.email, 'required|email' )}</em>
+                    <input type="password" placeholder="Password" value={password.password} onChange={(e)=> setpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('Password')} />
+                    <em className='text-xs text-red-500'>{simpleValidator.current.message('password', password.password, 'required|password' )}</em>
+
+                    <input type="password" placeholder="Confirm password" value={password.Cpassword} onChange={(e)=> setCpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('email')} />
+                    <em className='text-xs text-red-500'>{simpleValidator.current.message('password', password.password, 'required|password')}</em>
+                    <input type="number" maxLength="12" placeholder="Phone" value={phone} onChange={(e)=> setPhone(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('telephone')}/>
+                    <em className='text-xs text-red-500'>{simpleValidator.current.message('phone', phone.num, 'required|number' )}</em>
                 </div>
                 </form>
+                
                 <div className="text-center mt-6">
                     <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-600 active:bg-green-600">Submit</button>
                     <p className="mt-4 text-sm">Already Have An Account? <span><button onClick={NavigateToLogin} className="py-3 w-50px text-l text-gray-900 bg-gray-100 rounded-2xl">Sign in</button></span>
