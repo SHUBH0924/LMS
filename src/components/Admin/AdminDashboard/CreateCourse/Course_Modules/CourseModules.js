@@ -219,7 +219,7 @@ const Module = (props) => {
                 <Header />
                 </div>
                 <aside className="flex">
-                    <Sidenav />
+                    {/* <Sidenav /> */}
 
                     <div className='flex flex-col w-full'>
                         <div className="px-6 capitalize text-3xl text-black font-semibold py-6 mx-auto">

@@ -48,7 +48,7 @@ function Dashboard() {
                 </div>
         <aside className="flex flex-row">
             
-                <Sidenav />
+                {/* <Sidenav /> */}
             
 
             <div className='flex flex-col w-full'>

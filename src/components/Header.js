@@ -43,7 +43,7 @@ export default function NavBar({ sticky }) {
         <>
             {/* <div className="absolute -inset-3 bg-gradient-to-r from-pink-600 to-purple-600 blur-lg opacity-75"></div> */}
             <nav className="relative w-auto h-28 bg-gray-800  ">
-                <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                <div className="container  mx-auto flex flex-wrap items-center justify-between">
                     <div className=" flex flex-row justify-between w-full relative lg:w-auto lg:static lg:block lg:justify-start">
                         <div className="flex flex-row">
                             <img className="w-20 mt-3 " src={image} alt="Threat Guardian" />
@@ -70,7 +70,7 @@ export default function NavBar({ sticky }) {
                         }
                         id="example-navbar-danger"
                     >
-                        <ul className="flex flex-col bg-gray-800 w-full h-full lg:flex-row list-none lg:ml-40">
+                        <ul className="flex flex-col md:flex-row bg-gray-800 w-full h-full lg:flex-row list-none lg:ml-40">
                      
                         
                         

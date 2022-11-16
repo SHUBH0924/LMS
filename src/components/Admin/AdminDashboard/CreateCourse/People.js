@@ -10,7 +10,7 @@ function People() {
                 <Header />
             </div>
             <aside className="flex flex-row ">
-                <Sidenav />
+                {/* <Sidenav /> */}
                 <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         Enrolled Students

@@ -7,7 +7,7 @@ function Detail() {
         <div className='relative'>
             <aside className="flex">
 
-                <Sidenav />
+                {/* <Sidenav /> */}
 
 
                 <div className='flex flex-col w-full'>
