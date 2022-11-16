@@ -26,7 +26,7 @@ function Login() {
                 password:password,
             }
 
-            axios.post("http://172.29.232.251:3000/login",data).then(res=>{
+            axios.post("http://172.29.233.209:3000/login",data).then(res=>{
               // console.log(res) 
               if(res.data.status === "Authorised"){
                 auth.login(res.data)

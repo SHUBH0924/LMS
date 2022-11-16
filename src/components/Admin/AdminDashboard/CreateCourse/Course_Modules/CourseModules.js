@@ -22,7 +22,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.232.251:3000"
+    const URL = "http://172.29.233.209:3000"
     
     const [modules, setModules] = useState([])
     // {
@@ -216,7 +216,7 @@ const Module = (props) => {
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
+                                    <details style={{"backgroundColor":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
                                         <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.name}
                                         </summary>

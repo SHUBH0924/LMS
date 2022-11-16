@@ -16,7 +16,7 @@ export default props => {
   const location = useLocation();
   const lec = location.state.lectures
 
-  const URL = "http://172.29.232.251:3000"
+  const URL = "http://172.29.233.209:3000"
 
   const [type, setType] = useState(location.state.type)
   const [id, setId] = useState(location.state.lectureId)
@@ -78,34 +78,36 @@ export default props => {
   return (
     <>
       {/* {console.log(type,id,courseId,moduleId)} */}
-      <div className='sticky top-0 z-10 '>
+      <div className='fixed top-0 w-full z-10 '>
         <Header />
       </div>
-      <div className=' flex flex-row h-screen bg-white'>
-        <div className='w-1/4 static bg-gray-800'>
+      <div className='  flex mt-24 flex-row h-screen bg-white'>
+        <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll bg-blue-100'>
 
-          <h1 className='mt-2 ml-28 text-4xl font-semibold text-white capitalize'>
+          <h1 className='mt-2 ml-4 text-4xl font-bold text-gray-800 capitalize'>
             Modules
           </h1>
-          <hr className='mt-2 w-full ' />
+          <hr className='mt-2 w-full border-2 border-gray-800 bg-gray-800 ' />
 
           {lec.map((item, key) => {
 
             return (
               <div className='w-full'>
 
-                <details className="w-4/5 mx-auto mb-2 bg-gray-600 rounded-lg ring-1 ring-blue-600 ">
-                  <summary className="w-4/5 capitalize text-xl text-white font-semibold py-6 ">
+                <details style={{"width":"95%"}} className=" mx-auto mb-2  rounded-lg ring-1 ring-gray-500">
+                  <summary className="w-4/5 capitalize text-xl text-black font-semibold py-4 ml-4 ">
                     {item.name}
                   </summary>
+                  <hr className='mx-6 border border-gray-700 bg-gray-700'/>
                   {
 
                     item.lectures.map((items, key) => {
                       // console.log(items,key)
                       return (
                         <>
-                          <div className="drop-file-preview__item mx-auto hover:bg-gray-300 active:bg-gray-300"
-                            style={{ width: "80%" }}
+                        
+                          <div className="flex flex-row drop-file-preview__item"
+                            style={{ width: "60%", marginBottom:"8px" }}
                             onClick={() => {
                               setId(items._id)
                               setModuleId(item._id)
@@ -116,7 +118,7 @@ export default props => {
 
                             {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
                             <div className="drop-file-preview__item__info" >
-                              <h2>{items.name}</h2>
+                              <h2 className=' text-lg ml-8 font-semibold text-white'>{items.name}</h2>
                               {/* <p>{items.size}B</p> */}
                             </div>
 
@@ -134,13 +136,13 @@ export default props => {
             )
           })}
 
-        </div>
-        <div className=' flex flex-col w-3/4 ' >
+        </aside>
+        <div className=' flex-1 flex-col ml-96 ' >
 
-          <h1 className='text-4xl mx-auto mt-6 font-bold text-black '>
+          <h1 className='text-5xl ml-8 mt-8 font-semibold text-black '>
             {Title}
           </h1>
-          <hr className='mt-8 w-3/5 mx-auto' />
+          <hr className='mt-8 w-full h-2 border-2 border-black bg-black mx-auto' />
           <div 
             className='ml-12 mr-12 mb-8'
             dangerouslySetInnerHTML={{ __html: content }} 

@@ -12,7 +12,7 @@ function Dashboard() {
     const auth = useAuth()
     const [token,setToken] = useState(auth.token)
     const Navigate = useNavigate()
-    const backendServer = `http://172.29.232.251:3000/course/all`
+    const backendServer = `http://172.29.233.209:3000/course/all`
     const [course,setCourse] = useState([])
     useEffect(()=>{
         axios.get(backendServer,{

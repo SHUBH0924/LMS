@@ -17,7 +17,7 @@ const PDFViewer = ({courseId,moduleId,id}) =>{
     const auth =useAuth()
     const token = auth.token
     const [pdf,setPdf] = useState()
-    const URL = 'http://172.29.232.251:3000'
+    const URL = 'http://172.29.233.209:3000'
     // useEffect(()=>{
     //   axios.post(`${URL}/course/lecture/${courseId}/${moduleId}/${id}/${token}`).then(res=>{
     //     // setPdf(res.file)
@@ -35,7 +35,7 @@ const PDFViewer = ({courseId,moduleId,id}) =>{
         {<>
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
         
-                <Viewer fileUrl={`http://172.29.232.251:3000/course/lecture/${courseId}/${moduleId}/${id}/${token}`}
+                <Viewer fileUrl={`http://172.29.233.209:3000/course/lecture/${courseId}/${moduleId}/${id}/${token}`}
                     plugins={[defaultLayoutPluginInstance]} />
         
             </Worker>

@@ -33,7 +33,7 @@ function Register() {
             console.log("")
             toast.error("Password didn't match")
         }else{
-            axios.post("http://172.29.232.251:3000/register",data).then(
+            axios.post("http://172.29.233.209:3000/register",data).then(
                 res=>{
                     console.log(res)
                     if(res.status == 201){
