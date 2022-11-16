@@ -19,8 +19,9 @@ import Help from "./components/Help"
 import Users from './components/Admin/Users';
 import People from './components/Admin/AdminDashboard/CreateCourse/People'
 import Announcement from './components/Course/Announcement';
-import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz"
-import Assignment from "./components/Course/Assignment"
+import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz";
+import Assignment from "./components/Course/Assignment";
+import Mycourses from './components/User/MyCourses';
 
 
 const App = () => {
@@ -83,6 +84,8 @@ const App = () => {
 
               {/* {auth.user && */}
                 <Route path="/profile" element={<Profile />} />
+
+                <Route path="/courses" element={<Mycourses />} />
               
 
               {/* {auth.user && */}
@@ -92,9 +95,9 @@ const App = () => {
               {/* <Route path="/users" element={<Users />} />
               <Route path="/people" element={<People />} /> */}
 
-              {auth.user &&
+              {/* {auth.user &&
                 <Route path="/courses" element={<Courses />} />
-              }
+              } */}
 
               {/* {auth.user && */}
                 <Route path="/calendar" element={<Calendar />} />

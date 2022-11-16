@@ -1,10 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useEffect,useState } from "react";
+import { useEffect,useState, useRef } from "react";
 import axios from "axios";
 import { AuthProvider } from '../Auth/auth';
 import { useAuth } from '../Auth/auth';
 import toast from 'react-hot-toast';
+import SimpleReactValidator from 'simple-react-validator';
+
 
 
 function Login() {
@@ -14,6 +16,7 @@ function Login() {
       const NavigateToRegister = () => {
         Navigate('/register');
       };
+      const simpleValidator = useRef(new SimpleReactValidator())
 
       const [email,setemail] = useState("")    
       const [password,setpassword] = useState("")
@@ -74,8 +77,10 @@ function Login() {
             </div>
             <form action=''>
             <div className="space-y-4">
-              <input type="email" placeholder="Email Address" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" value={email} onChange={(e)=> setemail(e.target.value)} />
-              <input type="password" placeholder="Password" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" value={password} onChange={(e)=> setpassword(e.target.value)} />
+              <input type="email" placeholder="Email Address" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" value={email} onChange={(e)=> setemail(e.target.value)} onBlur={()=>simpleValidator.current.showMessageFor('email')} />
+              <em className='text-xs text-red-500'>{simpleValidator.current.message('email', email.email, 'required|email')}</em>
+              <input type="password" placeholder="Password" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" value={password} onChange={(e)=> setpassword(e.target.value)} onBlur={()=>simpleValidator.current.showMessageFor('password')} />
+              <em className='text-xs text-red-500'>{simpleValidator.current.message('password', password.password, 'required|password')}</em>
             </div>
             </form>
             <div className="text-center mt-6">
