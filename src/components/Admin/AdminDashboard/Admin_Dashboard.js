@@ -81,7 +81,7 @@ const Admin_Dashboard = () => {
                 <Header />
                 </div>
                 <aside className="flex flex-row ">
-                        <Sidenav />
+                        {/* <Sidenav /> */}
                     <div className='flex flex-col w-full'>
 
                         {/* <button className={classes.Button} onClick={e=>setCourseToggle(!CourseToggle)}>Create Course</button> */}
