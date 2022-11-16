@@ -4,19 +4,41 @@ import image from '../assets/logo.png'
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import user from '../assets/user.png'
-
+import { useAuth } from "../Auth/auth";
+import { toast } from "react-hot-toast";
 
 
 export default function NavBar({ sticky }) {
+    
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     const [navbar, setNavbar] = useState(false);
+    const auth = useAuth()
+    const userRole = auth.user
     const Navigate = useNavigate()
+    
+    
     const handleClick = () => {
         Navigate('/')
-
-
-
     }
+    const menus = [
+        { name: "Dashboard", link: "/", role:"both"},
+        { name: "Users", link: "/users", role:"Admin"},
+        { name: "My Courses", link: "/courses", role:"Student"},
+        // { name: "Profile", link: "/profile", role:"both"},
+        // { name: "Calendar", link: "/calendar", role:"both"},
+        { name: "Help", link: "/help", role:"both"},
+   ];
+   const Logout = { name: "Logout", link: "/Login", role:"both" }
+
+   const Lgout = () =>{
+    auth.logout()
+                                
+    toast.success("logged out")
+    // History.push('/Login')
+    }
+
+
+
     return (
         <>
             {/* <div className="absolute -inset-3 bg-gradient-to-r from-pink-600 to-purple-600 blur-lg opacity-75"></div> */}
@@ -49,7 +71,48 @@ export default function NavBar({ sticky }) {
                         id="example-navbar-danger"
                     >
                         <ul className="flex flex-col bg-gray-800 w-full h-full lg:flex-row list-none lg:ml-40">
+                     
+                        
+                        
+                        {menus.map((menu,key) => {
+                        
+                        return(
+                            <>
+                                {
+                                ((menu.role === "both")||(menu.role===userRole))&&
+                                
+                                <li className="nav-item">
+                                <Link 
+                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
+                                    to={menu.link}
+                                    key={key}
+                                    >
+                                    <button className="text-lg text-white hover:border-b-2 border-gray-300 font-medium w-24 h-12 ">{menu.name}</button>
+                                </Link>
+                                </li>
+                                }
+                            </>
+                        ) 
+                        })}
+                        {
                             <li className="nav-item">
+                            <Link 
+                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
+                                onClick={Lgout}
+                                to="/Login"
+                                >
+                                <button className="text-lg text-white hover:border-b-2 border-gray-300 font-medium w-24 h-12 ">{Logout.name}</button>
+                            </Link>
+                            </li>
+                            
+                        }
+
+
+
+
+
+
+                            {/* <li className="nav-item">
                                 <Link className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
                                     to="/">
                                     <button className="text-lg text-white hover:border-b-2 border-gray-300 font-medium w-24 h-12 ">Dashboard</button>
@@ -78,7 +141,7 @@ export default function NavBar({ sticky }) {
                                     to="/help">
                                     <button className="text-lg hover:border-b-2 border-gray-300 text-white  font-medium w-24 h-12 ">Logout</button>
                                 </Link>
-                            </li>
+                            </li> */}
                             <Link className="" to="/profile">
                             <div className=" ml-6 mr-4 menu-container">
                                 <div className="menu-trigger">
