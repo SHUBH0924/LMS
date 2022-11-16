@@ -78,6 +78,7 @@
     border-radius: 15px;
     font-family: sans-serif;
     font-weight: bold;
+    
 }
 
 .drop-file-preview__item img {
@@ -91,6 +92,7 @@
     justify-content: space-between;
     font-weight: 700;
     padding: 15px;
+    
 }
 
 

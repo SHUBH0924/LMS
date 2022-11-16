@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 
 function Users() {
 
-    const URL = "http://172.29.232.251:3000"
+    const URL = "http://172.29.233.209:3000"
     const auth = useAuth()
     const token = auth.token
     const [user,setUser] = useState([])
@@ -39,7 +39,7 @@ function Users() {
         //     console.log(res)
         // })
         // console.log(usr)
-        axios.patch('http://172.29.232.251:3000/profile',usr,{
+        axios.patch(`${URL}/profile`,usr,{
             headers: {
               'Authorization': token
             }
@@ -168,8 +168,8 @@ function Users() {
                             Update
                             </button>
                         </div>
-                        <div className='ml-16 -mt-2'>
-                            <button className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                        <div className='ml-4 -mt-2'>
+                            <button className="bg-gradient-to-r from-red-700 via-red-500 to-red-300 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                     type="Submit" 
                                     onClick={(e)=>RemoveUser(e,user._id)}
                                     >

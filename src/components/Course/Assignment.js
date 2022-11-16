@@ -88,11 +88,6 @@ const Module = (props) => {
         }).catch(err => console.log("error"))
     },[])
 
-    // const changeHandler = (event) => {
-    //     setSelectedFile(event.target.files[0]);
-    //     setIsSelected(true);
-
-    // };
 
     const handleSubmission = (id,selectedFile,content,Title) => {
         const formData = new FormData();
@@ -103,7 +98,7 @@ const Module = (props) => {
         // console.log(selectedFile)
         // console.log(id,selectedFile,content,Title)
 
-        if (id) {
+        if (id&&Title.length>0) {
             // ${Lecture}/${id}
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
                 headers: {
@@ -196,13 +191,10 @@ const Module = (props) => {
                     <Sidenav />
                     <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                        Announcement
+                        Assignment
                     </h1>
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
-                    <h2 className='mt-5 mb-2 text-xl ml-20 capitalize'>
-                            Genral News and Announcement
-                    </h2>
-                    {/* <hr className='w-1/4 ml-20 h-3' /> */}
+                    
                         
                         {/* {modules ? (modules.map((item,key) => {
 

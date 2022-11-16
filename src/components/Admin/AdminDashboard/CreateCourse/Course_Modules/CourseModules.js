@@ -22,15 +22,10 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.232.251:3000"
+    const URL = "http://172.29.233.209:3000"
     
     const [modules, setModules] = useState([])
-    // {
-    //     name:"C",
-    //     lectures:[],
-    //     _id:"jcvbwegiwevdskcvnwelvie"
-    // }
-
+    const [Enroll,setEnroll] = useState(false)
     const [publish,setPublish] = useState()
     const [ Title,setTitle] = useState(location.state.item.name)
 
@@ -82,18 +77,14 @@ const Module = (props) => {
                 'Authorization': token
             }
         }).then(res => {
+            console.log(res.data)
+            setEnroll(res.data.enrolled)
             if (res.data.modules.length > 0) {
                 setModules(res.data.modules)
-                console.log(res.data.modules)
+                // console.log(res.data.modules)
             }
         }).catch(err => console.log("error"))
     },[])
-
-    // const changeHandler = (event) => {
-    //     setSelectedFile(event.target.files[0]);
-    //     setIsSelected(true);
-
-    // };
 
     const handleSubmission = (id,selectedFile,content,Title) => {
         const formData = new FormData();
@@ -104,7 +95,7 @@ const Module = (props) => {
         // console.log(selectedFile)
         // console.log(id,selectedFile,content,Title)
 
-        if (id) {
+        if (id&&Title.length>0) {
             // ${Lecture}/${id}
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
                 headers: {
@@ -181,8 +172,43 @@ const Module = (props) => {
             setPublish(!publish)
         }).catch(err=>{
             console.log(err)
+            toast.success(err.message)
         })
         // console.log(slug)
+    }
+
+    const EnrolCourse = () =>{
+        axios.patch(`${URL}/user/purchase`,{
+            courseId:slug
+        },{
+            headers: {
+                'Authorization': token
+            },
+        }).then(res=>{
+            if(res.status===200){
+                setEnroll(true)
+                toast.success(res.data)
+            }
+            // console.log(res)
+        }).catch(err=>{
+            toast.error(err.response.data)
+            // console.log(err)
+        })
+        
+    }
+
+    const onPageOpen = (moduleItem,lecItems) =>{
+        if(Enroll || userRole==="Admin"){
+            Navigate(`/Page`,{state:{
+                type:lecItems.type.split('/')[1], 
+                lectures:modules, 
+                lectureId:lecItems._id,
+                courseId:slug,
+                moduleId:moduleItem._id
+            }}) 
+        }else{
+            toast.error("Please Enroll the course")
+        }
     }
 
     return (
@@ -198,16 +224,19 @@ const Module = (props) => {
                         <div className="px-6 capitalize text-3xl text-black font-semibold py-6 mx-auto">
                                                 {Title}
                         </div>
-                        {(userRole === "Admin")&&<div className='flex flex-row justify-between'>
-                            <NewModule createNewCourse={createNewModule} />
-                            <div className='w-56 mr-12 mt-3 '>
-                            <button 
-                                className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={onPublish}>{publish?"UnPublish":"Publish"}
-                            </button>
-                            </div>
-                        </div>}
+                        {
+                            (userRole === "Admin")?
+                                (<div className='flex flex-row justify-between'>
+                                    <NewModule createNewCourse={createNewModule} />
+                                    <div className='w-56 mr-12 mt-3 '>
+                                    <button 
+                                        className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button"
+                                        onClick={onPublish}>{publish?"UnPublish":"Publish"}
+                                    </button>
+                                    </div>
+                                </div>):null
+                        }
                         
 
                         {modules ? (modules.map((item,key) => {
@@ -216,7 +245,7 @@ const Module = (props) => {
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
+                                    <details style={{backgroundColor:"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
                                         <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.name}
                                         </summary>
@@ -224,20 +253,15 @@ const Module = (props) => {
                                         {
                                             
                                             item.lectures.map((items,key)=>{
-                                                // console.log(items,key)
+                                                
                                                 return(
                                                     <>
                                                     
                                                     <div className="drop-file-preview__item mx-auto border-2 border-gray-500" style={{width:"80%"}} >
                                                     
-                                                        <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4" style={{width:"100%"}} onClick={()=> 
-                                                            Navigate(`/Page`,{state:{
-                                                                                        type:items.type.split('/')[1], 
-                                                                                        lectures:modules, 
-                                                                                        lectureId:items._id,
-                                                                                        courseId:slug,
-                                                                                        moduleId:item._id
-                                                                                    }}) 
+                                                        <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4" 
+                                                            style={{width:"100%"}} 
+                                                            onClick={()=> onPageOpen(item,items)
                                                             }>
                                                             <img className="opacity-50 w-24" src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                             <div className="drop-file-preview__item__info" >
@@ -272,7 +296,13 @@ const Module = (props) => {
                         )
                         }
 
-
+                        {((userRole === "Student")&&(!Enroll))?(<div className='w-56 mx-auto'>
+                            <button 
+                                className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={EnrolCourse}>Enroll Now
+                            </button>
+                        </div>):null}
 
                     </div>
                     <div className='flex '>

@@ -43,7 +43,7 @@ const Sidenav = () => {
                 </div>
                 <hr className="w-full h-1 rounded-full bg-gray-200"/>
                 <div className="mt-4 flex flex-col gap-7 ">
-                    {menus.map((menu, i) => {
+                    {menus.map((menu,key) => {
                         
                             return(
                                 <>
@@ -51,7 +51,7 @@ const Sidenav = () => {
                                     ((menu.role === "both")||(menu.role===userRole))&&
                                     <Link
                                         to={menu.link}
-                                        key={i}
+                                        key={key}
                                         className={` ${menu.margin && "mt-5"
                                             } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
                                         >
