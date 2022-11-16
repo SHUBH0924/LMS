@@ -11,8 +11,10 @@ function Profile() {
     const [email, setemail] = useState("")
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
+
+    const URL = 'http://172.29.233.209:3000'
     useEffect(() => {
-        axios.get('http://172.29.233.209:3000/profile', {
+        axios.get(`${URL}/profile`, {
                 headers: {
                     'Authorization': token
                 }
@@ -33,7 +35,7 @@ function Profile() {
             address: address,
             phone: phone
         }
-        axios.put('http://172.29.233.209:3000/profile',data,{
+        axios.put(`${URL}/profile`,data,{
             headers: {
               'Authorization': token
             }

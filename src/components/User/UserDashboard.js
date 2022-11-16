@@ -14,6 +14,8 @@ function Dashboard() {
     const Navigate = useNavigate()
     const backendServer = `http://172.29.233.209:3000/course/all`
     const [course,setCourse] = useState([])
+
+
     useEffect(()=>{
         axios.get(backendServer,{
             headers: {
@@ -29,11 +31,13 @@ function Dashboard() {
         },[])
 
 
-        const onPublish = (item) => {
+        const Purchase = (item) => {
             // e.preventdefault()
             const id = item._id
             const publish = item.published
+            console.log(publish)
             Navigate(`/course/${id}`)
+            Navigate(`/course/${id}`,{state:{Publish:publish,item:item}})
             // console.log({id},"Clicked")
         }
 
@@ -57,7 +61,7 @@ function Dashboard() {
                             {course.map((item,key) =>{
                                 
                                 return(
-                                    <Card item={item} Button="Purchase" onPublish={onPublish}/>
+                                    <Card item={item} key={key} Button="Purchase" onPublish={Purchase}/>
                                 )
                             })}
                         </div>
@@ -72,7 +76,7 @@ function Dashboard() {
                             {course.map((item,key) =>{
                                 
                                 return(
-                                    <Card item={item} Button="Purchase" onPublish={onPublish}/>
+                                    <Card item={item} key={key} Button="Purchase" onPublish={Purchase}/>
                                 )
                             })}
                         </div>

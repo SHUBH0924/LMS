@@ -151,7 +151,7 @@ export default props => {
           {
             (type === "pdf") ? (
               <div className='ml-12 mr-12'>
-                <PDFViewer courseId={courseId} moduleId={moduleId} id={id} />
+                <PDFViewer courseId={courseId} moduleId={moduleId} id={id} url={`course/lecture/${courseId}/${moduleId}/${id}/${token}`}/>
               </div>) : null
           }
           {(type === "mp4") ? (

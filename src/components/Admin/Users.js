@@ -39,7 +39,7 @@ function Users() {
         //     console.log(res)
         // })
         // console.log(usr)
-        axios.patch('http://172.29.233.209:3000/profile',usr,{
+        axios.patch(`${URL}/profile`,usr,{
             headers: {
               'Authorization': token
             }

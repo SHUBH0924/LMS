@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import uuid from 'react-uuid';
-import FileUploader from '../../../hoc/fileHandler';
+// import FileUploader from '../../../hoc/fileHandler';
 
 const Create_Course = (props) =>{
   const [showModal, setShowModal] = React.useState(false);

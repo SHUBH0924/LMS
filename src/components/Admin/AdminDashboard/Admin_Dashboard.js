@@ -119,7 +119,7 @@ const Admin_Dashboard = () => {
                                 }).map((item,key) => {
 
                                     return (
-                                        <Card item={item} Button="Edit" onPublish={onPublish} />
+                                        <Card item={item} Button="Edit" key={key} onPublish={onPublish} />
                                     )
                                 })}
                             </div>

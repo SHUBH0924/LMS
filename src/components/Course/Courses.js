@@ -13,7 +13,7 @@ const Courses = () => {
     const menus = [
         { name: "Home ", link: "/", icon: SiHomeadvisor , role:"User"},
         { name: "Announcements", link: "/announcement", icon: HiSpeakerphone , role:"User"},
-        { name: "Assignments", link: "/", icon: MdAssignment , role:"User"},
+        { name: "Assignments", link: "/assignment", icon: MdAssignment , role:"User"},
         { name: "Discussion", link: "/", icon: RiDiscussFill , role:"User"},
         { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"User"},
         { name: "Students", link: "/people", icon: BsFillPeopleFill, margin: true ,role:"User"},
