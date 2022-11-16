@@ -8,7 +8,6 @@ import PDFViewer from './PDFViewer';
 import axios from 'axios';
 import { useAuth } from '../../../../../../Auth/auth';
 import Header from '../../../../../Header'
-import { AiOutlineArrowDown } from "react-icons/ai";
 
 export default props => {
 
@@ -27,11 +26,6 @@ export default props => {
   const [Title, setTitle] = useState(location.state.Title)
   const VideoURL = `${URL}/playvideo/${courseId}/${moduleId}/${id}/${token}`
 
-  function dropDown() {
-    document.querySelector('#submenu').classList.toggle('hidden')
-    document.querySelector('#arrow').classList.toggle('rotate-0')
-  }
- 
 
 
 

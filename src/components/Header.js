@@ -1,47 +1,90 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import image from '../assets/logo.png'
+import React from "react";
+import { AiOutlineMenu } from "react-icons/ai";
+import dem from '../assets/dem.png'
 
 
-export default function NavBar() {
+export default function NavBar({ sticky }) {
+    const [navbarOpen, setNavbarOpen] = React.useState(false);
     const [navbar, setNavbar] = useState(false);
     const Navigate = useNavigate()
     const handleClick = () => {
         Navigate('/')
+
+
+
     }
     return (
-        <nav className="w-auto h-24 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow">
-            <div className=" flex  2xl:justify-between xl:justify-between lg:justify-between md:justify-center sm:justify-center xs:justify-center">
-                <div>
-                    <div className="flex items-center w-16 ml-6 mr-6 py-3">
-                        
-                            {/* <h2 className="text-2xl font-bold text-white">LOGO</h2> */}
+        <>
+            {/* <div className="absolute -inset-3 bg-gradient-to-r from-pink-600 to-purple-600 blur-lg opacity-75"></div> */}
+            <nav className="relative w-auto h-28 bg-gray-800  ">
+                <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                    <div className=" flex flex-row justify-between w-full relative lg:w-auto lg:static lg:block lg:justify-start">
+                        <div className="flex flex-row">
+                            <img className="w-20 mt-3 " src={image} alt="Threat Guardian" />
+                            <h1 className="text-white capitalize text-start font-semibold ml-4 mt-9 text-3xl">
+                                Threat Guardians
+                            </h1>
+                        </div>
 
-                            <img className="w-16 xs:w-16" src={image} alt="Threat Guardian" />
-                        
-
+                        <button
+                            className="text-white float-right cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+                            type="button"
+                            onClick={() => setNavbarOpen(!navbarOpen)}
+                        >
+                            <AiOutlineMenu
+                                size={36}
+                            />
+                        </button>
                     </div>
-                </div>
-                <div className="xl:visible lg:visible md:invisible sm:invisible xs:invisible ">
-                    <h1 className="text-white capitalize text-start font-semibold mx-auto mt-4 text-5xl text-shadow-md">
-                        Threat Guardians
-                    </h1>
-                </div>
-                <div className="float-right xs:mr-3 ">
-                    <div class=" mr-2 mt-6 ">
-                        <form class="flex flex-row max-w-3xl mr-4">
-                            <div class=" relative ">
-                                <input type="text" id=" " class=" rounded-lg border-transparent py-2 px-4 bg-gray-600 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Search" />
+
+                    <div
+                        className={
+                            "lg:flex flex-row items-center" +
+                            (navbarOpen ? " flex" : " hidden")
+                        }
+                        id="example-navbar-danger"
+                    >
+                        <ul className="flex flex-col lg:flex-row list-none lg:ml-40">
+                            <li className="nav-item">
+                                <a className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
+                                    href="#pablo">
+                                    <button className="text-lg text-white hover:border-b-2 border-gray-300 font-medium w-24 h-12 ">Dashboard</button>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
+                                    href="#pablo">
+                                    <button className="text-lg text-white hover:border-b-2 border-gray-300 font-medium w-24 h-12 ">Users</button>
+                                </a>
+                            </li>
+                             <li className="nav-item">
+                                <a className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
+                                    href="#pablo">
+                                    <button className="text-lg text-white hover:border-b-2 border-gray-300 font-medium w-24 h-12 ">Courses</button>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
+                                    href="#pablo">
+                                    <button className="text-lg hover:border-b-2 border-gray-300 text-white  font-medium w-24 h-12 ">Help</button>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div className=" ml-8 menu-container">
+                            <div className="menu-trigger">
+                                <img className="rounded-full w-16" src={dem}></img>
                             </div>
-                            <button class="flex-shrink-0 ml-3 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit">
-                                Search
-                            </button>
-                        </form>
+                        </div>
+                        
                     </div>
+
                 </div>
-            </div>
+            </nav>
+        </>
 
-
-        </nav>
     );
 }

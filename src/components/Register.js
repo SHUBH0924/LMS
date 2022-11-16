@@ -46,15 +46,15 @@ function Register() {
         }
     }
     return (
-        <div className="min-h-screen bg-gray-800 flex justify-center items-center">
-            <div className="absolute w-60 h-60 rounded-xl bg-green-600 -top-5 -left-16 z-0 transform rotate-45 hidden md:block">
-            </div>
-            <div className="absolute w-48 h-48 rounded-xl bg-green-600 -bottom-6 -right-10 transform rotate-12 hidden md:block">
-            </div>
-            <div className="py-12 px-12 bg-gray-300 rounded-2xl shadow-xl z-20">
+        <div className="min-h-screen bg-white flex justify-center items-center">
+           <div className="absolute top-28 left-64 w-96 h-96 mix-blend-multiply filter blur-2xl opacity-80 bg-purple-300 animate-blob rounded-full"></div>
+        <div className="absolute top-28 right-64 w-96 h-96 mix-blend-multiply filter blur-2xl opacity-80 bg-pink-300 animate-blob animation-delay-2000 rounded-full"></div>
+        <div className="absolute top-60 left-96 w-96 h-96 mix-blend-multiply filter blur-2xl opacity-80 bg-yellow-300 animate-blob animation-delay-4000 rounded-full"></div>
+            <div className="py-12 px-12 bg-gray-100 rounded-2xl shadow-xl opacity-90 z-20">
                 <div>
                     <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Register</h1>
-                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Register and
+                    <hr className='mb-4'/>
+                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-900 tracking-wide cursor-pointer">Register and
                         enjoy all the services</p>
                     {/* <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer" style={{color:"#FF0000"}}>{warning}</p> */}
                 </div>
@@ -68,15 +68,12 @@ function Register() {
                 </div>
                 </form>
                 <div className="text-center mt-6">
-                    <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-700 active:bg-green-600">Submit</button>
-                    <p className="mt-4 text-sm">Already Have An Account? <span><button onClick={NavigateToLogin} className="py-3 w-50px text-l text-gray-700 bg-gray-300 rounded-2xl">Sign in</button></span>
+                    <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-600 active:bg-green-600">Submit</button>
+                    <p className="mt-4 text-sm">Already Have An Account? <span><button onClick={NavigateToLogin} className="py-3 w-50px text-l text-gray-900 bg-gray-100 rounded-2xl">Sign in</button></span>
                     </p>
                 </div>
             </div>
-            <div className="w-40 h-40 absolute bg-green-600 rounded-full top-0 right-12 hidden md:block"></div>
-            <div
-                className="w-20 h-40 absolute bg-green-600 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
-            </div>
+           
         </div>
     )
 }
