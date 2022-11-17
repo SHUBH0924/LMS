@@ -12,7 +12,7 @@ import Header from '../../Header'
 const Admin_Dashboard = () => {
 
     const auth = useAuth()
-    const backendServer = `http://172.29.233.209:3000`
+    const backendServer = `http://172.29.234.174:3000`
     const [Course, setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();

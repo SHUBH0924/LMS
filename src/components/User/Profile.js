@@ -3,6 +3,8 @@ import React, { useState , useEffect } from 'react'
 import Sidenav from '../Layout/Sidenav'
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
+import { toast } from 'react-hot-toast'
+
 
 function Profile() {
     const auth = useAuth()
@@ -12,7 +14,7 @@ function Profile() {
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
 
-    const URL = 'http://172.29.233.209:3000'
+    const URL = 'http://172.29.234.174:3000'
     useEffect(() => {
         axios.get(`${URL}/profile`, {
                 headers: {
@@ -39,6 +41,11 @@ function Profile() {
             headers: {
               'Authorization': token
             }
+          }).then(res=>{
+                toast.success(res.data)
+                console.log(res)
+          }).catch(err=>{
+                console.log(err)
           })
         // axios.get('http://192.168.0.103:3000/profile', {
         //     headers: {
@@ -93,7 +100,7 @@ function Profile() {
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                                     Email id
                                 </label>
-                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-email" type="text" value={email} onChange={e => setemail(e.target.value)} />
+                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-email" type="text" value={email} />
                             </div>
                             <div className="w-full md:w-1/2 px-3">
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-contact">

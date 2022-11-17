@@ -28,12 +28,6 @@ function Login() {
       email: email,
       password: password,
     }
-    if (password.length < 3) {
-      toast.error("Incorrect Password")
-    }
-    if (email.indexOf('@') === -1 || email.length < 3) {
-      toast.error("Invalid Email")
-    }
 
     axios.post("http://172.29.234.174:3000/login", data).then(res => {
       // console.log(res) 
