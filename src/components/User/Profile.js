@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState , useEffect } from 'react'
-import Sidenav from '../Layout/Sidenav'
+
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 
@@ -56,17 +56,17 @@ function Profile() {
                 </div>
             <aside className="flex">
                 
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-4/5 mx-auto'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         profile settings
                     </h1>
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
                     <form className="mt-6 ml-16 w-4/5 justify-center">
-                        <div className="flex flex-row mb-4" >
+                        <div className="flex  flex-col xs:flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
                             <div className="mt-3 flex items-center mb-5">
-                                <span className="inline-block  h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                                    <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                <span className="relative -z-50 h-12 w-12 overflow-hidden rounded-full bg-gray-100">
+                                    <svg className=" h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                         <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="file" />
                                         <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -74,7 +74,7 @@ function Profile() {
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}
                                 <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" />
                             </div>
-                            <div className=" mt-4 ml-3">
+                            <div className="mx-auto xs:ml-4 mt-4 ml-3">
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
                                 Upload
                             </button>
