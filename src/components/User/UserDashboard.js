@@ -14,7 +14,7 @@ function Dashboard() {
     const [token, setToken] = useState(auth.token)
     const Navigate = useNavigate()
     const backendServer = `http://172.29.234.174:3000/course/all`
-    const [course, setCourse] = useState([])
+    const [course,setCourse] = useState([])
 
 
     useEffect(() => {
@@ -26,6 +26,7 @@ function Dashboard() {
             // console.log(res)
             if (res.data) {
                 setCourse(res.data)
+                console.log(res.data)
             }
             // console.log(res.data) 
         })
@@ -47,11 +48,15 @@ function Dashboard() {
             <div className='sticky top-0 '>
                 <Header />
             </div>
-            <div className=' relative bg-gray-800 h-full -mt-4 border border-gray-500 w-full'>
+            {/* <div className=' flex flex-row bg-gray-800 h-full -mt-4 border border-gray-500 w-full'>
                 <span className=''>
                     <img className="w-96 mb-8 ml-32 mt-8 " src={image} alt="Threat Guardian" />
                 </span>
-            </div>
+                <p>
+                    As it is often said, the only constant in Information Technology is changing. As organisations continue to move toward digital transformation, the challenges they face are evolving. True transformation requires exploring new ways of doing business while reducing cost, increasing efficiency and realising a greater return on investment. Cautiously navigating these new frontiers, we must remain aware. We may also be increasing our risk as networking, data requirements and delivery become more abstract. Our infrastructures are becoming more complex, often relying on external dependencies. As we proceed, some legacy problems will disappear from view, some will remain, and some new challenges will come clearly into view. Threat Guardians is Operational and Information Technology based service provider to enhance the cyber security related to the critical infrastructure.
+                </p>
+                
+            </div> */}
             <div className="flex flex-row ">
 
                 {/* <Sidenav /> */}

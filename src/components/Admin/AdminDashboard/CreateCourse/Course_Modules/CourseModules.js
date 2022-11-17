@@ -204,7 +204,8 @@ const Module = (props) => {
                 lectures:modules, 
                 lectureId:lecItems._id,
                 courseId:slug,
-                moduleId:moduleItem._id
+                moduleId:moduleItem._id,
+                Title:lecItems.name
             }}) 
         }else{
             toast.error("Please Enroll the course")

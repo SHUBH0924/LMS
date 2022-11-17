@@ -4,13 +4,11 @@ import { useEffect, useRef } from "react";
 import {useState} from "react";
 import axios from 'axios';
 import toast from 'react-hot-toast';
-
+import validator from 'validator'
 
 
 function Register() {
-    useEffect(() => {
-        document.body.style.overflow = "hidden";
-      }, []);
+    
     const Navigate = useNavigate();
     const NavigateToLogin = () => {
         Navigate('/Login');
@@ -19,9 +17,35 @@ function Register() {
     const [password,setpassword] = useState("")
     const [email,setemail] = useState("")    
     const [Cpassword,setCpassword] = useState("")
-    // const [warning,setWarning] = useState("")
+    const [errorMessage,setErrorMessage] = useState("")
     const [phone,setPhone] = useState("")
-    // const simpleValidator = useRef(new SimpleReactValidator())
+    const [passFlag,setPassFlag] = useState(false)
+    const validate = (value) => {
+        
+        if (validator.isStrongPassword(value, {
+          minLength: 8, minLowercase: 1,
+          minUppercase: 1, minNumbers: 1, minSymbols: 1
+        })) {
+            setErrorMessage('')          
+            setPassFlag(true)
+        }
+        else if(value==''){
+            setErrorMessage('')
+            setPassFlag(false)
+        }
+        else{
+            setErrorMessage('Password is invalid')
+            setPassFlag(false)
+        }
+        
+      }
+
+      function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+      }
+
+
+
     const handleSubmit = (e)=>{
         e.preventDefault();
         const data = {
@@ -35,26 +59,29 @@ function Register() {
             console.log("")
             toast.error("Password didn't match")
         }
-        if (username.length<2){
+        else if (username.length<3){
             console.log("")
             toast.error("Incorrect name")
         }
-        if(password.length<3){
-            toast.error("Enter Strong Password")
+        else if(!passFlag){
+            toast.error("Password must be 8 to 20 digit long and have atleast one uppercase, one lower case alphabet, one number and one special character ")
         }
-        if(email.indexOf('@') === -1 || email.length<3){
-            toast.error("Invalid Email")
-        }
-        if(phone.length != 10){
+        else if (!isValidEmail(email)) {
+            toast.error('Email is invalid');
+          } 
+        else if(phone.length != 10){
             toast.error("Invalid Number")
         }
         else{
             axios.post("http://172.29.234.174:3000/register",data).then(
                 res=>{
-                    console.log(res)
+                    // console.log(res)
                     if(res.status === 201){
                         toast.success("registered")
                         NavigateToLogin()
+                    }
+                    else{
+                        toast.error(res.data._message)
                     }
                 }
                 ).catch(e=>console.log(e["error"]))
@@ -77,13 +104,40 @@ function Register() {
                 </div>
                 <form method='post'>
                 <div className="space-y-4">
-                    <input type="text" autoComplete='off' required="true" placeholder="Full Name" maxLength="28" value={username.name} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                    <input type="text" autoComplete='off' required placeholder="Full Name" maxLength="28" value={username.name} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
                     
-                    <input type="email" autoComplete='off' placeholder="Email Address" maxLength="40" value={email.email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                    <input type="email" autoComplete='off' required placeholder="Email Address" maxLength="40" value={email.email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
                     
-                    <input type="password" autoComplete='off' placeholder="Password" maxLength="12" minLength="6" value={password.password} onChange={(e)=> setpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                    <input type="password" 
+                        autoComplete='off' 
+                        placeholder="Password" 
+                        maxLength="20" 
+                        minLength="6" 
+                        value={password.password} 
+                        onChange={(e)=> {
+                            validate(e.target.value)
+                            setpassword(e.target.value)
+                            }} 
+                        className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                        <br />
+                        {errorMessage === '' ? null :
+                        <span style={{
+                        fontWeight:'bold',
+                        color: 'red',
+                        fontSize:'14px'
+                        }}>{errorMessage}</span>}
+
                     
-                    <input type="password" autoComplete='off' maxLength="12" minLength="6" placeholder="Confirm password" value={password.Cpassword} onChange={(e)=> setCpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                    <input 
+                        type="password" 
+                        autoComplete='off' 
+                        maxLength="20" 
+                        minLength="6" 
+                        placeholder="Confirm password" 
+                        value={password.Cpassword} 
+                        onChange={(e)=> {
+                            setCpassword(e.target.value)
+                            }} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
                     
                     <input type="tel"  autoComplete='off' maxLength="10" placeholder="Phone" value={phone} onChange={(e)=> setPhone(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
                         </div>
