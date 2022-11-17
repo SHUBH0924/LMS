@@ -25,6 +25,7 @@ function Dashboard() {
             // console.log(res)
             if(res.data){
                 setCourse(res.data)
+                console.log(res.data)
             }
             // console.log(res.data) 
             })
