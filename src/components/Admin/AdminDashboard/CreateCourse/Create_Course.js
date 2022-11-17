@@ -36,7 +36,7 @@ const Create_Course = (props) =>{
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Create Course
+         Create Course
       </button>
       </div>
       {showModal ? (

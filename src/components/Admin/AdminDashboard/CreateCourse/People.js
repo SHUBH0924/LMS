@@ -11,6 +11,9 @@ function People() {
             </div>
             <aside className="flex flex-row ">
                 {/* <Sidenav /> */}
+                <div className='flex -mt-6 '>
+                        <Courses />
+                    </div>
                 <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         Enrolled Students
@@ -63,9 +66,7 @@ function People() {
 
                     </ul>
                 </div>
-                <div className='flex '>
-                    <Courses />
-                </div>
+               
             </aside>
         </div>
     )

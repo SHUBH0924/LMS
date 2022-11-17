@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 
 function Users() {
 
-    const URL = "http://172.29.233.209:3000"
+    const URL = "http://172.29.234.174:3000"
     const auth = useAuth()
     const token = auth.token
     const [user,setUser] = useState([])
@@ -79,7 +79,7 @@ function Users() {
 
 
     return (
-        <div className='relative'>
+        <div className='relative mb-8'>
             <div className='sticky top-0'>
                 <Header />
             </div>

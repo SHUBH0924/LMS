@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import {useState} from "react";
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import SimpleReactValidator from 'simple-react-validator';
+
 
 
 function Register() {
@@ -21,8 +21,7 @@ function Register() {
     const [Cpassword,setCpassword] = useState("")
     // const [warning,setWarning] = useState("")
     const [phone,setPhone] = useState("")
-    const simpleValidator = useRef(new SimpleReactValidator())
-
+    // const simpleValidator = useRef(new SimpleReactValidator())
     const handleSubmit = (e)=>{
         e.preventDefault();
         const data = {
@@ -32,21 +31,36 @@ function Register() {
             email:email,
             phone:phone
         }
-        if (password !== Cpassword){
+        if (password !== Cpassword ){
             console.log("")
             toast.error("Password didn't match")
-        }else{
-            axios.post("http://172.29.233.209:3000/register",data).then(
+        }
+        if (username.length<2){
+            console.log("")
+            toast.error("Incorrect name")
+        }
+        if(password.length<3){
+            toast.error("Enter Strong Password")
+        }
+        if(email.indexOf('@') === -1 || email.length<3){
+            toast.error("Invalid Email")
+        }
+        if(phone.length != 10){
+            toast.error("Invalid Number")
+        }
+        else{
+            axios.post("http://172.29.234.174:3000/register",data).then(
                 res=>{
                     console.log(res)
-                    if(res.status == 201){
+                    if(res.status === 201){
                         toast.success("registered")
                         NavigateToLogin()
                     }
                 }
-                ).catch(e=>console.log(e))
+                ).catch(e=>console.log(e["error"]))
             // console.log(data)
         }
+        
     }
     return (
         <div className="min-h-screen bg-white flex justify-center items-center">
@@ -61,20 +75,18 @@ function Register() {
                         enjoy all the services</p>
                     {/* <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer" style={{color:"#FF0000"}}>{warning}</p> */}
                 </div>
-                <form method='post' autoComplete='true'>
+                <form method='post'>
                 <div className="space-y-4">
-                    <input type="text" placeholder="Full Name" value={username.name} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('name')}/>
-                    <em className='text-xs text-red-500'>{simpleValidator.current.message('name', username.name, 'required|alpha')}</em>
-                    <input type="email" placeholder="Email Address" value={email.email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('email')} />
-                    <em className='text-xs text-red-500'>{simpleValidator.current.message('email', email.email, 'required|email' )}</em>
-                    <input type="password" placeholder="Password" value={password.password} onChange={(e)=> setpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('Password')} />
-                    <em className='text-xs text-red-500'>{simpleValidator.current.message('password', password.password, 'required|password' )}</em>
-
-                    <input type="password" placeholder="Confirm password" value={password.Cpassword} onChange={(e)=> setCpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('email')} />
-                    <em className='text-xs text-red-500'>{simpleValidator.current.message('password', password.password, 'required|password')}</em>
-                    <input type="number" maxLength="12" placeholder="Phone" value={phone} onChange={(e)=> setPhone(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onBlur={()=>simpleValidator.current.showMessageFor('telephone')}/>
-                    <em className='text-xs text-red-500'>{simpleValidator.current.message('phone', phone.num, 'required|number' )}</em>
-                </div>
+                    <input type="text" autoComplete='off' required="true" placeholder="Full Name" maxLength="28" value={username.name} onChange={(e)=> setusername(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                    
+                    <input type="email" autoComplete='off' placeholder="Email Address" maxLength="40" value={email.email} onChange={(e)=> setemail(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                    
+                    <input type="password" autoComplete='off' placeholder="Password" maxLength="12" minLength="6" value={password.password} onChange={(e)=> setpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                    
+                    <input type="password" autoComplete='off' maxLength="12" minLength="6" placeholder="Confirm password" value={password.Cpassword} onChange={(e)=> setCpassword(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                    
+                    <input type="tel"  autoComplete='off' maxLength="10" placeholder="Phone" value={phone} onChange={(e)=> setPhone(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                        </div>
                 </form>
                 
                 <div className="text-center mt-6">

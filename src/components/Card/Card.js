@@ -5,7 +5,7 @@ const Card = ({item,Button,onPublish}) =>{
 
 
     return(
-        <div className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-8 rounded-lg max-w-xs mx-4 bg-gray-800 border-gray-700">
+        <div className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-8 rounded-lg max-w-xs mx-4 bg-gray-700 border-gray-700">
                             <a href="#">
                                 <img className="h-60 w-80 rounded-t-lg p-4" src="/course.png" alt="product image" />
                             </a>

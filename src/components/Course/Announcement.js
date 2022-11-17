@@ -21,7 +21,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.232.251:3000'
+    const URL = 'http://172.29.234.174:3000'
     
     const [modules, setModules] = useState([])
     // {
@@ -193,7 +193,9 @@ const Module = (props) => {
                 <Header />
                 </div>
                 <aside className="flex">
-                    <Sidenav />
+                <div className='flex -mt-6 '>
+                        <Courses />
+                    </div>
                     <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         Announcement
@@ -276,9 +278,7 @@ const Module = (props) => {
                             </div>):null
                         }
                     </div>
-                    <aside>
-                        <Courses/>
-                    </aside>
+                   
                 </aside>
                 
                 
