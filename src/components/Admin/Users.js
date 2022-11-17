@@ -84,7 +84,7 @@ function Users() {
                 <Header />
             </div>
             <aside className="flex">
-                <Sidenav />
+                {/* <Sidenav /> */}
                 <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         users
@@ -169,7 +169,7 @@ function Users() {
                             </button>
                         </div>
                         <div className='ml-4 -mt-2'>
-                            <button className="bg-gradient-to-r from-red-700 via-red-500 to-red-300 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                            <button className="bg-gradient-to-r from-red-700 via-red-500 to-red-300 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-400 text-black active:bg-red-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                     type="Submit" 
                                     onClick={(e)=>RemoveUser(e,user._id)}
                                     >

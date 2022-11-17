@@ -82,23 +82,23 @@ export default props => {
         <Header />
       </div>
       <div className='  flex mt-24 flex-row h-screen bg-white'>
-        <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll bg-blue-100'>
+        <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll border-t-8 border-gray-600 bg-gray-800'>
 
-          <h1 className='mt-2 ml-4 text-4xl font-bold text-gray-800 capitalize'>
+          <h1 className='mt-2 ml-4 text-4xl font-bold text-white capitalize'>
             Modules
           </h1>
-          <hr className='mt-2 w-full border-2 border-gray-800 bg-gray-800 ' />
+          <hr className='mt-2 w-full border-2 border-gray-500 bg-gray-500 ' />
 
           {lec.map((item, key) => {
 
             return (
               <div className='w-full'>
 
-                <details style={{"width":"95%"}} className=" mx-auto mb-2  rounded-lg ring-1 ring-gray-500">
-                  <summary className="w-4/5 capitalize text-xl text-black font-semibold py-4 ml-4 ">
+                <details style={{"width":"90%"}} className=" mx-auto border border-l-8 border-blue-700 mb-2 mt-4 rounded-lg  ">
+                  <summary className="w-full capitalize text-xl  text-white font-semibold py-5 ml-4 ">
                     {item.name}
                   </summary>
-                  <hr className='mx-6 border border-gray-700 bg-gray-700'/>
+                  <hr className='mx-6 border border-gray-500 bg-gray-500'/>
                   {
 
                     item.lectures.map((items, key) => {
@@ -106,19 +106,22 @@ export default props => {
                       return (
                         <>
                         
-                          <div className="flex flex-row drop-file-preview__item"
-                            style={{ width: "60%", marginBottom:"8px" }}
+                          <div className="flex my-4 rounded-xl bg-blue-800 mx-auto"
+                            style={{ width: "60%" }}
+                            
                             onClick={() => {
                               setId(items._id)
                               setModuleId(item._id)
                               setType(items.type.split('/')[1])
                               setTitle(items.name)
+                              
                             }
+                            
                             }>
 
                             {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
-                            <div className="drop-file-preview__item__info" >
-                              <h2 className=' text-lg ml-8 font-semibold text-white'>{items.name}</h2>
+                            <div className=" mx-auto h-8 mt-1  bg-blue-800" >
+                              <h2 className=' text-lg mx-auto capitalize font-semibold text-white'>{items.name}</h2>
                               {/* <p>{items.size}B</p> */}
                             </div>
 

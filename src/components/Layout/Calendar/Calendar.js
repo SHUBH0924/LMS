@@ -81,7 +81,7 @@ function App() {
         <Header />
       </div>
       <aside className="flex flex-row ">
-        <Sidenav />
+        {/* <Sidenav /> */}
         <div className='flex flex-col w-3/4 mx-auto mb-12'>
           <h1 className='mt-6 mb-2 capitalize text-4xl mx-auto font-bold'>
             Calendar
