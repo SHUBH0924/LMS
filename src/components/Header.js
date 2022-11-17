@@ -38,7 +38,7 @@ const NavBar = () => {
 
 
   return (
-    <div className=' shadow-md w-full mb-3 sticky top-0 left-0'>
+    <div className=' shadow-md overflow-x-hidden mb-3 sticky top-0 left-0'>
       <div className='md:flex items-center xs:w-screen justify-between bg-gray-800 py-4 md:px-10 '>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-white invisible md:visible '>
@@ -82,17 +82,17 @@ const NavBar = () => {
 
 
 
-         
+
 
           {
             <li className="ml-2 md:ml-5">
-              <button
-                className="px-3 mr-6 ml-4 bg-red-600 rounded-md py-2 flex items-center text-md uppercase font-semibold leading-snug text-black "
+              <Link
+                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
                 onClick={Lgout}
                 to="/Login"
               >
-                {Logout.name}
-              </button>
+                <button className="text-md px-3 mr-2 ml-4 bg-red-600 rounded-md py-2 flex items-center text-lg uppercase font-semibold  text-black ">{Logout.name}</button>
+              </Link>
             </li>
 
           }

@@ -218,12 +218,12 @@ const Module = (props) => {
         <div className='sticky top-0 z-10 '>
                 <Header />
                 </div>
-                <aside className="flex">
+                <aside className="flex flex-row">
                     {/* <Sidenav /> */}
-                    <div className='flex -mt-6 '>
+                    <div className='flex flex-row sticky top-24 left-0 -mt-6 '>
                         <Courses />
                     </div>
-                    <div className='flex flex-col w-full'>
+                    <div className='flex flex-col mx-auto w-4/5'>
                         <div className="px-6 capitalize text-3xl text-black font-semibold py-6 mx-auto">
                                                 {Title}
                         </div>
@@ -301,7 +301,7 @@ const Module = (props) => {
 
                         {((userRole === "Student")&&(!Enroll))?(<div className='w-56 mx-auto'>
                             <button 
-                                className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                className="bg-gradient-to-r mb-9 from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1  ease-linear transition-all duration-150"
                                 type="button"
                                 onClick={EnrolCourse}>Enroll Now
                             </button>

@@ -94,7 +94,7 @@ export default props => {
             return (
               <div className='w-full'>
 
-                <details style={{"width":"90%"}} className=" mx-auto border border-l-8 border-blue-700 mb-2 mt-4 rounded-lg  ">
+                <details style={{"width":"95%"}} className=" mx-auto border border-l-8 border-blue-700 mb-2 mt-4 rounded-lg  ">
                   <summary className="w-full capitalize text-xl  text-white font-semibold py-5 ml-4 ">
                     {item.name}
                   </summary>
@@ -106,8 +106,8 @@ export default props => {
                       return (
                         <>
                         
-                          <div className="flex my-4 rounded-xl bg-blue-800 mx-auto"
-                            style={{ width: "60%" }}
+                          <div className="flex my-5 rounded-lg mx-auto bg-blue-800 "
+                            style={{ width: "80%" }}
                             
                             onClick={() => {
                               setId(items._id)
@@ -120,8 +120,8 @@ export default props => {
                             }>
 
                             {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
-                            <div className=" mx-auto h-8 mt-1  bg-blue-800" >
-                              <h2 className=' text-lg mx-auto capitalize font-semibold text-white'>{items.name}</h2>
+                            <div className=" mx-auto h-auto mt-1 mb-1  bg-blue-800" >
+                              <h2 className=' text-md  capitalize  text-white'>{items.name}</h2>
                               {/* <p>{items.size}B</p> */}
                             </div>
 

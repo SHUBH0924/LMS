@@ -5,7 +5,7 @@ const Card = ({item,Button,onPublish}) =>{
 
 
     return(
-        <div className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-8 rounded-lg max-w-xs mx-4 bg-gray-700 border-gray-700">
+        <div className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-8 rounded-lg max-w-xs mx-4 bg-gray-800 border-gray-700">
                             <a href="#">
                                 <img className="h-60 w-80 rounded-t-lg p-4" src="/course.png" alt="product image" />
                             </a>
@@ -46,7 +46,7 @@ const Card = ({item,Button,onPublish}) =>{
                                     </svg>
                                     <span className="  text-xs font-semibold mr-2 px-2.5 py-0.5 rounded bg-blue-200 text-blue-800 ml-3">{item.Rate}</span>
                                 </div>
-                                <div className="flex items-center justify-between">
+                                <div className="flex items-end content-end justify-between">
                                     <span className="text-3xl font-bold text-white">Rs. {item.price}</span>
                                     <button
                                         className="text-white focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onClick={()=>onPublish(item)}>{Button}</button>

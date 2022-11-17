@@ -25,12 +25,11 @@ const Courses = () => {
 
     
   return (
-    <div className='relative'>
-    <aside className="flex">
+    
 
         <section className="flex min-h-screen ">
             <div
-                className="bg-[#232338] min-h-full w-52  text-gray-300 "
+                className="bg-[#232338] min-h-fit w-52  text-gray-300 "
             >
 
               <hr className=" h-1 rounded-full mt-4 bg-slate-300"/>  
@@ -63,8 +62,7 @@ const Courses = () => {
                 </div>
             </div>
         </section>
-    </aside>
-    </div>
+   
   )
 }
 
