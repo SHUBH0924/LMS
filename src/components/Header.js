@@ -6,6 +6,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import user from '../assets/user.png'
 import { useAuth } from "../Auth/auth";
 import { toast } from "react-hot-toast";
+import Admin_Dashboard from '../components/Admin/AdminDashboard/Admin_Dashboard'
 
 
 export default function NavBar({ sticky }) {
@@ -46,10 +47,12 @@ export default function NavBar({ sticky }) {
                 <div className="container  mx-auto flex flex-wrap items-center justify-between">
                     <div className=" flex flex-row justify-between w-full relative lg:w-auto lg:static lg:block lg:justify-start">
                         <div className="flex flex-row">
+                            
                             <img className="w-20 mt-3 " src={image} alt="Threat Guardian" />
                             <h1 className="lg:visible md:invisible text-white capitalize text-start font-semibold ml-4 mt-9 text-3xl">
                                 Threat Guardians
                             </h1>
+                            
                         </div>
 
                         <button
