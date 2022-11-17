@@ -45,6 +45,8 @@ const DropFileInput = ({handleSubmission,id}) => {
 
     const submitHandle = () => {
         setFileList(null)
+        setTitle('')
+        setContent('')
         handleSubmission(id,fileList,content,Title)
     }
 

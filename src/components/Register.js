@@ -84,7 +84,7 @@ function Register() {
                         toast.error(res.data._message)
                     }
                 }
-                ).catch(e=>console.log(e))
+                ).catch(e=>console.log(e["error"]))
             // console.log(data)
         }
         

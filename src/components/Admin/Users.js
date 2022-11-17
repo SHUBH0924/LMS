@@ -79,7 +79,7 @@ function Users() {
 
 
     return (
-        <div className='relative'>
+        <div className='relative mb-8'>
             <div className='sticky top-0'>
                 <Header />
             </div>

@@ -188,7 +188,10 @@ const Module = (props) => {
                 <Header />
                 </div>
                 <aside className="flex">
-                    <Sidenav />
+                    {/* <Sidenav /> */}
+                    <div className='flex -mt-6 '>
+                        <Courses />
+                    </div>
                     <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         Assignment
@@ -268,9 +271,7 @@ const Module = (props) => {
                             </div>):null
                         }
                     </div>
-                    <aside>
-                        <Courses/>
-                    </aside>
+                    
                 </aside>
                 
                 
