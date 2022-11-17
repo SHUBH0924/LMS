@@ -14,6 +14,9 @@ export default function NavBar({ sticky }) {
     const handleClick = () => {
         Navigate('/')
 
+    
+        
+
 
 
     }
@@ -75,14 +78,14 @@ export default function NavBar({ sticky }) {
                             </li>
                             <li className="nav-item">
                                 <Link className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
-                                    to="/help">
+                                    to="/login">
                                     <button className="text-lg hover:border-b-2 border-gray-300 text-white  font-medium w-24 h-12 ">Logout</button>
                                 </Link>
                             </li>
                             <Link className="" to="/profile">
                             <div className=" ml-6 mr-4 menu-container">
                                 <div className="menu-trigger">
-                                    <img className="rounded-full w-12" src={user}></img>
+                                    <img className="rounded-full w-9" src={user}></img>
                                 </div>
                             </div>
                         </Link>
