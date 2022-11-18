@@ -6,6 +6,7 @@ import Header from '../Header'
 import { toast } from 'react-hot-toast'
 
 
+
 function Profile() {
     const auth = useAuth()
     const [token, setToken] = useState(auth.token)
@@ -13,6 +14,8 @@ function Profile() {
     const [email, setemail] = useState("")
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
+    const [image, setImage] = useState("")
+    const [file, setfile] = useState("")
 
     const URL = 'http://172.29.235.107:3000'
     useEffect(() => {
@@ -29,6 +32,32 @@ function Profile() {
                 setaddress(data.address)
             })
     }, [])
+
+    const handleChange = (e) => {
+        setfile(e.target.files[0])
+    }
+
+    const upload = (e) =>{
+        e.preventDefault();
+        const file ={
+            pic: image,
+           
+            
+        }
+        axios.post(`${URL}/profile/pic`,file,{
+            headers:{
+                'Authorization' : token
+            }
+        }).then(res =>{
+            toast.success("Profile Picture Updated")
+            console.log(res)
+        }).catch(err =>{
+            console.log(err)
+        })
+    }
+
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = {
@@ -79,10 +108,10 @@ function Profile() {
                                     </svg>
                                 </span>
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}
-                                <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" />
+                                <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" accept='image/*' onChange={handleChange} />
                             </div>
                             <div className="mx-auto xs:ml-4 mt-4 ml-3">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={upload}>
                                 Upload
                             </button>
                             </div>

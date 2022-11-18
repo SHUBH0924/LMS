@@ -42,11 +42,12 @@ const NavBar = () => {
       <div className='md:flex items-center xs:w-screen justify-between bg-gray-800 py-4 md:px-10 '>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-white invisible md:visible '>
+            
           <span className='text-3xl text-indigo-600 mr-1 pt-2'>
             <img className="w-16 mb-2 " src={image} alt="Threat Guardian" />
           </span>
           <h1 className='text-3xl invisible md:visible
-          flex ml-4 capitalize'>Threat Guardians</h1>
+          flex ml-4 capitalize'>Threat Guardians</h1> 
         </div>
 
         <div onClick={() => setOpen(!open)} className='text-3xl absolute right-8 top-8 cursor-pointer md:hidden'>
