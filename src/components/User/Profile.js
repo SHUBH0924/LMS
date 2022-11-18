@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import { toast } from 'react-hot-toast'
-import Avatar from 'react-avatar'
+// import Avatar from 'react-avatar'
 
 
 
@@ -125,10 +125,10 @@ function Profile() {
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
                             <div className="mt-3 flex items-center mb-5">
                                
-                                    <Avatar
+                                    {/* <Avatar
                                         
                                         sx={{ width: 24, height: 24 }}
-                                    />
+                                    /> */}
 
                                 
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}
