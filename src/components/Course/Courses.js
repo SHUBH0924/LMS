@@ -8,18 +8,23 @@ import { HiSpeakerphone } from "react-icons/hi";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { MdAssignment } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Auth/auth";
+
 
 const Courses = () => {
+
+    const auth = useAuth()
+    const userRole = auth.user
     const menus = [
-        { name: "Home ", link: "/", icon: SiHomeadvisor , role:"User"},
-        { name: "Announcements", link: "/announcement", icon: HiSpeakerphone , role:"User"},
-        { name: "Assignments", link: "/assignment", icon: MdAssignment , role:"User"},
-        { name: "Discussion", link: "/", icon: RiDiscussFill , role:"User"},
-        { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"User"},
-        { name: "Students", link: "/people", icon: BsFillPeopleFill, margin: true ,role:"User"},
-        { name: "Pages", link: "/", icon: AiFillBook ,role:"User"},
-        { name: "Quizzes", link: "/quiz", icon: MdQuiz ,role:"User", role:"User"},
-        { name: "Syllabus", link: "/", icon: RiPagesFill, role:"User" },
+        { name: "Home ", link: "/", icon: SiHomeadvisor , role:"both"},
+        { name: "Announcements", link: "/announcement", icon: HiSpeakerphone , role:"both"},
+        { name: "Assignments", link: "/assignment", icon: MdAssignment , role:"both"},
+        { name: "Discussion", link: "/", icon: RiDiscussFill , role:"both"},
+        { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"both"},
+        { name: "Students", link: "/people", icon: BsFillPeopleFill, margin: true ,role:"Admin"},
+        { name: "Pages", link: "/", icon: AiFillBook ,role:"both"},
+        { name: "Quizzes", link: "/quiz", icon: MdQuiz ,role:"both"},
+        { name: "Syllabus", link: "/", icon: RiPagesFill, role:"both"},
     ];
     const [open] = useState(true);
 
@@ -34,7 +39,10 @@ const Courses = () => {
 
               <hr className=" h-1 rounded-full mt-4 bg-slate-300"/>  
                 <div className="mt-6 flex flex-col gap-4 px-3">
-                    {menus?.map((menu, i) => (
+                    {menus?.map((menu, i) => {
+                        return(
+                            <>
+                        {((menu.role === "both") || (menu.role === userRole)) &&
                          <Link
                             to={menu?.link}
                             key={i}
@@ -56,9 +64,9 @@ const Courses = () => {
                             >
                                 {menu?.name}
                             </h2>
-                        </Link>
-                               
-                    ))}
+                        </Link>}
+                        </>     
+                    )})}
                 </div>
             </div>
         </section>

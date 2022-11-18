@@ -30,7 +30,7 @@ function Login() {
     }
 
     axios.post("http://172.29.234.174:3000/login", data).then(res => {
-      // console.log(res) 
+      console.log(res) 
       if (res.data.status === "Authorised") {
         auth.login(res.data)
         // if (res.data.role === "Admin"){

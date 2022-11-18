@@ -9,25 +9,25 @@ import DropFileInput from '../../Drag_Drop/DropFileInput';
 import Header from '../../../../Header'
 import Courses from '../../../../Course/Courses';
 import { ImageConfig } from '../../../../ImageConfig';
-import {useLocation} from 'react-router-dom';
+// import {useLocation} from 'react-router-dom';
 
 
 const Module = (props) => {    
     
     
-    const location = useLocation();
+    // const location = useLocation();
     const auth = useAuth()
     const token = auth.token
     const userRole = auth.user
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.234.174:3000"
+    const URL = "http://172.29.235.107:3000"
     
     const [modules, setModules] = useState([])
     const [Enroll,setEnroll] = useState(false)
     const [publish,setPublish] = useState()
-    const [ Title,setTitle] = useState(location.state.item.name)
+    const [ Title,setTitle] = useState()
 
 
     const createNewModule = ({ a }) => {
@@ -69,16 +69,18 @@ const Module = (props) => {
     useEffect(() => {
         // moduleURL
         // console.log(location.state.Publish)
-        if(location.state){
-            setPublish(location.state.Publish)
-        }
+        // if(location.state){
+        //     setPublish(location.state.Publish)
+        // }
         axios.get(`${URL}/course/${slug}`, {
             headers: {
                 'Authorization': token
             }
         }).then(res => {
-            console.log(res.data)
+            console.log(res)
+            setPublish(res.data.published)
             setEnroll(res.data.enrolled)
+            setTitle(res.data.name)
             if (res.data.modules.length > 0) {
                 setModules(res.data.modules)
                 // console.log(res.data.modules)
@@ -178,6 +180,7 @@ const Module = (props) => {
     }
 
     const EnrolCourse = () =>{
+        // e.preventDefault()
         axios.patch(`${URL}/user/purchase`,{
             courseId:slug
         },{
@@ -185,6 +188,7 @@ const Module = (props) => {
                 'Authorization': token
             },
         }).then(res=>{
+            console.log(res)
             if(res.status===200){
                 setEnroll(true)
                 toast.success(res.data)
@@ -214,16 +218,22 @@ const Module = (props) => {
 
     return (
         <>
+
         <div className='relative'>
         <div className='sticky top-0 z-10 '>
                 <Header />
                 </div>
                 <aside className="flex flex-row">
                     {/* <Sidenav /> */}
-                    <div className='flex flex-row sticky top-24 left-0 -mt-6 '>
-                        <Courses />
-                    </div>
-                    <div className='flex flex-col mx-auto w-4/5'>
+                    
+                    {
+                        (Enroll||userRole === "Admin")?( 
+                        <div className='flex flex-row sticky top-24 left-0 -mt-6 '>
+                            <Courses />
+                        </div>):null
+                    }
+
+                    <div className='flex flex-col w-full'>
                         <div className="px-6 capitalize text-3xl text-black font-semibold py-6 mx-auto">
                                                 {Title}
                         </div>

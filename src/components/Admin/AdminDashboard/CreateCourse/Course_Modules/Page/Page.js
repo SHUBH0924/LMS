@@ -100,7 +100,7 @@ export default props => {
                   </summary>
                   <hr className='mx-6 border border-gray-500 bg-gray-500'/>
                   {
-
+                      
                     item.lectures.map((items, key) => {
                       // console.log(items,key)
                       return (

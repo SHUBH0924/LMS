@@ -34,8 +34,9 @@ const Admin_Dashboard = () => {
     const onPublish = (item) => {
         // e.preventdefault()
         const id = item._id
-        const publish = item.published
-        Navigate(`/course/${id}`,{state:{Publish:publish,item:item}})
+        // const publish = item.published
+        Navigate(`/course/${id}`)
+        // ,{state:{Publish:publish,item:item}}
         // console.log({id},"Clicked")
     }
 

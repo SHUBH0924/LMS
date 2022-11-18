@@ -36,10 +36,11 @@ function Dashboard() {
     const Purchase = (item) => {
         // e.preventdefault()
         const id = item._id
-        const publish = item.published
-        console.log(publish)
+        // const publish = item.published
+        // console.log(publish)
         Navigate(`/course/${id}`)
-        Navigate(`/course/${id}`, { state: { Publish: publish, item: item } })
+        // Navigate(`/course/${id}`)
+        // , { state: { Publish: publish, item: item } }
         // console.log({id},"Clicked")
     }
 
