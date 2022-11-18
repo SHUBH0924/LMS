@@ -155,7 +155,7 @@ const Module = (props) => {
                     }
                 }).catch(err => console.log("error"))
             }
-            console.log(res)
+            // console.log(res)
         }).catch(err=>{
             toast.error(err.message)
         })
@@ -170,7 +170,7 @@ const Module = (props) => {
                 'Authorization': token
             },
         }).then(res=>{
-            console.log(res)
+            // console.log(res)
             setPublish(!publish)
         }).catch(err=>{
             console.log(err)
@@ -229,7 +229,7 @@ const Module = (props) => {
                     {
                         (Enroll||userRole === "Admin")?( 
                         <div className='flex flex-row sticky top-24 left-0 -mt-6 '>
-                            <Courses />
+                            <Courses courseId={slug}/>
                         </div>):null
                     }
 

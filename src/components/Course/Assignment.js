@@ -190,7 +190,7 @@ const Module = (props) => {
                 <aside className="flex">
                     {/* <Sidenav /> */}
                     <div className='flex -mt-6 '>
-                        <Courses />
+                        <Courses courseId={slug}/>
                     </div>
                     <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
