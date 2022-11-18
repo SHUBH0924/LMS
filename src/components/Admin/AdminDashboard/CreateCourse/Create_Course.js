@@ -43,7 +43,7 @@ const Create_Course = (props) =>{
         <>
           <div
             className=" backdrop-blur-sm  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="  relative w-2/5 my-10 mx-auto ">
+            <div className="  relative w-full md:w-2/5 my-10 mx-auto ">
               {/* {/content/} */}
               <div className="border-slate-200 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-700 outline-none focus:outline-none">
                 {/* {/header/} */}
