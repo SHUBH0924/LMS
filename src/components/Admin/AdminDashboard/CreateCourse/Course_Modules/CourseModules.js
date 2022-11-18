@@ -97,7 +97,7 @@ const Module = (props) => {
         // console.log(selectedFile)
         // console.log(id,selectedFile,content,Title)
 
-        if (id&&Title.length>0) {
+        if (id&&(Title.length>0)&&(selectedFile||content.length>0)) {
             // ${Lecture}/${id}
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
                 headers: {
@@ -125,7 +125,7 @@ const Module = (props) => {
                     console.error('Error:', error);
                 });
         } else {
-            toast.error("Please select a file")
+            toast.error("Lecture must have a title and a content or file")
         }
     };
 
@@ -294,7 +294,7 @@ const Module = (props) => {
                                         {
                                             (userRole==="Admin")&&
                                             <div className='flex flex-col'>
-                                                    <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
+                                                    <DropFileInput handleSubmission={handleSubmission} id={item._id} file={true}/>
                                             </div>
                                         }
                                     </details>

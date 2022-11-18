@@ -14,7 +14,7 @@ function Profile() {
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
 
-    const URL = 'http://172.29.234.174:3000'
+    const URL = 'http://172.29.235.107:3000'
     useEffect(() => {
         axios.get(`${URL}/profile`, {
                 headers: {

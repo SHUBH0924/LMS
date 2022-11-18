@@ -11,178 +11,121 @@ import { ImageConfig } from '../ImageConfig';
 import {useLocation} from 'react-router-dom';
 
 
-const Module = (props) => {    
+const Announcement = (props) => {    
     
-    
-    const location = useLocation();
     const auth = useAuth()
     const token = auth.token
     const userRole = auth.user
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.234.174:3000'
+    const URL = 'http://172.29.235.107:3000'
     
-    const [modules, setModules] = useState([])
+    const [AnnouncementList, setAnnouncementList] = useState([])
     // {
     //     name:"C",
     //     lectures:[],
     //     _id:"jcvbwegiwevdskcvnwelvie"
     // }
 
-    const [publish,setPublish] = useState()
+    // useEffect(() => {
+       
+    //     axios.get(`${URL}/course/${slug}`, {
+    //         headers: {
+    //             'Authorization': token
+    //         }
+    //     }).then(res => {
+    //         if (res.data.modules.length > 0) {
+    //             setModules(res.data.modules)
+    //             console.log(res.data.modules)
+    //         }
+    //     }).catch(err => console.log("error"))
+    // },[])
 
-
-
-    const createNewModule = ({ a }) => {
-
-
-        // console.log(a)    
-        // addModuleURL
-        axios.post(`${URL}/addModule/${slug}`, a, {
-            headers: {
-                'Authorization': token
-            }
-        }).then(res => {
-            console.log(res)
-            if (res.status == 200) {
-                // setModules(modules => [...modules, a]);
-                axios.get(`${URL}/course/${slug}`, {
-                    headers: {
-                        'Authorization': token
-                    }
-                }).then(res => {
-                    // console.log(res.data)"http://172.29.233.109:3000/course"
-                    if (res.data.modules.length > 0) {
-                        setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
-                }).catch(err => console.log("error"))
-
-                toast.success("Announcement Created");
-            } else {
-                toast.error("Unable to Create Announcement")
-            }
-        }).catch(err => {
-            toast.error("Unable to Create Announcement")
-            console.log(err)
-        })
-        // console.log(unpublished_course)    
-    }
-
-    useEffect(() => {
-        // moduleURL
-        // console.log(location.state.Publish)
-        if(location.state){
-            setPublish(location.state.Publish)
-        }
-        axios.get(`${URL}/course/${slug}`, {
-            headers: {
-                'Authorization': token
-            }
-        }).then(res => {
-            if (res.data.modules.length > 0) {
-                setModules(res.data.modules)
-                console.log(res.data.modules)
-            }
-        }).catch(err => console.log("error"))
-    },[])
-
-    // const changeHandler = (event) => {
-    //     setSelectedFile(event.target.files[0]);
-    //     setIsSelected(true);
-
-    // };
-
-    const handleSubmission = (id,selectedFile,content,Title) => {
+    
+    const handleSubmission = (id,content,Title) => {
         const formData = new FormData();
-
-        formData.append('File', selectedFile);
         formData.append('Title', Title);
         formData.append('content', content);
-        // console.log(selectedFile)
-        // console.log(id,selectedFile,content,Title)
 
         if (id) {
-            // ${Lecture}/${id}
+            
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
                 headers: {
                     'Authorization': token
                 }
             }).then(res => {
-                // console.log(res.data);
-                toast.success("Lecture added!")
+                toast.success("Announcement added!")
 
-                axios.get(`${URL}/course/${slug}`, {
-                    headers: {
-                        'Authorization': token
-                    }
-                }).then(res => {
-                    if (res.data.modules.length > 0) {
-                        setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
-                }).catch(err => console.log("error"))
+                // axios.get(`${URL}/course/${slug}`, {
+                //     headers: {
+                //         'Authorization': token
+                //     }
+                // }).then(res => {
+                //     if (res.data.modules.length > 0) {
+                //         setModules(res.data.modules)
+                //         // console.log(res.data.modules)
+                //     }
+                // }).catch(err => console.log("error"))
 
                 
-            })
-                .catch((error) => {
+            }).catch((error) => {
                     toast.error("There are some problem in network")
                     console.error('Error:', error);
                 });
         } else {
-            toast.error("Please select a file")
+            toast.error("Please select a Title")
         }
     };
 
-    const fileRemove = (ModuleId,LectureID) =>{
-        console.log("course id",slug,"id",ModuleId,"key",LectureID)
-        var payload = {
-            courseId:slug,
-            moduleId:ModuleId,
-            lecId:LectureID
-        }
-        axios.delete(`${URL}/lecture`,{
-            headers: {
-                'Authorization': token
-            },
-            data:payload
-        }).then(res=>{
-            if(res.status === 200){
-                toast.success("Lecture Deleted")
-                axios.get(`${URL}/course/${slug}`, {
-                    headers: {
-                        'Authorization': token
-                    }
-                }).then(res => {
-                    if (res.data.modules.length > 0) {
-                        setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
-                }).catch(err => console.log("error"))
-            }
-            console.log(res)
-        }).catch(err=>{
-            toast.error(err.message)
-        })
-    }
+    // const fileRemove = (ModuleId,LectureID) =>{
+    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
+    //     var payload = {
+    //         courseId:slug,
+    //         moduleId:ModuleId,
+    //         lecId:LectureID
+    //     }
+    //     axios.delete(`${URL}/lecture`,{
+    //         headers: {
+    //             'Authorization': token
+    //         },
+    //         data:payload
+    //     }).then(res=>{
+    //         if(res.status === 200){
+    //             toast.success("Lecture Deleted")
+    //             axios.get(`${URL}/course/${slug}`, {
+    //                 headers: {
+    //                     'Authorization': token
+    //                 }
+    //             }).then(res => {
+    //                 if (res.data.modules.length > 0) {
+    //                     setModules(res.data.modules)
+    //                     // console.log(res.data.modules)
+    //                 }
+    //             }).catch(err => console.log("error"))
+    //         }
+    //         console.log(res)
+    //     }).catch(err=>{
+    //         toast.error(err.message)
+    //     })
+    // }
 
 
-    const onPublish = () =>{
-        axios.patch(`${URL}/course/publish`,{
-            courseId:slug
-        },{
-            headers: {
-                'Authorization': token
-            },
-        }).then(res=>{
-            console.log(res)
-            setPublish(!publish)
-        }).catch(err=>{
-            console.log(err)
-        })
-        // console.log(slug)
-    }
+    // const onPublish = () =>{
+    //     axios.patch(`${URL}/course/publish`,{
+    //         courseId:slug
+    //     },{
+    //         headers: {
+    //             'Authorization': token
+    //         },
+    //     }).then(res=>{
+    //         console.log(res)
+    //         setPublish(!publish)
+    //     }).catch(err=>{
+    //         console.log(err)
+    //     })
+    //     // console.log(slug)
+    // }
 
     
 
@@ -287,4 +230,4 @@ const Module = (props) => {
     )
 }
 
-export default Module;
+export default Announcement;
