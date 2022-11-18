@@ -11,7 +11,7 @@ import { ImageConfig } from '../ImageConfig';
 import {useLocation} from 'react-router-dom';
 
 
-const Announcement = (props) => {    
+const Announcement = () => {    
     
     const auth = useAuth()
     const token = auth.token
@@ -22,60 +22,55 @@ const Announcement = (props) => {
     const URL = 'http://172.29.235.107:3000'
     
     const [AnnouncementList, setAnnouncementList] = useState([])
-    // {
-    //     name:"C",
-    //     lectures:[],
-    //     _id:"jcvbwegiwevdskcvnwelvie"
-    // }
+    
 
-    // useEffect(() => {
+    useEffect(() => {
        
-    //     axios.get(`${URL}/course/${slug}`, {
-    //         headers: {
-    //             'Authorization': token
-    //         }
-    //     }).then(res => {
-    //         if (res.data.modules.length > 0) {
-    //             setModules(res.data.modules)
-    //             console.log(res.data.modules)
-    //         }
-    //     }).catch(err => console.log("error"))
-    // },[])
+        axios.get(`${URL}/announcement/${slug}`, {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res => {
+            console.log(res)
+            if(res.status===200){
+                setAnnouncementList(res.data)
+            }
+        }).catch(err => console.log(err))
+    },[])
 
     
     const handleSubmission = (id,content,Title) => {
-        const formData = new FormData();
-        formData.append('Title', Title);
-        formData.append('content', content);
+        
+        const data = {
+            'title':Title,
+            'content':content,
+            'courseId':slug
+        }
 
-        if (id) {
-            
-            axios.post(`${URL}/upload/${slug}/${id}`, formData, {
+            axios.post(`${URL}/announcement`, data , {
                 headers: {
                     'Authorization': token
                 }
             }).then(res => {
                 toast.success("Announcement added!")
-
-                // axios.get(`${URL}/course/${slug}`, {
-                //     headers: {
-                //         'Authorization': token
-                //     }
-                // }).then(res => {
-                //     if (res.data.modules.length > 0) {
-                //         setModules(res.data.modules)
-                //         // console.log(res.data.modules)
-                //     }
-                // }).catch(err => console.log("error"))
+                console.log(res)
+                axios.get(`${URL}/announcement/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    console.log(res)
+                    if(res.status===200){
+                        setAnnouncementList(res.data)
+                    }
+                }).catch(err => console.log(err))
 
                 
-            }).catch((error) => {
-                    toast.error("There are some problem in network")
-                    console.error('Error:', error);
+            }).catch((err) => {
+                    toast.error(err.message)
+                    console.error('Error:', err);
                 });
-        } else {
-            toast.error("Please select a Title")
-        }
+
     };
 
     // const fileRemove = (ModuleId,LectureID) =>{
@@ -132,12 +127,13 @@ const Announcement = (props) => {
     return (
         <>
         <div className='relative'>
+
         <div className='sticky top-0 z-10 '>
                 <Header />
                 </div>
                 <aside className="flex">
                 <div className='flex -mt-6 '>
-                        <Courses />
+                        <Courses courseId={slug}/>
                     </div>
                     <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
@@ -147,9 +143,9 @@ const Announcement = (props) => {
                     <h2 className='mt-5 mb-2 text-xl ml-20 capitalize'>
                             Genral News and Announcement
                     </h2>
-                    {/* <hr className='w-1/4 ml-20 h-3' /> */}
+                    <hr className='w-1/4 ml-20 h-3' />
                         
-                        {/* {modules ? (modules.map((item,key) => {
+                        {AnnouncementList.length>0 ? (AnnouncementList.map((item,key) => {
 
                             return (
 
@@ -157,47 +153,13 @@ const Announcement = (props) => {
 
                                     <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
                                         <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
-                                            {item.name}
+                                            {item.title}
                                         </summary>
                                         
-                                        {
-                                            
-                                            item.lectures.map((items,key)=>{
-                                                // console.log(items,key)
-                                                return(
-                                                    <>
-                                                    
-                                                    <div className="drop-file-preview__item mx-auto border-2 border-gray-600" style={{width:"80%"}} >
-                                                    
-                                                        <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4" style={{width:"100%"}} onClick={()=> 
-                                                            Navigate(`/Page`,{state:{
-                                                                                        type:items.type.split('/')[1], 
-                                                                                        lectures:modules, 
-                                                                                        lectureId:items._id,
-                                                                                        courseId:slug,
-                                                                                        moduleId:item._id
-                                                                                    }}) 
-                                                            }>
-                                                            <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
-                                                            <div className="drop-file-preview__item__info" >
-                                                                <h2>{items.name}</h2>
-                                                            </div>
-                                                        </div>
-                                                        {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>}
-                                                    </div>
-                                                    </>  
-                                                )
-                                            })
-                                        }
-                                        
-
-
-                                        {
-                                            (userRole==="Admin")&&
-                                            <div className='flex flex-col'>
-                                                    <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
-                                            </div>
-                                        }
+                                        <div 
+                                            className='ml-12 mr-12 mb-8'
+                                            dangerouslySetInnerHTML={{ __html: item.content }} 
+                                        />
                                     </details>
                                 </div>
                             )
@@ -208,7 +170,7 @@ const Announcement = (props) => {
                                 </h1>
                             </div>
                         )
-                        } */}
+                        }
 
 
 
