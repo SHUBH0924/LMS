@@ -45,15 +45,15 @@ function Dashboard() {
     }
 
     return (
-        <div className='relative overflow-x-auto'>
-            <div className='sticky top-0 '>
+        <div className='relative '>
+            <div className='sticky top-0 z-50 '>
                 <Header />
             </div>
             {/* <div className=' flex flex-row bg-gray-800 h-full -mt-4 border border-gray-500 w-full'>
-                <span className=''>
-                    <img className="w-96 mb-8 ml-32 mt-8 " src={image} alt="Threat Guardian" />
-                </span>
-                <p>
+                <div className='w-1/4'>
+                    <img className="animate-pulse w-96 mb-8 ml-32 mt-8 " src={image} alt="Threat Guardian" />
+                </div>
+                <p className='w-2/4 mx-auto mt-12 text-xl text-white'>
                     As it is often said, the only constant in Information Technology is changing. As organisations continue to move toward digital transformation, the challenges they face are evolving. True transformation requires exploring new ways of doing business while reducing cost, increasing efficiency and realising a greater return on investment. Cautiously navigating these new frontiers, we must remain aware. We may also be increasing our risk as networking, data requirements and delivery become more abstract. Our infrastructures are becoming more complex, often relying on external dependencies. As we proceed, some legacy problems will disappear from view, some will remain, and some new challenges will come clearly into view. Threat Guardians is Operational and Information Technology based service provider to enhance the cyber security related to the critical infrastructure.
                 </p>
                 

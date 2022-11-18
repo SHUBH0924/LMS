@@ -92,7 +92,7 @@ const Admin_Dashboard = () => {
                         {
                             <Create_Course createNewCourse={createNewCourse} className="float-right"/>
                         }
-                        <hr className="h-2 -z-10 bg-black mt-4 drop-shadow-2xl"/>
+                        <hr className="w-1/3 -z-10 bg-black mt-4 drop-shadow-2xl"/>
                         <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                             published Courses
                         </h1>
