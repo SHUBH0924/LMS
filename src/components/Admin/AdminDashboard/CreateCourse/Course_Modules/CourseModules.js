@@ -10,7 +10,8 @@ import Header from '../../../../Header'
 import Courses from '../../../../Course/Courses';
 import { ImageConfig } from '../../../../ImageConfig';
 // import {useLocation} from 'react-router-dom';
-
+import  '../.././Drag_Drop/drop-file-input.css';
+import { Link } from 'react-router-dom';
 
 const Module = (props) => {    
     
@@ -258,9 +259,15 @@ const Module = (props) => {
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details style={{backgroundColor:"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
-                                        <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
+                                    <details  className="w-4/5  mx-auto mb-2 bg-gray-50 hover:bg-gray-100  rounded-lg ring-1 ring-gray-500 ">
+                                    
+                                        <summary className="item__preview__mod    px-6 capitalize text-xl text-black font-semibold py-6">
                                             {item.name}
+                                            <Link>
+                                                <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>
+                                                    X
+                                                </span>
+                                            </Link>
                                         </summary>
                                         
                                         {
