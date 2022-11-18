@@ -7,7 +7,7 @@ import JoditEditor from 'jodit-react';
  
 
 
-const DropFileInput = ({handleSubmission,id}) => {
+const DropFileInput = ({handleSubmission,id,file}) => {
 
     const editor = useRef(null)
     const [content,setContent] = useState('')
@@ -47,7 +47,12 @@ const DropFileInput = ({handleSubmission,id}) => {
         setFileList(null)
         setTitle('')
         setContent('')
-        handleSubmission(id,fileList,content,Title)
+        if(file){
+            handleSubmission(id,fileList,content,Title)
+        }
+        else{
+            handleSubmission(id,content,Title)
+        }
     }
 
     return (
@@ -69,21 +74,23 @@ const DropFileInput = ({handleSubmission,id}) => {
                     />
                 </div>
             {/* DRAG&DROP FILE */}
-            <div style={{
-                
-            }}
-                ref={wrapperRef}
-                className="drop-file-input"
-                onDragEnter={onDragEnter}
-                onDragLeave={onDragLeave}
-                onDrop={onDrop}
-            >
-                <div className="drop-file-input__label">
-                    <img src={uploadImg} alt="" />
-                    <p>Drag & Drop your files here or Click to browse files</p>
-                </div>
-                <input type="file" value="" onChange={onFileDrop}/>
-            </div>
+            {file?(
+                <div style={{
+
+                    }}
+                    ref={wrapperRef}
+                    className="drop-file-input"
+                    onDragEnter={onDragEnter}
+                    onDragLeave={onDragLeave}
+                    onDrop={onDrop}
+                >
+                    <div className="drop-file-input__label">
+                        <img src={uploadImg} alt="" />
+                        <p>Drag & Drop your files here or Click to browse files</p>
+                    </div>
+                    <input type="file" value="" onChange={onFileDrop}/>
+                </div>):null
+            }
             
             {
                 // fileList.length > 0 ? (

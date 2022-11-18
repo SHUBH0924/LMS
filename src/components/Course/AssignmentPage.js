@@ -16,7 +16,7 @@ export default props => {
   const location = useLocation();
 //   const lec = location.state.lectures
 
-  const URL = "http://172.29.234.174:3000"
+  const URL = "http://172.29.235.107:3000"
 
 //   const [type, setType] = useState(location.state.type)
 //   const [id, setId] = useState(location.state.lectureId)
