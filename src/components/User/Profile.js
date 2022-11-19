@@ -1,9 +1,11 @@
 import axios from 'axios'
-import React, { useState , useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import { toast } from 'react-hot-toast'
+import Avatar from 'react-avatar'
+
 
 
 function Profile() {
@@ -13,56 +15,106 @@ function Profile() {
     const [email, setemail] = useState("")
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
+    const [image, setImage] = useState("")
+    const [file, setfile] = useState()
 
-    const URL = 'http://172.29.235.107:3000'
+    const URL = 'http://192.168.108.232:3000'
     useEffect(() => {
-        axios.get(`${URL}/profile`, {
-                headers: {
-                    'Authorization': token
-                }
-            }).then(res => {
-                // console.log(res)
-                let data = res.data
+
+        let endpoints = [
+            `${URL}/profile`
+            // `${URL}/avatar`
+        ];
+
+        axios.all(endpoints.map((endpoint) => axios.get(endpoint, {
+            headers: {
+                'Authorization': token
+            }
+        }))).then(
+            axios.spread((profile) => {
+                let data = profile.data
                 setname(data.name)
                 setemail(data.email)
                 setphone(data.phone)
                 setaddress(data.address)
+                console.log({ profile });
             })
+        );
+
+
+
+
+
+
+        // axios.get(`${URL}/profile`, {
+        //         headers: {
+        //             'Authorization': token
+        //         }
+        //     }).then(res => {
+        //         // console.log(res)
+        //         let data = res.data
+        //         setname(data.name)
+        //         setemail(data.email)
+        //         setphone(data.phone)
+        //         setaddress(data.address)
+        //     })
     }, [])
+
+    const handleChange = (e) => {
+        setfile(e.target.files[0])
+    }
+
+    // const upload = (e) =>{
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append('pic',file)
+    //     formData.append('name',name);
+    //     formData.append('email',email);
+    //     formData.append('address',address);
+    //     formData.append('phone',phone);
+
+    //     axios.post(`${URL}/profile/pic`,formData,{
+    //         headers:{
+    //             'Authorization' : token
+    //         }
+    //     }).then(res =>{
+    //         toast.success(res.data)
+    //         console.log(res)
+    //     }).catch(err =>{
+    //         console.log(err)
+    //     })
+    // }
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const data = {
-            name: name,
-            email: email,
-            address: address,
-            phone: phone
-        }
-        axios.put(`${URL}/profile`,data,{
+        const formData = new FormData();
+        formData.append('pic', file);
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('address', address);
+        formData.append('phone', phone);
+
+        axios.put(`${URL}/profile`, formData, {
             headers: {
-              'Authorization': token
+                'Authorization': token
             }
-          }).then(res=>{
-                toast.success(res.data)
-                console.log(res)
-          }).catch(err=>{
-                console.log(err)
-          })
-        // axios.get('http://192.168.0.103:3000/profile', {
-        //     headers: {
-        //         'Authorization': token
-        //     }
-        // }).then(res => {
-        //     console.log(res)
-        // })
-        // console.log(data)
+        }).then(res => {
+            toast.success(res.data)
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+
     }
     return (
         <div className='relative'>
             <div className='sticky top-0 '>
                 <Header />
-                </div>
+            </div>
             <aside className="flex">
-                
+
                 <div className='flex flex-col w-4/5 mx-auto'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                         profile settings
@@ -71,26 +123,27 @@ function Profile() {
                     <form className="mt-6 ml-16 w-4/5 justify-center">
                         <div className="flex  flex-col xs:flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
-                            <div className="mt-3 flex items-center mb-5">
-                                <span className="relative -z-50 h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                                    <svg className=" h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="file" />
-                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                    </svg>
-                                </span>
+                            <div className="mt-3 flex items-center  mb-5">
+                               
+                                    <Avatar
+                                        className='rounded-full'
+                                        sx={{ width: 24, height: 24 }}
+                                    />
+
+                                
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}
-                                <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" />
+                                <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" accept='image/*' onChange={handleChange} />
                             </div>
                             <div className="mx-auto xs:ml-4 mt-4 ml-3">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
+                                {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={upload}>
                                 Upload
-                            </button>
+                            </button> */}
                             </div>
                         </div>
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-Name">
-                                  Full  Name
+                                    Full  Name
                                 </label>
                                 <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-Name" type="text" value={name} onChange={e => setname(e.target.value)} />
                             </div>
@@ -110,11 +163,11 @@ function Profile() {
                             </div>
                         </div>
                         <div className="w-full ">
-                                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-Name">
-                                        Address
-                                    </label>
-                                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-Name" type="text" value={address} onChange={e=>setaddress(e.target.value)} />
-                                </div>
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-Name">
+                                Address
+                            </label>
+                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-Name" type="text" value={address} onChange={e => setaddress(e.target.value)} />
+                        </div>
 
                         <div>
                             <div className='mt-8'>

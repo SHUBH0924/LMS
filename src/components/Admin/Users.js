@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 
 function Users() {
 
-    const URL = "http://172.29.235.107:3000"
+    const URL = "http://192.168.108.232:3000"
     const auth = useAuth()
     const token = auth.token
     const [user,setUser] = useState([])

@@ -12,7 +12,7 @@ function Dashboard() {
     const auth = useAuth()
     const [token,setToken] = useState(auth.token)
     const Navigate = useNavigate()
-    const backendServer = `http://172.29.235.107:3000/course/all`
+    const backendServer = `http://192.168.108.232:3000/user/courses`
     const [course,setCourse] = useState([])
 
 

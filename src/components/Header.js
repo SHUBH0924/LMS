@@ -46,7 +46,7 @@ const NavBar = () => {
             <img className="w-16 mb-2 " src={image} alt="Threat Guardian" />
           </span>
           <h1 className='text-3xl invisible md:visible
-          flex ml-4 capitalize'>Threat Guardians</h1>
+          flex ml-4 capitalize'>Threat Guardians</h1> 
         </div>
 
         <div onClick={() => setOpen(!open)} className='text-3xl absolute right-8 top-8 cursor-pointer md:hidden'>

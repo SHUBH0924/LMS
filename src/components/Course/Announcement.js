@@ -19,7 +19,7 @@ const Announcement = () => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.235.107:3000'
+    const URL = 'http://192.168.108.232:3000'
     
     const [AnnouncementList, setAnnouncementList] = useState([])
     
@@ -73,56 +73,32 @@ const Announcement = () => {
 
     };
 
-    // const fileRemove = (ModuleId,LectureID) =>{
-    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
-    //     var payload = {
-    //         courseId:slug,
-    //         moduleId:ModuleId,
-    //         lecId:LectureID
-    //     }
-    //     axios.delete(`${URL}/lecture`,{
-    //         headers: {
-    //             'Authorization': token
-    //         },
-    //         data:payload
-    //     }).then(res=>{
-    //         if(res.status === 200){
-    //             toast.success("Lecture Deleted")
-    //             axios.get(`${URL}/course/${slug}`, {
-    //                 headers: {
-    //                     'Authorization': token
-    //                 }
-    //             }).then(res => {
-    //                 if (res.data.modules.length > 0) {
-    //                     setModules(res.data.modules)
-    //                     // console.log(res.data.modules)
-    //                 }
-    //             }).catch(err => console.log("error"))
-    //         }
-    //         console.log(res)
-    //     }).catch(err=>{
-    //         toast.error(err.message)
-    //     })
-    // }
+    const fileRemove = (AnnouncementId) =>{
 
-
-    // const onPublish = () =>{
-    //     axios.patch(`${URL}/course/publish`,{
-    //         courseId:slug
-    //     },{
-    //         headers: {
-    //             'Authorization': token
-    //         },
-    //     }).then(res=>{
-    //         console.log(res)
-    //         setPublish(!publish)
-    //     }).catch(err=>{
-    //         console.log(err)
-    //     })
-    //     // console.log(slug)
-    // }
-
-    
+        axios.delete(`${URL}/announcement/${AnnouncementId}`,{
+            headers: {
+                'Authorization': token
+            }
+        }).then(res=>{
+            if(res.status === 200){
+                toast.success("Lecture Deleted")
+                axios.get(`${URL}/announcement/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    console.log(res)
+                    if(res.status===200){
+                        setAnnouncementList(res.data)
+                    }
+                }).catch(err => console.log(err))
+                
+            }
+            console.log(res)
+        }).catch(err=>{
+            toast.error(err.message)
+        })
+    }
 
     return (
         <>
@@ -151,9 +127,10 @@ const Announcement = () => {
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
+                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 drop-file-preview__item">
                                         <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.title}
+                                            {(true)?<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id)}>x</span>:null}
                                         </summary>
                                         
                                         <div 

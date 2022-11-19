@@ -21,72 +21,28 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.235.107:3000'
-    
-    const [modules, setModules] = useState([])
-    // {
-    //     name:"C",
-    //     lectures:[],
-    //     _id:"jcvbwegiwevdskcvnwelvie"
-    // }
+    const URL = 'http://192.168.108.232:3000'
 
-    const [publish,setPublish] = useState()
+    const [AnnouncementList, setAnnouncementList] = useState([])    
 
 
-
-    const createNewModule = ({ a }) => {
-
-
-        // console.log(a)    
-        // addModuleURL
-        axios.post(`${URL}/addModule/${slug}`, a, {
-            headers: {
-                'Authorization': token
-            }
-        }).then(res => {
-            console.log(res)
-            if (res.status == 200) {
-                // setModules(modules => [...modules, a]);
-                axios.get(`${URL}/course/${slug}`, {
-                    headers: {
-                        'Authorization': token
-                    }
-                }).then(res => {
-                    // console.log(res.data)"http://172.29.233.109:3000/course"
-                    if (res.data.modules.length > 0) {
-                        setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
-                }).catch(err => console.log("error"))
-
-                toast.success("Announcement Created");
-            } else {
-                toast.error("Unable to Create Announcement")
-            }
-        }).catch(err => {
-            toast.error("Unable to Create Announcement")
-            console.log(err)
-        })
-        // console.log(unpublished_course)    
-    }
-
-    useEffect(() => {
-        // moduleURL
-        // console.log(location.state.Publish)
-        if(location.state){
-            setPublish(location.state.Publish)
-        }
-        axios.get(`${URL}/course/${slug}`, {
-            headers: {
-                'Authorization': token
-            }
-        }).then(res => {
-            if (res.data.modules.length > 0) {
-                setModules(res.data.modules)
-                console.log(res.data.modules)
-            }
-        }).catch(err => console.log("error"))
-    },[])
+    // useEffect(() => {
+    //     // moduleURL
+    //     // console.log(location.state.Publish)
+    //     if(location.state){
+    //         setPublish(location.state.Publish)
+    //     }
+    //     axios.get(`${URL}/course/${slug}`, {
+    //         headers: {
+    //             'Authorization': token
+    //         }
+    //     }).then(res => {
+    //         if (res.data.modules.length > 0) {
+    //             setModules(res.data.modules)
+    //             console.log(res.data.modules)
+    //         }
+    //     }).catch(err => console.log("error"))
+    // },[])
 
 
     const handleSubmission = (id,selectedFile,content,Title) => {
@@ -108,16 +64,16 @@ const Module = (props) => {
                 // console.log(res.data);
                 toast.success("Lecture added!")
 
-                axios.get(`${URL}/course/${slug}`, {
-                    headers: {
-                        'Authorization': token
-                    }
-                }).then(res => {
-                    if (res.data.modules.length > 0) {
-                        setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
-                }).catch(err => console.log("error"))
+                // axios.get(`${URL}/course/${slug}`, {
+                //     headers: {
+                //         'Authorization': token
+                //     }
+                // }).then(res => {
+                //     if (res.data.modules.length > 0) {
+                //         setModules(res.data.modules)
+                //         // console.log(res.data.modules)
+                //     }
+                // }).catch(err => console.log("error"))
 
                 
             })
@@ -130,54 +86,40 @@ const Module = (props) => {
         }
     };
 
-    const fileRemove = (ModuleId,LectureID) =>{
-        console.log("course id",slug,"id",ModuleId,"key",LectureID)
-        var payload = {
-            courseId:slug,
-            moduleId:ModuleId,
-            lecId:LectureID
-        }
-        axios.delete(`${URL}/lecture`,{
-            headers: {
-                'Authorization': token
-            },
-            data:payload
-        }).then(res=>{
-            if(res.status === 200){
-                toast.success("Lecture Deleted")
-                axios.get(`${URL}/course/${slug}`, {
-                    headers: {
-                        'Authorization': token
-                    }
-                }).then(res => {
-                    if (res.data.modules.length > 0) {
-                        setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
-                }).catch(err => console.log("error"))
-            }
-            console.log(res)
-        }).catch(err=>{
-            toast.error(err.message)
-        })
-    }
+    // const fileRemove = (ModuleId,LectureID) =>{
+    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
+    //     var payload = {
+    //         courseId:slug,
+    //         moduleId:ModuleId,
+    //         lecId:LectureID
+    //     }
+    //     axios.delete(`${URL}/lecture`,{
+    //         headers: {
+    //             'Authorization': token
+    //         },
+    //         data:payload
+    //     }).then(res=>{
+    //         if(res.status === 200){
+    //             toast.success("Lecture Deleted")
+    //             axios.get(`${URL}/course/${slug}`, {
+    //                 headers: {
+    //                     'Authorization': token
+    //                 }
+    //             }).then(res => {
+    //                 if (res.data.modules.length > 0) {
+    //                     setModules(res.data.modules)
+    //                     // console.log(res.data.modules)
+    //                 }
+    //             }).catch(err => console.log("error"))
+    //         }
+    //         console.log(res)
+    //     }).catch(err=>{
+    //         toast.error(err.message)
+    //     })
+    // }
 
 
-    const onPublish = () =>{
-        axios.patch(`${URL}/course/publish`,{
-            courseId:slug
-        },{
-            headers: {
-                'Authorization': token
-            },
-        }).then(res=>{
-            console.log(res)
-            setPublish(!publish)
-        }).catch(err=>{
-            console.log(err)
-        })
-        // console.log(slug)
-    }
+
 
     
 
@@ -198,8 +140,9 @@ const Module = (props) => {
                     </h1>
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
                     
+                    {/* <hr className='w-1/4 ml-20 h-3' /> */}
                         
-                        {/* {modules ? (modules.map((item,key) => {
+                        {AnnouncementList.length>0 ? (AnnouncementList.map((item,key) => {
 
                             return (
 
@@ -207,47 +150,13 @@ const Module = (props) => {
 
                                     <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
                                         <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
-                                            {item.name}
+                                            {item.title}
                                         </summary>
                                         
-                                        {
-                                            
-                                            item.lectures.map((items,key)=>{
-                                                // console.log(items,key)
-                                                return(
-                                                    <>
-                                                    
-                                                    <div className="drop-file-preview__item mx-auto border-2 border-gray-600" style={{width:"80%"}} >
-                                                    
-                                                        <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4" style={{width:"100%"}} onClick={()=> 
-                                                            Navigate(`/Page`,{state:{
-                                                                                        type:items.type.split('/')[1], 
-                                                                                        lectures:modules, 
-                                                                                        lectureId:items._id,
-                                                                                        courseId:slug,
-                                                                                        moduleId:item._id
-                                                                                    }}) 
-                                                            }>
-                                                            <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
-                                                            <div className="drop-file-preview__item__info" >
-                                                                <h2>{items.name}</h2>
-                                                            </div>
-                                                        </div>
-                                                        {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>}
-                                                    </div>
-                                                    </>  
-                                                )
-                                            })
-                                        }
-                                        
-
-
-                                        {
-                                            (userRole==="Admin")&&
-                                            <div className='flex flex-col'>
-                                                    <DropFileInput handleSubmission={handleSubmission} id={item._id}/>
-                                            </div>
-                                        }
+                                        <div 
+                                            className='ml-12 mr-12 mb-8'
+                                            dangerouslySetInnerHTML={{ __html: item.content }} 
+                                        />
                                     </details>
                                 </div>
                             )
@@ -258,7 +167,7 @@ const Module = (props) => {
                                 </h1>
                             </div>
                         )
-                        } */}
+                        }
 
 
 
@@ -267,7 +176,7 @@ const Module = (props) => {
                         {
                             (userRole==="Admin")?(
                             <div className='flex flex-col'>
-                                    <DropFileInput handleSubmission={handleSubmission} id={slug}/>
+                                    <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
                             </div>):null
                         }
                     </div>

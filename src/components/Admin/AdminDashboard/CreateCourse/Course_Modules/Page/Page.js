@@ -16,7 +16,7 @@ export default props => {
   const location = useLocation();
   const lec = location.state.lectures
 
-  const URL = "http://172.29.235.107:3000"
+  const URL = "http://192.168.108.232:3000"
 
   const [type, setType] = useState(location.state.type)
   const [id, setId] = useState(location.state.lectureId)
@@ -81,8 +81,8 @@ export default props => {
       <div className='fixed top-0 w-full z-10 '>
         <Header />
       </div>
-      <div className='  flex mt-24 flex-row h-screen bg-white'>
-        <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll border-t-8 border-gray-600 bg-gray-800'>
+      <div className='  flex mt-24 flex-row h-screen  bg-white'>
+        <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll scrollbar-hide border-t-8 border-gray-600 bg-gray-800'>
 
           <h1 className='mt-2 ml-4 text-4xl font-bold text-white capitalize'>
             Modules
@@ -92,10 +92,10 @@ export default props => {
           {lec.map((item, key) => {
 
             return (
-              <div className='w-full'>
+              <div className='last:mb-8 w-full'>
 
                 <details style={{"width":"95%"}} className=" mx-auto border border-l-8 border-blue-700 mb-2 mt-4 rounded-lg  ">
-                  <summary className="w-full capitalize text-xl  text-white font-semibold py-5 ml-4 ">
+                  <summary className="w-full capitalize text-xl last:mb-8 text-white font-semibold py-5 ml-4 ">
                     {item.name}
                   </summary>
                   <hr className='mx-6 border border-gray-500 bg-gray-500'/>
