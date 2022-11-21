@@ -23,7 +23,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.235.107:3000"
+    const URL = "http://172.29.108.92:3000"
     
     const [modules, setModules] = useState([])
     const [Enroll,setEnroll] = useState(false)
@@ -36,7 +36,7 @@ const Module = (props) => {
 
         // console.log(a)    
         // addModuleURL
-        axios.post(`${URL}/addModule/${slug}`, a, {
+        axios.post(`${URL}/course/addModule/${slug}`, a, {
             headers: {
                 'Authorization': token
             }
@@ -217,6 +217,36 @@ const Module = (props) => {
         }
     }
 
+    const DeleteModule = (ModuleId) =>{
+        console.log("course id",slug,"id",ModuleId)
+        var payload = {
+            courseId:slug,
+            moduleId:ModuleId
+        }
+        axios.delete(`${URL}/lecture`,{
+            headers: {
+                'Authorization': token
+            },
+            data:payload
+        }).then(res=>{
+            if(res.status === 200){
+                toast.success("Lecture Deleted")
+                axios.get(`${URL}/course/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    if (res.data.modules.length > 0) {
+                        setModules(res.data.modules)
+                        // console.log(res.data.modules)
+                    }
+                }).catch(err => console.log("error"))
+            }
+            // console.log(res)
+        }).catch(err=>{
+            toast.error(err.message)
+        })
+    }
     return (
         <>
 
@@ -263,11 +293,12 @@ const Module = (props) => {
                                     
                                         <summary className="item__preview__mod    px-6 capitalize text-xl text-black font-semibold py-6">
                                             {item.name}
-                                            <Link>
+                                            <Link onClick={() => fileRemove(item._id)}>
                                                 <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>
                                                     X
                                                 </span>
                                             </Link>
+                                            
                                         </summary>
                                         
                                         {
