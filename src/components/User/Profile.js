@@ -22,43 +22,43 @@ function Profile() {
     const URL = 'http://172.29.108.92:3000'
     useEffect(() => {
 
-        let endpoints = [
-            `${URL}/profile`
-            // `${URL}/avatar`
-        ];
+        // let endpoints = [
+        //     `${URL}/profile`,
+        //     `${URL}/avatar`
+        // ];
 
-        axios.all(endpoints.map((endpoint) => axios.get(endpoint, {
-            headers: {
-                'Authorization': token
-            }
-        }))).then(
-            axios.spread((profile) => {
-                let data = profile.data
-                setname(data.name)
-                setemail(data.email)
-                setphone(data.phone)
-                setaddress(data.address)
-                console.log({ profile });
-            })
-        );
-
-
-
-
-
-
-        // axios.get(`${URL}/profile`, {
-        //         headers: {
-        //             'Authorization': token
-        //         }
-        //     }).then(res => {
-        //         // console.log(res)
-        //         let data = res.data
+        // axios.all(endpoints.map((endpoint) => axios.get(endpoint, {
+        //     headers: {
+        //         'Authorization': token
+        //     }
+        // }))).then(
+        //     axios.spread((profile,pic) => {
+        //         let data = profile.data
         //         setname(data.name)
         //         setemail(data.email)
         //         setphone(data.phone)
         //         setaddress(data.address)
+        //         console.log({ profile ,pic});
         //     })
+        // );
+
+
+
+
+
+
+        axios.get(`${URL}/profile`, {
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => {
+                // console.log(res)
+                let data = res.data
+                setname(data.name)
+                setemail(data.email)
+                setphone(data.phone)
+                setaddress(data.address)
+            })
     }, [])
 
     const handleChange = (e) => {
