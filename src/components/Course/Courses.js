@@ -36,8 +36,8 @@ const Courses = ({courseId}) => {
                 className="bg-[#232338] min-h-fit w-52  text-gray-300 "
             >
 
-              <hr className=" h-1 rounded-full mt-4 bg-slate-300"/>  
-                <div className="mt-6 flex flex-col gap-4 px-3">
+              <hr className=" h-1 mt-12 bg-slate-300"/>  
+                <div className="mt-6 select-none flex flex-col gap-4 px-3">
                     {menus?.map((menu, i) => {
                         return(
                             <>

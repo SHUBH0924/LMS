@@ -73,7 +73,7 @@ function Register() {
             toast.error("Invalid Number")
         }
         else{
-            axios.post("http://192.168.108.232:3000/register",data).then(
+            axios.post("http://172.29.108.92:3000/register",data).then(
                 res=>{
                     // console.log(res)
                     if(res.status === 201){
@@ -137,7 +137,7 @@ function Register() {
                         value={password.Cpassword} 
                         onChange={(e)=> {
                             setCpassword(e.target.value)
-                            }} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"  />
+                            }} className="block text-sm py-3  px-4 rounded-lg w-full border outline-none"  />
                     
                     <input type="tel"  autoComplete='off' maxLength="10" placeholder="Phone" value={phone} onChange={(e)=> setPhone(e.target.value)} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
                         </div>

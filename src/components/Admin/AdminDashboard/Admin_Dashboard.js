@@ -12,7 +12,7 @@ import Header from '../../Header'
 const Admin_Dashboard = () => {
 
     const auth = useAuth()
-    const backendServer = `http://192.168.108.232:3000`
+    const backendServer = `http://172.29.108.92:3000`
     const [Course, setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();
@@ -92,11 +92,11 @@ const Admin_Dashboard = () => {
                         {
                             <Create_Course createNewCourse={createNewCourse} className="float-right"/>
                         }
-                        <hr className="w-1/3 -z-10 bg-black mt-4 drop-shadow-2xl"/>
-                        <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                            published Courses
+                        <hr className="w-1/3 mx-auto h-1  bg-black mt-5 drop-shadow-2xl"/>
+                        <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                            published courses
                         </h1>
-                        <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
+                        <hr className="w-3/5 mx-auto h-2 mb-5" />
                         <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                             <div className="mx-auto grid  md:grid-cols-3 lg:grid-cols-4 w-full py-6">
                                 {Course.filter(item => {
@@ -109,10 +109,10 @@ const Admin_Dashboard = () => {
                             </div>
                         </div>
 
-                        <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                            unPublished Courses
+                        <h1 className='mt-6 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                           unpublished courses
                         </h1>
-                        <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
+                        <hr className="w-3/5 mx-auto h-2 mb-5" />
                         <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                             <div className="mx-auto grid md:grid-cols-3 lg:grid-cols-4 w-full py-6">
                                 {Course.filter(item => {

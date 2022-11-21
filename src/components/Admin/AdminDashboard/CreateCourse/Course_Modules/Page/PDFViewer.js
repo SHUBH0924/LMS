@@ -17,7 +17,7 @@ const PDFViewer = ({courseId,moduleId,id,url}) =>{
     const auth =useAuth()
     const token = auth.token
     const [pdf,setPdf] = useState()
-    const URL = 'http://192.168.108.232:3000'
+    const URL = 'http://172.29.108.92:3000'
     // useEffect(()=>{
     //   axios.post(`${URL}/course/lecture/${courseId}/${moduleId}/${id}/${token}`).then(res=>{
     //     // setPdf(res.file)

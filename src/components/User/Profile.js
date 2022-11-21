@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-
+import imag from '../../assets/bg1.jpg'
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import { toast } from 'react-hot-toast'
 import Avatar from 'react-avatar'
+import pic from '../../assets/bg.jpg'
 
 
 
@@ -18,7 +19,7 @@ function Profile() {
     const [image, setImage] = useState("")
     const [file, setfile] = useState()
 
-    const URL = 'http://192.168.108.232:3000'
+    const URL = 'http://172.29.108.92:3000'
     useEffect(() => {
 
         let endpoints = [
@@ -109,28 +110,30 @@ function Profile() {
 
     }
     return (
-        <div className='relative'>
-            <div className='sticky top-0 '>
+        <div className='relative '>
+            <div className='sticky top-0 z-50 '>
                 <Header />
             </div>
-            <aside className="flex">
+            <aside className="flex mb-16">
 
                 <div className='flex flex-col w-4/5 mx-auto'>
-                    <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                        profile settings
+                
+                    <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                           profile settings
                     </h1>
-                    <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
+                    <hr className="w-3/5 mx-auto h-2 mb-5" />
+
                     <form className="mt-6 ml-16 w-4/5 justify-center">
                         <div className="flex  flex-col xs:flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
                             <div className="mt-3 flex items-center  mb-5">
-                               
-                                    <Avatar
-                                        className='rounded-full'
-                                        sx={{ width: 24, height: 24 }}
-                                    />
 
-                                
+                                <Avatar
+                                    className='rounded-full'
+                                    sx={{ width: 24, height: 24 }}
+                                />
+
+
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}
                                 <input className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" accept='image/*' onChange={handleChange} />
                             </div>

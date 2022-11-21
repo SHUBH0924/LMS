@@ -6,14 +6,14 @@ import Card from '../Card/Card'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Auth/auth';
 import Header from '../Header'
-import image from '../../assets/mp.png'
+import image from '../../assets/bg1.jpg'
 
 
 function Dashboard() {
     const auth = useAuth()
     const [token, setToken] = useState(auth.token)
     const Navigate = useNavigate()
-    const backendServer = `http://192.168.108.232:3000/course/all`
+    const backendServer = `http://172.29.108.92:3000/course/all`
     const [course,setCourse] = useState([])
 
 

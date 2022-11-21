@@ -23,7 +23,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://192.168.108.232:3000"
+    const URL = "http://172.29.108.92:3000"
     
     const [modules, setModules] = useState([])
     const [Enroll,setEnroll] = useState(false)
@@ -58,10 +58,10 @@ const Module = (props) => {
 
                 toast.success("Module Created");
             } else {
-                toast.error("unable to create Module")
+                toast.error("Unable to create Module")
             }
         }).catch(err => {
-            toast.error("unable to create Module")
+            toast.error("Unable to create Module")
             console.log(err)
         })
         // console.log(unpublished_course)    
@@ -235,16 +235,17 @@ const Module = (props) => {
                     }
 
                     <div className='flex flex-col w-full'>
-                        <div className="px-6 capitalize text-3xl text-black font-semibold py-6 mx-auto">
-                                                {Title}
+                        <div className="px-6 select-none capitalize text-3xl text-black font-semibold py-6 mx-auto">
+                             {Title}
                         </div>
+                        <hr className="w-3/5 mx-auto h-2 mb-3" />
                         {
                             (userRole === "Admin")?
                                 (<div className='flex flex-row justify-between'>
                                     <NewModule createNewCourse={createNewModule} />
                                     <div className='w-56 mr-12 mt-3 '>
                                     <button 
-                                        className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
                                         onClick={onPublish}>{publish?"UnPublish":"Publish"}
                                     </button>
