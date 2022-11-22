@@ -21,7 +21,7 @@ function Login() {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
   // const [warning,setWarning] = useState("")
-
+  const URL = process.env.REACT_APP_SERVER
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -29,7 +29,7 @@ function Login() {
       password: password,
     }
 
-    axios.post("http://172.29.110.209:3000/login", data).then(res => {
+    axios.post(`${URL}/login`, data).then(res => {
       console.log(res) 
       if (res.data.status === "Authorised") {
         auth.login(res.data)

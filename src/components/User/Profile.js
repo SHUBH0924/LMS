@@ -19,7 +19,7 @@ function Profile() {
     const [image, setImage] = useState("")
     const [file, setfile] = useState()
 
-    const URL = 'http://172.29.110.209:3000'
+    const URL = process.env.REACT_APP_SERVER
     useEffect(() => {
 
         // let endpoints = [
@@ -127,8 +127,8 @@ function Profile() {
                         <div className="flex  flex-col xs:flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
                             <div className="mt-3 flex items-center  mb-5">
-
-                                {/* <Avatar
+{/* 
+                                <Avatar
                                     className='rounded-full'
                                     sx={{ width: 24, height: 24 }}
                                 /> */}

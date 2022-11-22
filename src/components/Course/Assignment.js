@@ -21,68 +21,71 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.110.209:3000'
+    const URL = process.env.REACT_APP_SERVER
 
-    const [AnnouncementList, setAnnouncementList] = useState([])    
+    const [AssignmentList, setAssignment] = useState([])    
 
 
-    // useEffect(() => {
-    //     // moduleURL
-    //     // console.log(location.state.Publish)
-    //     if(location.state){
-    //         setPublish(location.state.Publish)
-    //     }
-    //     axios.get(`${URL}/course/${slug}`, {
-    //         headers: {
-    //             'Authorization': token
-    //         }
-    //     }).then(res => {
-    //         if (res.data.modules.length > 0) {
-    //             setModules(res.data.modules)
-    //             console.log(res.data.modules)
-    //         }
-    //     }).catch(err => console.log("error"))
-    // },[])
+    useEffect(() => {
+        // moduleURL
+        // console.log(location.state.Publish)
+        // if(location.state){
+        //     setPublish(location.state.Publish)
+        // }
+        axios.get(`${URL}/assignment/${slug}`, {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res => {
+                console.log(res.data)
+                setAssignment(res.data)
+            // if (res.data.modules.length > 0) {
+            //     // setAssignment(res.data)
+            // }
+        }).catch(err => console.log(err))
+    },[])
 
 
     const handleSubmission = (id,selectedFile,content,Title) => {
         const formData = new FormData();
 
         formData.append('File', selectedFile);
-        formData.append('Title', Title);
+        formData.append('title', Title);
         formData.append('content', content);
+        formData.append('courseId', slug);
+        
         // console.log(selectedFile)
-        console.log(id,selectedFile,content,Title) 
+        // console.log(id,selectedFile,content,Title)
+        
+        if (id&&(Title.length>0)&&(selectedFile||content.length>0)) {
+            
+            axios.post(`${URL}/assignment`, formData, {
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => {
+                console.log(res);
+                toast.success("Assignment added!")
 
-        if (id&&Title.length>0) {
-            // ${Lecture}/${id}
-            // axios.post(`${URL}/upload/${slug}/${id}`, formData, {
-            //     headers: {
-            //         'Authorization': token
-            //     }
-            // }).then(res => {
-            //     // console.log(res.data);
-            //     toast.success("Lecture added!")
-
-            //     axios.get(`${URL}/course/${slug}`, {
-            //         headers: {
-            //             'Authorization': token
-            //         }
-            //     }).then(res => {
-            //         if (res.data.modules.length > 0) {
-            //             setModules(res.data.modules)
-            //             // console.log(res.data.modules)
-            //         }
-            //     }).catch(err => console.log("error"))
+                axios.get(`${URL}/course/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    // if (res.data.modules.length > 0) {
+                        setAssignment(res.data)
+                        // console.log(res.data.modules)
+                    // }
+                }).catch(err => console.log("error"))
 
                 
-            // })
-            //     .catch((error) => {
-            //         toast.error("There are some problem in network")
-            //         console.error('Error:', error);
-            //     });
+            })
+                .catch((error) => {
+                    toast.error(error.message)
+                    console.error('Error:', error);
+                });
         } else {
-            toast.error("Please select a file")
+            toast.error("Lecture must have a title and a content or file")
         }
     };
 
@@ -142,28 +145,30 @@ const Module = (props) => {
                     
                     {/* <hr className='w-1/4 ml-20 h-3' /> */}
                         
-                        {AnnouncementList.length>0 ? (AnnouncementList.map((item,key) => {
+                        {AssignmentList.length>0 ? (AssignmentList.map((item,key) => {
 
                             return (
 
-                                <div className="container flex flex-col  px-5 mx-auto p-4">
+                                <div className="container flex flex-col  px-5 mx-auto p-4" onClick={
+                                    Navigate('/')
+                                }>
 
-                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
-                                        <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
+                                    <div style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
+                                        <div className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.title}
-                                        </summary>
+                                        </div>
                                         
-                                        <div 
+                                        {/* <div 
                                             className='ml-12 mr-12 mb-8'
                                             dangerouslySetInnerHTML={{ __html: item.content }} 
-                                        />
-                                    </details>
+                                        /> */}
+                                    </div>
                                 </div>
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4  text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
-                                    There is no assignment
+                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                    There are no Assignments
                                 </h1>
                             </div>
                         )

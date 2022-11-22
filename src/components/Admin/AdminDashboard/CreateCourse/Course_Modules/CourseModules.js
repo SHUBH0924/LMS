@@ -23,7 +23,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.110.209:3000"
+    const URL = process.env.REACT_APP_SERVER
     
     const [modules, setModules] = useState([])
     const [Enroll,setEnroll] = useState(false)
@@ -218,24 +218,27 @@ const Module = (props) => {
     }
 
     const DeleteModule = (ModuleId) =>{
-        console.log("course id",slug,"id",ModuleId)
+        // console.log("course id",slug,"id",ModuleId)
         var payload = {
             courseId:slug,
             moduleId:ModuleId
         }
-        axios.delete(`${URL}/lecture`,{
+        axios.delete(`${URL}/course/deleteModule`,{
             headers: {
                 'Authorization': token
             },
             data:payload
         }).then(res=>{
+            console.log(res)
             if(res.status === 200){
-                toast.success("Lecture Deleted")
+                console.log(res)
+                toast.success("Module Deleted")
                 axios.get(`${URL}/course/${slug}`, {
                     headers: {
                         'Authorization': token
                     }
                 }).then(res => {
+                    console.log(res)
                     if (res.data.modules.length > 0) {
                         setModules(res.data.modules)
                         // console.log(res.data.modules)
@@ -271,13 +274,22 @@ const Module = (props) => {
                         <hr className="w-3/5 mx-auto h-2 mb-3" />
                         {
                             (userRole === "Admin")?
-                                (<div className='flex flex-row justify-between'>
-                                    <NewModule createNewCourse={createNewModule} />
-                                    <div className='w-56 mr-12 mt-3 '>
+                                (<div className='flex flex-wrap justify-around ml-10 '>
+                                    <div className='w-56  mt-3 '>
                                     <button 
-                                        className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
                                         onClick={onPublish}>{publish?"UnPublish":"Publish"}
+                                    </button>
+                                    </div>
+
+                                    <NewModule createNewCourse={createNewModule} />
+                                    
+                                    <div className='w-56 -mr-10 mt-3 '>
+                                    <button 
+                                        className="bg-gradient-to-r from bg-red-500 to-red-600  focus:ring-4 focus:outline-none  text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button">delete
+                                        
                                     </button>
                                     </div>
                                 </div>):null
@@ -294,7 +306,7 @@ const Module = (props) => {
                                     
                                         <summary className="item__preview__mod    px-6 capitalize text-xl text-black font-semibold py-6">
                                             {item.name}
-                                            <Link onClick={() => fileRemove(item._id)}>
+                                            <Link onClick={() => DeleteModule(item._id)}>
                                                 <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>
                                                     X
                                                 </span>

@@ -12,7 +12,7 @@ import Header from '../../Header'
 const Admin_Dashboard = () => {
 
     const auth = useAuth()
-    const backendServer = `http://172.29.110.209:3000`
+    const backendServer = process.env.REACT_APP_SERVER
     const [Course, setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();
@@ -97,6 +97,7 @@ const Admin_Dashboard = () => {
                         <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                             published courses
                         </h1>
+                        
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
                         <div className="flex-container flex flex-wrap grid-flow-col justify-items-center px-8 lg:px-8 w-full">
                             <div className="mx-auto md:mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-auto w-full py-6">
