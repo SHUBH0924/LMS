@@ -11,6 +11,7 @@ function Users() {
     const auth = useAuth()
     const token = auth.token
     const [user,setUser] = useState([])
+
     useEffect(()=>{
         axios.get(`${URL}/user`,{
             Authentication : token

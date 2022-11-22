@@ -112,10 +112,10 @@ const Announcement = () => {
                         <Courses courseId={slug}/>
                     </div>
                     <div className='flex flex-col w-full'>
-                    <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                        Announcement
-                    </h1>
-                    <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
+                    <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                            announcement
+                        </h1>
+                        <hr className="w-3/5 mx-auto h-2 mb-5" />
                     <h2 className='mt-5 mb-2 text-xl ml-20 capitalize'>
                             Genral News and Announcement
                     </h2>

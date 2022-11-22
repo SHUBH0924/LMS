@@ -6,7 +6,7 @@ const Card = ({ item, Button, onPublish }) => {
 
 
     return (
-        <div className="group transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-8 rounded-lg max-w-xs mx-4 border-2 bg-white border-gray-200">
+        <div className="mx-auto group transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-12 rounded-lg max-w-xs  border-2 bg-white border-gray-200">
             <a href="#">
                 <img className="relative h-60 w-70 mb-2 delay-150 group-hover:-translate-y-6 rounded-t-lg  duration-300 " src={image} alt="product image" />
             </a>
