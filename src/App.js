@@ -22,6 +22,7 @@ import Announcement from './components/Course/Announcement';
 import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz";
 import Assignment from "./components/Course/Assignment";
 import Mycourses from './components/User/MyCourses';
+import Syllabus from './components/Course/Syllabus';
 
 
 const App = () => {
@@ -115,6 +116,8 @@ const App = () => {
                 <Route path="/assignment/:slug" element={<Assignment />} />
 
                 <Route path="/quiz" element={<Quiz />} />
+
+                <Route path="/syllabus" element={<Syllabus />} />
               
               
               {/* {auth.user &&

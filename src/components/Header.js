@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FcList } from "react-icons/fc";
+import { FiPower } from "react-icons/fi";
 import { useAuth } from "../Auth/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
@@ -38,16 +39,15 @@ const NavBar = () => {
 
 
   return (
-    <div className=' shadow-md overflow-x-hidden mb-3 sticky top-0 left-0'>
-      <div className='md:flex items-center xs:w-screen justify-between bg-gray-800 py-4 md:px-10 '>
+    <div className='shadow-md w-full sticky mb-3 top-0 left-0'>
+      <div className='md:flex items-center justify-between bg-gradient-to-r from-cyan-100 via-purple-100 to-red-100 py-4 md:px-10 px-10'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
-          text-white invisible md:visible '>
-            
-          <span className='text-3xl text-indigo-600 mr-1 pt-2'>
-            <img className="w-16 mb-2 " src={image} alt="Threat Guardian" />
+          text-black'>
+          <span className='text-3xl -ml-6 pt-2'>
+            <img className="w-14 mb-2 select-none" src={image} alt="Threat Guardian" />
           </span>
-          <h1 className='text-3xl invisible md:visible
-          flex ml-4 capitalize'>Threat Guardians</h1> 
+          <h1 className='text-3xl select-none invisible md:visible
+          flex ml-3 capitalize'>Threat Guardians</h1> 
         </div>
 
         <div onClick={() => setOpen(!open)} className='text-3xl absolute right-8 top-8 cursor-pointer md:hidden'>
@@ -55,52 +55,45 @@ const NavBar = () => {
 
           />
         </div>
-
-        <ul className={`md:flex md:items-center md:pb-0 pb-8 mt-4 absolute md:static bg-gray-800 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
-
+          <ul className={`md:flex space-x-6 md:items-center select-none md:pb-0 pb-8 mt-2 md:justify-end absolute md:static bg-gradient-to-r from-purple-100 to bg-red-100 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
+            
           {menus.map((menu, key) => {
-
             return (
               <>
                 {
                   ((menu.role === "both") || (menu.role === userRole)) &&
 
-                  <li className="nav-item">
+                  <li className=" nav-item">
                     <Link
-                      className="px-3 py-2 flex items-center text-xs  ml-2 md:ml-5 uppercase font-bold leading-snug text-white hover:opacity-85"
+                      className="px-1 py-2 flex items-center text-md  md:ml-1 leading-snug text-black hover:opacity-85"
                       to={menu.link}
                       key={key}
                     >
-                      <button className="text-lg text-white hover:border-b-2 border-gray-300 font-medium w-24 h-12 ">{menu.name}</button>
+                      <button className="text-lg font-semibold text-black hover:animate-pulse hover:border-b-2 border-gray-700 w-24 h-12 ">{menu.name}</button>
                     </Link>
+                    
                   </li>
                 }
               </>
             )
           })}
 
-
-
-
-
-
-
           {
-            <li className="ml-2 md:ml-5">
+            <li className="ml-1  md:ml-2">
               <Link
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-85"
+                className=" py-1 flex items-center   font-bold leading-snug text-white hover:opacity-85"
                 onClick={Lgout}
                 to="/Login"
               >
-                <button className="text-md px-3 mr-2 ml-4 bg-red-600 rounded-md py-2 flex items-center text-lg uppercase font-semibold  text-black ">{Logout.name}</button>
+                <button className="px-3 select-none hover:animate-pulse hover:bg-red-700 bg-red-600 rounded-full py-2 flex items-center text-lg  text-white "><FiPower className='mr-1' />{Logout.name}</button>
               </Link>
             </li>
-
           }
 
         </ul>
       </div>
     </div>
+    
   )
 }
 

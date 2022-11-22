@@ -84,7 +84,7 @@ const NewModule = (props) => {
               </div>
             </div>
           </div>
-          <div className="opacity-50 fixed inset-0 z-40 bg-black"></div>
+          <div className=" fixed inset-0 z-40"></div>
         </>
       ) : null}
     </>

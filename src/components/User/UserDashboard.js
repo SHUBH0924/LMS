@@ -6,14 +6,14 @@ import Card from '../Card/Card'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Auth/auth';
 import Header from '../Header'
-import image from '../../assets/mp.png'
+import image from '../../assets/bg1.jpg'
 
 
 function Dashboard() {
     const auth = useAuth()
     const [token, setToken] = useState(auth.token)
     const Navigate = useNavigate()
-    const backendServer = `http://172.29.108.92:3000/course/all`
+    const backendServer = `http://172.29.110.209:3000/course/all`
     const [course,setCourse] = useState([])
 
 
@@ -86,9 +86,9 @@ function Dashboard() {
                     <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                         <div className="mx-auto grid md:grid-cols-3 lg:grid-cols-4 w-full py-6">
                             {course.map((item, key) => {
-
+                                const button = item.enrolled?"Purchase":"open"
                                 return (
-                                    <Card item={item} key={key} Button="Purchase" onPublish={Purchase} />
+                                    <Card item={item} key={key} Button={button} onPublish={Purchase} />
                                 )
                             })}
                         </div>

@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 
 function Users() {
 
-    const URL = "http://172.29.108.92:3000"
+    const URL = "http://172.29.110.209:3000"
     const auth = useAuth()
     const token = auth.token
     const [user,setUser] = useState([])
@@ -86,12 +86,12 @@ function Users() {
             <aside className="flex">
                 {/* <Sidenav /> */}
                 <div className='flex flex-col w-full'>
-                    <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                        users
+                    <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                            users
                     </h1>
-                    <hr className="w-1/4 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
+                    <hr className="w-3/5 mx-auto h-2 mb-5" />
 
-                    <hr className='w-full h-2 mt-6'/>
+                    
                     <h2 className='mt-5 mb-2 capitalize text-2xl ml-20 font-bold'>
                         Permissions
                     </h2>

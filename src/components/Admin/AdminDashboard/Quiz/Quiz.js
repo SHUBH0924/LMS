@@ -22,6 +22,9 @@ function Quiz() {
                 </div>
                 <aside className="flex">
                     {/* <Sidenav /> */}
+                    <div className='flex -mt-6 '>
+                                    <Courses />
+                    </div>
                     <div className='flex flex-col w-full'>
                         <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
                             Quizzes
@@ -31,11 +34,6 @@ function Quiz() {
                             Active Quizzes
                         </h2>
                         <hr className='w-1/4 ml-20 h-3' />
-                        <button
-                            className="appearance-none w-36 block mx-auto bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none   ease-linear transition-all duration-150"
-                            type="button"
-                            onClick={() => setShowModal(true)}
-                        >AddQuiz</button>
                         <AddQuiz isVisble={showModal} onClose={() => setShowModal(false)} >
                             <div className='py-6 px-6 lg:px-8 text-left'>
                                 <h3 className='mb-4 text-xl font-medium text-gray-900'>
@@ -76,9 +74,7 @@ function Quiz() {
                         </AddQuiz>
 
                     </div>
-                    <aside className='flex '>
-                                    <Courses />
-                    </aside>
+                   
                 </aside>
                 
             </div>

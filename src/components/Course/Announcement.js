@@ -19,7 +19,7 @@ const Announcement = () => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.108.92:3000'
+    const URL = 'http://172.29.110.209:3000'
     
     const [AnnouncementList, setAnnouncementList] = useState([])
     
@@ -81,7 +81,7 @@ const Announcement = () => {
             }
         }).then(res=>{
             if(res.status === 200){
-                toast.success("Lecture Deleted")
+                toast.success("Announcement Deleted")
                 axios.get(`${URL}/announcement/${slug}`, {
                     headers: {
                         'Authorization': token
@@ -142,8 +142,8 @@ const Announcement = () => {
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
-                                    There are no modules
+                                <h1 className='mt-6 mb-4  text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                    There is no announcement yet
                                 </h1>
                             </div>
                         )

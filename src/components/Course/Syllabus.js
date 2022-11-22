@@ -11,7 +11,7 @@ import { ImageConfig } from '../ImageConfig';
 import {useLocation} from 'react-router-dom';
 
 
-const Module = (props) => {    
+const Syllabus = (props) => {    
     
     
     const location = useLocation();
@@ -23,7 +23,7 @@ const Module = (props) => {
     const { slug } = useParams();
     const URL = 'http://172.29.110.209:3000'
 
-    const [AnnouncementList, setAnnouncementList] = useState([])    
+    const [Syllabus, setSyllabus] = useState([])    
 
 
     // useEffect(() => {
@@ -136,13 +136,13 @@ const Module = (props) => {
                     </div>
                     <div className='flex flex-col w-full'>
                     <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                        Assignment
+                        Syllabus
                     </h1>
                     <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
                     
                     {/* <hr className='w-1/4 ml-20 h-3' /> */}
                         
-                        {AnnouncementList.length>0 ? (AnnouncementList.map((item,key) => {
+                        {Syllabus.length>0 ? (Syllabus.map((item,key) => {
 
                             return (
 
@@ -162,8 +162,8 @@ const Module = (props) => {
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4  text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
-                                    There is no assignment
+                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                    Coming Soon...
                                 </h1>
                             </div>
                         )
@@ -189,4 +189,4 @@ const Module = (props) => {
     )
 }
 
-export default Module;
+export default Syllabus;
