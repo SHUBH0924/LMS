@@ -21,7 +21,7 @@ const Courses = ({courseId}) => {
         { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:"both"},
         { name: "Discussion", link: "/", icon: RiDiscussFill , role:"both"},
         { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"both"},
-        { name: "Students", link: "/people", icon: BsFillPeopleFill, margin: true ,role:"Admin"},
+        { name: "Students", link: `/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:"Admin"},
         { name: "Pages", link: "/", icon: AiFillBook ,role:"both"},
         { name: "Quizzes", link: "/quiz", icon: MdQuiz ,role:"both"},
         { name: "Syllabus", link: "/", icon: RiPagesFill, role:"both"},
@@ -33,11 +33,11 @@ const Courses = ({courseId}) => {
     
       <section className="flex min-h-screen ">
             <div
-                className="bg-[#232338] min-h-fit w-52  text-gray-300 "
+                className="bg-[#232338] min-h-fit w-56  text-gray-300 "
             >
 
-              <hr className=" h-1 mt-12 bg-slate-300"/>  
-                <div className="mt-6 select-none flex flex-col gap-4 px-3">
+              <hr className=" h-1 mt-14 bg-slate-300"/>  
+                <div className="mt-6 select-none flex flex-col gap-5 px-3">
                     {menus?.map((menu, i) => {
                         return(
                             <>
@@ -46,7 +46,7 @@ const Courses = ({courseId}) => {
                             to={menu.link}
                             key={i}
                             className={` ${menu?.margin && "mt-5"
-                                } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
+                                } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
                         >
 
                             <div>{React.createElement(menu.icon, { size: "20" })}</div>

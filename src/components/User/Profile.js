@@ -19,7 +19,7 @@ function Profile() {
     const [image, setImage] = useState("")
     const [file, setfile] = useState()
 
-    const URL = 'http://172.29.108.92:3000'
+    const URL = 'http://localhost:3000'
     useEffect(() => {
 
         // let endpoints = [

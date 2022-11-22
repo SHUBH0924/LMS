@@ -7,10 +7,11 @@ import { toast } from 'react-hot-toast'
 
 function Users() {
 
-    const URL = "http://172.29.108.92:3000"
+    const URL = "http://localhost:3000"
     const auth = useAuth()
     const token = auth.token
     const [user,setUser] = useState([])
+
     useEffect(()=>{
         axios.get(`${URL}/user`,{
             Authentication : token

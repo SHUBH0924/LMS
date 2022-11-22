@@ -17,7 +17,7 @@ import DropFileInput from './components/Admin/AdminDashboard/Drag_Drop/DropFileI
 import Calendar from "./components/Layout/Calendar/Calendar";
 import Help from "./components/Help"
 import Users from './components/Admin/Users';
-import People from './components/Admin/AdminDashboard/CreateCourse/People'
+import Students from './components/Course/Students';
 import Announcement from './components/Course/Announcement';
 import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz";
 import Assignment from "./components/Course/Assignment";
@@ -93,7 +93,7 @@ const App = () => {
               {/* } */}
               
               {/* <Route path="/users" element={<Users />} />
-              <Route path="/people" element={<People />} /> */}
+              <Route path="/Students" element={<Students />} /> */}
 
               {/* {auth.user &&
                 <Route path="/courses" element={<Courses />} />
@@ -108,7 +108,7 @@ const App = () => {
 
                 <Route path="/users" element={<Users />} />
 
-                <Route path="/people" element={<People />} />
+                <Route path="/Students/:slug" element={<Students />} />
 
                 <Route path="/announcement/:slug" element={<Announcement />} />
 
