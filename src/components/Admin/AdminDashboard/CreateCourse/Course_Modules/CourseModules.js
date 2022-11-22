@@ -250,6 +250,24 @@ const Module = (props) => {
             toast.error(err.message)
         })
     }
+
+    const DeleteCourse = () =>{
+        
+
+        axios.delete(`${URL}/course/${slug}`,{
+            headers: {
+                'Authorization': token
+            }}).then(res=>{
+                console.log(res)
+                if(res.status === 200){
+                    toast.success('Course Deleted')
+                    Navigate('/')
+                }
+
+                }
+        )
+    }
+
     return (
         <>
 
@@ -274,24 +292,33 @@ const Module = (props) => {
                         <hr className="w-3/5 mx-auto h-2 mb-3" />
                         {
                             (userRole === "Admin")?
-                                (<div className='flex flex-wrap justify-around ml-10 '>
-                                    <div className='w-56  mt-3 '>
-                                    <button 
-                                        className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                        onClick={onPublish}>{publish?"UnPublish":"Publish"}
-                                    </button>
+                                (<div className='flex flex-col w-4/6 mx-auto '>
+                                    
+
+                                    <div className='flex flex-row justify-between'>
+                                        <div className='w-56 ml-4 mt-3 '>
+                                        <button 
+                                            className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                            onClick={onPublish}>{publish?"UnPublish":"Publish"}
+                                        </button>
+                                        </div>
+                                        
+                                        
+                                        <div className='w-56 -mr-10 mt-3 '>
+                                        <button 
+                                            className="bg-gradient-to-r from bg-red-500 to-red-600  focus:ring-red-4 focus:outline-none  text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                            onClick={() => DeleteCourse()}
+                                            >delete course
+                                        </button>
+                                        </div>
                                     </div>
 
+                                    <hr className='mx-auto w-full my-4'/>
+
                                     <NewModule createNewCourse={createNewModule} />
-                                    
-                                    <div className='w-56 -mr-10 mt-3 '>
-                                    <button 
-                                        className="bg-gradient-to-r from bg-red-500 to-red-600  focus:ring-4 focus:outline-none  text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button">delete
-                                        
-                                    </button>
-                                    </div>
+
                                 </div>):null
                         }
                         
@@ -302,9 +329,9 @@ const Module = (props) => {
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
 
-                                    <details  className="w-4/5  mx-auto mb-2 bg-gray-50 hover:bg-gray-100  rounded-lg ring-1 ring-gray-500 ">
+                                    <details  className="w-4/5  mx-auto mb-2 bg-gray-50 hover:bg-gray-100  rounded-3xl  ring-1 ring-gray-500 ">
                                     
-                                        <summary className="item__preview__mod    px-6 capitalize text-xl text-black font-semibold py-6">
+                                        <summary className="item__preview__mod select-none transition px-6 capitalize text-xl text-black font-semibold py-6">
                                             {item.name}
                                             <Link onClick={() => DeleteModule(item._id)}>
                                                 <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>

@@ -24,7 +24,7 @@ const Admin_Dashboard = () => {
                 'Authorization': token
             }
         }).then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             setCourse(res.data)
             // console.log(Course) 
         })
@@ -56,21 +56,20 @@ const Admin_Dashboard = () => {
             // console.log(a)
             // setCourse(Course => [...Course, a]);
             toast.success("Course created")
+            axios.get(`${backendServer}/course/all`, {
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => {
+                console.log(res.data)
+                setCourse(res.data)
+                // console.log(Course) 
+            })
         }).catch(err => {
             toast.error("Course not created")
             console.log("err")
         })
         // console.log(unpublished_course)    
-
-        axios.get(`${backendServer}/courses`, {
-            headers: {
-                'Authorization': token
-            }
-        }).then(res => {
-            // console.log(res.data)
-            setCourse(res.data)
-            // console.log(Course) 
-        })
     }
 
 
