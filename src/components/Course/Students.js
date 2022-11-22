@@ -7,7 +7,7 @@ import { useAuth } from '../../Auth/auth'
 
 function Students() {
 
-    // const URL = "http://localhost:3000"
+    const URL = "http://172.29.110.209:3000"
     const auth = useAuth()
     const token = auth.token
     const [stud,setStud] = useState([

@@ -73,7 +73,7 @@ function Register() {
             toast.error("Invalid Number")
         }
         else{
-            axios.post("http://localhost:3000/register",data).then(
+            axios.post("http://172.29.110.209:3000/register",data).then(
                 res=>{
                     // console.log(res)
                     if(res.status === 201){

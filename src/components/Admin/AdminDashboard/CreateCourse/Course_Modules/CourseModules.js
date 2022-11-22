@@ -23,7 +23,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://localhost:3000"
+    const URL = "http://172.29.110.209:3000"
     
     const [modules, setModules] = useState([])
     const [Enroll,setEnroll] = useState(false)

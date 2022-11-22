@@ -4,7 +4,7 @@ import imag from '../../assets/bg1.jpg'
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import { toast } from 'react-hot-toast'
-import Avatar from 'react-avatar'
+// import Avatar from 'react-avatar'
 import pic from '../../assets/bg.jpg'
 
 
@@ -19,7 +19,7 @@ function Profile() {
     const [image, setImage] = useState("")
     const [file, setfile] = useState()
 
-    const URL = 'http://localhost:3000'
+    const URL = 'http://172.29.110.209:3000'
     useEffect(() => {
 
         // let endpoints = [
@@ -128,10 +128,10 @@ function Profile() {
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
                             <div className="mt-3 flex items-center  mb-5">
 
-                                <Avatar
+                                {/* <Avatar
                                     className='rounded-full'
                                     sx={{ width: 24, height: 24 }}
-                                />
+                                /> */}
 
 
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}
@@ -162,7 +162,7 @@ function Profile() {
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-contact">
                                     Contact
                                 </label>
-                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contact" type="int" value={phone} onChange={e => setphone(e.target.value)} />
+                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contact" type="int" value={phone} maxLength="14" onChange={e => setphone(e.target.value)} />
                             </div>
                         </div>
                         <div className="w-full ">
