@@ -131,20 +131,20 @@ export default props => {
 
 
 
-  // useEffect(() => {
-  //   axios.post(`${URL}/course/content`, {
-  //     courseId: courseId,
-  //     moduleId: moduleId,
-  //     lecId: id
-  //   }, {
-  //     headers: {
-  //       'Authorization': token
-  //     }
-  //   }).then(res => {
-  //     // console.log(res.data)
-  //     setContent(res.data)
-  //   })
-  // }, [id])
+  useEffect(() => {
+    axios.post(`${URL}/course/content`, {
+      courseId: courseId,
+      moduleId: moduleId,
+      lecId: id
+    }, {
+      headers: {
+        'Authorization': token
+      }
+    }).then(res => {
+      // console.log(res.data)
+      setContent(res.data)
+    })
+  }, [id])
 
 
   const playerRef = React.useRef(null);
@@ -270,7 +270,7 @@ export default props => {
           {
             (type === "pdf") ? (
               <div className='ml-12 mr-12'>
-                <PDFViewer courseId={courseId} moduleId={moduleId} id={id} url={`course/lecture/${courseId}/${moduleId}/${id}/${token}`}/>
+                <PDFViewer url={`course/lecture/${courseId}/${moduleId}/${id}/${token}`}/>
               </div>) : null
           }
           {(type === "mp4") ? (

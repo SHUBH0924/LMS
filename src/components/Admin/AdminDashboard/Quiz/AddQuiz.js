@@ -1,6 +1,9 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../../../../Auth/auth';  
 import { FcQuestions } from "react-icons/fc";
+import axios from 'axios';
+import toast from 'react-hot-toast';
 // import uuid from 'react-uuid';
 // import FileUploader from '../../../hoc/fileHandler';
 
@@ -23,6 +26,66 @@ const AddQuiz = (props) => {
     })
     setShowModal(!showModal)
   }
+
+  const auth = useAuth()
+    const token = auth.token
+    const userRole = auth.user
+    const Navigate = useNavigate();
+    // Slug is the course id
+    const { slug } = useParams();
+    const URL = 'http://172.29.110.209:3000'
+    
+    const [AnnouncementList, setAnnouncementList] = useState([])
+    
+
+    useEffect(() => {
+       
+        axios.get(`${URL}/announcement/${slug}`, {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res => {
+            console.log(res)
+            if(res.status===200){
+                setAnnouncementList(res.data)
+            }
+        }).catch(err => console.log(err))
+    },[])
+
+    
+    const handleSubmission = (id,content,Title) => {
+        
+        const data = {
+            'title':Title,
+            'content':content,
+            'courseId':slug
+        }
+
+            axios.post(`${URL}/announcement`, data , {
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => {
+                toast.success("Announcement added!")
+                console.log(res)
+                axios.get(`${URL}/announcement/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    console.log(res)
+                    if(res.status===200){
+                        setAnnouncementList(res.data)
+                    }
+                }).catch(err => console.log(err))
+
+                
+            }).catch((err) => {
+                    toast.error(err.message)
+                    console.error('Error:', err);
+                });
+
+    };
 
 
   return (

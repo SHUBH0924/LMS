@@ -1,56 +1,32 @@
 import React, { useEffect, useState } from 'react';
-// import doc from "./Ashvani Resume (1).docx"
-import VideoJS from './Video'
-import videojs from 'video.js';
-// import PdfFile from './Introduction.pdf'
-import { useLocation } from 'react-router-dom';
-import PDFViewer from './PDFViewer';
-import axios from 'axios';
-import { useAuth } from '../../../../../../Auth/auth';
-import Header from '../../../../../Header'
 
-export default props => {
+import { useLocation,useParams } from 'react-router-dom';
+import PDFViewer from '../Admin/AdminDashboard/CreateCourse/Course_Modules/Page/PDFViewer';
+import axios from 'axios';
+import { useAuth } from '../../Auth/auth';
+import Header from '../Header'
+
+const AssignmentPage = (props) => {
 
   const auth = useAuth()
   const token = auth.token
   const location = useLocation();
-//   const lec = location.state.lectures
-
+  // const lec = location.state.assignmentDetail
   const URL = process.env.REACT_APP_SERVER
+  const {assignmentId} = useParams()
 
-//   const [type, setType] = useState(location.state.type)
-//   const [id, setId] = useState(location.state.lectureId)
-//   const [courseId, setCourseId] = useState(location.state.courseId)
-//   const [moduleId, setModuleId] = useState(location.state.moduleId)
-//   const [content, setContent] = useState("")
-//   const [Title, setTitle] = useState(location.state.Title)
-//   const VideoURL = `${URL}/playvideo/${courseId}/${moduleId}/${id}/${token}`
+  const [hasFile, setType] = useState(location.state.hasFile)
 
-
-//   useEffect(() => {
-//     axios.post(`${URL}/course/content`, {
-//       courseId: courseId,
-//       moduleId: moduleId,
-//       lecId: id
-//     }, {
-//       headers: {
-//         'Authorization': token
-//       }
-//     }).then(res => {
-//       // console.log(res.data)
-//       setContent(res.data)
-//     })
-//   }, [id])
-
+  const [content, setContent] = useState(location.state.content)
+  const [Title, setTitle] = useState(location.state.Title)
 
   return (
     <>
-      {/* {console.log(type,id,courseId,moduleId)} */}
+
       <div className='sticky top-0 z-10 '>
         <Header />
       </div>
       <div className=' flex flex-row h-screen bg-white'>
-        
 
         <div className=' flex flex-col w-3/4 ' >
 
@@ -64,9 +40,9 @@ export default props => {
           />
 
           {
-            (type === "pdf") ? (
+            (hasFile) ? (
               <div className='ml-12 mr-12'>
-                <PDFViewer courseId={courseId} moduleId={moduleId} id={id} url={`course/lecture/${courseId}/${moduleId}/${id}/${token}`}/>
+                <PDFViewer url={`assignment/file/${assignmentId}/${token}`}/>
               </div>) : null
           }
           
@@ -77,3 +53,4 @@ export default props => {
 };
 
 
+export default AssignmentPage

@@ -98,15 +98,15 @@ const Admin_Dashboard = () => {
                         </h1>
                         
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                        <div className="flex-container flex flex-wrap grid-flow-col justify-items-center px-8 lg:px-8 w-full">
-                            <div className="mx-auto md:mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mx-auto w-full py-6">
-                                {Course.filter(item => {
+                        <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
+                            <div className="mx-auto grid  md:grid-cols-3 lg:grid-cols-4 w-full py-6">
+                                {Course.length>0?(Course.filter(item => {
                                     return item.published === true
                                 }).map((item,key) => {
                                     return (
                                         <Card key={key} item={item} Button="Edit" onPublish={onPublish} />
                                     )
-                                })}
+                                })):null}
                             </div>
                         </div>
 

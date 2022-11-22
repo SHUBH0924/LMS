@@ -82,11 +82,9 @@ const Module = (props) => {
             setPublish(res.data.published)
             setEnroll(res.data.enrolled)
             setTitle(res.data.name)
-            if (res.data.modules.length > 0) {
-                setModules(res.data.modules)
-                // console.log(res.data.modules)
-            }
-        }).catch(err => console.log("error"))
+            setModules(res.data.modules)
+            
+        }).catch(err => console.log(err))
     },[])
 
     const handleSubmission = (id,selectedFile,content,Title) => {
@@ -150,10 +148,8 @@ const Module = (props) => {
                         'Authorization': token
                     }
                 }).then(res => {
-                    if (res.data.modules.length > 0) {
                         setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
+                    
                 }).catch(err => console.log("error"))
             }
             // console.log(res)
@@ -239,11 +235,9 @@ const Module = (props) => {
                     }
                 }).then(res => {
                     console.log(res)
-                    if (res.data.modules.length > 0) {
                         setModules(res.data.modules)
-                        // console.log(res.data.modules)
-                    }
-                }).catch(err => console.log("error"))
+                    
+                }).catch(err => console.log(err))
             }
             // console.log(res)
         }).catch(err=>{

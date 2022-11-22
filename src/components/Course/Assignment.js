@@ -27,11 +27,7 @@ const Module = (props) => {
 
 
     useEffect(() => {
-        // moduleURL
-        // console.log(location.state.Publish)
-        // if(location.state){
-        //     setPublish(location.state.Publish)
-        // }
+       
         axios.get(`${URL}/assignment/${slug}`, {
             headers: {
                 'Authorization': token
@@ -39,9 +35,7 @@ const Module = (props) => {
         }).then(res => {
                 console.log(res.data)
                 setAssignment(res.data)
-            // if (res.data.modules.length > 0) {
-            //     // setAssignment(res.data)
-            // }
+          
         }).catch(err => console.log(err))
     },[])
 
@@ -67,7 +61,7 @@ const Module = (props) => {
                 console.log(res);
                 toast.success("Assignment added!")
 
-                axios.get(`${URL}/course/${slug}`, {
+                axios.get(`${URL}/assignment/${slug}`, {
                     headers: {
                         'Authorization': token
                     }
@@ -89,39 +83,48 @@ const Module = (props) => {
         }
     };
 
-    // const fileRemove = (ModuleId,LectureID) =>{
-    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
-    //     var payload = {
-    //         courseId:slug,
-    //         moduleId:ModuleId,
-    //         lecId:LectureID
-    //     }
-    //     axios.delete(`${URL}/lecture`,{
-    //         headers: {
-    //             'Authorization': token
-    //         },
-    //         data:payload
-    //     }).then(res=>{
-    //         if(res.status === 200){
-    //             toast.success("Lecture Deleted")
-    //             axios.get(`${URL}/course/${slug}`, {
-    //                 headers: {
-    //                     'Authorization': token
-    //                 }
-    //             }).then(res => {
-    //                 if (res.data.modules.length > 0) {
-    //                     setModules(res.data.modules)
-    //                     // console.log(res.data.modules)
-    //                 }
-    //             }).catch(err => console.log("error"))
-    //         }
-    //         console.log(res)
-    //     }).catch(err=>{
-    //         toast.error(err.message)
-    //     })
-    // }
+    const fileRemove = (AssignmentId) =>{
+
+        axios.delete(`${URL}/assignment/${AssignmentId}`,{
+            headers: {
+                'Authorization': token
+            }
+        }).then(res=>{
+            if(res.status === 200){
+                toast.success("Assignment Deleted")
+                axios.get(`${URL}/assignment/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    console.log(res)
+                    if(res.status===200){
+                        setAssignment(res.data)
+                    }
+                }).catch(err => console.log(err))
+                
+            }
+            console.log(res)
+        }).catch(err=>{
+            toast.error(err.message)
+        })
+    }
 
 
+    const onPageOpen = (title,content,id,hasFile) =>{
+        // if(Enroll || userRole==="Admin"){
+            console.log(title,id,hasFile)
+            Navigate(`/assignment/page/${id}`,{state:{
+                // type:lecItems.type.split('/')[1], 
+                // lectures:modules, 
+                Title:title,
+                content:content,
+                hasFile:hasFile
+            }}) 
+        // }else{
+        //     toast.error("Please Enroll the course")
+        // }
+    }
 
 
     
@@ -148,19 +151,17 @@ const Module = (props) => {
                         {AssignmentList.length>0 ? (AssignmentList.map((item,key) => {
 
                             return (
-
-                                <div className="container flex flex-col  px-5 mx-auto p-4" onClick={
-                                    Navigate('/')
-                                }>
-
-                                    <div style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
+                                <div className="container flex flex-col  px-5 mx-auto p-4" onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
+                                    
+                                    <div style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 drop-file-preview__item" >
                                         <div className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.title}
+                                            {(true)?<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id)}>x</span>:null}
                                         </div>
                                         
                                         {/* <div 
                                             className='ml-12 mr-12 mb-8'
-                                            dangerouslySetInnerHTML={{ __html: item.content }} 
+                                            dangerouslySetInnerH={{TML __html: item.content }} 
                                         /> */}
                                     </div>
                                 </div>

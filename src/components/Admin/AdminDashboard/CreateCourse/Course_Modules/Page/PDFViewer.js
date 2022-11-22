@@ -10,7 +10,7 @@ import { Worker } from '@react-pdf-viewer/core'; // install this library
 import axios from 'axios';
 import { useAuth } from '../../../../../../Auth/auth';
 
-const PDFViewer = ({courseId,moduleId,id,url}) =>{
+const PDFViewer = ({url}) =>{
 
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
   
