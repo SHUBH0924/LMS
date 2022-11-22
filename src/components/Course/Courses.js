@@ -24,7 +24,7 @@ const Courses = ({courseId}) => {
         { name: "Students", link: "/people", icon: BsFillPeopleFill, margin: true ,role:"Admin"},
         { name: "Pages", link: "/", icon: AiFillBook ,role:"both"},
         { name: "Quizzes", link: "/quiz", icon: MdQuiz ,role:"both"},
-        { name: "Syllabus", link: "/", icon: RiPagesFill, role:"both"},
+        { name: "Syllabus", link: "/syllabus", icon: RiPagesFill, role:"both"},
     ];
     const [open] = useState(true);
 

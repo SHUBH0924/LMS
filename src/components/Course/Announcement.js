@@ -81,7 +81,7 @@ const Announcement = () => {
             }
         }).then(res=>{
             if(res.status === 200){
-                toast.success("Lecture Deleted")
+                toast.success("Announcement Deleted")
                 axios.get(`${URL}/announcement/${slug}`, {
                     headers: {
                         'Authorization': token

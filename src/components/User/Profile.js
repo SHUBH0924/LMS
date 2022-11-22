@@ -162,7 +162,7 @@ function Profile() {
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-contact">
                                     Contact
                                 </label>
-                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contact" type="int" value={phone} onChange={e => setphone(e.target.value)} />
+                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contact" type="int" value={phone} maxLength="14" onChange={e => setphone(e.target.value)} />
                             </div>
                         </div>
                         <div className="w-full ">
