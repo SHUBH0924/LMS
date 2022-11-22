@@ -190,7 +190,7 @@ export default props => {
                 
                 
                 
-                <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll border-t-8 border-gray-600 bg-slate-100'>
+                <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll scrollbar-hide border-t-8 border-gray-600 bg-slate-100'>
 
                   <h1 className='mt-2 ml-4 text-4xl font-bold text-black capitalize'>
                     
