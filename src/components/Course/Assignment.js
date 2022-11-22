@@ -21,104 +21,110 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.110.209:3000'
+    const URL = process.env.REACT_APP_SERVER
 
-    const [AnnouncementList, setAnnouncementList] = useState([])    
+    const [AssignmentList, setAssignment] = useState([])    
 
 
-    // useEffect(() => {
-    //     // moduleURL
-    //     // console.log(location.state.Publish)
-    //     if(location.state){
-    //         setPublish(location.state.Publish)
-    //     }
-    //     axios.get(`${URL}/course/${slug}`, {
-    //         headers: {
-    //             'Authorization': token
-    //         }
-    //     }).then(res => {
-    //         if (res.data.modules.length > 0) {
-    //             setModules(res.data.modules)
-    //             console.log(res.data.modules)
-    //         }
-    //     }).catch(err => console.log("error"))
-    // },[])
+    useEffect(() => {
+       
+        axios.get(`${URL}/assignment/${slug}`, {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res => {
+                console.log(res.data)
+                setAssignment(res.data)
+          
+        }).catch(err => console.log(err))
+    },[])
 
 
     const handleSubmission = (id,selectedFile,content,Title) => {
         const formData = new FormData();
 
         formData.append('File', selectedFile);
-        formData.append('Title', Title);
+        formData.append('title', Title);
         formData.append('content', content);
+        formData.append('courseId', slug);
+        
         // console.log(selectedFile)
         // console.log(id,selectedFile,content,Title)
-
-        if (id&&Title.length>0) {
-            // ${Lecture}/${id}
-            axios.post(`${URL}/upload/${slug}/${id}`, formData, {
+        
+        if (id&&(Title.length>0)&&(selectedFile||content.length>0)) {
+            
+            axios.post(`${URL}/assignment`, formData, {
                 headers: {
                     'Authorization': token
                 }
             }).then(res => {
-                // console.log(res.data);
-                toast.success("Lecture added!")
+                console.log(res);
+                toast.success("Assignment added!")
 
-                // axios.get(`${URL}/course/${slug}`, {
-                //     headers: {
-                //         'Authorization': token
-                //     }
-                // }).then(res => {
-                //     if (res.data.modules.length > 0) {
-                //         setModules(res.data.modules)
-                //         // console.log(res.data.modules)
-                //     }
-                // }).catch(err => console.log("error"))
+                axios.get(`${URL}/assignment/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    // if (res.data.modules.length > 0) {
+                        setAssignment(res.data)
+                        // console.log(res.data.modules)
+                    // }
+                }).catch(err => console.log("error"))
 
                 
             })
                 .catch((error) => {
-                    toast.error("There are some problem in network")
+                    toast.error(error.message)
                     console.error('Error:', error);
                 });
         } else {
-            toast.error("Please select a file")
+            toast.error("Lecture must have a title and a content or file")
         }
     };
 
-    // const fileRemove = (ModuleId,LectureID) =>{
-    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
-    //     var payload = {
-    //         courseId:slug,
-    //         moduleId:ModuleId,
-    //         lecId:LectureID
-    //     }
-    //     axios.delete(`${URL}/lecture`,{
-    //         headers: {
-    //             'Authorization': token
-    //         },
-    //         data:payload
-    //     }).then(res=>{
-    //         if(res.status === 200){
-    //             toast.success("Lecture Deleted")
-    //             axios.get(`${URL}/course/${slug}`, {
-    //                 headers: {
-    //                     'Authorization': token
-    //                 }
-    //             }).then(res => {
-    //                 if (res.data.modules.length > 0) {
-    //                     setModules(res.data.modules)
-    //                     // console.log(res.data.modules)
-    //                 }
-    //             }).catch(err => console.log("error"))
-    //         }
-    //         console.log(res)
-    //     }).catch(err=>{
-    //         toast.error(err.message)
-    //     })
-    // }
+    const fileRemove = (AssignmentId) =>{
+
+        axios.delete(`${URL}/assignment/${AssignmentId}`,{
+            headers: {
+                'Authorization': token
+            }
+        }).then(res=>{
+            if(res.status === 200){
+                toast.success("Assignment Deleted")
+                axios.get(`${URL}/assignment/${slug}`, {
+                    headers: {
+                        'Authorization': token
+                    }
+                }).then(res => {
+                    console.log(res)
+                    if(res.status===200){
+                        setAssignment(res.data)
+                    }
+                }).catch(err => console.log(err))
+                
+            }
+            console.log(res)
+        }).catch(err=>{
+            toast.error(err.message)
+        })
+    }
 
 
+    const onPageOpen = (title,content,id,hasFile) =>{
+        // if(Enroll || userRole==="Admin"){
+            console.log(title,id,hasFile)
+            Navigate(`/assignment/page/${id}`,{state:{
+                // type:lecItems.type.split('/')[1], 
+                // lectures:modules, 
+                Title:title,
+                content:content,
+                hasFile:hasFile
+            }}) 
+        // }else{
+        //     toast.error("Please Enroll the course")
+        // }
+    }
 
 
     
@@ -142,28 +148,28 @@ const Module = (props) => {
                     
                     {/* <hr className='w-1/4 ml-20 h-3' /> */}
                         
-                        {AnnouncementList.length>0 ? (AnnouncementList.map((item,key) => {
+                        {AssignmentList.length>0 ? (AssignmentList.map((item,key) => {
 
                             return (
-
-                                <div className="container flex flex-col  px-5 mx-auto p-4">
-
-                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
-                                        <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
+                                <div className="container flex flex-col  px-5 mx-auto p-4" onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
+                                    
+                                    <div style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 drop-file-preview__item" >
+                                        <div className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.title}
-                                        </summary>
+                                            {(true)?<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id)}>x</span>:null}
+                                        </div>
                                         
-                                        <div 
+                                        {/* <div 
                                             className='ml-12 mr-12 mb-8'
-                                            dangerouslySetInnerHTML={{ __html: item.content }} 
-                                        />
-                                    </details>
+                                            dangerouslySetInnerH={{TML __html: item.content }} 
+                                        /> */}
+                                    </div>
                                 </div>
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4  text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
-                                    There is no assignment
+                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                    There are no Assignments
                                 </h1>
                             </div>
                         )

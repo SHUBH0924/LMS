@@ -10,14 +10,14 @@ import { Worker } from '@react-pdf-viewer/core'; // install this library
 import axios from 'axios';
 import { useAuth } from '../../../../../../Auth/auth';
 
-const PDFViewer = ({courseId,moduleId,id,url}) =>{
+const PDFViewer = ({url}) =>{
 
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
   
     const auth =useAuth()
     const token = auth.token
     const [pdf,setPdf] = useState()
-    const URL = 'http://172.29.108.92:3000'
+    const URL = process.env.REACT_APP_SERVER
     // useEffect(()=>{
     //   axios.post(`${URL}/course/lecture/${courseId}/${moduleId}/${id}/${token}`).then(res=>{
     //     // setPdf(res.file)

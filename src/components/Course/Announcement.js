@@ -19,7 +19,7 @@ const Announcement = () => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.110.209:3000'
+    const URL = process.env.REACT_APP_SERVER
     
     const [AnnouncementList, setAnnouncementList] = useState([])
     
@@ -130,7 +130,7 @@ const Announcement = () => {
                                     <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 drop-file-preview__item">
                                         <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
                                             {item.title}
-                                            {(true)?<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id)}>x</span>:null}
+                                            {(userRole==='Admin')?<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id)}>x</span>:null}
                                         </summary>
                                         
                                         <div 
@@ -142,8 +142,8 @@ const Announcement = () => {
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4  text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
-                                    There is no announcement yet
+                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                    There are no Announcements
                                 </h1>
                             </div>
                         )

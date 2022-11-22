@@ -23,7 +23,7 @@ import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz";
 import Assignment from "./components/Course/Assignment";
 import Mycourses from './components/User/MyCourses';
 import Syllabus from './components/Course/Syllabus';
-
+import AssignmentPage from './components/Course/AssignmentPage'
 
 const App = () => {
 
@@ -114,6 +114,7 @@ const App = () => {
                 <Route path="/announcement/:slug" element={<Announcement />} />
 
                 <Route path="/assignment/:slug" element={<Assignment />} />
+                <Route path="/assignment/page/:assignmentId" element={<AssignmentPage />} />
 
                 <Route path="/quiz" element={<Quiz />} />
 

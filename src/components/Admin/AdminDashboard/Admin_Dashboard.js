@@ -12,7 +12,7 @@ import Header from '../../Header'
 const Admin_Dashboard = () => {
 
     const auth = useAuth()
-    const backendServer = `http://172.29.110.209:3000`
+    const backendServer = process.env.REACT_APP_SERVER
     const [Course, setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();
@@ -96,16 +96,17 @@ const Admin_Dashboard = () => {
                         <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                             published courses
                         </h1>
+                        
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
                         <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
                             <div className="mx-auto grid  md:grid-cols-3 lg:grid-cols-4 w-full py-6">
-                                {Course.filter(item => {
+                                {Course.length>0?(Course.filter(item => {
                                     return item.published === true
                                 }).map((item,key) => {
                                     return (
                                         <Card key={key} item={item} Button="Edit" onPublish={onPublish} />
                                     )
-                                })}
+                                })):null}
                             </div>
                         </div>
 
