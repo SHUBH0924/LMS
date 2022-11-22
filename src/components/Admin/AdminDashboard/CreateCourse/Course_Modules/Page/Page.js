@@ -113,7 +113,7 @@ export default props => {
   // }]
   
 
-  const URL = "http://172.29.235.107:3000"
+  const URL = process.env.REACT_APP_SERVER
 
   // const [type, setType] = useState("reading")
   const [type, setType] = useState(location.state.type)
@@ -183,14 +183,14 @@ export default props => {
       <div className='fixed top-0 w-full z-10 '>
         <Header />
       </div>
-      <div className='  flex mt-24 flex-row h-screen bg-white'>
+      <div className='  flex mt-24 flex-row h-screen bg-white' style={{backgroundColor:"#ffffff"}}>
                 
                 
                 
                 
                 
                 
-                <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll border-t-8 border-gray-600 bg-slate-100'>
+                <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll border-t-8 border-gray-600' style={{backgroundColor:"#fcfcfa"}}>
 
                   <h1 className='mt-2 ml-4 text-4xl font-bold text-black capitalize'>
                     
@@ -202,7 +202,7 @@ export default props => {
                     return (
                       <div className='w-full'>
 
-                        <details style={{"width":"95%"}} className=" mx-auto border-b-4 border-gray-100 my-8 rounded-lg bg-transparent shadow-md">
+                        <details style={{"width":"95%",backgroundColor:"#fafaf7",boxShadow:"0px 1px 0px 1px rgba(0, 0, 0, 0.1)"  }} className=" mx-auto border-b-4 border-gray-100 my-8 rounded-lg bg-transparent hover:shadow-inner" >
                           <summary className="w-full capitalize text-xl  text-black font-semibold py-5 ml-4">
                             {item.name}
                           </summary>

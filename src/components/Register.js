@@ -13,6 +13,7 @@ function Register() {
     const NavigateToLogin = () => {
         Navigate('/Login');
       };
+    const URL = process.env.REACT_APP_SERVER
     const [username,setusername] = useState("")
     const [password,setpassword] = useState("")
     const [email,setemail] = useState("")    
@@ -73,7 +74,7 @@ function Register() {
             toast.error("Invalid Number")
         }
         else{
-            axios.post("http://172.29.108.92:3000/register",data).then(
+            axios.post(`${URL}/register`,data).then(
                 res=>{
                     // console.log(res)
                     if(res.status === 201){

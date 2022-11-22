@@ -4,7 +4,7 @@ import imag from '../../assets/bg1.jpg'
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import { toast } from 'react-hot-toast'
-import Avatar from 'react-avatar'
+// import Avatar from 'react-avatar'
 import pic from '../../assets/bg.jpg'
 
 
@@ -19,7 +19,7 @@ function Profile() {
     const [image, setImage] = useState("")
     const [file, setfile] = useState()
 
-    const URL = 'http://172.29.108.92:3000'
+    const URL = process.env.REACT_APP_SERVER
     useEffect(() => {
 
         // let endpoints = [
@@ -127,11 +127,11 @@ function Profile() {
                         <div className="flex  flex-col xs:flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
                             <div className="mt-3 flex items-center  mb-5">
-
+{/* 
                                 <Avatar
                                     className='rounded-full'
                                     sx={{ width: 24, height: 24 }}
-                                />
+                                /> */}
 
 
                                 {/* <button type="file-upload" className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" /> */}

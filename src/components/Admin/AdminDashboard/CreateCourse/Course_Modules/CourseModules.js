@@ -23,7 +23,7 @@ const Module = (props) => {
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
-    const URL = "http://172.29.108.92:3000"
+    const URL = process.env.REACT_APP_SERVER
     
     const [modules, setModules] = useState([])
     const [Enroll,setEnroll] = useState(false)
@@ -218,24 +218,27 @@ const Module = (props) => {
     }
 
     const DeleteModule = (ModuleId) =>{
-        console.log("course id",slug,"id",ModuleId)
+        // console.log("course id",slug,"id",ModuleId)
         var payload = {
             courseId:slug,
             moduleId:ModuleId
         }
-        axios.delete(`${URL}/lecture`,{
+        axios.delete(`${URL}/course/deleteModule`,{
             headers: {
                 'Authorization': token
             },
             data:payload
         }).then(res=>{
+            console.log(res)
             if(res.status === 200){
-                toast.success("Lecture Deleted")
+                console.log(res)
+                toast.success("Module Deleted")
                 axios.get(`${URL}/course/${slug}`, {
                     headers: {
                         'Authorization': token
                     }
                 }).then(res => {
+                    console.log(res)
                     if (res.data.modules.length > 0) {
                         setModules(res.data.modules)
                         // console.log(res.data.modules)
@@ -294,7 +297,7 @@ const Module = (props) => {
                                     
                                         <summary className="item__preview__mod    px-6 capitalize text-xl text-black font-semibold py-6">
                                             {item.name}
-                                            <Link onClick={() => fileRemove(item._id)}>
+                                            <Link onClick={() => DeleteModule(item._id)}>
                                                 <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>
                                                     X
                                                 </span>
