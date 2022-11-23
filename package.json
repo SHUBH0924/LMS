@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^1.9.8",
     "@react-pdf-viewer/core": "^3.8.0",
     "@react-pdf-viewer/default-layout": "^3.8.0",
     "@testing-library/jest-dom": "^5.16.5",
