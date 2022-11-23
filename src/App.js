@@ -121,7 +121,7 @@ const App = () => {
 
                 <Route path="/quiz" element={<Quiz />} />
 
-                <Route path="/syllabus" element={<Syllabus />} />
+                <Route path="/syllabus/:slug" element={<Syllabus />} />
               
               
               {/* {auth.user &&

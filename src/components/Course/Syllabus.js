@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Sidenav from "../Layout/Sidenav"
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,6 +9,7 @@ import Header from '../Header'
 import Courses from '../Course/Courses';
 import { ImageConfig } from '../ImageConfig';
 import {useLocation} from 'react-router-dom';
+import JoditEditor from 'jodit-react';  
 
 
 const Syllabus = (props) => {    
@@ -19,72 +20,47 @@ const Syllabus = (props) => {
     const token = auth.token
     const userRole = auth.user
     const Navigate = useNavigate();
+    const editor = useRef(null)
+    const [content,setContent] = useState('')
+   
     // Slug is the course id
     const { slug } = useParams();
-    const URL = 'http://172.29.110.209:3000'
+    const URL = process.env.REACT_APP_SERVER
 
-    const [Syllabus, setSyllabus] = useState([])    
-
-
-    // useEffect(() => {
-    //     // moduleURL
-    //     // console.log(location.state.Publish)
-    //     if(location.state){
-    //         setPublish(location.state.Publish)
-    //     }
-    //     axios.get(`${URL}/course/${slug}`, {
-    //         headers: {
-    //             'Authorization': token
-    //         }
-    //     }).then(res => {
-    //         if (res.data.modules.length > 0) {
-    //             setModules(res.data.modules)
-    //             console.log(res.data.modules)
-    //         }
-    //     }).catch(err => console.log("error"))
-    // },[])
+    const [Syllabus, setSyllabus] = useState()    
 
 
-    const handleSubmission = (id,selectedFile,content,Title) => {
-        const formData = new FormData();
+    useEffect(() => {
+        axios.get(`${URL}/course/syllabus/${slug}`, {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res => {
+            console.log(res)
+            if(res.status===200){
+                setContent(res.data)
+            }
+        }).catch(err => console.log(err))
+    },[])
 
-        formData.append('File', selectedFile);
-        formData.append('Title', Title);
-        formData.append('content', content);
-        // console.log(selectedFile)
-        // console.log(id,selectedFile,content,Title)
 
-        if (id&&Title.length>0) {
-            // ${Lecture}/${id}
-            axios.post(`${URL}/upload/${slug}/${id}`, formData, {
-                headers: {
-                    'Authorization': token
-                }
-            }).then(res => {
-                // console.log(res.data);
-                toast.success("Lecture added!")
-
-                // axios.get(`${URL}/course/${slug}`, {
-                //     headers: {
-                //         'Authorization': token
-                //     }
-                // }).then(res => {
-                //     if (res.data.modules.length > 0) {
-                //         setModules(res.data.modules)
-                //         // console.log(res.data.modules)
-                //     }
-                // }).catch(err => console.log("error"))
-
-                
-            })
-                .catch((error) => {
-                    toast.error("There are some problem in network")
-                    console.error('Error:', error);
-                });
-        } else {
-            toast.error("Please select a file")
+    const handleSubmission = () => {
+        const data = {
+            'syllabus' : content
         }
-    };
+        console.log(content)
+        // console.log(id,selectedFile,content,Title)
+        axios.post(`${URL}/course/syllabus/${slug}`, data , {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res =>{
+            console.log(res)
+            toast.success("Syllabus added!")
+        }).catch(err=>{
+            toast.error(err.message)
+        })
+    }
 
     // const fileRemove = (ModuleId,LectureID) =>{
     //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
@@ -142,7 +118,7 @@ const Syllabus = (props) => {
                     
                     {/* <hr className='w-1/4 ml-20 h-3' /> */}
                         
-                        {Syllabus.length>0 ? (Syllabus.map((item,key) => {
+                        {/* {Syllabus.length>0 ? (.map((item,key) => {
 
                             return (
 
@@ -167,18 +143,32 @@ const Syllabus = (props) => {
                                 </h1>
                             </div>
                         )
-                        }
+                        } */}
 
 
 
                     {/* </div>   */}
+                    <div 
+                        className='ml-12 mr-12 mb-8'
+                        dangerouslySetInnerHTML={{ __html: content }} 
+                    />
 
                         {
                             (userRole==="Admin")?(
-                            <div className='flex flex-col'>
-                                    <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
+                                <div className='w-4/5 mt-4 mb-8 mx-auto'>
+                                <JoditEditor 
+                                    style={{height:"200px"}}
+                                    ref={editor}
+                                    value={content}
+                                    onChange={newContent=>{
+                                                setContent(newContent)
+                                            }}
+                                 />
                             </div>):null
                         }
+                        <div>
+                            <button className="appearance-none w-36 block mx-auto bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none   ease-linear transition-all duration-150" id="update" type="submit" onClick={handleSubmission}>Submit</button>
+                        </div>
                     </div>
                     
                 </aside>
