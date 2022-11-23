@@ -19,7 +19,7 @@ const Courses = ({courseId}) => {
         { name: "Home ", link: "/", icon: SiHomeadvisor , role:"both"},
         { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:"both"},
         { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:"both"},
-        { name: "Discussion", link: "/", icon: RiDiscussFill , role:"both"},
+        { name: "Discussion", link: `/discussion/${courseId}`, icon: RiDiscussFill , role:"both"},
         { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"both"},
         { name: "Students", link: `/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:"Admin"},
         { name: "Pages", link: "/", icon: AiFillBook ,role:"both"},
