@@ -23,19 +23,19 @@ const AssignmentPage = (props) => {
   return (
     <>
 
-      <div className='sticky top-0 z-10 '>
+      <div className='sticky  top-0 z-10 '>
         <Header />
       </div>
-      <div className=' flex flex-row h-screen bg-white'>
+      <div className=' flex flex-row w-full overflow-x-hidden h-screen bg-white'>
 
-        <div className=' flex flex-col w-3/4 ' >
+        <div className=' flex flex-col w-full  mx-auto ' >
 
           <h1 className='text-4xl mx-auto mt-6 font-bold text-black '>
             {Title}
           </h1>
-          <hr className='mt-8 w-3/5 mx-auto' />
+          <hr className='mt-8 w-3/5 mb-8 mx-auto' />
           <div 
-            className='ml-12 mr-12 mb-8'
+            className='ml-12  mr-12 mb-8'
             dangerouslySetInnerHTML={{ __html: content }} 
           />
 

@@ -21,7 +21,7 @@ const Courses = ({courseId}) => {
         { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:"both"},
         { name: "Discussion", link: "/", icon: RiDiscussFill , role:"both"},
         { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"both"},
-        { name: "Students", link: `/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:"Admin"},
+        { name: "Students", link: `/Students/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:"Admin"},
         { name: "Pages", link: "/", icon: AiFillBook ,role:"both"},
         { name: "Quizzes", link: "/quiz", icon: MdQuiz ,role:"both"},
         { name: "Syllabus", link: "/syllabus", icon: RiPagesFill, role:"both"},
