@@ -31,8 +31,7 @@ function Students() {
 
     const DeleteStud = (id) =>{
         
-
-        axios.delete(`${URL}/user/unenroll/${slug}/${id}`,{
+        axios.patch(`${URL}/user/unenroll/${slug}/${id}`,{
             headers: {
                 'Authorization': token
             }}).then(res=>{
@@ -70,7 +69,7 @@ function Students() {
                             enrolled students
                     </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                    <ul className='w-4/5 mt-12 ml-12 border-2 rounded-lg border-gray-900 divide-y divide-gray-900'>
+                    <ul className='w-4/5 mt-12 ml-12 border-2 rounded-xl border-gray-900 divide-y divide-gray-900'>
                         
                         
                         {stud.map((user,key)=>{
