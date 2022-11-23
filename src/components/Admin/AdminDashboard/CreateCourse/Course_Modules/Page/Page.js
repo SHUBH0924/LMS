@@ -266,7 +266,7 @@ export default props => {
             className='ml-12 mr-12 mb-8'
             dangerouslySetInnerHTML={{ __html: content }} 
           />
-
+   
           {
             (type === "pdf") ? (
               <div className='ml-12 mr-12'>
