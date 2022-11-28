@@ -98,12 +98,13 @@ const Module = (props) => {
 
         if (id&&(Title.length>0)&&(selectedFile||content.length>0)) {
             // ${Lecture}/${id}
+            console.log("post reques us bfibrib")
             axios.post(`${URL}/upload/${slug}/${id}`, formData, {
                 headers: {
                     'Authorization': token
                 }
             }).then(res => {
-                // console.log(res.data);
+                console.log( "This is respinse data", res.data);
                 toast.success("Lecture added!")
 
                 axios.get(`${URL}/course/${slug}`, {
