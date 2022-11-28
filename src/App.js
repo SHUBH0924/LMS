@@ -19,7 +19,7 @@ import Help from "./components/Help"
 import Users from './components/Admin/Users';
 import Students from './components/Course/Students';
 import Announcement from './components/Course/Announcement';
-import Quiz from "../src/components/Admin/AdminDashboard/Quiz/Quiz";
+import Quiz from "../src/components/Course/Quiz/Quiz";
 import Assignment from "./components/Course/Assignment";
 import Mycourses from './components/User/MyCourses';
 import Syllabus from './components/Course/Syllabus';
