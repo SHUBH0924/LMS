@@ -6,14 +6,14 @@ import { FcAcceptDatabase } from "react-icons/fc";
 
 const Create_Course = (props) => {
   const [showModal, setShowModal] = React.useState(false);
-
+  const [file, setfile] = useState()
   const [a, seta] = useState({
     // _id:uuid(),
     name: "",
     license: "Private(CopyRight)",
     published: false,
     price: 0,
-    // imgFile:null
+    imgFile:file
   })
 
   const Create_Course = () => {
@@ -68,6 +68,10 @@ const Create_Course = (props) => {
                 {/* {/body/} */}
                 <div className="relative p-5 flex-auto">
                   <form className="space-y-10 w-full">
+                    <div>
+                      <label for="Course" className="block mb-2 text-md font-medium text-gray-200">Course Image</label>
+                      <input type="file" accept="image/*"  name="Course" id="image" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 outline-none placeholder-gray-400 text-white" required value={a.imgFile} onChange={e => seta({ ...a, imgFile: e.target.value })} />
+                    </div>
                     <div>
                       <label for="Course" className="block mb-2 text-md font-medium text-gray-200">Course Name</label>
                       <input type="text" name="Course" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 outline-none placeholder-gray-400 text-white" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />
