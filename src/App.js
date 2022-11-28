@@ -25,6 +25,7 @@ import Mycourses from './components/User/MyCourses';
 import Syllabus from './components/Course/Syllabus';
 import AssignmentPage from './components/Course/AssignmentPage'
 import Discussion from './components/Course/Discussion';
+import QuizView from './components/User/QuizView';
 
 const App = () => {
 
@@ -103,7 +104,10 @@ const App = () => {
 
               {/* {auth.user && */}
                 <Route path="/calendar" element={<Calendar />} />
+
+                <Route path="/quizview" element={<QuizView />} />
               
+                
 
               {/* {auth.user && */}
                 <Route path="/help" element={<Help />} />
