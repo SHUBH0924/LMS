@@ -51,14 +51,14 @@ const NewModule = (props) => {
                 </div>
                 {/* {/body/} */}
                 <div className="relative p-5 flex-auto">
-                  <form class="space-y-10 w-full">
+                  <form className="space-y-10 w-full">
                     <div>
-                      <label for="Course" class="block mb-2 text-sm font-medium text-gray-300">Module Name</label>
-                      <input type="text" name="Course" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />
+                      <label for="Course" className="block mb-2 text-sm font-medium text-gray-300">Module Name</label>
+                      <input type="text" name="Course" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />
                     </div>
                     <div>
-                      <label for="Course" class="block mb-2 text-sm font-medium text-gray-300">Description</label>
-                      <textarea name="Price" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.price} onChange={e => seta({ ...a, desc: e.target.value })} />
+                      <label for="Course" className="block mb-2 text-sm font-medium text-gray-300">Description</label>
+                      <textarea name="Price" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.price} onChange={e => seta({ ...a, desc: e.target.value })} />
                     </div>
 
                   </form>

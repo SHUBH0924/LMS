@@ -6,7 +6,13 @@ import { FcAcceptDatabase } from "react-icons/fc";
 
 const Create_Course = (props) => {
   const [showModal, setShowModal] = React.useState(false);
+  // const [cimage, setCimage] = useState ([]);
 
+  // function onImageChange(e){
+  //   setCimage([...e.target.files])
+  // }
+
+   
   const [a, seta] = useState({
     // _id:uuid(),
     name: "",
@@ -15,6 +21,8 @@ const Create_Course = (props) => {
     price: 0,
     // imgFile:null
   })
+ 
+
 
   const Create_Course = () => {
     props.createNewCourse({ a })
@@ -26,6 +34,7 @@ const Create_Course = (props) => {
       price: 0,
       imgFile: null
     })
+
     setShowModal(!showModal)
   }
 
@@ -57,10 +66,10 @@ const Create_Course = (props) => {
             className=" backdrop-blur-sm  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="  relative w-full md:w-2/5 my-10 mx-auto ">
               {/* {/content/} */}
-              <div className="border-slate-200 border-0 rounded-3xl shadow-lg relative flex flex-col w-full bg-gray-700 outline-none focus:outline-none">
+              <div className="border-slate-200 border-0 rounded-3xl opacity-95 shadow-lg relative flex flex-col w-full bg-gray-50 outline-none focus:outline-none">
                 {/* {/header/} */}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="capitalize select-none text-4xl text-white font-semibold  mx-auto">
+                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-700 rounded-t">
+                  <h3 className="capitalize select-none text-4xl text-black font-semibold  mx-auto">
                     Create Course
                   </h3>
 
@@ -68,17 +77,21 @@ const Create_Course = (props) => {
                 {/* {/body/} */}
                 <div className="relative p-5 flex-auto">
                   <form className="space-y-10 w-full">
-                    <div>
-                      <label for="Course" className="block mb-2 text-md font-medium text-gray-200">Course Name</label>
-                      <input type="text" name="Course" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 outline-none placeholder-gray-400 text-white" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />
+                    <div className=" flex items-center select-none mx-auto ">
+                      <span className='text-black font-semibold'>Course Image</span>
+                      <input className="ml-5 border border-gray-700 rounded-full bg-gray-200 py-2 px-3 text-sm font-medium leading-4 text-black shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" accept='image/*' required value={a.imgFile} onChange={e => seta({ ...a, imgFile: e.target.files })} />
                     </div>
                     <div>
-                      <label for="Course" className="block mb-2 text-md font-medium text-gray-200">Price</label>
-                      <input type="number" name="Price" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 outline-none placeholder-gray-400 text-white" required value={a.price} onChange={e => seta({ ...a, price: e.target.value })} />
+                      <label for="Course" className="block mb-2 text-lg font-medium text-gray-900">Course Name</label>
+                      <input type="text" name="Course" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-500 outline-none placeholder-gray-700 text-gray-600" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />
                     </div>
                     <div>
-                      <label for="Course" className="block mb-2 text-md font-medium text-gray-200">Content License</label>
-                      <select name="cars" id="cars" className=" text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-blue-500 outline-none focus:border-blue-500" value={a.license} onChange={e => seta({ ...a, license: e.target.value })}>
+                      <label for="Course" className="block mb-2 text-lg font-medium text-gray-900">Price</label>
+                      <input type="number" name="Price" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-500 outline-none placeholder-gray-700 text-gray-600" required value={a.price} onChange={e => seta({ ...a, price: e.target.value })} />
+                    </div>
+                    <div>
+                      <label for="Course" className="block mb-2 text-lg font-medium text-gray-900">Content License</label>
+                      <select name="cars" id="cars" className=" text-sm rounded-lg block w-full p-2.5 bg-gray-200 border-gray-500 placeholder-gray-700 text-gray-600 focus:ring-blue-500 outline-none focus:border-blue-500" value={a.license} onChange={e => seta({ ...a, license: e.target.value })}>
                         <option selected>Choose type</option>
                         <option value="Private(CopyRight)">Private(CopyRight)</option>
                         <option value="Public">Public</option>
@@ -86,14 +99,14 @@ const Create_Course = (props) => {
                         <option value="audi">Audi</option>
                       </select>
                     </div>
-                    <div>
+                    
                       {/* <label for="Course" className="block mb-2 text-sm font-medium text-gray-300">/image</label> */}
-                      {/* <input type="file" name="file" id="file" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.file} onChange={FileSet} /> */}
+                      {/* <input type="file" name="file" id="file" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-500 placeholder-gray-700 text-white" required value={a.file} onChange={FileSet} /> */}
                       {/* <FileUploader
                             onFileSelectSuccess={(imgFile) => seta({...a,imgFile})}
                             onFileSelectError={({ error }) => alert(error)}
                           /> */}
-                    </div>
+                    
                   </form>
 
                 </div>
@@ -117,7 +130,7 @@ const Create_Course = (props) => {
               </div>
             </div>
           </div>
-          <div className=" opacity-50 fixed inset-0 z-40"></div>
+          <div className=" opacity-50 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
     </>
