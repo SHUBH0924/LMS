@@ -180,7 +180,7 @@ const Module = (props) => {
                     {/* </div>   */}
 
                         {
-                            (userRole==="Admin")?(
+                            (userRole==="Admin") || (userRole === "student")?(
                             <div className='flex flex-col'>
                                     <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
                             </div>):null
