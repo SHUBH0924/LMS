@@ -31,6 +31,7 @@ function Profile() {
             }).then(res => {
                 console.log(res)
                 let data = res.data
+                setfile(data.file)
                 setUserId(data._id)
                 setname(data.name)
                 setemail(data.email)

@@ -36,7 +36,7 @@ const Courses = ({courseId}) => {
                 className="bg-[#232338] min-h-fit w-56  text-gray-300 "
             >
 
-              <hr className=" h-1 mt-14 bg-slate-300"/>  
+              {/* <hr className=" h-1 mt-14 bg-slate-300"/>   */}
                 <div className="mt-6 select-none flex flex-col gap-5 px-3">
                     {menus?.map((menu, i) => {
                         return(
