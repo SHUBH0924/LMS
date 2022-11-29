@@ -349,7 +349,7 @@ const Module = (props) => {
                                                             style={{width:"100%"}} 
                                                             onClick={()=> onPageOpen(item,items)
                                                             }>
-                                                            <img className="opacity-50 w-24" src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
+                                                            <img className="opacity-70 w-24" src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                             <div className="drop-file-preview__item__info" >
                                                                 <h2>{items.name}</h2>
                                                                 {/* <p>{items.size}B</p> */}

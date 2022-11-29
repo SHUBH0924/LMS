@@ -58,23 +58,21 @@ function QuizView() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex flex-row mx-auto mt-4 justify-center'>
+                            <div className='flex flex-row mx-auto mb-3 mt-10 space-x-4 justify-center'>
                                 <div>
-                                    <button className='bg-purple-600 capitalize font-semibold w-40 hover:bg-purple-700 shadow-xl py-2 rounded-md text-white px-4 mr-2'>
-                                       previous<span>< AiOutlineArrowLeft /></span>
-                                       
-                                        
+                                    <button className='text-md flex flex-row bg-purple-600 capitalize font-semibold w-28 hover:bg-purple-700 shadow-xl py-2 rounded-md text-white px-2 mr-2'>
+                                    <span className='mt-1 mr-1'>
+                                        < AiOutlineArrowLeft size={20}/>
+                                    </span>
+                                        previous
                                     </button>
                                 </div>
                                 <div>
-                                    <button className='bg-purple-600 capitalize font-semibold hover:bg-purple-700 shadow-xl py-2 rounded-md text-white px-4 mx-2'>
-                                        save
-                                    </button>
-                                </div>
-                                <div>
-                                    <button className='bg-purple-600 capitalize font-semibold hover:bg-purple-700 shadow-xl py-2 rounded-md text-white px-4 ml-2'>
-                                        save and next<span><AiOutlineArrowRight /></span>
-                                        
+                                    <button className='text-md flex  flex-row bg-purple-600 capitalize font-semibold w-32 hover:bg-purple-700 shadow-xl py-2 rounded-md text-white px-2 mr-2'>
+                                        save & next
+                                    <span className='mt-1 ml-1 -mr-2'>
+                                        < AiOutlineArrowRight size={20}/>
+                                    </span>
                                     </button>
                                 </div>
                             </div>

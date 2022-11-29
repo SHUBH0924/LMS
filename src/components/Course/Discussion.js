@@ -1,8 +1,13 @@
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef, useEffect} from 'react'
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, ConversationHeader,Avatar,StarButton, InfoButton,  } from '@chatscope/chat-ui-kit-react';
 import pic from '../User/programmer.png'
 import Header from '../Header'
+import io from 'socket.io-client'
+
+const socket = io.connect(process.env.REACT_APP_SERVER)
+
+
 const Discussion = () =>{
 
     const inputRef = useRef();
@@ -17,7 +22,13 @@ const Discussion = () =>{
     }]);
     setMsgInputValue("");
     inputRef.current.focus();
+    socket.emit('sendMessage',msgInputValue)
   };
+
+  useEffect(()=>{
+      socket.on()
+  },[socket])
+
 
   return (
                 <div style={{height: "100vh"}}>          
@@ -34,12 +45,24 @@ const Discussion = () =>{
                                 </ConversationHeader.Actions>          
                                 </ConversationHeader>
                                 <MessageList scrollBehavior="smooth" >
-                                  {messages.map((m, i) => <Message key={i} model={m} />)}
+                                  {messages.map((m, i) => 
+                                      
+                                      <Message key={i} model={m}>
+                                        <Message.Header sender="Emily" sentTime="just now" />
+                                      </Message>
+                                  )
+                                  }
                                 </MessageList>
                                 <MessageInput placeholder="Type message here" onSend={handleSend} onChange={setMsgInputValue} value={msgInputValue} ref={inputRef} />
                       </ChatContainer>
                       </MainContainer>
-                </div>)
+                </div>
+                // <>
+                //   <input placeholder="Message" />
+                //   <button onClick={sendMessage}>Send</button>
+                // </>
+              
+                )
 }
 
 export default Discussion
