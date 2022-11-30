@@ -12,10 +12,10 @@ import Courses from '../Courses'
 function Quiz() {
     const [showModal, setShowModal] = useState(false)
 
-    const quiz =  [{
+    const [quiz,setQuiz] =  useState([{
         quizTitle: "React Quiz Component Demo",
         quizSynopsis: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim",
-        nrOfQuestions: "4",
+        // nrOfQuestions: "4",
         questions: [
           {
             "question": "How can you access the state of a component from inside of a member function?",
@@ -110,11 +110,11 @@ function Quiz() {
             "point": "20"
           },
         ]
-      } ]
+      } ])
 
 
     const createNewQuiz = ({a}) =>{
-        console.log(a)
+        setQuiz(oldarray=>[...oldarray,a])
     }
     
     return (
@@ -156,9 +156,8 @@ function Quiz() {
                                             </Link> */}
                                             
                                         </summary>
-                                        
-                                        {
-                                            
+                                        <p>{item.quizSynopsis}</p>
+                                        {   
                                             item.questions.map((items,key)=>{
                                                 
                                                 return(
