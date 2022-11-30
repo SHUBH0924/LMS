@@ -77,7 +77,7 @@
     padding: 10px;
     border-radius: 15px;
     font-family: sans-serif;
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .drop-file-preview__item img {
@@ -97,7 +97,8 @@
 
 
 .drop-file-preview__item__del {
-    background-color: #DC4646;
+    background-color: #DF5858;
+    color: #ffffff;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -106,7 +107,7 @@
     justify-content: center;
     position: absolute;
     right: 15px;
-    font-size: 25px;
+    font-size: 20px;
     top: 50%;
     transform: translateY(-50%);
     box-shadow: #910707;

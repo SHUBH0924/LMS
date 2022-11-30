@@ -12,6 +12,8 @@ import { ImageConfig } from '../../../../ImageConfig';
 // import {useLocation} from 'react-router-dom';
 import  '../.././Drag_Drop/drop-file-input.css';
 import { Link } from 'react-router-dom';
+import { AiOutlineClose } from "react-icons/ai";
+
 
 const Module = (props) => {    
     
@@ -329,9 +331,9 @@ const Module = (props) => {
                                         <summary className="item__preview__mod select-none transition px-6 capitalize text-xl text-black font-semibold py-6">
                                             {item.name}
                                             <Link onClick={() => DeleteModule(item._id)}>
-                                                <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>
-                                                    X
-                                                </span>
+                                            {(userRole==="Admin")&&<span className='item__preview__mod__del   float-right bg-red-500 pt-2 pl-1 text-white font-bold text-lg -mt-2 h-9 w-9  rounded-full'>
+                                                    <AiOutlineClose size={23} className="ml-0.5 mb-0.5"/>
+                                                </span>}
                                             </Link>
                                             
                                         </summary>
@@ -355,7 +357,7 @@ const Module = (props) => {
                                                                 {/* <p>{items.size}B</p> */}
                                                             </div>
                                                         </div>
-                                                        {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>}
+                                                        {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}><AiOutlineClose  /></span>}
                                                     </div>
                                                     </>  
                                                 )
@@ -375,7 +377,7 @@ const Module = (props) => {
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                <h1 className='px-6 select-none capitalize text-3xl text-gray-700 font-semibold py-6 mx-auto' style={{ textAlign: "center" }}>
                                     There are no modules
                                 </h1>
                             </div>

@@ -168,7 +168,7 @@ const Module = (props) => {
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                <h1 className='mt-6 mb-4 capitalize text-gray-500 text-4xl mx-auto font-semibold' style={{ textAlign: "center" }}>
                                     There are no Assignments
                                 </h1>
                             </div>
@@ -180,7 +180,7 @@ const Module = (props) => {
                     {/* </div>   */}
 
                         {
-                            (userRole==="Admin")?(
+                            (userRole==="Admin") || (userRole === "student")?(
                             <div className='flex flex-col'>
                                     <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
                             </div>):null
