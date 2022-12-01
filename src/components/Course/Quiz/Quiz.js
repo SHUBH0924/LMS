@@ -7,7 +7,7 @@ import Header from '../../Header'
 import Sidenav from '../../Layout/Sidenav'
 import AddQuiz from './AddQuiz'
 import Courses from '../Courses'
-
+import AddQuestion from './AddQuestion'
 
 function Quiz() {
     const [showModal, setShowModal] = useState(false)
@@ -116,6 +116,10 @@ function Quiz() {
     const createNewQuiz = ({a}) =>{
         setQuiz(oldarray=>[...oldarray,a])
     }
+
+    const createNewQuestion = ({a}) =>{
+      console.log(a)
+    }
     
     return (
         <>
@@ -156,6 +160,7 @@ function Quiz() {
                                             </Link> */}
                                             
                                         </summary>
+                                        <AddQuestion createNewQuiz={createNewQuestion} />
                                         <p>{item.quizSynopsis}</p>
                                         {   
                                             item.questions.map((items,key)=>{
