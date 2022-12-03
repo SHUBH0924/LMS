@@ -51,18 +51,21 @@ const AssignmentPage = (props) => {
                 <PDFViewer url={`assignment/file/${assignmentId}/${token}`}/>
               </div>) : null
           }
+          {
+            (userRole==="Student")?(
+              <div>
+                <div className="w-full md:w-1/2 px-3">
+                  <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Upload Assignment
+                  </label>
+                  <input className="appearance-none block w-15 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight  " id="grid-contact" type="file" accept='.pdf, .doc, .docx' />
+                </div>
+                <div className='w-full md:w-1/2 px-3'>
+                  <button className="appearance-none mt-4 w-36 block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="update" type="file" >Upload</button>
+                </div>
           
-          <div>
-              <div className='mt-8'>
-                <span>
-                <label className="appearance-none w-36 block mx-auto block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2">
-                 Upload Assignment  <input className='mx-auto mb-5'  type="file"  placeholder='Upload Assignment'/>
-                </label>
-                  <button className="appearance-none w-36 block mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="update" type="file" >Upload</button>
-                  </span>
-              </div>
-          </div>
-          
+              </div>): null
+          }
         </div>
       </div>
     </>
