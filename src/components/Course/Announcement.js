@@ -9,6 +9,7 @@ import Header from '../Header'
 import Courses from '../Course/Courses';
 import { ImageConfig } from '../ImageConfig';
 import {useLocation} from 'react-router-dom';
+import { AiOutlineClose } from "react-icons/ai";
 
 
 const Announcement = () => {    
@@ -116,7 +117,7 @@ const Announcement = () => {
                             announcement
                         </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                    <h2 className='mt-5 mb-2 text-xl ml-20 capitalize'>
+                    <h2 className='mt-5 mb-2 text-xl ml-28 capitalize'>
                             Genral News and Announcement
                     </h2>
                     <hr className='w-1/4 ml-20 h-3' />
@@ -126,23 +127,28 @@ const Announcement = () => {
                             return (
 
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
-
-                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 drop-file-preview__item">
-                                        <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
-                                            {item.title}
-                                            {(userRole==='Admin')?<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id)}>x</span>:null}
-                                        </summary>
+                                    <div className='flex w-4/5 group mx-auto select-none h-max py-6 px-6 mb-10 flex-col rounded-lg bg-[linear-gradient(135deg,_#ffe4e1_50%,_#f5f5dc_40%)] text-black'>
+                                        <div className='flex flex-row'>    
+                                            <h1 className=' select-none px-7 mb-3 underline underline-offset-8 capitalize text-3xl text-black font-semibold mx-auto'>
+                                                {item.title}
+                                            </h1>
+                                            {(userRole==='Admin')?
+                                            <span className=" float-right ease-in-out transition-all duration-200 delay-150 invisible group-hover:visible bg-red-500 rounded-full w-8 h-8  text-white" onClick={() => fileRemove(item._id)}>
+                                                <AiOutlineClose size={23} className="mx-auto mt-1"/>
+                                            </span>:null}
+                                            
+                                        </div>
                                         
                                         <div 
-                                            className='ml-12 mr-12 mb-8'
+                                            className='ml-12 mr-12 mb-8 text-lg mt-4 '
                                             dangerouslySetInnerHTML={{ __html: item.content }} 
                                         />
-                                    </details>
+                                    </div>
                                 </div>
                             )
                         })) : (
                             <div>
-                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                <h1 className='mt-6 mb-4 capitalize text-3xl mx-auto font-semibold text-gray-500' style={{ textAlign: "center" }}>
                                     There are no Announcements
                                 </h1>
                             </div>
