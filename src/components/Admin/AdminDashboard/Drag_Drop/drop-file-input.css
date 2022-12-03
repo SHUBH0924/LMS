@@ -61,9 +61,9 @@
 }
 
 .drop-file-preview__item:hover{
-    background-color: #D0D3D4;
+    background-color: #dee0e0;
     .drop-file-preview__item__details{
-        background-color: #D0D3D4;
+        background-color: #dee0e0;
     }
 }
 
