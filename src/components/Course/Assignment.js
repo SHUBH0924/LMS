@@ -9,6 +9,7 @@ import Header from '../Header'
 import Courses from '../Course/Courses';
 import { ImageConfig } from '../ImageConfig';
 import {useLocation} from 'react-router-dom';
+import { AiOutlineClose } from "react-icons/ai";
 
 
 const Module = (props) => {    
@@ -156,7 +157,9 @@ const Module = (props) => {
                                     <div style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2 rounded-full ring-1 ring-gray-500 drop-file-preview__item" >
                                         <div className="px-6 capitalize text-xl  text-black font-semibold py-6 ">
                                             {item.title}
-                                            {(true)?<span className="drop-file-preview__item__del mr-2" onClick={() => fileRemove(item._id)}>x</span>:null}
+                                            {(true)?<span className="drop-file-preview__item__del mr-2" onClick={() => fileRemove(item._id)}>
+                                                <AiOutlineClose size={23} />
+                                            </span>:null}
                                         </div>
                                         
                                         {/* <div 

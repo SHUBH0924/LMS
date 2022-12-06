@@ -71,10 +71,6 @@ const Create_Course = (props) => {
                 {/* {/body/} */}
                 <div className="relative p-5 flex-auto">
                   <form className="space-y-10 w-full">
-                    <div className=" flex items-center select-none mx-auto ">
-                      <span className='text-black font-semibold'>Course Image</span>
-                      <input className="ml-5 border border-gray-700 rounded-full bg-gray-200 py-2 px-3 text-sm font-medium leading-4 text-black shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="file" accept='image/*' required value={a.imgFile} onChange={e => seta({ ...a, imgFile: e.target.files })} />
-                    </div>
                     <div>
                       <label for="Course" className="block mb-2 text-md font-medium text-gray-900">Course Name</label>
                       <input type="text" name="Course" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-500 outline-none placeholder-gray-700 text-gray-600" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />

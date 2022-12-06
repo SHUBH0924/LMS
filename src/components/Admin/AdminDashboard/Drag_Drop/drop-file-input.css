@@ -1,10 +1,13 @@
+summary {
+  list-style-type: none;
+}
 
-
+  
 .drop-file-input {
     position: relative;
     width: 700px;
     height: 250px;
-    border: 2px dashed #9C9C9C;
+    border: 2px dashed #7c7c7c;
     border-radius: 20px;
     border-width: medium;
     display: flex;
@@ -61,9 +64,9 @@
 }
 
 .drop-file-preview__item:hover{
-    background-color: #dee0e0;
+    background-color: #eeefef;
     .drop-file-preview__item__details{
-        background-color: #dee0e0;
+        background-color: #eeefef;
     }
 }
 
@@ -72,16 +75,17 @@
 .drop-file-preview__item {
     position: relative;
     display: flex;
+    border:1px solid;
     margin-bottom: 15px;
-    background-color: #F8F9F9  ;
+    background-color: #dee0e0  ;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 5px;
     font-family: sans-serif;
     font-weight: 400;
 }
 
 .drop-file-preview__item img {
-    width: 60px;
+    width: 55px;
     
 }
 
@@ -99,8 +103,8 @@
 .drop-file-preview__item__del {
     background-color: #DF5858;
     color: #ffffff;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     display: flex;
     align-items: center;

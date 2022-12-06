@@ -14,8 +14,8 @@ import '../.././Drag_Drop/drop-file-input.css';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai";
 import ci from '../../../../../assets/bg1.jpg'
-import { MdAddAPhoto} from "react-icons/md";
-
+import { MdAddAPhoto } from "react-icons/md";
+import { RiErrorWarningFill } from "react-icons/ri";
 
 const Module = (props) => {
 
@@ -28,7 +28,7 @@ const Module = (props) => {
     // Slug is the course id
     const { slug } = useParams();
     const URL = process.env.REACT_APP_SERVER
-
+    const [showModal, setShowModal] = React.useState(false);
     const [modules, setModules] = useState([])
     const [Enroll, setEnroll] = useState(false)
     const [publish, setPublish] = useState()
@@ -268,6 +268,7 @@ const Module = (props) => {
 
         }
         )
+        setShowModal(!showModal)
     }
 
     return (
@@ -297,11 +298,11 @@ const Module = (props) => {
                                 (<div className='flex select-none flex-row divide-x-2 divide-gray-400 mb-10 w-full justify-center mx-auto '>
                                     <div className='w-1/3  relative invisible md:visible'>
                                         <div className='w-4/5 h-72 group relative'>
-                                            <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-72 rounded-xl '> 
-                                                <MdAddAPhoto size={60} className="ml-44 mt-28 absolute  "/>
-                                                <input className=" w-full h-72 opacity-0" type="file" accept='image/*'/>
+                                            <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-72 rounded-xl '>
+                                                <MdAddAPhoto size={60} className="ml-44 mt-28 absolute  " />
+                                                <input className=" w-full h-72 opacity-0" type="file" accept='image/*' />
                                             </div>
-                                            <img className="w-full h-full  rounded-xl" src={ci} alt="course image"/>
+                                            <img className="w-full h-full  rounded-xl" src={ci} alt="course image" />
                                         </div>
                                     </div>
                                     <div className='flex flex-col space-y-10 pl-16 '>
@@ -316,9 +317,10 @@ const Module = (props) => {
                                             <button
                                                 className="bg-gradient-to-r from-red-500 to-red-600  focus:ring-red-4 focus:outline-none  text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                                 type="button"
-                                                onClick={() => DeleteCourse()}
+                                                onClick={() => setShowModal(true)}
                                             >delete course
                                             </button>
+
                                         </div>
                                         <div className=''>
                                             <NewModule createNewCourse={createNewModule} />
@@ -327,18 +329,45 @@ const Module = (props) => {
                                 </div>) : null
                         }
 
+                        {showModal ? (
+                            <div className='w-full z-50 backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-scroll scrollbar-hide fixed inset-0 outline-none focus:outline-none'>
+                                <div className='flex flex-col my-10 py-2  border-black border-2 rounded-xl  shadow-2xl relative bg-white outline-none focus:outline-none w-2/5'>
+                                    <div className="flex items-start justify-between p-2  rounded-t">
+                                        <div className='flex text-black mx-auto'>
+                                            <RiErrorWarningFill size={40} />
+                                        </div>
+                                    </div>
+                                    <div className='flex px-3 py-2'>
+                                        <p className='text-black font-semibold mx-auto text-xl'>
+                                            Are you sure you want to delete this ?
+                                        </p>
+                                    </div>
+                                    <div className='flex w-full border-t border-solid border-slate-600 mt-3'>
+                                        <div className='flex flex-row pb-3 pt-1  mx-auto space-x-6 justify-center'>
+                                            <button className='flex capitalize font-semibold text-white px-3 mt-3 py-2 rounded-md bg-red-600' onClick={() => DeleteCourse()}>
+                                                delete
+                                            </button>
+                                            <button className='flex capitalize font-semibold text-white px-3 mt-3 py-2 rounded-md bg-blue-600' onClick={() => setShowModal(false)}>
+                                                cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : null}
+
                         {modules ? (modules.map((item, key) => {
 
                             return (
 
-                                <div className="container flex flex-col px-5 mx-auto p-4">
-                                    <details className="w-4/5  mx-auto  bg-gray-50 hover:bg-gray-100  rounded-3xl  ring-1 ring-gray-500 ">
+                                <div className="container flex flex-col px-6 mx-auto p-4 border-blue-500">
+                                    <details className="w-3/4  mx-auto  bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-1000 border-blue-700">
 
-                                        <summary className="item__preview__mod select-none transition px-6 capitalize text-xl text-black font-semibold py-6">
-                                            {item.name}
+                                        <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
+                                        ➤ &ensp;  {item.name}
                                             <Link onClick={() => DeleteModule(item._id)}>
-                                                {(userRole === "Admin") && <span className='item__preview__mod__del   float-right bg-red-500 pt-2 pl-1 text-white font-bold text-lg -mt-2 h-9 w-9  rounded-full'>
-                                                    <AiOutlineClose size={23} className="ml-0.5 mb-0.5" />
+                                                {(userRole === "Admin") && <span className='item__preview__mod__del   float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full'>
+                                                    <AiOutlineClose size={20} className="ml-0.5 mt-0.5" />
                                                 </span>}
                                             </Link>
                                         </summary>
@@ -347,7 +376,7 @@ const Module = (props) => {
                                             item.lectures.map((items, key) => {
                                                 return (
                                                     <>
-                                                        <div className="drop-file-preview__item mx-auto border-2 border-gray-500" style={{ width: "80%" }} >
+                                                        <div className="drop-file-preview__item mx-auto" style={{ width: "60%" }} >
 
                                                             <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4"
                                                                 style={{ width: "100%" }}

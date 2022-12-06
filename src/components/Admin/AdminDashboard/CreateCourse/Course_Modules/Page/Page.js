@@ -196,9 +196,9 @@ export default props => {
                     return (
                       <div className='w-full'>
 
-                        <details style={{"width":"95%",backgroundColor:"#fcfcfb",boxShadow:"0px 1px 0px 1px rgba(0, 0, 0, 0.1,)"  }} className=" mx-auto border-b-4 border-gray-100 my-8 rounded-lg bg-transparent hover:shadow-inner" >
-                          <summary className="w-full capitalize text-xl select-none text-black font-semibold py-5 ml-4">
-                            {item.name}
+                        <details style={{"width":"95%",backgroundColor:"#f5f5f5",boxShadow:"0px 1px 0px 1px rgba(0, 0, 0, 0.1,)"  }} className=" mx-auto border-b-4 border-gray-300 my-8 rounded-lg bg-transparent hover:shadow-inner" >
+                          <summary className="w-full capitalize text-xl select-none text-black font-semibold py-4 ml-4">
+                          ➤ &ensp;{item.name}
                           </summary>
                           <hr className='mx-6 border border-gray-500 bg-gray-500'/>
                           {

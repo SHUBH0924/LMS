@@ -26,6 +26,7 @@ import Syllabus from './components/Course/Syllabus';
 import AssignmentPage from './components/Course/AssignmentPage'
 import Discussion from './components/Course/Discussion';
 import QuizView from './components/User/QuizView';
+;
 
 const App = () => {
 
@@ -106,6 +107,7 @@ const App = () => {
                 <Route path="/calendar" element={<Calendar />} />
 
                 <Route path="/quizview" element={<QuizView />} />
+
               
                 
 
