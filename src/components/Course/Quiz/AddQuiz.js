@@ -11,20 +11,17 @@ const AddQuiz = (props) => {
   const [showModal, setShowModal] = React.useState(false);
 
   const [a, seta] = useState({
-    quizTitle: "",
+    quizname: "",
     // grades: 0,
-    quizSynopsis: "",
-    questions: []
+    description: ""
   })
 
   const handleSubmit = () => {
     props.createNewQuiz({ a })
     seta({
       ...a,
-      quizTitle: "",
-      quizSynopsis: "",
-      questions: []
-      // grades: 0,     
+      quizname: "",
+      description: ""  
     })
     setShowModal(!showModal)
   }
@@ -70,11 +67,11 @@ const AddQuiz = (props) => {
                   <form class="space-y-10 w-full">
                     <div>
                       <label for="Quiz" class="block mb-2 text-sm font-medium text-gray-300">Quiz Name</label>
-                      <input type="text" name="quiz" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.quizTitle} onChange={e => seta({ ...a, quizTitle: e.target.value })} />
+                      <input type="text" name="quiz" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.quizname} onChange={e => seta({ ...a, quizname: e.target.value })} />
                     </div>
                     <div>
                       <label for="Quiz" class="block mb-2 text-sm font-medium text-gray-300">Description</label>
-                      <textarea name="description" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.quizSynopsis} onChange={e => seta({ ...a, quizSynopsis: e.target.value })} />
+                      <textarea name="description" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.description} onChange={e => seta({ ...a, description: e.target.value })} />
                     </div>
                   </form>
 

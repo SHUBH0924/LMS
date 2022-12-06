@@ -20,12 +20,13 @@ const Courses = ({courseId}) => {
         { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:"both"},
         { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:"both"},
         { name: "Discussion", link: `/discussion/${courseId}`, icon: RiDiscussFill , role:"both"},
-        { name: "Grades", link: "/", icon:  SiGoogleanalytics ,role:"both"},
+        { name: "Grades", link: `/Grades/${courseId}`, icon:  SiGoogleanalytics ,role:"both"},
         { name: "Students", link: `/Students/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:"Admin"},
-        { name: "Pages", link: "/", icon: AiFillBook ,role:"both"},
-        { name: "Quizzes", link: "/quiz", icon: MdQuiz ,role:"both"},
+        { name: "Pages", link: `/course/${courseId}`, icon: AiFillBook ,role:"both"},
+        { name: "Quizzes", link: `/quiz/${courseId}`, icon: MdQuiz ,role:"both"},
         { name: "Syllabus", link: `/syllabus/${courseId}`, icon: RiPagesFill, role:"both"},
     ];
+    
     const [open] = useState(true);
 
     
