@@ -43,10 +43,10 @@ const NavBar = () => {
       <div className='md:flex items-center justify-between bg-gradient-to-r from-cyan-100 via-purple-100 to-red-100 py-4 md:px-10 px-10'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-black'>
-          <span className='text-3xl -ml-6 pt-1'>
+          <span className='text-3xl flex-shrink-0 -ml-6 pt-1'>
             <img className="w-14 mb-1 select-none" src={image} alt="Threat Guardian" />
           </span>
-          <h1 className='text-3xl select-none invisible md:visible
+          <h1 className='text-3xl select-none invisible lg:visible
           flex ml-3 capitalize'>Threat Guardians</h1> 
         </div>
 

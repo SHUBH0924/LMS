@@ -29,24 +29,32 @@ const AddQuestion = (props) => {
   }
   const [a, seta] = useState({
     question: "",
-    answerSelectionType:"",
-    answers:["ac","sdcsc"],
+    answerSelectionType:"single",
+    answers:[],
     ans:"",
-    correctAnswer:1,
+    correctAnswer:-1,
     point:0,
   })
 
   const handleSubmit = () => {
     props.createNewQuiz({ a })
-    // seta({
-    //   ...a,
-    //   quizTitle: "",
-    //   quizSynopsis: "",
-    //   questions: []
-    //   // grades: 0,     
-    // })
-    setShowModal(!showModal)
+    seta({ ...a, 
+          question: "",
+          answerSelectionType:"single",
+          answers:["ac","sdcsc"],
+          ans:"",
+          correctAnswer:-
+          
+          
+          
+          1,
+          point:0,})
+          setShowModal(!showModal)
   }
+
+  const onRadioChange = (e) => {
+      seta({...a,correctAnswer:e.target.value})
+    }
 
   const addAnswer = (e) =>{
     e.preventDefault()
@@ -98,11 +106,11 @@ const AddQuestion = (props) => {
 
                   <form class="space-y-10 w-full">
                     <div>
-                      <label for="Question" class="block mb-2 text-sm font-medium text-gray-300">Question</label>
+                      <label for="Question" className="block mb-2 text-sm font-medium text-gray-300">Question</label>
                       <input type="text" name="Question" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.question} onChange={e => seta({ ...a, question: e.target.value })} />
                     </div>
                     <div>
-                      <label for="AnswerType" class="block mb-2 text-sm font-medium text-gray-300">AnswerSelectionType</label>
+                      <label for="AnswerType" className="block mb-2 text-sm font-medium text-gray-300">AnswerSelectionType</label>
                       <select value={a.answerSelectionType} name="AnswerType" onChange={e => seta({ ...a, answerSelectionType: e.target.value })} className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white">
                           <option value="single">Single</option>
                           <option value="multiple">multiple</option>
@@ -116,13 +124,11 @@ const AddQuestion = (props) => {
                           <>
                               <div className="radio">
                                 <label>
-                                  <input type="radio" value={key} 
-                                                checked={a.correctAnswer === key} 
-                                                onChange={(e)=>{
-                                                  // console.log(a.correctAnswer,key,e.target.value)
-                                                  seta({...a,correctAnswer:e.target.value})
-                                                }} 
-                                                />
+                                  <input type="radio" 
+                                          value={key} 
+                                          checked={a.correctAnswer == key}
+                                          onChange={onRadioChange}
+                                            />
                                   {item}
                                 </label>
                               </div>
@@ -131,14 +137,16 @@ const AddQuestion = (props) => {
                       })}
                     </div>
                     <div>
-                      <label for="Answer" class="block mb-2 text-sm font-medium text-gray-300">option</label>
+                      <label for="Answer" class="block mb-2 text-sm font-medium text-gray-300">Option</label>
                       <input type="text" name="Question" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.ans} onChange={e => seta({ ...a, ans: e.target.value })} />
                       <button onClick={addAnswer}>Done</button>
                     </div>
-                    {/* <div> */}
-                      {/* <label for="Quiz" class="block mb-2 text-sm font-medium text-gray-300">Description</label>
-                      <textarea name="description" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.quizSynopsis} onChange={e => seta({ ...a, quizSynopsis: e.target.value })} /> */}
-                    {/* </div> */}
+                    
+                    <div>
+                      <label for="Question" className="block mb-2 text-sm font-medium text-gray-300">Points</label>
+                      <input type="number" name="grades" id="grades" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.point} onChange={e => seta({ ...a, point: e.target.value })} />
+                    </div>
+                    
                   </form>
 
 

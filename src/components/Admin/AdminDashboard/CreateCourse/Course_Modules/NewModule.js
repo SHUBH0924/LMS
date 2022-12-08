@@ -41,10 +41,10 @@ const NewModule = (props) => {
             className=" backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="  relative w-2/5 my-10 mx-auto ">
               {/* {/content/} */}
-              <div className="border-slate-200 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-700 outline-none focus:outline-none">
+              <div className="border-slate-200 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-100 outline-none focus:outline-none">
                 {/* {/header/} */}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl text-white font-semibold">
+                  <h3 className="text-3xl text-black font-semibold">
                     Create Module
                   </h3>
 
@@ -53,12 +53,12 @@ const NewModule = (props) => {
                 <div className="relative p-5 flex-auto">
                   <form className="space-y-10 w-full">
                     <div>
-                      <label for="Course" className="block mb-2 text-sm font-medium text-gray-300">Module Name</label>
-                      <input type="text" name="Course" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />
+                      <label for="Course" className="block mb-2 text-sm font-medium text-gray-800">Module Name</label>
+                      <input type="text" name="Course" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-900  text-black" required value={a.name} onChange={e => seta({ ...a, name: e.target.value })} />
                     </div>
                     <div>
-                      <label for="Course" className="block mb-2 text-sm font-medium text-gray-300">Description</label>
-                      <textarea name="Price" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.price} onChange={e => seta({ ...a, desc: e.target.value })} />
+                      <label for="Course" className="block mb-2 text-sm font-medium text-gray-800">Description</label>
+                      <textarea name="Price" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-900  text-black" required value={a.price} onChange={e => seta({ ...a, desc: e.target.value })} />
                     </div>
 
                   </form>
@@ -67,7 +67,7 @@ const NewModule = (props) => {
                 {/* {/footer/} */}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="text-white bg-red-600 font-bold uppercase rounded px-6 py-3 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
@@ -84,7 +84,7 @@ const NewModule = (props) => {
               </div>
             </div>
           </div>
-          <div className=" fixed inset-0 z-40 bg-black"></div>
+          <div className="bg-black opacity-50 fixed inset-0 z-40 "></div>
         </>
       ) : null}
     </>

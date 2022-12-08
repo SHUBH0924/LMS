@@ -299,10 +299,13 @@ const Module = (props) => {
                                     <div className='w-1/3  relative invisible md:visible'>
                                         <div className='w-4/5 h-72 group relative'>
                                             <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-72 rounded-xl '>
-                                                <MdAddAPhoto size={60} className="ml-44 mt-28 absolute  " />
+                                                <MdAddAPhoto size={60} className="ml-44 mt-28 absolute text-white z-20" />
                                                 <input className=" w-full h-72 opacity-0" type="file" accept='image/*' />
+                                                <div className="bg-black opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
                                             </div>
+                                            
                                             <img className="w-full h-full  rounded-xl" src={ci} alt="course image" />
+                                            
                                         </div>
                                     </div>
                                     <div className='flex flex-col space-y-10 pl-16 '>
@@ -353,6 +356,7 @@ const Module = (props) => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="bg-black opacity-50 fixed inset-0 -z-10 "></div>
                             </div>
                         ) : null}
 
@@ -361,12 +365,12 @@ const Module = (props) => {
                             return (
 
                                 <div className="container flex flex-col px-6 mx-auto p-4 border-blue-500">
-                                    <details className="w-3/4  mx-auto  bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-1000 border-blue-700">
+                                    <details className="w-3/4 mx-auto bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-300 border-blue-700">
 
                                         <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
                                         ➤ &ensp;  {item.name}
                                             <Link onClick={() => DeleteModule(item._id)}>
-                                                {(userRole === "Admin") && <span className='item__preview__mod__del   float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full'>
+                                                {(userRole === "Admin") && <span className='item__preview__mod__del  float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full'>
                                                     <AiOutlineClose size={20} className="ml-0.5 mt-0.5" />
                                                 </span>}
                                             </Link>
@@ -400,6 +404,7 @@ const Module = (props) => {
                                         {
                                             (userRole === "Admin") &&
                                             <div className='flex flex-col'>
+                                                <hr className='bg-black my-4'/>
                                                 <DropFileInput handleSubmission={handleSubmission} id={item._id} file={true} />
                                             </div>
                                         }

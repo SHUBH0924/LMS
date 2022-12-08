@@ -69,13 +69,13 @@ function Students() {
                             enrolled students
                     </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                    <ul className='w-4/5 mt-12 ml-12 border-2 rounded-xl border-gray-900 divide-y divide-gray-900'>
+                    <ul className='w-2/3 mt-12 mx-auto border-2 border-gray-900 divide-y divide-gray-900'>
                         
                         
                         {stud.map((user,key)=>{
                             return(
                                 <li className='mb-2'>
-                                <div className='flex ml-3 items-center'>
+                                <div className='flex ml-5 items-center'>
                                     <div className='flex mt-2'>
                                         <img className='w-16 h-16 rounded-full' src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg">
                                         </img>
@@ -89,7 +89,7 @@ function Students() {
                                         </p>
                                     </div>
                                     <div class="inline-flex mr-6 text-lg font-semibold text-gray-900">
-                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" 
+                                        <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg" 
                                         onClick={() => DeleteStud(user._id)}>
                                             Remove
                                         </button>

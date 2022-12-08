@@ -10,7 +10,7 @@ export const AuthProvider = ({children}) => {
     // const Navigate = useNavigate()
     
     const login = (UserData) =>{
-        console.log(UserData)
+        // console.log(UserData)
         setUserName(UserData.username)
         setuser(UserData.role)
         setToken(UserData.token)
@@ -23,7 +23,7 @@ export const AuthProvider = ({children}) => {
         const userData = Cookies.get('userRole')
         const Token = Cookies.get('token')
         const username = Cookies.get('userName')
-        console.log(userName)
+        // console.log(userName)
         if(userData){
             setuser(userData)
             setToken(Token)

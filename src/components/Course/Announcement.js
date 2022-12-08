@@ -131,14 +131,14 @@ const Announcement = () => {
                                 </div> : null}
                             {showModal ? (
                                 <div className='w-full z-50 backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-scroll scrollbar-hide fixed inset-0 outline-none focus:outline-none'>
-                                    <div className='flex flex-col my-10 pb-4 border-black border-4 rounded-3xl  shadow-2xl relative bg-gray-100 outline-none focus:outline-none w-4/5'>
+                                    <div className='flex flex-col my-10 pb-4  rounded-3xl  shadow-2xl relative bg-gray-100 outline-none focus:outline-none w-2/3'>
                                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-600 rounded-t">
                                             <h3 className="capitalize select-none text-4xl text-black font-semibold  mx-auto">
                                                New announcement
                                             </h3>
                                             <span className='flex items-center justify-end '>
                                                 <button
-                                                    className="text-white rounded-lg bg-red-500 font-bold uppercase px-4 py-2 text-md outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"
+                                                    className="text-white rounded-md bg-red-500 font-bold uppercase px-4 py-2 text-md outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"
                                                     type="button"
                                                     onClick={() => setShowModal(false)}>
                                                     <AiOutlineClose size={23} />
@@ -148,7 +148,7 @@ const Announcement = () => {
                                         </div>
                                         <DropFileInput handleSubmission={handleSubmission} id={slug} />                                        
                                     </div>
-                                    
+                                    <div className="bg-black opacity-50 fixed inset-0 -z-10 "></div>
                                 </div>
                                 
                             ) : null}

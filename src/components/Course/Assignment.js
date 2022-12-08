@@ -132,7 +132,7 @@ const Module = (props) => {
 
     return (
         <>
-        <div className='relative'>
+        <div className='relative select-none'>
         <div className='sticky top-0 z-10 '>
                 <Header />
                 </div>
@@ -144,7 +144,7 @@ const Module = (props) => {
                     <div className='flex flex-col w-full'>
                     <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                            assignment
-                        </h1>
+                    </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
                     
                     {/* <hr className='w-1/4 ml-20 h-3' /> */}
@@ -154,9 +154,9 @@ const Module = (props) => {
                             return (
                                 <div className="container flex flex-col px-5 mx-auto p-4" onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
                                     
-                                    <div style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2 rounded-full ring-1 ring-gray-500 drop-file-preview__item" >
+                                    <div  className="w-3/5   mx-auto  bg-gray-50 hover:bg-gray-200 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-500 border-blue-700" >
                                         <div className="px-6 capitalize text-xl  text-black font-semibold py-6 ">
-                                            {item.title}
+                                            ➤ &ensp;{item.title}
                                             {(true)?<span className="drop-file-preview__item__del mr-2" onClick={() => fileRemove(item._id)}>
                                                 <AiOutlineClose size={23} />
                                             </span>:null}
@@ -184,7 +184,9 @@ const Module = (props) => {
 
                         {
                             (userRole==="Admin") || (userRole === "student")?(
+                                
                             <div className='flex flex-col'>
+                                
                                     <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
                             </div>):null
                         }
