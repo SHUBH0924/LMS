@@ -16,6 +16,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import ci from '../../../../../assets/bg1.jpg'
 import { MdAddAPhoto } from "react-icons/md";
 import { RiErrorWarningFill } from "react-icons/ri";
+import ConfirmBox from '../../../../ConfirmBox';
 
 const Module = (props) => {
 
@@ -274,11 +275,11 @@ const Module = (props) => {
     return (
         <>
 
-            <div className='relative w-full'>
+            <div className='relative w-full '>
                 <div className='sticky top-0 z-10 '>
                     <Header />
                 </div>
-                <aside className="flex flex-row">
+                <aside className="flex flex-row w-full">
                     {/* <Sidenav /> */}
 
                     {
@@ -288,15 +289,15 @@ const Module = (props) => {
                             </div>) : null
                     }
 
-                    <div className='flex flex-col mb-32 w-full'>
+                    <div className='flex flex-col mb-32 w-screen'>
                         <div className=" select-none capitalize text-3xl text-black font-semibold py-6 mx-auto">
                             {Title}
                         </div>
                         <hr className="w-3/5 mx-auto h-2 mb-6" />
                         {
                             (userRole === "Admin") ?
-                                (<div className='flex select-none flex-row divide-x-2 divide-gray-400 mb-10 w-full justify-center mx-auto '>
-                                    <div className='w-1/3  relative invisible md:visible'>
+                                (<div className='flex select-none flex-row  mb-10 w-full justify-center mx-auto '>
+                                    <div className='w-1/3 flex-shrink-0 justify-end border-r-2 border-gray-500 relative invisible md:visible'>
                                         <div className='w-4/5 h-72 group relative'>
                                             <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-72 rounded-xl '>
                                                 <MdAddAPhoto size={60} className="ml-44 mt-28 absolute text-white z-20" />
@@ -308,7 +309,7 @@ const Module = (props) => {
                                             
                                         </div>
                                     </div>
-                                    <div className='flex flex-col space-y-10 pl-16 '>
+                                    <div className='flex flex-col justify-start space-y-10 pl-16 '>
                                         <div className='w-64 flex'>
                                             <button
                                                 className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:outline-none text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
@@ -318,7 +319,7 @@ const Module = (props) => {
                                         </div>
                                         <div className='w-64 flex'>
                                             <button
-                                                className="bg-gradient-to-r from-red-500 to-red-600  focus:ring-red-4 focus:outline-none  text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                                className="bg-gradient-to-r from-red-500 to-red-600  focus:ring-red-4 focus:outline-none transition duration-150 ease-out text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                                 type="button"
                                                 onClick={() => setShowModal(true)}
                                             >delete course
@@ -333,32 +334,9 @@ const Module = (props) => {
                         }
 
                         {showModal ? (
-                            <div className='w-full z-50 backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-scroll scrollbar-hide fixed inset-0 outline-none focus:outline-none'>
-                                <div className='flex flex-col my-10 py-2  border-black border-2 rounded-xl  shadow-2xl relative bg-white outline-none focus:outline-none w-2/5'>
-                                    <div className="flex items-start justify-between p-2  rounded-t">
-                                        <div className='flex text-black mx-auto'>
-                                            <RiErrorWarningFill size={40} />
-                                        </div>
-                                    </div>
-                                    <div className='flex px-3 py-2'>
-                                        <p className='text-black font-semibold mx-auto text-xl'>
-                                            Are you sure you want to delete this ?
-                                        </p>
-                                    </div>
-                                    <div className='flex w-full border-t border-solid border-slate-600 mt-3'>
-                                        <div className='flex flex-row pb-3 pt-1  mx-auto space-x-6 justify-center'>
-                                            <button className='flex capitalize font-semibold text-white px-3 mt-3 py-2 rounded-md bg-red-600' onClick={() => DeleteCourse()}>
-                                                delete
-                                            </button>
-                                            <button className='flex capitalize font-semibold text-white px-3 mt-3 py-2 rounded-md bg-blue-600' onClick={() => setShowModal(false)}>
-                                                cancel
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="bg-black opacity-50 fixed inset-0 -z-10 "></div>
-                            </div>
-                        ) : null}
+                            <ConfirmBox Delete={DeleteCourse} setShowModal={setShowModal} content={"Are you sure you want to delete this Course?"}/>
+                        )
+                         : null}
 
                         {modules ? (modules.map((item, key) => {
 
@@ -369,11 +347,15 @@ const Module = (props) => {
 
                                         <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
                                         ➤ &ensp;  {item.name}
-                                            <Link onClick={() => DeleteModule(item._id)}>
-                                                {(userRole === "Admin") && <span className='item__preview__mod__del  float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full'>
-                                                    <AiOutlineClose size={20} className="ml-0.5 mt-0.5" />
-                                                </span>}
-                                            </Link>
+
+
+                                            {(userRole === "Admin") && <button className='item__preview__mod__del  float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full' onClick={() => DeleteModule(item._id)}>
+                                                <span>
+                                                    <AiOutlineClose size={20} className="ml-0.5 mb-1 text-white" />
+                                                </span>
+                                            </button>}
+
+                                            
                                         </summary>
 
                                         {
