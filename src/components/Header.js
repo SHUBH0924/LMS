@@ -41,6 +41,7 @@ const NavBar = () => {
   return (
     <div className='shadow-md w-full sticky mb-3 top-0 left-0'>
       <div className='md:flex items-center justify-between bg-gradient-to-r from-cyan-100 via-purple-100 to-red-100 py-4 md:px-10 px-10'>
+        <a href='/'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-black'>
           <span className='text-3xl flex-shrink-0 -ml-6 pt-1'>
@@ -49,6 +50,7 @@ const NavBar = () => {
           <h1 className='text-3xl select-none invisible lg:visible
           flex ml-3 capitalize'>Threat Guardians</h1> 
         </div>
+        </a>
 
         <div onClick={() => setOpen(!open)} className='text-3xl absolute right-8 top-8 cursor-pointer md:hidden'>
           <FcList name={open ? 'close' : 'menu'}

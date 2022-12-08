@@ -9,59 +9,55 @@ import toast from 'react-hot-toast';
 
 const AddQuestion = (props) => {
   const [showModal, setShowModal] = React.useState(false);
+  const [question,setquestion] = useState("");
+  const [options,setOptions] = useState([]);
+  const [answerSelectionType,setanswerSelectionType] = useState("single")
+  const [point,setPoint] = useState(0)
 
-  const s = {
-    "question": "How can you access the state of a component from inside of a member function?",
-    "questionType": "text",
-    "questionPic": "https://dummyimage.com/600x400/000/fff&text=X", // if you need to display Picture in Question
-    "answerSelectionType": "single",
-    answers: [
-      "this.getState()",
-      "this.prototype.stateValue",
-      "this.state",
-      "this.values"
-    ],
-    "correctAnswer": "3",
-    "messageForCorrectAnswer": "Correct answer. Good job.",
-    "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
-    "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "point": "20"
-  }
   const [a, seta] = useState({
-    question: "",
     answerSelectionType:"single",
-    answers:[],
     ans:"",
     correctAnswer:-1,
     point:0,
   })
 
   const handleSubmit = () => {
-    props.createNewQuiz({ a })
-    seta({ ...a, 
-          question: "",
-          answerSelectionType:"single",
-          answers:["ac","sdcsc"],
-          ans:"",
-          correctAnswer:-
-          
-          
-          
-          1,
-          point:0,})
-          setShowModal(!showModal)
+    props.createNewAns({ 
+        question,
+        options,
+        answerSelectionType,
+        point
+     })
+    // seta({ ...a, 
+    //       question: "",
+    //       answerSelectionType:"single",
+    //       ans:"",
+    //       correctAnswer:-1,
+    //       point:0,})
+      setquestion("")
+      setanswerSelectionType('single')
+      setOptions([])
+      setPoint(0)
+      setShowModal(!showModal)
+    // setOptions([])
   }
 
-  const onRadioChange = (e) => {
-      seta({...a,correctAnswer:e.target.value})
+  const onRadioChange = (key,ansbody,iscorrect) => {
+      let tmp = options
+      tmp[key].isCorrect = iscorrect
+      setOptions(tmp)
     }
 
   const addAnswer = (e) =>{
     e.preventDefault()
-    let ar = a.answers
-    ar.push(a.ans)
-    console.log(a)
-    seta({ ...a, answers: ar})
+    const tmp = {
+      ansBody:a.ans,
+      isCorrect:false
+    }
+    setOptions(options=>[...options,{
+      ansBody:a.ans,
+      isCorrect:false
+    }])
   }
 
 
@@ -107,29 +103,30 @@ const AddQuestion = (props) => {
                   <form class="space-y-10 w-full">
                     <div>
                       <label for="Question" className="block mb-2 text-sm font-medium text-gray-300">Question</label>
-                      <input type="text" name="Question" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.question} onChange={e => seta({ ...a, question: e.target.value })} />
+                      <input type="text" name="Question" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={question} onChange={e => setquestion(e.target.value)} />
                     </div>
                     <div>
                       <label for="AnswerType" className="block mb-2 text-sm font-medium text-gray-300">AnswerSelectionType</label>
-                      <select value={a.answerSelectionType} name="AnswerType" onChange={e => seta({ ...a, answerSelectionType: e.target.value })} className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white">
+                      <select value={answerSelectionType} name="AnswerType" onChange={e => setanswerSelectionType(e.target.value)} className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white">
                           <option value="single">Single</option>
                           <option value="multiple">multiple</option>
                       </select>
                     </div>
                     <div>
                     <label for="Answer" class="block mb-2 text-sm font-medium text-gray-300">Answers</label>
-                      {a.answers.map((item,key)=>{
+                      
+                      {options.map((item,key)=>{
                         return(
                           // <li>{item}</li>
                           <>
                               <div className="radio">
                                 <label>
-                                  <input type="radio" 
-                                          value={key} 
-                                          checked={a.correctAnswer == key}
-                                          onChange={onRadioChange}
+                                  <input type="checkbox" 
+                                          value={item.ansBody} 
+                                          // checked={a.correctAnswer == key}
+                                          onChange={()=>onRadioChange(key,item.ansBody,!item.isCorrect)}
                                             />
-                                  {item}
+                                  {item.ansBody}
                                 </label>
                               </div>
                           </>
@@ -144,7 +141,7 @@ const AddQuestion = (props) => {
                     
                     <div>
                       <label for="Question" className="block mb-2 text-sm font-medium text-gray-300">Points</label>
-                      <input type="number" name="grades" id="grades" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.point} onChange={e => seta({ ...a, point: e.target.value })} />
+                      <input type="number" name="grades" id="grades" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={point} onChange={e => setPoint(e.target.value )} />
                     </div>
                     
                   </form>
