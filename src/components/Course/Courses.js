@@ -45,8 +45,10 @@ const Courses = ({courseId}) => {
                          <Link
                             to={menu.link}
                             key={i}
+                            
                             className={` ${menu?.margin && "mt-5"
-                                } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
+                                } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`
+                                }
                         >
 
                             <div>{React.createElement(menu.icon, { size: "20" })}</div>
