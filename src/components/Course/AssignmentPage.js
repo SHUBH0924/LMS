@@ -29,11 +29,11 @@ const AssignmentPage = (props) => {
       <div className='sticky  top-0 z-10 '>
         <Header />
       </div>
-      <div className=' flex flex-row w-full overflow-x-hidden h-screen bg-white'>
+      <div className=' flex select-none flex-row w-full overflow-x-hidden h-screen bg-white'>
         
         <div className=' flex flex-col w-full  mx-auto ' >
 
-          <h1 className='text-4xl mx-auto mt-6 font-bold text-black '>
+        <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-3 mx-auto'>
             {Title}
           </h1>
           <hr className='mt-8 w-3/5 mb-8 mx-auto' />

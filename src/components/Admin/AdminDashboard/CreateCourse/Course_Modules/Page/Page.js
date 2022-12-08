@@ -184,13 +184,7 @@ export default props => {
         <Header />
       </div>
       <div className='  flex mt-24 flex-row h-screen bg-white' style={{backgroundColor:"#ffffff"}}>
-                
-                
-                
-                
-                
-                
-                <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll border-t-8 border-gray-600' style={{backgroundColor:"#fcfcfa"}}>
+                <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll scrollbar-hide  border-t-8 border-gray-600' style={{backgroundColor:"#fcfcfa"}}>
 
                   <h1 className='mt-2 ml-4 text-4xl font-bold text-black capitalize'>
                     
@@ -202,9 +196,9 @@ export default props => {
                     return (
                       <div className='w-full'>
 
-                        <details style={{"width":"95%",backgroundColor:"#fafaf7",boxShadow:"0px 1px 0px 1px rgba(0, 0, 0, 0.1)"  }} className=" mx-auto border-b-4 border-gray-100 my-8 rounded-lg bg-transparent hover:shadow-inner" >
-                          <summary className="w-full capitalize text-xl  text-black font-semibold py-5 ml-4">
-                            {item.name}
+                        <details style={{"width":"95%",backgroundColor:"#f5f5f5",boxShadow:"0px 1px 0px 1px rgba(0, 0, 0, 0.1,)"  }} className=" mx-auto border-b-4 border-gray-300 my-8 rounded-lg bg-transparent hover:shadow-inner" >
+                          <summary className="w-full capitalize text-xl select-none text-black font-semibold py-4 ml-4">
+                          ➤ &ensp;{item.name}
                           </summary>
                           <hr className='mx-6 border border-gray-500 bg-gray-500'/>
                           {
@@ -214,8 +208,8 @@ export default props => {
                               return (
                                 <>
                                 
-                                  <div className="flex my-5 mx-auto bg-transparent border-b-2 border-gray-400 mb-2 mt-4 pt-7"
-                                    style={{ width: "60%" }}
+                                  <div className="flex my-5 mx-auto bg-transparent border-l-4 border-blue-300 mb-2 mt-4 pl-1 py-2"
+                                    style={{ width: "60%", backgroundColor:"#fafaf7" }}
                                     
                                     onClick={() => {
                                       setId(items._id)
@@ -229,7 +223,7 @@ export default props => {
 
                                     {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
                                     {/* <div className=" mx-auto h-auto mt-1 mb-1  bg-transparent" > */}
-                                      <h2 className=' text-md font-sans capitalize  text-gray mx-1 align-baseline font-semibold text-lg'>{items.name}</h2>
+                                      <h2 className=' text-md font-sans capitalize select-none text-gray mx-1 align-baseline font-semibold text-lg'> ◆ {items.name}</h2>
                                       {/* <p>{items.size}B</p> */}
                                     {/* </div> */}
 

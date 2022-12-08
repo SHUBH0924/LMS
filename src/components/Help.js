@@ -16,11 +16,11 @@ function Help() {
             <aside className="flex flex-row ">
                 {/* <Sidenav /> */}
                 <div className='flex flex-col w-full'>
-                    <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
+                    <h1 className='select-none capitalize text-3xl text-black font-semibold py-6 mx-auto'>
                         Help
                     </h1>
-                    <hr className="w-1/6 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
-                    <div className="text-xl mt-12 mx-auto text-black font-bold py-2 px-4">
+                    <hr className="w-2/5 mx-auto h-2 mb-6" />
+                    <div className="text-xl mt-12 mx-auto text-black font-semibold py-2 px-4">
                         <h1>Reach out to the Threat Guardians Team and let us know how we can help you. We’ll respond as soon as we can.</h1>
                     </div>
                     <hr className='w-4/5 mx-auto'/>

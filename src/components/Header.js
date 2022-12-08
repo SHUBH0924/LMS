@@ -44,11 +44,11 @@ const NavBar = () => {
         <a href='/'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-black'>
-          <span className='text-3xl -ml-6 pt-2'>
-            <img className="w-14 mb-2 select-none" src={image} alt="Threat Guardian" />
+          <span className='text-3xl flex-shrink-0 -ml-6 pt-1'>
+            <img className="w-14 mb-1 select-none" src={image} alt="Threat Guardian" />
           </span>
-          <h1 className='text-3xl select-none invisible md:visible
-          flex ml-3 capitalize' >Threat Guardians</h1> 
+          <h1 className='text-3xl select-none invisible lg:visible
+          flex ml-3 capitalize'>Threat Guardians</h1> 
         </div>
         </a>
 
@@ -83,11 +83,11 @@ const NavBar = () => {
           {
             <li className="ml-1  md:ml-2">
               <Link
-                className=" py-1 flex items-center   font-bold leading-snug text-white hover:opacity-85"
+                className=" py-1 flex items-center   font-semibold leading-snug text-white hover:opacity-85"
                 onClick={Lgout}
                 to="/Login"
               >
-                <button className="px-3 select-none hover:animate-pulse hover:bg-red-700 bg-red-600 rounded-full py-2 flex items-center text-lg  text-white "><FiPower className='mr-1' />{Logout.name}</button>
+                <button className="px-2 select-none hover:animate-pulse hover:bg-red-700 bg-red-600 rounded-lg py-2 flex items-center text-lg  text-white "><FiPower className='mr-1' />{Logout.name}</button>
               </Link>
             </li>
           }

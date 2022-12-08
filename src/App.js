@@ -25,6 +25,8 @@ import Mycourses from './components/User/MyCourses';
 import Syllabus from './components/Course/Syllabus';
 import AssignmentPage from './components/Course/AssignmentPage'
 import Discussion from './components/Course/Discussion';
+import Grades from './components/Course/Grades'
+import QuizPage from './components/Course/Quiz/QuizPage'
 
 const App = () => {
 
@@ -103,7 +105,11 @@ const App = () => {
 
               {/* {auth.user && */}
                 <Route path="/calendar" element={<Calendar />} />
+
+                {/* <Route path="/quizview" element={<QuizView />} /> */}
+
               
+                
 
               {/* {auth.user && */}
                 <Route path="/help" element={<Help />} />
@@ -119,15 +125,13 @@ const App = () => {
 
                 <Route path="/discussion/:slug" element={<Discussion />} />
 
-                <Route path="/quiz" element={<Quiz />} />
+                <Route path="/quiz/:slug" element={<Quiz />} />
+                <Route path="/QuizPage/" element={<QuizPage />} />
+
+                <Route path="/Grades/:slug" element={<Grades />} />
 
                 <Route path="/syllabus/:slug" element={<Syllabus />} />
               
-              
-              {/* {auth.user &&
-                <Route path="/detail" element={<Detail />} />
-              } */}
-
               
                 <Route path="/course/:slug" element={
                 // <Protected isLoggedIn={auth.user==="Admin"} replace="Login">

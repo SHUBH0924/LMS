@@ -8,7 +8,7 @@ import {useAuth} from '../../Auth/auth'
 import {useParams} from 'react-router-dom'
 import Courses from './Courses'
 import {socket} from './Service/socket'
-
+import toast from 'react-hot-toast'
 // const socket = io.connect(process.env.REACT_APP_SERVER)
 
 const Discussion = () =>{
@@ -43,7 +43,7 @@ const Discussion = () =>{
 
   useEffect(()=>{
     socket.emit('join',slug)
-    console.log("UserName:",userName)
+    // console.log("UserName:",userName)
   //   return () => {
   //     socket.off('join');
   //  };
@@ -57,12 +57,22 @@ const Discussion = () =>{
         // console.log(messages)
       });
       
+      socket.on('disconnect', function() {
+        // connected = false;
+        toast.error('disconnected');
+        // content.html("<b>Disconnected! Trying to automatically to reconnect in " +                   
+        //               RETRY_INTERVAL/1000 + " seconds.</b>");
+        // retryConnectOnFailure(RETRY_INTERVAL);
+      });
       // socket.off('MY_EVENT', doThisOnlyOnce).on('MY_EVENT', doThisOnlyOnce);
       socket.off('allmessage').on('allmessage',(data)=>{
         console.log("allmessage",data)
         setMessages(data.messages);
       })
 
+      socket.on("error", (error) => {
+        console.log("errorr : ",error);
+      });
     //   return () => {
     //     socket.off('allmessage');
     //  };
