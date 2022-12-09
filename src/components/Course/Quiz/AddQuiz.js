@@ -31,7 +31,7 @@ const AddQuiz = (props) => {
     <>
 
       <div className='relative mt-3 mx-auto'>
-        <div className='absolute animate-pulse mt-4 mb-1 mr-1 bg-gradient-to-r from-red-700 to-purple-700  blur-lg opacity-80  inset-0'></div>
+        
         <div className='relative  mt-4 mx-auto'>
 
           <button

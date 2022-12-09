@@ -15,7 +15,7 @@ function QuizView() {
                 <div className='flex -mt-6 '>
                     <Courses />
                 </div>
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full '>
                     <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                         Quizzes
                     </h1>
@@ -26,8 +26,8 @@ function QuizView() {
                     </h2>
                     <hr className='w-1/4 ml-20 h-3' />
 
-                    <div className="py-4 px-4 rounded-xl max-h-max mt-5 select-none 5/6 flex border w-4/5 mx-auto justify-center items-center bg-gray-50">
-
+                    <div className="py-4 px-4 rounded-xl max-h-max mt-5 select-none flex border w-4/5 mx-auto justify-center items-center bg-gray-50">
+ 
                         <div className="w-full mx-6">
                             <div className="flex mt-2">
                                 <p className="text-lg font-semibold text-black">Q.- Who is bigger gandu?</p>
@@ -58,7 +58,7 @@ function QuizView() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex flex-row mx-auto mb-3 mt-10 space-x-4 justify-center'>
+                            {/* <div className='flex flex-row mx-auto mb-3 mt-10 space-x-4 justify-center'>
                                 <div>
                                     <button className='text-md flex flex-row bg-purple-600 capitalize font-semibold w-28 hover:bg-purple-700 shadow-xl py-2 rounded-md text-white px-2 mr-2'>
                                     <span className='mt-1 mr-1'>
@@ -75,7 +75,7 @@ function QuizView() {
                                     </span>
                                     </button>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
