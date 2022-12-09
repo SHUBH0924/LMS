@@ -91,18 +91,19 @@ const QuizPage = () => {
                                             </div>
                                             
                                                 {console.log(items)}
-                                                {items.options.map(i => {
-                                                    return (
-                                                        <div className="md:grid grid-cols-12 gap-2 mx-auto pb-3 w-4/5">
-                                                            <div className="col-span-6">
-                                                                <div className="w-full">
-                                                                    <input id={i.ansBody} type="radio" value="" name={items.question} className="peer opacity-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 " />
-                                                                    <label for={i.ansBody} className="flex cursor-pointer  bg-gray-200 justify-center rounded-md items-center h-10 w-full peer-checked:bg-green-600 peer-checked:text-white text-[17px] text-sm font-medium text-gray-900 ">{i.ansBody}</label>
+                                                <div className="md:grid grid-cols-12 gap-2 mx-auto pb-3 w-4/5">
+                                                    {items.options.map(i => {
+                                                        return (
+                                                                <div className="col-span-6">
+                                                                    <div className="w-full">
+                                                                        <input id={i.ansBody} type="radio" value="" name={items._id} className="peer opacity-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 " />
+                                                                        <label for={i.ansBody} className="flex cursor-pointer  bg-gray-200 justify-center rounded-md items-center h-10 w-full peer-checked:bg-green-600 peer-checked:text-white text-[17px] text-sm font-medium text-gray-900 ">{i.ansBody}</label>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })}
+                                                                
+                                                                )
+                                                            })}
+                                                </div>
                                             
                                         </div>
                                         {/* {(userRole==="Admin")&&<span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id,items._id)}>x</span>} */}
