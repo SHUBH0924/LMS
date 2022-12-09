@@ -106,23 +106,21 @@ function Quiz() {
                             </div>
                         </div> */}
 
-                        {quiz ? (quiz.map((item, key) => {
-
-                            return (
-                                
-                                    
-                                        
-                                <div className="container flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full" onClick={() => onPageOpen(item._id)}>
+                        
+                        {quiz ? (
+                            <div className="container flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full">
                                 <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 lg:mx-auto w-full py-6">
-                                    <div className='flex'>
-                                        <button className='w-44 py-3 rounded-t-full bg-gray-200 mx-auto'>
-                                            <img className='w-24 h-24 mx-auto mb-6' src={quizimg} alt="image" />
-                                            <p className='font font-semibold capitalize text-lg'>{item.quizname}</p>
-                                        </button>
+                                {quiz.map((item, key) => {
+                                return (
+                                    <div onClick={() => onPageOpen(item._id)}>
+                                        <div className='flex'>
+                                            <button className='w-44 py-3 rounded bg-gray-200 mx-auto'>
+                                                <img className='w-24 h-24 mx-auto mb-6' src={quizimg} alt="image" />
+                                                <p className='font font-semibold capitalize text-lg'>{item.quizname}</p>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                                        
+                                            
                                     
 
 
@@ -146,7 +144,12 @@ function Quiz() {
                                 //     </div>
                                 // </div>
                             )
-                        })) : (
+                            
+                            })}
+                            </div>
+                        </div>
+                        )
+                         : (
                             <div>
                                 <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
                                     There are no Quizzes
