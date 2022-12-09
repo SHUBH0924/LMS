@@ -8,26 +8,26 @@ import DropFileInput from '../Admin/AdminDashboard/Drag_Drop/DropFileInput';
 import Header from '../Header'
 import Courses from '../Course/Courses';
 import { ImageConfig } from '../ImageConfig';
-import {useLocation} from 'react-router-dom';
-import JoditEditor from 'jodit-react';  
+import { useLocation } from 'react-router-dom';
+import JoditEditor from 'jodit-react';
 
 
-const Syllabus = (props) => {    
-    
-    
+const Syllabus = (props) => {
+
+
     const location = useLocation();
     const auth = useAuth()
     const token = auth.token
     const userRole = auth.user
     const Navigate = useNavigate();
     const editor = useRef(null)
-    const [content,setContent] = useState('')
-   
+    const [content, setContent] = useState('')
+
     // Slug is the course id
     const { slug } = useParams();
     const URL = process.env.REACT_APP_SERVER
 
-    const [Syllabus, setSyllabus] = useState()    
+    const [Syllabus, setSyllabus] = useState()
 
 
     useEffect(() => {
@@ -37,27 +37,27 @@ const Syllabus = (props) => {
             }
         }).then(res => {
             console.log(res)
-            if(res.status===200){
+            if (res.status === 200) {
                 setContent(res.data)
             }
         }).catch(err => console.log(err))
-    },[])
+    }, [])
 
 
     const handleSubmission = () => {
         const data = {
-            'syllabus' : content
+            'syllabus': content
         }
         console.log(content)
         // console.log(id,selectedFile,content,Title)
-        axios.post(`${URL}/course/syllabus/${slug}`, data , {
+        axios.post(`${URL}/course/syllabus/${slug}`, data, {
             headers: {
                 'Authorization': token
             }
-        }).then(res =>{
+        }).then(res => {
             console.log(res)
             toast.success("Syllabus added!")
-        }).catch(err=>{
+        }).catch(err => {
             toast.error(err.message)
         })
     }
@@ -97,27 +97,27 @@ const Syllabus = (props) => {
 
 
 
-    
+
 
     return (
         <>
-        <div className='relative'>
-        <div className='sticky top-0 z-10 '>
-                <Header />
+            <div className='relative'>
+                <div className='sticky top-0 z-10 '>
+                    <Header />
                 </div>
                 <aside className="flex">
                     {/* <Sidenav /> */}
                     <div className='flex -mt-6 '>
-                        <Courses courseId={slug}/>
+                        <Courses courseId={slug} />
                     </div>
                     <div className='flex flex-col w-full'>
-                    <h1 className='mt-6 mb-3 capitalize text-4xl mx-auto font-bold'>
-                        Syllabus
-                    </h1>
-                    <hr className="w-1/3 mx-auto h-2 rounded-full bg-gradient-to-r from-gray-700 " />
-                    
-                    {/* <hr className='w-1/4 ml-20 h-3' /> */}
-                        
+                        <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                            syllabus
+                        </h1>
+                        <hr className="w-3/5 mx-auto h-2 mb-5" />
+
+                        {/* <hr className='w-1/4 ml-20 h-3' /> */}
+
                         {/* {Syllabus.length>0 ? (.map((item,key) => {
 
                             return (
@@ -147,14 +147,14 @@ const Syllabus = (props) => {
 
 
 
-                    {/* </div>   */}
-                    <div 
-                        className='ml-12 mr-12 mb-8'
-                        dangerouslySetInnerHTML={{ __html: content }} 
-                    />
+                        {/* </div>   */}
+                        <div
+                            className='mx-auto text-2xl mb-8'
+                            dangerouslySetInnerHTML={{ __html: content }}
+                        />
 
                         {
-                            (userRole==="Admin")?(
+                            (userRole === "Admin") ? (
                                 <div className='w-4/5 mt-4 mb-8 mx-auto'>
                                 <JoditEditor 
                                     style={{height:"200px"}}
@@ -171,11 +171,11 @@ const Syllabus = (props) => {
                         }
                         
                     </div>
-                    
+
                 </aside>
-                
-                
-                </div>
+
+
+            </div>
         </>
     )
 }

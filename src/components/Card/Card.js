@@ -6,13 +6,13 @@ const Card = ({ item, Button, onPublish }) => {
 
 
     return (
-        <div className="mx-auto group transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-12 rounded-lg max-w-xs  border-2 bg-white border-gray-200">
+        <div className="mx-auto flex-shrink-0 group transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-12 rounded-lg max-w-xs  border-2 bg-[linear-gradient(135deg,_#fff9e7_50%,_#ffffff_40%)] border-gray-200">
             <a href="#">
                 <img className="relative h-60 w-70 mb-2 delay-150 group-hover:-translate-y-6 rounded-t-lg  duration-300 " src={image} alt="product image" />
             </a>
             <div className="px-5 pb-5">
                 <a href="#">
-                    <h3 className=" font-semibold text-xl select-none tracking-tight text-black">{item.name}</h3>
+                    <h3 className=" font-semibold text-xl select-none capitalize tracking-tight text-black">{item.name}</h3>
                 </a>
                 <div className="flex items-center mt-2.5 mb-5">
                     <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
@@ -50,7 +50,7 @@ const Card = ({ item, Button, onPublish }) => {
                 <div className="flex items-end content-end justify-between">
                     <span className="text-3xl font-bold text-black">Rs. {item.price}</span>
                     <button
-                        className="text-white focus:ring-4  font-medium rounded-md text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onClick={() => onPublish(item)}>{Button}</button>
+                        className="text-white  font-medium rounded-md text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700" onClick={() => onPublish(item)}>{Button}</button>
                 </div>
             </div>
         </div>

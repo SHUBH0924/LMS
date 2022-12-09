@@ -98,8 +98,8 @@ const Admin_Dashboard = () => {
                         </h1>
                         
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                        <div className="flex-container flex flex-wrap grid-flow-col justify-items-center px-4 lg:px-8 w-full">
-                            <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 lg:mx-auto w-full py-6">
+                        <div className=" flex-shrink-0 flex  grid-flow-col justify-items-center px-4 w-full">
+                            <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 lg:mx-auto w-full py-6">
                                 {Course.length>0?(Course.filter(item => {
                                     return item.published === true
                                 }).map((item,key) => {
@@ -114,8 +114,8 @@ const Admin_Dashboard = () => {
                            unpublished courses
                         </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                        <div className="flex-container flex flex-wrap grid-flow-col justify-items-center px-4 lg:px-8 w-full">
-                            <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 lg:mx-auto w-full py-6">
+                        <div className=" flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full">
+                            <div className="mx-auto md:w-full justify-center grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 2xl lg:mx-auto w-full py-6">
                                 {Course.filter(item => {
                                     return item.published === false
                                 }).map((item,key) => {

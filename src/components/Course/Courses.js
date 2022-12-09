@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { FcGenericSortingDesc } from "react-icons/fc";
 import {  MdQuiz,  } from "react-icons/md";
 import {  RiPagesFill, RiDiscussFill } from "react-icons/ri";
 import { AiFillBook } from "react-icons/ai";
@@ -26,19 +26,28 @@ const Courses = ({courseId}) => {
         { name: "Quizzes", link: `/quiz/${courseId}`, icon: MdQuiz ,role:"both"},
         { name: "Syllabus", link: `/syllabus/${courseId}`, icon: RiPagesFill, role:"both"},
     ];
-    
-    const [open] = useState(true);
+    const [open,setOpen] = useState(false);
+
 
     
-  return (
+  return ( 
     
-      <section className="flex min-h-screen ">
-            <div
-                className="bg-[#232338] min-h-fit w-56  text-gray-300 "
+      <section className="flex min-h-screen  ">
+             <div
+                className={` bg-[#10102a] min-h-fit ${open ? "w-52" : "w-16"
+                    } duration-500 text-gray-300 px-1`}
             >
+                <div className=" mt-3 pt-3 pb-2 flex justify-end mr-2 ">
+                    <FcGenericSortingDesc
+                        size={36}
+                        className="cursor-pointer"
+                        onClick={() => setOpen(!open)}
+                    />
+                    
+                </div>
 
-              {/* <hr className=" h-1 mt-14 bg-slate-300"/>   */}
-                <div className="mt-6 select-none flex flex-col gap-5 px-3">
+              <hr className=" h-1 -mx-1 bg-slate-300"/>
+                <div className="mt-4 select-none flex flex-col gap-5 px-2">
                     {menus?.map((menu, i) => {
                         return(
                             <>
@@ -46,21 +55,21 @@ const Courses = ({courseId}) => {
                          <Link
                             to={menu.link}
                             key={i}
-                            className={` ${menu?.margin && "mt-5"
-                                } group flex items-center text-md  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
+                            className={` ${menu?.margin && ""
+                                } group flex items-center text-md  gap-5 font-semibold p-2 hover:bg-blue-800 rounded-md`}
                         >
 
-                            <div>{React.createElement(menu.icon, { size: "20" })}</div>
+                            <div>{React.createElement(menu.icon, { size: "23" })}</div>
                             <h2
                                 
-                                className={`whitespace-pre duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"
+                                className={`whitespace-pre duration-1000 ${!open && "opacity-0 translate-x-30 overflow-hidden"
                                     }`}
                             >
                                 {menu.name}
                             </h2>
                             <h2
                                 className={`${open && "hidden"
-                                    } absolute left-48 bg-gray-900 font-semibold whitespace-pre text-gray-100 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                                    } absolute left-48 bg-gray-900 font-semibold whitespace-pre text-gray-300 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
                             >
                                 {menu.name}
                             </h2>
