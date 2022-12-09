@@ -19,8 +19,8 @@ function Profile() {
     const [image, setImage] = useState("")
     const [file, setfile] = useState()
     const [userId,setUserId] = useState()
-
     const URL = process.env.REACT_APP_SERVER
+    const [Avatarpath,setAvatar] = useState(`${URL}/avatar/${token}`)
     
     useEffect(() => {
 
@@ -31,7 +31,7 @@ function Profile() {
             }).then(res => {
                 console.log(res)
                 let data = res.data
-                setfile(data.file)
+                // setfile(data.file)
                 setUserId(data._id)
                 setname(data.name)
                 setemail(data.email)
@@ -43,28 +43,6 @@ function Profile() {
     const handleChange = (e) => {
         setfile(e.target.files[0])
     }
-
-    // const upload = (e) =>{
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('pic',file)
-    //     formData.append('name',name);
-    //     formData.append('email',email);
-    //     formData.append('address',address);
-    //     formData.append('phone',phone);
-
-    //     axios.post(`${URL}/profile/pic`,formData,{
-    //         headers:{
-    //             'Authorization' : token
-    //         }
-    //     }).then(res =>{
-    //         toast.success(res.data)
-    //         console.log(res)
-    //     }).catch(err =>{
-    //         console.log(err)
-    //     })
-    // }
-
 
 
     const handleSubmit = (e) => {
@@ -82,6 +60,7 @@ function Profile() {
             }
         }).then(res => {
             toast.success(res.data)
+            setAvatar(`${URL}/avatar/${token}`)
             console.log(res)
         }).catch(err => {
             console.log(err)
@@ -112,7 +91,7 @@ function Profile() {
                                 <Avatar
                                     className='rounded-full'
                                     sx={{ width: 24, height: 24 }}
-                                    src={`${URL}/avatar/${token}`}
+                                    src={Avatarpath}
                                     alt={pic}
                                 /> 
                                 {/* <img src={} /> */}
