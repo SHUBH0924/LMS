@@ -18,20 +18,29 @@ const QuizPage = () => {
     const [description, setDescription] = useState()
     const token = auth.token
     const userRole = auth.user
-    const userId = auth.userId
-
+    // const userId = auth.userId
+    const [submited,setSubmited] = useState(false)
     const [ans,setans] = useState([])
 
     useEffect(() => {
+        // auth.isAuthenticate()
+        console.log(token)
         axios.get(`${process.env.REACT_APP_SERVER}/quiz/${QuizId}`, {
             headers: {
                 'Authorization': token
             }
         }).then(res => {
-            // console.log(res)
-            setQuizName(res.data.quizname)
-            setQuestionList(res.data.questionSet)
-            setDescription(res.data.description)
+            console.log(res)
+            if(res.status === 200){
+                setQuizName(res.data.quizname)
+                setQuestionList(res.data.questionSet)
+                setDescription(res.data.description)
+            }
+            if(res.status === 208){
+                setSubmited(true)
+            }
+        }).catch(error=>{
+            console.log(error)
         })
     }, [])
 
@@ -65,15 +74,18 @@ const QuizPage = () => {
     const SubmitAnswer = (e) =>{
         // e.preventDefault()
         axios.post(`${process.env.REACT_APP_SERVER}/quiz/addanswer`,{
-            studentId:userId,
+            // studentId:userId,
             quizId:QuizId,
-            ans
+            answers:ans
         },{
             headers: {
                 'Authorization': token
             }
         }).then(res=>{
             console.log(res)
+            setSubmited(!submited)
+        }).catch(err=>{
+            console.log(err)
         })
     }
 
@@ -103,7 +115,7 @@ const QuizPage = () => {
             // tmp.push(obj[0])
         }
         setans(tmp)
-        console.log(tmp)
+        // console.log(tmp)
     }
 
     return (
@@ -117,6 +129,9 @@ const QuizPage = () => {
                 <div className='flex -mt-6 '>
                     <Courses />
                 </div>
+                
+                {!submited?
+                
                 <div className='flex flex-col w-full pb-20'>
                     <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                         {quizName}
@@ -180,15 +195,18 @@ const QuizPage = () => {
                             )
                         }) : null
                     }
-                    {userRole === "Admin" ? (
+                    {userRole === "Student" ? (
                     <div className='relative mx-auto' onClick={SubmitAnswer} >
-                        <button
+                        {questionList.length > 0 ?<button
                             // onClick={SubmitAnswer} 
                             className="bg-gray-600 w-48 flex mx-auto text-white active:bg-gray-800 select-none px-6 py-3 mt-3 rounded-md shadow hover:bg-gray-600 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                             Submit
-                        </button>
+                        </button>:null}
                     </div>):null}
                 </div>
+                : <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                        Quiz submitted
+                    </h1> }
             </aside>
         </div>
     )
