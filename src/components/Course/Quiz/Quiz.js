@@ -11,7 +11,8 @@ import AddQuestion from './AddQuestion'
 import { useAuth } from '../../../Auth/auth'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
-import quizimg from '../../../assets/quiz.png'
+import quizimg from '../../../assets/test.png'
+import './quiz.css';
 
 
 function Quiz() {
@@ -73,7 +74,7 @@ function Quiz() {
 
     return (
         <>
-            <div className='relative'>
+            <div className='relative select-none'>
                 <div className='sticky top-0 '>
                     <Header />
                 </div>
@@ -106,56 +107,64 @@ function Quiz() {
                             </div>
                         </div> */}
 
-                        
+                        {/* <div className="wrapper shadow-lg shadow-yellow-200" onClick={() => onPageOpen(item._id)}>
+                            <div className="borders"></div>
+                            <div className="main-element">
+                                <img className='w-16 mx-auto mt-3 h-16 ' src={quizimg} alt="product image" />
+                                <div className="ml-16 mt-4 capitalize font-semibold text-lg ">{item.quizname}</div>
+                            </div>
+
+                        </div> */}
+
                         {quiz ? (
                             <div className="container flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full">
-                                <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 lg:mx-auto w-full py-6">
-                                {quiz.map((item, key) => {
-                                return (
-                                    <div onClick={() => onPageOpen(item._id)}>
-                                        <div className='flex'>
-                                            <button className='w-44 py-3 rounded bg-gray-200 mx-auto'>
-                                                <img className='w-24 h-24 mx-auto mb-6' src={quizimg} alt="image" />
-                                                <p className='font font-semibold capitalize text-lg'>{item.quizname}</p>
+                                <div className="mx-auto md:w-full grid grid-col-1 sm:grid-cols-2 shrink-0 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 lg:mx-auto w-full py-3">
+                                    {quiz.map((item, key) => {
+                                        return (
+                                            <button className="wrapper shadow-2xl  shadow-yellow-100" onClick={() => onPageOpen(item._id)}>
+                                                <div className="borders"></div>
+                                                <div className="main-element relative  px-3">
+                                                    <img className='w-16 mx-auto mt-2 h-16 ' src={quizimg} alt="product image" />
+                                                    <div className=" mt-3 capitalize font-semibold text-md ">{item.quizname}</div>
+                                                </div>
+
                                             </button>
-                                        </div>
-                                    </div>
-                                            
-                                    
 
 
 
-                                // <div className="container flex flex-col  px-5 mx-auto p-4" onClick={() => onPageOpen(item._id)}>
-                                //     {/* {console.log(item._id)} */}
-                                //     <div className="w-4/5  mx-auto mb-2 bg-gray-50 hover:bg-gray-100  rounded-3xl  ring-1 ring-gray-500 ">
-
-                                //         <div className="item__preview__mod select-none transition px-6 capitalize text-xl text-black font-semibold py-6">
-                                //             {item.quizname}
-                                //             {/* <Link onClick={() => DeleteModule(item._id)}>
-                                //                 <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>
-                                //                     X
-                                //                 </span>
-                                //             </Link> */}
-
-                                //         </div>
 
 
+                                            // <div className="container flex flex-col  px-5 mx-auto p-4" onClick={() => onPageOpen(item._id)}>
+                                            //     {/* {console.log(item._id)} */}
+                                            //     <div className="w-4/5  mx-auto mb-2 bg-gray-50 hover:bg-gray-100  rounded-3xl  ring-1 ring-gray-500 ">
 
-                                //     </div>
-                                // </div>
+                                            //         <div className="item__preview__mod select-none transition px-6 capitalize text-xl text-black font-semibold py-6">
+                                            //             {item.quizname}
+                                            //             {/* <Link onClick={() => DeleteModule(item._id)}>
+                                            //                 <span className='item__preview__mod__del   float-right bg-red-500 text-center pt-1 text-black font-bold text-md -mt-2 h-9 w-9  rounded-full'>
+                                            //                     X
+                                            //                 </span>
+                                            //             </Link> */}
+
+                                            //         </div>
+
+
+
+                                            //     </div>
+                                            // </div>
+                                        )
+
+                                    })}
+                                </div>
+                            </div>
+                        )
+                            : (
+                                <div>
+                                    <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                        There are no Quizzes
+                                    </h1>
+                                </div>
                             )
-                            
-                            })}
-                            </div>
-                        </div>
-                        )
-                         : (
-                            <div>
-                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
-                                    There are no Quizzes
-                                </h1>
-                            </div>
-                        )
                         }
 
 

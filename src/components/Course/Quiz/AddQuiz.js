@@ -21,7 +21,7 @@ const AddQuiz = (props) => {
     seta({
       ...a,
       quizname: "",
-      description: ""  
+      description: ""
     })
     setShowModal(!showModal)
   }
@@ -31,10 +31,10 @@ const AddQuiz = (props) => {
     <>
 
       <div className='relative mt-3 mx-auto'>
-        
+
         <div className='relative  mt-4 mx-auto'>
 
-          <button
+          {/* <button
             className="bg-gray-700 w-56 flex flex-row text-white active:bg-gray-800 select-none px-6 py-3 mt-3 rounded-md shadow hover:bg-gray-600 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
             onClick={() => setShowModal(true)}
@@ -43,9 +43,20 @@ const AddQuiz = (props) => {
               <FcQuestions
                 size={30}
               />
-            <span className='ml-4 font-bold text-lg'>Create Quiz   </span> 
+              <span className='ml-4 font-bold text-lg'>Create Quiz   </span>
             </span>
+          </button> */}
+
+
+          <button className="relative px-5 w-36 h-12 py-2 font-medium text-white group" onClick={() => setShowModal(true)}>
+            <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-purple-400 group-hover:bg-purple-600 group-hover:skew-x-12"></span>
+            <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-purple-600 group-hover:bg-purple-400 group-hover:-skew-x-12"></span>
+            <span className="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-purple-600 -rotate-12"></span>
+            <span className="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-purple-600 -rotate-12"></span>
+            <span className="relative text-lg ml-1 text-white">Create Quiz </span>
           </button>
+
+
         </div>
       </div>
       {showModal ? (
@@ -64,14 +75,14 @@ const AddQuiz = (props) => {
                 </div>
                 {/* {/body/} */}
                 <div className="relative p-5 flex-auto">
-                  <form class="space-y-10 w-full">
+                  <form className="space-y-10 w-full">
                     <div>
-                      <label for="Quiz" class="block mb-2 text-sm font-medium text-gray-300">Quiz Name</label>
-                      <input type="text" name="quiz" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.quizname} onChange={e => seta({ ...a, quizname: e.target.value })} />
+                      <label for="Quiz" className="block mb-2 text-sm font-medium text-gray-300">Quiz Name</label>
+                      <input type="text" name="quiz" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.quizname} onChange={e => seta({ ...a, quizname: e.target.value })} />
                     </div>
                     <div>
-                      <label for="Quiz" class="block mb-2 text-sm font-medium text-gray-300">Description</label>
-                      <textarea name="description" id="text" class=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.description} onChange={e => seta({ ...a, description: e.target.value })} />
+                      <label for="Quiz" className="block mb-2 text-sm font-medium text-gray-300">Description</label>
+                      <textarea name="description" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.description} onChange={e => seta({ ...a, description: e.target.value })} />
                     </div>
                   </form>
 
