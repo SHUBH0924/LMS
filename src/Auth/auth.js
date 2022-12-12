@@ -6,14 +6,18 @@ const AuthContext = createContext(null)
 export const AuthProvider = ({children}) => {
     const [user,setuser] = useState(null)
     const [userName,setUserName] = useState(null)
+    const [userId,setUserId] = useState(null)
     const [token,setToken] = useState(null)
     // const Navigate = useNavigate()
     
     const login = (UserData) =>{
-        // console.log(UserData)
+        console.log(UserData)
+
         setUserName(UserData.username)
         setuser(UserData.role)
         setToken(UserData.token)
+        setUserId(UserData.userId)
+        Cookies.set('userId',UserData.userId, { expires: 1,secure: true })
         Cookies.set('userRole',UserData.role, { expires: 1,secure: true })
         Cookies.set('token',UserData.token, { expires: 1,secure: true })
         Cookies.set('userName',UserData.username, { expires: 1,secure: true })
@@ -23,11 +27,13 @@ export const AuthProvider = ({children}) => {
         const userData = Cookies.get('userRole')
         const Token = Cookies.get('token')
         const username = Cookies.get('userName')
-        // console.log(userName)
+        const userid = Cookies.get('userId')
+        // console.log()
         if(userData){
             setuser(userData)
             setToken(Token)
             setUserName(username)
+            setUserId(userid)
         }
     }
 
@@ -42,7 +48,7 @@ export const AuthProvider = ({children}) => {
     }
 
     return(
-        <AuthContext.Provider value={{user,login,logout,isAuthenticate,token,userName}}>
+        <AuthContext.Provider value={{user,login,logout,isAuthenticate,token,userName,userId}}>
             {children}
         </AuthContext.Provider>
     );

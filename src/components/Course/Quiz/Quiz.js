@@ -59,17 +59,8 @@ function Quiz() {
             state: {
                 courseId: slug,
                 quizId: quizid
-                // type:lecItems.type.split('/')[1], 
-                // lectures:modules, 
-                // lectureId:lecItems._id,
-                // courseId:slug,
-                // moduleId:moduleItem._id,
-                // Title:lecItems.name
             }
         })
-        // }else{
-        //     toast.error("Please Enroll the course")
-        // }
     }
 
     return (
