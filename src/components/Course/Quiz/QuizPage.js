@@ -6,6 +6,7 @@ import AddQuestion from './AddQuestion'
 import toast from 'react-hot-toast'
 import Header from '../../Header'
 import Courses from '../Courses';
+import done from '../../../assets/star.png'
 
 const QuizPage = () => {
 
@@ -199,14 +200,21 @@ const QuizPage = () => {
                     <div className='relative mx-auto' onClick={SubmitAnswer} >
                         {questionList.length > 0 ?<button
                             // onClick={SubmitAnswer} 
-                            className="bg-gray-600 w-48 flex mx-auto text-white active:bg-gray-800 select-none px-6 py-3 mt-3 rounded-md shadow hover:bg-gray-600 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                            className="bg-gray-600 w-32 mx-auto text-white active:bg-gray-800 select-none px-5 font-semibold py-3 mt-3 rounded-md shadow hover:bg-gray-600 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                             Submit
                         </button>:null}
                     </div>):null}
                 </div>
-                : <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
-                        Quiz submitted
-                    </h1> 
+                : 
+                // <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                //         Quiz submitted
+                // </h1> 
+                <div className='flex w-3/5 select-none border-2 border-dashed mx-auto h-60 mt-40 border-gray-300 rounded-xl'>
+                    <div className='mx-auto flex flex-col'>
+                        <div className='w-full'><img className="flex w-32 mx-auto h-32 my-3" src={done} alt="product image" /></div>
+                        <div className='text-gray-700 mt-3 mx-auto capitalize font-semibold text-3xl'> Quiz completed</div>
+                    </div>
+                </div>
                 }
             </aside>
         </div>

@@ -153,7 +153,6 @@ const Module = (props) => {
 
                             return (
                                 <div className="container flex flex-col px-5 mx-auto p-4" onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
-                                    
                                     <div  className="w-3/5   mx-auto  bg-gray-50 hover:bg-gray-200 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-500 border-blue-700" >
                                         <div className="px-6 capitalize text-xl  text-black font-semibold py-6 ">
                                             ➤ &ensp;{item.title}
@@ -161,11 +160,6 @@ const Module = (props) => {
                                                 <AiOutlineClose size={23} />
                                             </span>:null}
                                         </div>
-                                        
-                                        {/* <div 
-                                            className='ml-12 mr-12 mb-8'
-                                            dangerouslySetInnerH={{TML __html: item.content }} 
-                                        /> */}
                                     </div>
                                 </div>
                             )

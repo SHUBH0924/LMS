@@ -346,17 +346,15 @@ const Module = (props) => {
                                     <details className="w-3/4 mx-auto bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-300 border-blue-700">
 
                                         <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
-                                        ➤ &ensp;  {item.name}
-
-
+                                            ➤ &ensp;  {item.name}
                                             {(userRole === "Admin") && <button className='item__preview__mod__del  float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full' onClick={() => DeleteModule(item._id)}>
                                                 <span>
                                                     <AiOutlineClose size={20} className="ml-0.5 mb-1 text-white" />
                                                 </span>
                                             </button>}
-
-                                            
                                         </summary>
+
+
 
                                         {
                                             item.lectures.map((items, key) => {

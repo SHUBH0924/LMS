@@ -66,7 +66,7 @@ function Quiz() {
     return (
         <>
             <div className='relative select-none'>
-                <div className='sticky top-0 '>
+                <div className='sticky top-0 z-20'>
                     <Header />
                 </div>
                 <aside className="flex">
@@ -74,17 +74,17 @@ function Quiz() {
                     <div className='flex -mt-6 '>
                         <Courses courseId={slug} />
                     </div>
-                    <div className='flex flex-col w-full'>
+                    <div className='flex flex-col z-10 w-full'>
                         <h1 className=' select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                             quizzes
                         </h1>
 
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
                         <AddQuiz createNewQuiz={createNewQuiz} />
-                        <h2 className='mt-5 mb-2 capitalize text-2xl ml-20 font-bold'>
+                        <h2 className='mt-5 mb-2 capitalize text-2xl ml-20 font-semibold'>
                             Active Quizzes
                         </h2>
-                        <hr className='w-1/4 ml-20 h-3' />
+                        <hr className='w-1/5 ml-12 h-3' />
 
 
                         {/* <div className="container flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full" onClick={() => onPageOpen(item._id)}>
@@ -112,13 +112,12 @@ function Quiz() {
                                 <div className="mx-auto md:w-full grid grid-col-1 sm:grid-cols-2 shrink-0 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 lg:mx-auto w-full py-3">
                                     {quiz.map((item, key) => {
                                         return (
-                                            <button className="wrapper shadow-2xl  shadow-yellow-100" onClick={() => onPageOpen(item._id)}>
+                                            <button className="wrapper  hover:scale-105 hover:duration-300 hover:transition-all duration-300 " onClick={() => onPageOpen(item._id)}>
                                                 <div className="borders"></div>
-                                                <div className="main-element relative  px-3">
-                                                    <img className='w-16 mx-auto mt-2 h-16 ' src={quizimg} alt="product image" />
-                                                    <div className=" mt-3 capitalize font-semibold text-md ">{item.quizname}</div>
+                                                <div className="main-element relative bg-[linear-gradient(120deg,_#dafdff_50%,_#faeff5_50%)] px-3">
+                                                    <img className='w-20 opacity-80 mx-auto mt-3 h-20 ' src={quizimg} alt="product image" />
+                                                    <div className=" mt-3 capitalize font-semibold text-lg ">{item.quizname}</div>
                                                 </div>
-
                                             </button>
 
 
