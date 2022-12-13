@@ -6,7 +6,7 @@ import Header from '../Header'
 import { toast } from 'react-hot-toast'
 import Avatar from 'react-avatar'
 import pic from './programmer.png'
-
+import {MutatingDots} from 'react-loader-spinner'
 
 
 function Profile() {
@@ -16,12 +16,11 @@ function Profile() {
     const [email, setemail] = useState("")
     const [address, setaddress] = useState("")
     const [phone, setphone] = useState("")
-    // const [image, setImage] = useState("")
     const [file, setfile] = useState()
     const [userId,setUserId] = useState()
     const URL = process.env.REACT_APP_SERVER
     const [Avatarpath,setAvatar] = useState(`${URL}/avatar/${token}`)
-    
+    const [loader,setloader]  = useState(true)
     const [image, setImage] = useState(null)
     
 
@@ -36,11 +35,15 @@ function Profile() {
                 console.log(res)
                 let data = res.data
                 // setfile(data.file)
+                setloader(false)
                 setUserId(data._id)
                 setname(data.name)
                 setemail(data.email)
                 setphone(data.phone)
                 setaddress(data.address)
+            }).catch(err=>{
+                toast.error(err.message)
+                setloader(false)
             })
     }, [])
 
@@ -84,6 +87,7 @@ function Profile() {
             <div className='sticky top-0 z-50 '>
                 <Header />
             </div>
+            
             <aside className="flex mb-16">
 
                 <div className='flex flex-col w-4/5 mx-auto'>
@@ -93,6 +97,18 @@ function Profile() {
                     </h1>
                     <hr className="w-3/5 mx-auto h-2 mb-5" />
 
+                    {loader?
+                    <MutatingDots 
+                        height="100"
+                        width="100"
+                        color="#482f2d"
+                        secondaryColor= '#423982'
+                        radius='12.5'
+                        ariaLabel="mutating-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                        />:
                     <form className="mt-6 ml-16 w-4/5 justify-center">
                         <div className="flex  flex-col xs:flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}
@@ -151,6 +167,7 @@ function Profile() {
                             </div>
                         </div>
                     </form>
+                }
                 </div>
             </aside>
 

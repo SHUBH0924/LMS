@@ -8,6 +8,7 @@ import Sidenav from "../../Layout/Sidenav"
 import classes from "./Admin_Dashboard.module.css"
 import Create_Course from "./CreateCourse/Create_Course"
 import Header from '../../Header'
+import { InfinitySpin } from 'react-loader-spinner'
 
 const Admin_Dashboard = () => {
 
@@ -16,6 +17,7 @@ const Admin_Dashboard = () => {
     const [Course, setCourse] = useState([])
     const token = auth.token
     const Navigate = useNavigate();
+    const [loader,setloader] = useState(true)
 
     useEffect(() => {
         // console.log(token)
@@ -24,9 +26,11 @@ const Admin_Dashboard = () => {
                 'Authorization': token
             }
         }).then(res => {
-            // console.log(res.data)
             setCourse(res.data)
-            // console.log(Course) 
+            setloader(false)
+        }).catch(err=>{
+            toast.error(err.message)
+            setloader(false)
         })
     }, [])
 
@@ -84,11 +88,6 @@ const Admin_Dashboard = () => {
                 <aside className="flex flex-row ">
                         {/* <Sidenav /> */}
                     <div className='flex flex-col w-full'>
-
-                        {/* <button className={classes.Button} onClick={e=>setCourseToggle(!CourseToggle)}>Create Course</button> */}
-                        {/* <div>
-                            
-                            </div> */}
                         {
                             <Create_Course createNewCourse={createNewCourse} className="float-right"/>
                         }
@@ -96,8 +95,14 @@ const Admin_Dashboard = () => {
                         <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                             published courses
                         </h1>
-                        
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
+                        {loader?
+                        <div className="mx-auto">
+                            <InfinitySpin 
+                            width='200'
+                            color="#4fa94d"
+                            />
+                        </div>:
                         <div className=" flex-shrink-0 flex  grid-flow-col justify-items-center px-4 w-full">
                             <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 lg:mx-auto w-full py-6">
                                 {Course.length>0?(Course.filter(item => {
@@ -109,11 +114,20 @@ const Admin_Dashboard = () => {
                                 })):null}
                             </div>
                         </div>
+                        }
 
                         <h1 className='mt-6 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                            unpublished courses
                         </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
+                        
+                        {loader?
+                        <div className="mx-auto">
+                            <InfinitySpin 
+                            width='200'
+                            color="#4fa94d"
+                            />
+                        </div>:
                         <div className=" flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full">
                             <div className="mx-auto md:w-full justify-center grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 2xl lg:mx-auto w-full py-6">
                                 {Course.filter(item => {
@@ -126,6 +140,7 @@ const Admin_Dashboard = () => {
                                 })}
                             </div>
                         </div>
+                        }
                     </div>
                 </aside>
             </div>

@@ -86,7 +86,7 @@ function Quiz() {
                         </h1>
 
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                        {userRole=="ADMIN"?
+                        {userRole==="Admin"?
                             <AddQuiz createNewQuiz={createNewQuiz} />:null
                             }
                         <h2 className='mt-5 mb-2 capitalize text-2xl ml-20 font-bold'>
