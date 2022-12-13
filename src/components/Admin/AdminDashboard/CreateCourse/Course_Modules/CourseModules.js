@@ -17,6 +17,8 @@ import ci from '../../../../../assets/bg1.jpg'
 import { MdAddAPhoto } from "react-icons/md";
 import { RiErrorWarningFill } from "react-icons/ri";
 import ConfirmBox from '../../../../ConfirmBox';
+import { InfinitySpin } from 'react-loader-spinner'
+
 
 const Module = (props) => {
 
@@ -34,7 +36,7 @@ const Module = (props) => {
     const [Enroll, setEnroll] = useState(false)
     const [publish, setPublish] = useState()
     const [Title, setTitle] = useState()
-
+    const [loader,setloader] = useState(true)
 
     const createNewModule = ({ a }) => {
 
@@ -84,12 +86,16 @@ const Module = (props) => {
             }
         }).then(res => {
             console.log(res)
+            setloader(false)
             setPublish(res.data.published)
             setEnroll(res.data.enrolled)
             setTitle(res.data.name)
             setModules(res.data.modules)
 
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            toast.error(err.message)
+            setloader(false)
+        })
     }, [])
 
     const handleSubmission = (id, selectedFile, content, Title) => {
@@ -283,13 +289,20 @@ const Module = (props) => {
                     {/* <Sidenav /> */}
 
                     {
-                        (Enroll || userRole === "Admin") ? (
+                        (!loader && (Enroll || userRole === "Admin")) ? (
                             <div className='flex flex-row sticky top-24 left-0 -mt-6 '>
                                 <Courses courseId={slug} />
                             </div>) : null
                     }
 
-                    <div className='flex flex-col mb-32 w-4/5 mx-auto'>
+                    {loader?
+                        <div className="mx-auto">
+                            <InfinitySpin 
+                            width='200'
+                            color="#4fa94d"
+                            />
+                        </div>:
+                        <div className='flex flex-col mb-32 w-4/5 mx-auto'>
                         <div className=" select-none capitalize text-3xl text-black font-semibold py-6 mx-auto">
                             {Title}
                         </div>
@@ -408,7 +421,7 @@ const Module = (props) => {
                             </button>
                         </div>) : null}
 
-                    </div>
+                    </div>}
 
                 </aside>
 

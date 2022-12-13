@@ -10,7 +10,7 @@ import Courses from '../Course/Courses';
 import { ImageConfig } from '../ImageConfig';
 import { useLocation } from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai"; 
-
+import {MutatingDots} from 'react-loader-spinner'
 
 const Announcement = () => {
     const [showModal, setShowModal] = React.useState(false);
@@ -21,7 +21,7 @@ const Announcement = () => {
     // Slug is the course id
     const { slug } = useParams();
     const URL = process.env.REACT_APP_SERVER
-
+    const [loader,setloader] = useState(true)
     const [AnnouncementList, setAnnouncementList] = useState([])
 
 
@@ -35,8 +35,12 @@ const Announcement = () => {
             console.log(res)
             if (res.status === 200) {
                 setAnnouncementList(res.data)
+                setloader(false)
             }
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            setloader(false)
+            toast.error(err.message)
+        })
     }, [])
 
 
@@ -125,7 +129,8 @@ const Announcement = () => {
                                 </h2>
                                 <hr className='w-full  h-3' />
                             </div>
-                            {(userRole === 'Admin') ?
+                            
+                            {(loader && userRole === 'Admin') ?
                                 <div className='flex '>
                                     <button className='bg-blue-600 text-white active:bg-blue-400 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150' onClick={() => setShowModal(true)}>Announce</button>
                                 </div> : null}
@@ -154,8 +159,21 @@ const Announcement = () => {
                             ) : null}
                         </div>
 
-
-                        {AnnouncementList.length > 0 ? (AnnouncementList.map((item, key) => {
+                        {loader?
+                            <div className="mx-auto">
+                                <MutatingDots 
+                                height="100"
+                                width="100"
+                                color="#4fa94d"
+                                secondaryColor= '#4fa94d'
+                                radius='12.5'
+                                ariaLabel="mutating-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                           </div>:
+                        (AnnouncementList.length > 0 ? (AnnouncementList.map((item, key) => {
 
                             return (
 
@@ -186,18 +204,9 @@ const Announcement = () => {
                                 </h1>
                             </div>
                         )
-                        }
+                        )
+                    }
 
-
-
-                        {/* </div>   */}
-
-                        {/* {
-                            (userRole==="Admin")?(
-                            <div className='flex flex-col'>
-                                    <DropFileInput handleSubmission={handleSubmission} id={slug}/>
-                            </div>):null
-                        } */}
                     </div>
 
                 </aside>
