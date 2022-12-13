@@ -6,6 +6,7 @@ import AddQuestion from './AddQuestion'
 import toast from 'react-hot-toast'
 import Header from '../../Header'
 import Courses from '../Courses';
+import { FidgetSpinner } from 'react-loader-spinner'
 
 const QuizPage = () => {
 
@@ -21,6 +22,7 @@ const QuizPage = () => {
     // const userId = auth.userId
     const [submited,setSubmited] = useState(false)
     const [ans,setans] = useState([])
+    const [loading,setloading] = useState(true)
 
     useEffect(() => {
         // auth.isAuthenticate()
@@ -31,6 +33,7 @@ const QuizPage = () => {
             }
         }).then(res => {
             console.log(res)
+            setloading(false)
             if(res.status === 200){
                 setQuizName(res.data.quizname)
                 setQuestionList(res.data.questionSet)
@@ -40,7 +43,9 @@ const QuizPage = () => {
                 setSubmited(true)
             }
         }).catch(error=>{
-            console.log(error)
+            setloading(false)
+            toast.error(error.message)
+            // console.log(error)
         })
     }, [])
 
@@ -131,8 +136,20 @@ const QuizPage = () => {
                 </div>
                 
                 {!submited?
-                
+                    
+                    loading?<FidgetSpinner
+                        visible={true}
+                        height="80"
+                        width="80"
+                        ariaLabel="dna-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="dna-wrapper"
+                        ballColors={['#ff0000', '#00ff00', '#0000ff']}
+                        backgroundColor="#F4442E"
+                    />:
+                    (
                 <div className='flex flex-col w-full pb-20'>
+                    
                     <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                         {quizName}
                     </h1>
@@ -203,7 +220,7 @@ const QuizPage = () => {
                             Submit
                         </button>:null}
                     </div>):null}
-                </div>
+                </div>)
                 : <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                         Quiz submitted
                     </h1> 
