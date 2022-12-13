@@ -109,7 +109,7 @@ const AddQuestion = (props) => {
                       <label for="AnswerType" className="block mb-2  text-md font-semibold text-gray-800">Answer Selection Type</label>
                       <select value={answerSelectionType} name="AnswerType" onChange={e => setanswerSelectionType(e.target.value)} className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mx-auto block w-11/12 p-2.5 bg-gray-200 border-gray-800 placeholder-gray-400 text-black">
                           <option value="single">Single</option>
-                          <option value="multiple">multiple</option>
+                          <option value="multiple">Multiple</option>
                       </select>
                     </div>
                     <div>

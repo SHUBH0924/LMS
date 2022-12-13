@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import Header from '../../Header'
 import Courses from '../Courses';
 import { FidgetSpinner } from 'react-loader-spinner'
+import quizc from '../../../assets/star.png'
 
 const QuizPage = () => {
 
@@ -139,13 +140,13 @@ const QuizPage = () => {
                     
                     loading?<FidgetSpinner
                         visible={true}
-                        height="80"
-                        width="80"
+                        height="120"
+                        width="auto"
                         ariaLabel="dna-loading"
-                        wrapperStyle={{}}
+                        wrapperStyle={{marginTop:"250px"}}
                         wrapperClass="dna-wrapper"
-                        ballColors={['#ff0000', '#00ff00', '#0000ff']}
-                        backgroundColor="#F4442E"
+                        ballColors={['#7eaae5', '#7eaae5', '#7eaae5']}
+                        backgroundColor="#214b86"
                     />:
                     (
                 <div className='flex flex-col w-full pb-20'>
@@ -169,8 +170,9 @@ const QuizPage = () => {
                                 <>
                                     <div className="py-4 px-4 rounded-xl max-h-max mt-5 select-none flex border w-4/5 mx-auto justify-center items-center bg-gray-50">
                                         <div className="w-full mx-6">
-                                            <div className="flex mt-2">
+                                            <div className="flex flex-col sm:flex-row justify-between mt-2 w-full">
                                                 <p className="text-xl capitalize font-semibold text-black">Q - &ensp;{items.question}</p>
+                                                <span className='justify-end mt-3 sm:mt-0 font-semibold text-purple-600 text-lg '>Points :&ensp;{items.point}</span>
                                             </div>
                                             
                                             <div className="md:grid grid-cols-12 gap-2 mx-auto pb-3 w-4/5">
@@ -216,14 +218,23 @@ const QuizPage = () => {
                     <div className='relative mx-auto' onClick={SubmitAnswer} >
                         {questionList.length > 0 ?<button
                             // onClick={SubmitAnswer} 
-                            className="bg-gray-600 w-32 mx-auto text-white active:bg-gray-800 select-none px-5 font-semibold py-3 mt-3 rounded-md shadow hover:bg-gray-600 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                            className="bg-blue-600 w-32 mx-auto text-white active:bg-gray-800 select-none px-5 font-semibold py-3 mt-7 rounded-md shadow hover:bg-gray-600 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                             Submit
                         </button>:null}
                     </div>):null}
                 </div>)
-                : <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
-                        Quiz submitted
-                    </h1> 
+                : 
+                    // <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                    //     Quiz submitted
+                    // </h1> 
+                <div className='flex border-2 py-4 rounded-2xl mx-auto mt-40 border-dashed border-gray-400 w-3/5 h-72'>
+                    <div className='flex flex-col mt-8 w-full mx-auto'>
+                        <img className='w-32 h-32 animate-bounce mt-2 mx-auto' src={quizc}/>
+                        <h1 className='mt-1  select-none px-6 capitalize text-4xl text-gray-600 font-semibold mx-auto'>
+                            Quiz completed
+                        </h1>
+                    </div>
+                </div>
                 }
             </aside>
         </div>

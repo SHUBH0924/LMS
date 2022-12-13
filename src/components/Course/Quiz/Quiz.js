@@ -89,27 +89,30 @@ function Quiz() {
                         {userRole=="ADMIN"?
                             <AddQuiz createNewQuiz={createNewQuiz} />:null
                             }
-                        <h2 className='mt-5 mb-2 capitalize text-2xl ml-20 font-bold'>
+                        <h2 className='mt-5 mb-2 capitalize text-2xl mx-auto font-semibold'>
                             Active Quizzes
                         </h2>
-                        <hr className='w-1/5 ml-12 h-3' />
+                        <hr className='w-1/5 mx-auto h-3' />
 
                         {loading?
                            ( <Dna
+                            className="my-auto"
                             visible={true}
-                            height="120"
-                            width="120"
+                            height="200"
+                            width="auto"
                             ariaLabel="dna-loading"
                             wrapperStyle={{}}
                             wrapperClass="dna-wrapper"
+                            // colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+
                           />)
                         :
                           (quiz.length > 0 ? (
-                            <div className="container flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full">
+                            <div className="container mx-auto flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full">
                                 <div className="mx-auto md:w-full grid grid-col-1 sm:grid-cols-2 shrink-0 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 lg:mx-auto w-full py-3">
                                     {quiz.map((item, key) => {
                                         return (
-                                            <button className="wrapper  hover:scale-105 hover:duration-300 hover:transition-all duration-300 " onClick={() => onPageOpen(item._id)}>
+                                            <button className="wrapper hover:scale-105 hover:duration-300 hover:transition-all duration-300 " onClick={() => onPageOpen(item._id)}>
                                                 <div className="borders"></div>
                                                 <div className="main-element relative bg-[linear-gradient(120deg,_#dafdff_50%,_#faeff5_50%)] px-3">
                                                     <img className='w-20 opacity-80 mx-auto mt-3 h-20 ' src={quizimg} alt="product image" />

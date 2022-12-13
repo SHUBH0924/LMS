@@ -57,27 +57,27 @@ const NavBar = () => {
 
           />
         </div>
-          <ul className={`md:flex space-x-6 md:items-center select-none md:pb-0 pb-8 mt-2 md:justify-end absolute md:static bg-gradient-to-r from-purple-100 to bg-red-100 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
+          <ul className={`md:flex space-x-6  md:items-center select-none md:pb-0 pb-6 mt-4 md:justify-end absolute md:static bg-gradient-to-r from-purple-100 to bg-red-100 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
             
           {menus.map((menu, key) => {
             return (
-              <>
+              <div className=' bg-transparent'>
                 {
                   ((menu.role === "both") || (menu.role === userRole)) &&
 
                   <li className=" nav-item">
                     <Link
-                      className="px-1 py-2 flex items-center text-md  md:ml-1 leading-snug text-black hover:opacity-85"
+                      className=" py-3  flex items-center text-md leading-snug text-black hover:opacity-85"
                       to={menu.link}
                       key={key}
                     >
-                      <button className="text-lg font-semibold text-black hover:animate-pulse hover:underline underline-offset-8  decoration-black w-24 h-12 ">{menu.name}</button>
+                      <button className="text-lg  font-semibold text-black hover:animate-pulse hover:underline underline-offset-8  decoration-black w-24 h-12 ">{menu.name}</button>
                     </Link>
                     
                     
                   </li>
                 }
-              </>
+              </div>
             )
           })}
 
