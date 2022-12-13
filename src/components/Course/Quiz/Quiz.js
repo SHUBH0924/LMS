@@ -12,8 +12,9 @@ import { useAuth } from '../../../Auth/auth'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 import quizimg from '../../../assets/test.png'
+import { Dna } from 'react-loader-spinner'
 import './quiz.css';
-
+import toast from 'react-hot-toast'
 
 function Quiz() {
     const [showModal, setShowModal] = useState(false)
@@ -21,9 +22,10 @@ function Quiz() {
     const auth = useAuth()
     const { slug } = useParams()
     const token = auth.token
+    const userRole = auth.user
     const [quiz, setQuiz] = useState([])
     const Navigate = useNavigate()
-
+    const [loading,setloading] = useState(true)
 
     useEffect(() => {
 
@@ -34,6 +36,10 @@ function Quiz() {
         }).then(res => {
             console.log(res.data)
             setQuiz(res.data.quiz)
+            setloading(false)
+        }).catch(err=>{
+            setloading(false)
+            toast.error(err.message)
         })
 
     }, [])
@@ -80,34 +86,25 @@ function Quiz() {
                         </h1>
 
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-                        <AddQuiz createNewQuiz={createNewQuiz} />
-                        <h2 className='mt-5 mb-2 capitalize text-2xl ml-20 font-semibold'>
+                        {userRole=="ADMIN"?
+                            <AddQuiz createNewQuiz={createNewQuiz} />:null
+                            }
+                        <h2 className='mt-5 mb-2 capitalize text-2xl ml-20 font-bold'>
                             Active Quizzes
                         </h2>
                         <hr className='w-1/5 ml-12 h-3' />
 
-
-                        {/* <div className="container flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full" onClick={() => onPageOpen(item._id)}>
-                            <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 lg:mx-auto w-full py-6">
-                                <div className='flex'>
-                                    <button className='w-44 py-3 rounded-t-full bg-gray-200 mx-auto'>
-                                        <img className='w-24 h-24 mx-auto mb-6' src={quizimg} alt="image" />
-                                        <p className='font font-semibold capitalize text-lg'>{item.quizname}</p>
-                                    </button>
-                                </div>
-                            </div>
-                        </div> */}
-
-                        {/* <div className="wrapper shadow-lg shadow-yellow-200" onClick={() => onPageOpen(item._id)}>
-                            <div className="borders"></div>
-                            <div className="main-element">
-                                <img className='w-16 mx-auto mt-3 h-16 ' src={quizimg} alt="product image" />
-                                <div className="ml-16 mt-4 capitalize font-semibold text-lg ">{item.quizname}</div>
-                            </div>
-
-                        </div> */}
-
-                        {quiz ? (
+                        {loading?
+                           ( <Dna
+                            visible={true}
+                            height="120"
+                            width="120"
+                            ariaLabel="dna-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="dna-wrapper"
+                          />)
+                        :
+                          (quiz.length > 0 ? (
                             <div className="container flex-shrink-0 flex grid-flow-col justify-items-center px-4 w-full">
                                 <div className="mx-auto md:w-full grid grid-col-1 sm:grid-cols-2 shrink-0 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 lg:mx-auto w-full py-3">
                                     {quiz.map((item, key) => {
@@ -119,10 +116,6 @@ function Quiz() {
                                                     <div className=" mt-3 capitalize font-semibold text-lg ">{item.quizname}</div>
                                                 </div>
                                             </button>
-
-
-
-
 
                                             // <div className="container flex flex-col  px-5 mx-auto p-4" onClick={() => onPageOpen(item._id)}>
                                             //     {/* {console.log(item._id)} */}
@@ -155,7 +148,9 @@ function Quiz() {
                                     </h1>
                                 </div>
                             )
+                          )
                         }
+                    
 
 
                     </div>

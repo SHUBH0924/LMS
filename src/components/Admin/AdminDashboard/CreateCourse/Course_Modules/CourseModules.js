@@ -289,7 +289,7 @@ const Module = (props) => {
                             </div>) : null
                     }
 
-                    <div className='flex flex-col mb-32 w-screen'>
+                    <div className='flex flex-col mb-32 w-4/5 mx-auto'>
                         <div className=" select-none capitalize text-3xl text-black font-semibold py-6 mx-auto">
                             {Title}
                         </div>

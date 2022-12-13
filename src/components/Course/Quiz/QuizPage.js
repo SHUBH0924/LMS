@@ -6,7 +6,7 @@ import AddQuestion from './AddQuestion'
 import toast from 'react-hot-toast'
 import Header from '../../Header'
 import Courses from '../Courses';
-import done from '../../../assets/star.png'
+import { FidgetSpinner } from 'react-loader-spinner'
 
 const QuizPage = () => {
 
@@ -22,6 +22,7 @@ const QuizPage = () => {
     // const userId = auth.userId
     const [submited,setSubmited] = useState(false)
     const [ans,setans] = useState([])
+    const [loading,setloading] = useState(true)
 
     useEffect(() => {
         // auth.isAuthenticate()
@@ -32,6 +33,7 @@ const QuizPage = () => {
             }
         }).then(res => {
             console.log(res)
+            setloading(false)
             if(res.status === 200){
                 setQuizName(res.data.quizname)
                 setQuestionList(res.data.questionSet)
@@ -41,7 +43,9 @@ const QuizPage = () => {
                 setSubmited(true)
             }
         }).catch(error=>{
-            console.log(error)
+            setloading(false)
+            toast.error(error.message)
+            // console.log(error)
         })
     }, [])
 
@@ -132,8 +136,20 @@ const QuizPage = () => {
                 </div>
                 
                 {!submited?
-                
+                    
+                    loading?<FidgetSpinner
+                        visible={true}
+                        height="80"
+                        width="80"
+                        ariaLabel="dna-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="dna-wrapper"
+                        ballColors={['#ff0000', '#00ff00', '#0000ff']}
+                        backgroundColor="#F4442E"
+                    />:
+                    (
                 <div className='flex flex-col w-full pb-20'>
+                    
                     <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                         {quizName}
                     </h1>
@@ -204,17 +220,10 @@ const QuizPage = () => {
                             Submit
                         </button>:null}
                     </div>):null}
-                </div>
-                : 
-                // <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
-                //         Quiz submitted
-                // </h1> 
-                <div className='flex w-3/5 select-none border-2 border-dashed mx-auto h-60 mt-40 border-gray-300 rounded-xl'>
-                    <div className='mx-auto flex flex-col'>
-                        <div className='w-full'><img className="flex w-32 mx-auto h-32 my-3" src={done} alt="product image" /></div>
-                        <div className='text-gray-700 mt-3 mx-auto capitalize font-semibold text-3xl'> Quiz completed</div>
-                    </div>
-                </div>
+                </div>)
+                : <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                        Quiz submitted
+                    </h1> 
                 }
             </aside>
         </div>
