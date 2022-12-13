@@ -71,7 +71,7 @@ function Dashboard() {
                                     )
                                 })
                                 }
-                                </div>}
+                                </div>
                             </div>
                         }
                     <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>

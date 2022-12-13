@@ -282,7 +282,7 @@ const Module = (props) => {
         <>
 
             <div className='relative w-full '>
-                <div className='sticky top-0 z-10 '>
+                <div className='sticky top-0 z-30 '>
                     <Header />
                 </div>
                 <aside className="flex flex-row w-full">
@@ -290,7 +290,7 @@ const Module = (props) => {
 
                     {
                         (!loader && (Enroll || userRole === "Admin")) ? (
-                            <div className='flex flex-row sticky top-24 left-0 -mt-6 '>
+                            <div className='flex flex-row sticky top-24 z-20 left-0 -mt-6 '>
                                 <Courses courseId={slug} />
                             </div>) : null
                     }
@@ -309,10 +309,10 @@ const Module = (props) => {
                         <hr className="w-3/5 mx-auto h-2 mb-6" />
                         {
                             (userRole === "Admin") ?
-                                (<div className='flex select-none flex-row  mb-10 w-full justify-center mx-auto '>
-                                    <div className='w-1/3 flex-shrink-0 justify-end border-r-2 border-gray-500 relative invisible md:visible'>
-                                        <div className='w-4/5 h-72 group relative'>
-                                            <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-72 rounded-xl '>
+                                (<div className='flex select-none flex-col sm:flex-row  mb-10 w-full justify-center mx-auto '>
+                                    <div className='md:w-96 w-72  justify-end border-r-2 border-gray-500 relative invisible md:visible'>
+                                        <div className='md:-ml-20 z-10 -ml-2 md:w-96 md:h-72 w-48 h-36 group relative'>
+                                            <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-full rounded-xl '>
                                                 <MdAddAPhoto size={60} className="ml-44 mt-28 absolute text-white z-20" />
                                                 <input className=" w-full h-72 opacity-0" type="file" accept='image/*' />
                                                 <div className="bg-black opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
@@ -322,7 +322,7 @@ const Module = (props) => {
                                             
                                         </div>
                                     </div>
-                                    <div className='flex flex-col justify-start space-y-10 pl-16 '>
+                                    <div className='flex flex-col justify-start space-y-10 pl-8 md:pl-16 '>
                                         <div className='w-64 flex'>
                                             <button
                                                 className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:outline-none text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"

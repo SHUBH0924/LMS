@@ -85,14 +85,14 @@ function Quiz() {
                             quizzes
                         </h1>
 
-                        <hr className="w-3/5 mx-auto h-2 mb-5" />
+                        <hr className="w-3/5 mx-auto h-2 mb-4" />
                         {userRole==="Admin"?
                             <AddQuiz createNewQuiz={createNewQuiz} />:null
                             }
-                        <h2 className='mt-5 mb-2 capitalize text-2xl mx-auto font-semibold'>
+                        <h2 className='mt-10 mb-5 capitalize text-2xl mx-auto md:ml-48 font-semibold'>
                             Active Quizzes
                         </h2>
-                        <hr className='w-1/5 mx-auto h-3' />
+                        <hr className='w-1/5 mx-auto md:ml-40' />
 
                         {loading?
                            ( <Dna

@@ -169,7 +169,7 @@ const Module = (props) => {
                                 <div className="container flex flex-col  px-5 mx-auto p-4">
                                     <div className='flex w-4/5 group mx-auto select-none h-max py-6 px-6 mb-10 flex-col rounded-lg bg-[linear-gradient(135deg,_#ffe4e1_50%,_#f5f5dc_40%)] text-black' onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
                                         <div className='flex flex-row'>
-                                            <h1 className=' select-none px-7 mb-3 underline underline-offset-8 capitalize text-3xl text-black font-semibold mx-auto'>
+                                            <h1 className=' select-none px-7 mb-3 capitalize text-3xl text-black font-semibold mx-auto'>
                                                 {item.title}
                                             </h1>
                                             {(userRole === 'Admin') ?
