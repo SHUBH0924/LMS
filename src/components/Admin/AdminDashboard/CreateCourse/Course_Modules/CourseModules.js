@@ -17,6 +17,8 @@ import ci from '../../../../../assets/bg1.jpg'
 import { MdAddAPhoto } from "react-icons/md";
 import { RiErrorWarningFill } from "react-icons/ri";
 import ConfirmBox from '../../../../ConfirmBox';
+import { InfinitySpin } from 'react-loader-spinner'
+
 
 const Module = (props) => {
 
@@ -34,7 +36,7 @@ const Module = (props) => {
     const [Enroll, setEnroll] = useState(false)
     const [publish, setPublish] = useState()
     const [Title, setTitle] = useState()
-
+    const [loader,setloader] = useState(true)
 
     const createNewModule = ({ a }) => {
 
@@ -84,12 +86,16 @@ const Module = (props) => {
             }
         }).then(res => {
             console.log(res)
+            setloader(false)
             setPublish(res.data.published)
             setEnroll(res.data.enrolled)
             setTitle(res.data.name)
             setModules(res.data.modules)
 
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            toast.error(err.message)
+            setloader(false)
+        })
     }, [])
 
     const handleSubmission = (id, selectedFile, content, Title) => {
@@ -283,13 +289,20 @@ const Module = (props) => {
                     {/* <Sidenav /> */}
 
                     {
-                        (Enroll || userRole === "Admin") ? (
+                        (!loader && (Enroll || userRole === "Admin")) ? (
                             <div className='flex flex-row sticky top-24 left-0 -mt-6 '>
                                 <Courses courseId={slug} />
                             </div>) : null
                     }
 
-                    <div className='flex flex-col mb-32 w-screen'>
+                    {loader?
+                        <div className="mx-auto">
+                            <InfinitySpin 
+                            width='200'
+                            color="#4fa94d"
+                            />
+                        </div>:
+                        <div className='flex flex-col mb-32 w-4/5 mx-auto'>
                         <div className=" select-none capitalize text-3xl text-black font-semibold py-6 mx-auto">
                             {Title}
                         </div>
@@ -346,17 +359,15 @@ const Module = (props) => {
                                     <details className="w-3/4 mx-auto bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-300 border-blue-700">
 
                                         <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
-                                        ➤ &ensp;  {item.name}
-
-
+                                            ➤ &ensp;  {item.name}
                                             {(userRole === "Admin") && <button className='item__preview__mod__del  float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full' onClick={() => DeleteModule(item._id)}>
                                                 <span>
                                                     <AiOutlineClose size={20} className="ml-0.5 mb-1 text-white" />
                                                 </span>
                                             </button>}
-
-                                            
                                         </summary>
+
+
 
                                         {
                                             item.lectures.map((items, key) => {
@@ -410,7 +421,7 @@ const Module = (props) => {
                             </button>
                         </div>) : null}
 
-                    </div>
+                    </div>}
 
                 </aside>
 

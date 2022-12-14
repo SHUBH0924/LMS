@@ -71,8 +71,9 @@ const NavBar = () => {
                       to={menu.link}
                       key={key}
                     >
-                      <button className="text-lg font-semibold text-black hover:animate-pulse hover:border-b-2 border-gray-700 w-24 h-12 ">{menu.name}</button>
+                      <button className="text-lg font-semibold text-black hover:animate-pulse hover:underline underline-offset-8  decoration-black w-24 h-12 ">{menu.name}</button>
                     </Link>
+                    
                     
                   </li>
                 }
@@ -87,7 +88,7 @@ const NavBar = () => {
                 onClick={Lgout}
                 to="/Login"
               >
-                <button className="px-2 select-none hover:animate-pulse hover:bg-red-700 bg-red-600 rounded-lg py-2 flex items-center text-lg  text-white "><FiPower className='mr-1' />{Logout.name}</button>
+                <button className="px-2 select-none hover:animate-pulse hover:bg-red-700 bg-red-600 rounded-lg py-2 flex items-center text-lg  text-white " ><FiPower className='mr-1' />{Logout.name}</button>
               </Link>
             </li>
           }

@@ -10,7 +10,7 @@ import Courses from '../Course/Courses';
 import { ImageConfig } from '../ImageConfig';
 import {useLocation} from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai";
-
+import {MutatingDots} from 'react-loader-spinner'
 
 const Module = (props) => {    
     
@@ -23,12 +23,11 @@ const Module = (props) => {
     // Slug is the course id
     const { slug } = useParams();
     const URL = process.env.REACT_APP_SERVER
-
+    const [loader,setloader] = useState(true)
     const [AssignmentList, setAssignment] = useState([])    
 
 
-    useEffect(() => {
-       
+    useEffect(() => {       
         axios.get(`${URL}/assignment/${slug}`, {
             headers: {
                 'Authorization': token
@@ -36,8 +35,11 @@ const Module = (props) => {
         }).then(res => {
                 console.log(res.data)
                 setAssignment(res.data)
-          
-        }).catch(err => console.log(err))
+                setloader(false)
+        }).catch(err => {
+            toast.error(err.message)
+            setloader(false)
+        })
     },[])
 
 
@@ -147,27 +149,48 @@ const Module = (props) => {
                     </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
                     
-                    {/* <hr className='w-1/4 ml-20 h-3' /> */}
-                        
-                        {AssignmentList.length>0 ? (AssignmentList.map((item,key) => {
+                        {loader?
+                            <div className="mx-auto">
+                                <MutatingDots 
+                                height="100"
+                                width="100"
+                                color="#4fa94d"
+                                secondaryColor= '#4fa94d'
+                                radius='12.5'
+                                ariaLabel="mutating-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />
+                           </div>:
+                        (AssignmentList.length>0 ? (AssignmentList.map((item,key) => {
 
                             return (
-                                <div className="container flex flex-col px-5 mx-auto p-4" onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
-                                    
-                                    <div  className="w-3/5   mx-auto  bg-gray-50 hover:bg-gray-200 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-500 border-blue-700" >
-                                        <div className="px-6 capitalize text-xl  text-black font-semibold py-6 ">
-                                            ➤ &ensp;{item.title}
-                                            {(true)?<span className="drop-file-preview__item__del mr-2" onClick={() => fileRemove(item._id)}>
-                                                <AiOutlineClose size={23} />
-                                            </span>:null}
+                                <div className="container flex flex-col  px-5 mx-auto p-4">
+                                    <div className='flex w-4/5 group mx-auto select-none h-max py-6 px-6 mb-10 flex-col rounded-lg bg-[linear-gradient(135deg,_#ffe4e1_50%,_#f5f5dc_40%)] text-black' onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
+                                        <div className='flex flex-row'>
+                                            <h1 className=' select-none px-7 mb-3 underline underline-offset-8 capitalize text-3xl text-black font-semibold mx-auto'>
+                                                {item.title}
+                                            </h1>
+                                            {(userRole === 'Admin') ?
+                                                <span className=" float-right ease-in-out transition-all duration-200 delay-150 invisible group-hover:visible bg-red-500 rounded-full w-8 h-8  text-white" onClick={() => fileRemove(item._id)}>
+                                                    <AiOutlineClose size={23} className="mx-auto mt-1" />
+                                                </span> : null}
+
                                         </div>
-                                        
-                                        {/* <div 
-                                            className='ml-12 mr-12 mb-8'
-                                            dangerouslySetInnerH={{TML __html: item.content }} 
-                                        /> */}
+
                                     </div>
                                 </div>
+                                // <div className="container flex flex-col px-5 mx-auto p-4" onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
+                                //     <div  className="w-3/5   mx-auto  bg-gray-50 hover:bg-gray-200 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-500 border-blue-700" >
+                                //         <div className="px-6 capitalize text-xl  text-black font-semibold py-6 ">
+                                //             ➤ &ensp;{item.title}
+                                //             {(userRole === 'Admin')?<span className="drop-file-preview__item__del mr-2" onClick={() => fileRemove(item._id)}>
+                                //                 <AiOutlineClose size={23} />
+                                //             </span>:null}
+                                //         </div>
+                                //     </div>
+                                // </div>
                             )
                         })) : (
                             <div>
@@ -175,21 +198,19 @@ const Module = (props) => {
                                     There are no Assignments
                                 </h1>
                             </div>
-                        )
-                        }
-
-
-
-                    {/* </div>   */}
-
-                        {
-                            (userRole==="Admin") || (userRole === "student")?(
-                                
-                            <div className='flex flex-col'>
-                                
-                                    <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
-                            </div>):null
-                        }
+                        ))
+                    }  
+                    
+                    {
+                        !loader && (userRole==="Admin") || (userRole === "student")?(
+                            
+                        <div className='flex flex-col'>
+                            
+                                <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
+                        </div>):null
+                    }
+                    
+                
                     </div>
                     
                 </aside>

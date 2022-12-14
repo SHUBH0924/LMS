@@ -28,6 +28,8 @@ import Discussion from './components/Course/Discussion';
 import Grades from './components/Course/Grades'
 import QuizPage from './components/Course/Quiz/QuizPage'
 import QuizView from './components/User/QuizView'
+import Error from './components/Error'
+
 
 const App = () => {
 
@@ -138,9 +140,8 @@ const App = () => {
                 // <Protected isLoggedIn={auth.user==="Admin"} replace="Login">
                   <CourseModule />
                 // </Protected>
-              }
-               /> 
-              
+              }/> 
+              <Route path="*" element={<Error />} />
 
               
           </Routes>
