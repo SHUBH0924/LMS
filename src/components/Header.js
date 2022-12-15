@@ -40,12 +40,12 @@ const NavBar = () => {
 
   return (
     <div className='shadow-md w-full sticky mb-3 top-0 left-0'>
-      <div className='md:flex items-center justify-between bg-gradient-to-r from-cyan-100 via-purple-100 to-red-100 py-4 md:px-10 px-10'>
+      <div className='md:flex items-center justify-between bg-gradient-to-r from-cyan-100 via-purple-100 to-red-100 py-2 md:px-10 px-10'>
         <a href='/'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-black'>
           <span className='text-3xl flex-shrink-0 -ml-6 pt-1'>
-            <img className="w-14 mb-1 select-none" src={image} alt="Threat Guardian" />
+            <img className="w-16 mb-1 select-none" src={image} alt="Threat Guardian" />
           </span>
           <h1 className='text-3xl select-none invisible lg:visible
           flex ml-3 capitalize'>Threat Guardians</h1> 
@@ -57,7 +57,7 @@ const NavBar = () => {
 
           />
         </div>
-          <ul className={`md:flex space-x-6  md:items-center select-none md:pb-0 pb-6 mt-4 md:justify-end absolute md:static bg-gradient-to-r from-purple-100 to bg-red-100 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
+          <ul className={`md:flex space-x-6  md:items-center select-none md:pb-0 pb-6 mt-4 md:justify-end absolute md:static backdrop:blur-2xl bg-gradient-to-r from-purple-100 to bg-red-100 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
             
           {menus.map((menu, key) => {
             return (
@@ -67,11 +67,11 @@ const NavBar = () => {
 
                   <li className=" nav-item">
                     <Link
-                      className=" py-3  flex items-center text-md leading-snug text-black hover:opacity-85"
+                      className=" py-3  flex items-center text-md leading-snug text-gray-700 hover:opacity-85"
                       to={menu.link}
                       key={key}
                     >
-                      <button className="text-lg  font-semibold text-black hover:animate-pulse hover:underline underline-offset-8  decoration-black w-24 h-12 ">{menu.name}</button>
+                      <button className="text-lg  font-semibold text-gray-700 hover:animate-pulse hover:underline underline-offset-8  decoration-black w-24 h-12 ">{menu.name}</button>
                     </Link>
                     
                     

@@ -281,7 +281,7 @@ const Module = (props) => {
     return (
         <>
 
-            <div className='relative w-full '>
+            <div className='relative w-full overflow-x-hidden'>
                 <div className='sticky top-0 z-30 '>
                     <Header />
                 </div>
@@ -309,7 +309,7 @@ const Module = (props) => {
                         <hr className="w-3/5 mx-auto h-2 mb-6" />
                         {
                             (userRole === "Admin") ?
-                                (<div className='flex select-none flex-col sm:flex-row  mb-10 w-full justify-center mx-auto '>
+                                (<div className='flex select-none flex-row ml-20 mb-10 w-full justify-center  '>
                                     <div className='md:w-96 w-72  justify-end border-r-2 border-gray-500 relative invisible md:visible'>
                                         <div className='md:-ml-20 z-10 -ml-2 md:w-96 md:h-72 w-48 h-36 group relative'>
                                             <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-full rounded-xl '>

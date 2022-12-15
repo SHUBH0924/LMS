@@ -176,21 +176,10 @@ const Module = (props) => {
                                                 <span className=" float-right ease-in-out transition-all duration-200 delay-150 invisible group-hover:visible bg-red-500 rounded-full w-8 h-8  text-white" onClick={() => fileRemove(item._id)}>
                                                     <AiOutlineClose size={23} className="mx-auto mt-1" />
                                                 </span> : null}
-
                                         </div>
-
                                     </div>
                                 </div>
-                                // <div className="container flex flex-col px-5 mx-auto p-4" onClick={()=>{onPageOpen(item.title,item.content,item._id,item.hasFile)}}>
-                                //     <div  className="w-3/5   mx-auto  bg-gray-50 hover:bg-gray-200 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-500 border-blue-700" >
-                                //         <div className="px-6 capitalize text-xl  text-black font-semibold py-6 ">
-                                //             ➤ &ensp;{item.title}
-                                //             {(userRole === 'Admin')?<span className="drop-file-preview__item__del mr-2" onClick={() => fileRemove(item._id)}>
-                                //                 <AiOutlineClose size={23} />
-                                //             </span>:null}
-                                //         </div>
-                                //     </div>
-                                // </div>
+
                             )
                         })) : (
                             <div>
@@ -205,7 +194,7 @@ const Module = (props) => {
                         !loader && (userRole==="Admin") || (userRole === "student")?(
                             
                         <div className='flex flex-col'>
-                            
+                            <hr className='mb-4 w-4/5 mx-auto'/>
                                 <DropFileInput handleSubmission={handleSubmission} id={slug} file={true}/>
                         </div>):null
                     }
