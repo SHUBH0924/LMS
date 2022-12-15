@@ -25,6 +25,7 @@ const Module = (props) => {
     const URL = process.env.REACT_APP_SERVER
     const [loader,setloader] = useState(true)
     const [AssignmentList, setAssignment] = useState([])    
+    const [Error,setError] = useState(false)
 
 
     useEffect(() => {       
@@ -39,6 +40,7 @@ const Module = (props) => {
         }).catch(err => {
             toast.error(err.message)
             setloader(false)
+            setError(true)
         })
     },[])
 
@@ -202,7 +204,7 @@ const Module = (props) => {
                     }  
                     
                     {
-                        !loader && (userRole==="Admin") || (userRole === "student")?(
+                        !loader && !Error && (userRole==="Admin")?(
                             
                         <div className='flex flex-col'>
                             
