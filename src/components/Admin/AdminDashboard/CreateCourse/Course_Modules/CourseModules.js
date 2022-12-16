@@ -9,7 +9,6 @@ import DropFileInput from '../../Drag_Drop/DropFileInput';
 import Header from '../../../../Header'
 import Courses from '../../../../Course/Courses';
 import { ImageConfig } from '../../../../ImageConfig';
-// import {useLocation} from 'react-router-dom';
 import '../.././Drag_Drop/drop-file-input.css';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai";
@@ -22,8 +21,6 @@ import { InfinitySpin } from 'react-loader-spinner'
 
 const Module = (props) => {
 
-
-    // const location = useLocation();
     const auth = useAuth()
     const token = auth.token
     const userRole = auth.user
@@ -39,13 +36,10 @@ const Module = (props) => {
     const [loader,setloader] = useState(true)
     const [image, setImage] = useState(null)
     const [file, setfile] = useState()
-    const [Avatarpath,setAvatar] = useState(`${URL}/avatar/${token}`)
+    const [Avatarpath,setAvatar] = useState(`${URL}/course/image/${slug}`)
 
     const createNewModule = ({ a }) => {
 
-
-        // console.log(a)    
-        // addModuleURL
         axios.post(`${URL}/course/addModule/${slug}`, a, {
             headers: {
                 'Authorization': token
@@ -53,13 +47,11 @@ const Module = (props) => {
         }).then(res => {
             console.log(res)
             if (res.status == 200) {
-                // setModules(modules => [...modules, a]);
                 axios.get(`${URL}/course/${slug}`, {
                     headers: {
                         'Authorization': token
                     }
                 }).then(res => {
-                    // console.log(res.data)"http://172.29.233.109:3000/course"
                     if (res.data.modules.length > 0) {
                         setModules(res.data.modules)
                         // console.log(res.data.modules)
@@ -74,15 +66,9 @@ const Module = (props) => {
             toast.error("Unable to create Module")
             console.log(err)
         })
-        // console.log(unpublished_course)    
     }
 
     useEffect(() => {
-        // moduleURL
-        // console.log(location.state.Publish)
-        // if(location.state){
-        //     setPublish(location.state.Publish)
-        // }
         axios.get(`${URL}/course/${slug}`, {
             headers: {
                 'Authorization': token
@@ -118,7 +104,7 @@ const Module = (props) => {
                     'Authorization': token
                 }
             }).then(res => {
-                console.log("This is respinse data", res.data);
+                // console.log("This is response data", res.data);
                 toast.success("Lecture added!")
 
                 axios.get(`${URL}/course/${slug}`, {
@@ -186,7 +172,7 @@ const Module = (props) => {
             setPublish(!publish)
         }).catch(err => {
             console.log(err)
-            toast.success(err.message)
+            toast.error(err.message)
         })
         // console.log(slug)
     }
@@ -291,9 +277,9 @@ const Module = (props) => {
     const handleImageSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('pic', file);
+        formData.append('image', file);
         
-        axios.put(`${URL}/profile`, formData, {
+        axios.post(`${URL}/course/image/${slug}`, formData, {
             headers: {
                 'Authorization': token
             }
@@ -352,8 +338,11 @@ const Module = (props) => {
                                             <img className="sm:w-96 h-full w-64 mx-auto  rounded-xl" src={Avatarpath} alt="course image" />
                                             
                                         </div>
-                                        <button class="bg-blue-600 active:bg-blue-400 text-gray-200 font-semibold  text-md px-4 py-2 mt-4 rounded-md shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150" onClick={handleImageSubmit}>
-                                                Upload
+                                        
+                                        <img className="w-full h-full  rounded-xl" src={Avatarpath} alt="course image" />
+                                        
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={handleImageSubmit}>
+                                            Upload
                                         </button>
                                     </div>
                                     <div className='flex flex-col justify-start space-y-10  '>
