@@ -156,7 +156,7 @@ const QuizPage = () => {
                     </h1>
                     <hr className="w-3/5 mx-auto h-2 mb-5" />
                     {
-                        userRole==="Admin"?(
+                        (userRole === "Admin" || userRole==="Educator")?(
                             <AddQuestion createNewAns={createNewQuestion} />
                         ):null
                     }
@@ -194,7 +194,7 @@ const QuizPage = () => {
                                                             )
                                                         })}
                                             </div>
-                                            {userRole==="Admin"?(
+                                            {(userRole === "Admin" || userRole==="Educator")?(
                                                 <div className="pb-3 px-3 py-2 w-1/5 mb-2 ">
                                                     <h1 className='font-bold mb-3'>Correct Answer : </h1>
                                                     <div>

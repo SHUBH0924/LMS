@@ -29,7 +29,13 @@ const AssignmentPage = (props) => {
       <div className='sticky  top-0 z-10 '>
         <Header />
       </div>
-      <div className=' flex select-none flex-row w-full overflow-x-hidden h-screen bg-white'>
+      <div className=' flex select-none flex-col w-full overflow-x-hidden h-screen bg-white'>
+        {(userRole === "Admin" || userRole==="Educator")?
+          <button class="bg-green-300 hover:bg-gray-700 w-40 mx-auto text-white font-semibold py-2 px-4 rounded-lg" >
+          {/* // onClick={() => DeleteStud(user._id)}> */}
+            Submissions
+        </button>:null
+        }
         
         <div className=' flex flex-col w-full  mx-auto ' >
 

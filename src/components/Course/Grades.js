@@ -10,6 +10,8 @@ const Grades = () =>{
     const [grades,setGrades] = useState([])
     const auth = useAuth()
     const token = auth.token  
+    const [quizzes,setQuizzes] = useState([])
+
     useEffect(()=>{
         axios.get(`${process.env.REACT_APP_SERVER}/grades/${slug}`,{
             headers: {
@@ -17,8 +19,9 @@ const Grades = () =>{
             }
         }).then(res=>{
             console.log(res)
+            setQuizzes(res.data.quizzes)
         })
-    })
+    },[])
 
     return(
         <>
@@ -38,26 +41,19 @@ const Grades = () =>{
                 
                     <ul className='w-2/3 mt-12 mx-auto border-2 border-gray-900 divide-y divide-gray-900'>
                             
-                            
-                            {grades.map((user,key)=>{
+                            {quizzes.map((user,key)=>{
                                 return(
                                     <li className='mb-2'>
                                         
                                     <div className='flex ml-5 items-center'>
-                                        {/* <div className='flex mt-2'>
-                                            <img className='w-16 h-16 rounded-full' src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg">
-                                            </img>
-                                        </div> */}
-                                        <div class="flex-1 ml-4 ">
-                                            <p class="text-lg font-medium text-gray-900 truncate">
-                                                {/* {user.name} */}Grades
+                                        <div className="flex-1 flex-row ml-4 ">
+                                            <p className="text-lg font-medium text-gray-900 truncate">
+                                                {user.quizName}
                                             </p>
-                                            <p class="text-md text-gray-600">
-                                                {/* {user.email} */}Grades
-                                            </p>
+                                            <p>{user.totalMarks}</p>
+                                            <p>{user.obtMarks}</p>
                                         </div>
-                                        
-                                        </div>
+                                    </div>
                                     </li>
                                 )
                             })}
