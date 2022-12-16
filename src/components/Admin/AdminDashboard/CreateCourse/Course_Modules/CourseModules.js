@@ -339,9 +339,9 @@ const Module = (props) => {
                                             
                                         </div>
                                         
-                                        <img className="w-full h-full  rounded-xl" src={Avatarpath} alt="course image" />
+                                        {/* <img className="w-full h-full  rounded-xl" src={Avatarpath} alt="course image" /> */}
                                         
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={handleImageSubmit}>
+                                        <button class="bg-blue-600 my-4 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md" onClick={handleImageSubmit}>
                                             Upload
                                         </button>
                                     </div>
@@ -355,7 +355,7 @@ const Module = (props) => {
                                         </div>
                                         <div className='w-64 flex'>
                                         {(userRole === "Admin")?<button
-                                                className="bg-gradient-to-r from-red-500 to-red-600  focus:ring-red-4 focus:outline-none transition duration-150 ease-out text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                                className="bg-gradient-to-r from-red-500 to-red-600  focus:ring-red-4 focus:outline-none transition duration-150 ease-out text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-10"
                                                 type="button"
                                                 onClick={() => setShowModal(true)}
                                             >delete course
