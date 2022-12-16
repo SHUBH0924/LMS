@@ -37,6 +37,9 @@ const Module = (props) => {
     const [publish, setPublish] = useState()
     const [Title, setTitle] = useState()
     const [loader,setloader] = useState(true)
+    const [image, setImage] = useState(null)
+    const [file, setfile] = useState()
+    const [Avatarpath,setAvatar] = useState(`${URL}/avatar/${token}`)
 
     const createNewModule = ({ a }) => {
 
@@ -211,7 +214,7 @@ const Module = (props) => {
     }
 
     const onPageOpen = (moduleItem, lecItems) => {
-        if (Enroll || userRole === "Admin") {
+        if (Enroll || userRole === "Admin" || userRole==="Educator") {
             Navigate(`/Page`, {
                 state: {
                     type: lecItems.type.split('/')[1],
@@ -278,6 +281,35 @@ const Module = (props) => {
         setShowModal(!showModal)
     }
 
+    const handleimageChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setfile(event.target.files[0])
+            setImage(window.URL.createObjectURL(event.target.files[0]));
+            }
+    }
+
+    const handleImageSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('pic', file);
+        
+        axios.put(`${URL}/profile`, formData, {
+            headers: {
+                'Authorization': token
+            }
+        }).then(res => {
+            toast.success(res.data)
+            setAvatar(image)
+            setfile(null)
+            // console.log(image)
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+
+    }
+
+
     return (
         <>
 
@@ -289,7 +321,7 @@ const Module = (props) => {
                     {/* <Sidenav /> */}
 
                     {
-                        (!loader && (Enroll || userRole === "Admin")) ? (
+                        (!loader && (Enroll || userRole === "Admin" || userRole==="Educator")) ? (
                             <div className='flex flex-row sticky top-24 z-20 left-0 -mt-6 '>
                                 <Courses courseId={slug} />
                             </div>) : null
@@ -308,20 +340,22 @@ const Module = (props) => {
                         </div>
                         <hr className="w-3/5 mx-auto h-2 mb-6" />
                         {
-                            (userRole === "Admin") ?
-                                (<div className='flex select-none flex-row ml-20 mb-10 w-full justify-center  '>
-                                    <div className='md:w-96 w-72  justify-end border-r-2 border-gray-500 relative invisible md:visible'>
-                                        <div className='md:-ml-20 z-10 -ml-2 md:w-96 md:h-72 w-48 h-36 group relative'>
-                                            <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-full rounded-xl '>
-                                                <MdAddAPhoto size={60} className="ml-44 mt-28 absolute text-white z-20" />
-                                                <input className=" w-full h-72 opacity-0" type="file" accept='image/*' />
-                                                <div className="bg-black opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
-                                            </div>
-                                            
-                                            <img className="w-full h-full  rounded-xl" src={ci} alt="course image" />
-                                            
+                            (userRole === "Admin"|| userRole === "Educator") ?
+                                (<div className='flex select-none flex-row  mb-10 w-full justify-center mx-auto '>
+                                <div className='w-1/3 flex-shrink-0 justify-end border-r-2 border-gray-500 relative invisible md:visible'>
+                                    <div className='w-4/5 h-72 group relative'>
+                                        <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-72 rounded-xl '>
+                                            <MdAddAPhoto size={60} className="ml-44 mt-28 absolute text-white z-20" />
+                                            <input className=" w-full h-72 opacity-0" type="file" accept='image/*' onChange={handleimageChange}/> 
+                                            <div className="bg-black opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
                                         </div>
+                                        
+                                        <img className="w-full h-full  rounded-xl" src={Avatarpath} alt="course image" />
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={handleImageSubmit}>
+                                            Upload
+                                        </button>
                                     </div>
+                                </div>
                                     <div className='flex flex-col justify-start space-y-10 pl-8 md:pl-16 '>
                                         <div className='w-64 flex'>
                                             <button
@@ -331,13 +365,12 @@ const Module = (props) => {
                                             </button>
                                         </div>
                                         <div className='w-64 flex'>
-                                            <button
+                                        {(userRole === "Admin")?<button
                                                 className="bg-gradient-to-r from-red-500 to-red-600  focus:ring-red-4 focus:outline-none transition duration-150 ease-out text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                                 type="button"
                                                 onClick={() => setShowModal(true)}
                                             >delete course
-                                            </button>
-
+                                            </button>:null}
                                         </div>
                                         <div className=''>
                                             <NewModule createNewCourse={createNewModule} />
@@ -360,7 +393,7 @@ const Module = (props) => {
 
                                         <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
                                             ➤ &ensp;  {item.name}
-                                            {(userRole === "Admin") && <button className='item__preview__mod__del  float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full' onClick={() => DeleteModule(item._id)}>
+                                            {(userRole === "Admin" || userRole==="Educator") && <button className='item__preview__mod__del  float-right bg-red-500 pt-1 pl-1 text-white font-bold text-lg -mt-1 h-8 w-8  rounded-full' onClick={() => DeleteModule(item._id)}>
                                                 <span>
                                                     <AiOutlineClose size={20} className="ml-0.5 mb-1 text-white" />
                                                 </span>
@@ -385,7 +418,7 @@ const Module = (props) => {
                                                                     {/* <p>{items.size}B</p> */}
                                                                 </div>
                                                             </div>
-                                                            {(userRole === "Admin") && <span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id, items._id)}><AiOutlineClose /></span>}
+                                                            {(userRole === "Admin" || userRole==="Educator") && <span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id, items._id)}><AiOutlineClose /></span>}
                                                         </div>
                                                     </>
                                                 )
@@ -395,7 +428,7 @@ const Module = (props) => {
 
 
                                         {
-                                            (userRole === "Admin") &&
+                                            (userRole === "Admin" || userRole==="Educator") &&
                                             <div className='flex flex-col'>
                                                 <hr className='bg-black my-4'/>
                                                 <DropFileInput handleSubmission={handleSubmission} id={item._id} file={true} />

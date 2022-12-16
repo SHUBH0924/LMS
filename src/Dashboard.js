@@ -9,7 +9,7 @@ const Dashboard = () =>{
     
     return(
         <div>
-            {auth.user=="Admin"?
+            {(auth.user==="Admin" || auth.user==="Educator")?
                 (<Admin_Dashboard />):
                 (<UserDashboard /> )
             }

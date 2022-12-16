@@ -16,6 +16,7 @@ const Admin_Dashboard = () => {
     const backendServer = process.env.REACT_APP_SERVER
     const [Course, setCourse] = useState([])
     const token = auth.token
+    const userRole = auth.user
     const Navigate = useNavigate();
     const [loader,setloader] = useState(true)
 
@@ -88,8 +89,8 @@ const Admin_Dashboard = () => {
                 <aside className="flex flex-row ">
                         {/* <Sidenav /> */}
                     <div className='flex flex-col w-full'>
-                        {
-                            <Create_Course createNewCourse={createNewCourse} className="float-right"/>
+                        {userRole==="Admin"?
+                            <Create_Course createNewCourse={createNewCourse} className="float-right"/>:null
                         }
                         <hr className="w-1/3 mx-auto h-1  bg-black mt-5 drop-shadow-2xl"/>
                         <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
