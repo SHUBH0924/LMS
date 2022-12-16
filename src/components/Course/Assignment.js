@@ -132,8 +132,6 @@ const Module = (props) => {
     }
 
 
-    
-
     return (
         <>
         <div className='relative select-none'>
@@ -174,7 +172,7 @@ const Module = (props) => {
                                             <h1 className=' select-none px-7 mb-3 capitalize text-3xl text-black font-semibold mx-auto'>
                                                 {item.title}
                                             </h1>
-                                            {(userRole === 'Admin') ?
+                                            {(userRole === "Admin" || userRole==="Educator") ?
                                                 <span className=" float-right ease-in-out transition-all duration-200 delay-150 invisible group-hover:visible bg-red-500 rounded-full w-8 h-8  text-white" onClick={() => fileRemove(item._id)}>
                                                     <AiOutlineClose size={23} className="mx-auto mt-1" />
                                                 </span> : null}
@@ -193,7 +191,7 @@ const Module = (props) => {
                     }  
                     
                     {
-                        !loader && !Error && (userRole==="Admin")?(
+                        !loader && !Error && (userRole === "Admin" || userRole==="Educator")?(
                             
                         <div className='flex flex-col'>
                             <hr className='mb-4 w-4/5 mx-auto'/>

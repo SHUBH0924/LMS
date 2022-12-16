@@ -62,43 +62,6 @@ const Syllabus = (props) => {
         })
     }
 
-    // const fileRemove = (ModuleId,LectureID) =>{
-    //     console.log("course id",slug,"id",ModuleId,"key",LectureID)
-    //     var payload = {
-    //         courseId:slug,
-    //         moduleId:ModuleId,
-    //         lecId:LectureID
-    //     }
-    //     axios.delete(`${URL}/lecture`,{
-    //         headers: {
-    //             'Authorization': token
-    //         },
-    //         data:payload
-    //     }).then(res=>{
-    //         if(res.status === 200){
-    //             toast.success("Lecture Deleted")
-    //             axios.get(`${URL}/course/${slug}`, {
-    //                 headers: {
-    //                     'Authorization': token
-    //                 }
-    //             }).then(res => {
-    //                 if (res.data.modules.length > 0) {
-    //                     setModules(res.data.modules)
-    //                     // console.log(res.data.modules)
-    //                 }
-    //             }).catch(err => console.log("error"))
-    //         }
-    //         console.log(res)
-    //     }).catch(err=>{
-    //         toast.error(err.message)
-    //     })
-    // }
-
-
-
-
-
-
     return (
         <>
             <div className='relative'>
@@ -118,43 +81,13 @@ const Syllabus = (props) => {
 
                         {/* <hr className='w-1/4 ml-20 h-3' /> */}
 
-                        {/* {Syllabus.length>0 ? (.map((item,key) => {
-
-                            return (
-
-                                <div className="container flex flex-col  px-5 mx-auto p-4">
-
-                                    <details style={{"background-color":"#F8F9F9" }} className="w-4/5 mx-auto mb-2  rounded-lg ring-1 ring-gray-500 ">
-                                        <summary className="px-6 capitalize text-xl text-black font-semibold py-6 ">
-                                            {item.title}
-                                        </summary>
-                                        
-                                        <div 
-                                            className='ml-12 mr-12 mb-8'
-                                            dangerouslySetInnerHTML={{ __html: item.content }} 
-                                        />
-                                    </details>
-                                </div>
-                            )
-                        })) : (
-                            <div>
-                                <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
-                                    Coming Soon...
-                                </h1>
-                            </div>
-                        )
-                        } */}
-
-
-
-                        {/* </div>   */}
                         <div
                             className='mx-auto text-2xl mb-8'
                             dangerouslySetInnerHTML={{ __html: content }}
                         />
 
                         {
-                            (userRole === "Admin") ? (
+                            (userRole === "Admin" || userRole==="Educator") ? (
                                 <div className='w-4/5 mt-4 mb-8 mx-auto'>
                                 <JoditEditor 
                                     style={{height:"200px"}}

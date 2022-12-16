@@ -13,6 +13,7 @@ function Students() {
     const URL = process.env.REACT_APP_SERVER
     const auth = useAuth()
     const token = auth.token
+    const userRole = auth.user
     const {slug} = useParams()
     const [stud,setStud] = useState([]);
 
@@ -64,7 +65,8 @@ function Students() {
                 <div className='flex -mt-6 '>
                         <Courses courseId={slug}/>
                     </div>
-                <div className='flex flex-col w-full'>
+                {(userRole === "Admin" || userRole==="Educator")?
+                    <div className='flex flex-col w-full'>
                     <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                             enrolled students
                     </h1>
@@ -125,7 +127,7 @@ function Students() {
 
                     </ul>
                 </div>
-               
+               :null}
             </aside>
         </div>
     )

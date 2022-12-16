@@ -1,135 +1,27 @@
 import React, { useEffect, useState } from 'react';
-// import doc from "./Ashvani Resume (1).docx"
 import VideoJS from './Video'
 import videojs from 'video.js';
-// import PdfFile from './Introduction.pdf'
 import { useLocation } from 'react-router-dom';
 import PDFViewer from './PDFViewer';
 import axios from 'axios';
 import { useAuth } from '../../../../../../Auth/auth';
 import Header from '../../../../../Header'
 
-export default props => {
+const Page = () => {
 
   const auth = useAuth()
   const token = auth.token
   const location = useLocation();
   const lec = location.state.lectures
-  // const lec = [{
-  //   name:'Introduction',
-  //   lectures:[{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module2'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module3'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module4'
-  //   }]
-  // },{
-  //   name:'Module2',
-  //   lectures:[{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   }]
-  // },{
-  //   name:'Introduction',
-  //   lectures:[{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   }]
-  // },{
-  //   name:'Introduction',
-  //   lectures:[{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   }]
-  // },{
-  //   name:'Introduction',
-  //   lectures:[{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   },{
-  //     _id:"jdlhufbdioh9er8dgr",
-  //     type:'application/reading',
-  //     name:'module1'
-  //   }]
-  // }]
-  
-
   const URL = process.env.REACT_APP_SERVER
-
-  // const [type, setType] = useState("reading")
   const [type, setType] = useState(location.state.type)
-  // const [id, setId] = useState('12r42533ecgdec536cas4')
   const [id, setId] = useState(location.state.lectureId)
-  // const [courseId, setCourseId] = useState('iknhefvo3rgooietr83aiaeraa')
   const [courseId, setCourseId] = useState(location.state.courseId)
-  // const [moduleId, setModuleId] = useState('vjzn5it94e9iwor20q93u')
   const [moduleId, setModuleId] = useState(location.state.moduleId)
-  // const [content, setContent] = useState("<h1>Hello</h1>")
   const [content, setContent] = useState("")
   const [Title, setTitle] = useState(location.state.Title)
-  // const [Title, setTitle] = useState('Hello')
-  const VideoURL = `${URL}/playvideo/${courseId}/${moduleId}/${id}/${token}`
 
-
+  const playerRef = React.useRef(null);
 
   useEffect(() => {
     axios.post(`${URL}/course/content`, {
@@ -146,8 +38,6 @@ export default props => {
     })
   }, [id])
 
-
-  const playerRef = React.useRef(null);
 
   const videoJsOptions = {
     autoplay: true,
@@ -179,7 +69,6 @@ export default props => {
 
   return (
     <>
-      {/* {console.log(type,id,courseId,moduleId)} */}
       <div className='fixed top-0 w-full z-10 '>
         <Header />
       </div>
@@ -189,7 +78,6 @@ export default props => {
                   <h1 className='mt-2 ml-4 text-4xl font-bold text-black capitalize'>
                     
                   </h1>
-                  {/* <hr className='mt-2 w-full border-2 border-gray-500 bg-gray-500 ' /> */}
 
                   {lec.map((item, key) => {
 
@@ -204,7 +92,6 @@ export default props => {
                           {
                               
                             item.lectures.map((items, key) => {
-                              // console.log(items,key)
                               return (
                                 <>
                                 
@@ -218,37 +105,19 @@ export default props => {
                                       setTitle(items.name)
                                       
                                     }
-                                    
                                     }>
-
-                                    {/* <img src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" /> */}
-                                    {/* <div className=" mx-auto h-auto mt-1 mb-1  bg-transparent" > */}
-                                      <h2 className=' text-md font-sans capitalize select-none text-gray mx-1 align-baseline font-semibold text-lg'> ◆ {items.name}</h2>
-                                      {/* <p>{items.size}B</p> */}
-                                    {/* </div> */}
-
-
+                                  <h2 className=' text-md font-sans capitalize select-none text-gray mx-1 align-baseline font-semibold text-lg'> ◆ {items.name}</h2>
                                   </div>
                                 </>
                               )
                             })
                           }
                         </details>
-
-                      
-
                       </div>
                     )
                   })}
 
                 </aside>
-
-
-
-
-
-
-
 
         <div className=' flex-1 flex-col ml-96 ' >
 
@@ -287,3 +156,4 @@ export default props => {
 };
 
 
+export default Page;

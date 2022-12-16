@@ -16,15 +16,15 @@ const Courses = ({courseId}) => {
     const auth = useAuth()
     const userRole = auth.user
     const menus = [
-        { name: "Home ", link: "/", icon: SiHomeadvisor , role:"both"},
-        { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:"both"},
-        { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:"both"},
-        { name: "Discussion", link: `/discussion/${courseId}`, icon: RiDiscussFill , role:"both"},
-        { name: "Grades", link: `/Grades/${courseId}`, icon:  SiGoogleanalytics ,role:"both"},
+        { name: "Home ", link: "/", icon: SiHomeadvisor , role:"all"},
+        { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:"all"},
+        { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:"all"},
+        { name: "Discussion", link: `/discussion/${courseId}`, icon: RiDiscussFill , role:"all"},
+        { name: "Grades", link: `/Grades/${courseId}`, icon:  SiGoogleanalytics ,role:"all"},
         { name: "Students", link: `/Students/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:"Admin"},
-        { name: "Pages", link: `/course/${courseId}`, icon: AiFillBook ,role:"both"},
-        { name: "Quizzes", link: `/quiz/${courseId}`, icon: MdQuiz ,role:"both"},
-        { name: "Syllabus", link: `/syllabus/${courseId}`, icon: RiPagesFill, role:"both"},
+        { name: "Pages", link: `/course/${courseId}`, icon: AiFillBook ,role:"all"},
+        { name: "Quizzes", link: `/quiz/${courseId}`, icon: MdQuiz ,role:"all"},
+        { name: "Syllabus", link: `/syllabus/${courseId}`, icon: RiPagesFill, role:"all"},
     ];
     const [open,setOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const Courses = ({courseId}) => {
                     {menus?.map((menu, i) => {
                         return(
                             <>
-                        {((menu.role === "both") || (menu.role === userRole)) &&
+                        {((menu.role === "all") || (menu.role === "Admin") || (menu.role === "Educator")) &&
                          <Link
                             to={menu.link}
                             key={i}

@@ -130,7 +130,7 @@ const Announcement = () => {
                                 <hr className='w-full  h-3' />
                             </div>
                             
-                            {(!loader && userRole === 'Admin') ?
+                            {(!loader && (userRole === "Admin" || userRole==="Educator")) ?
                                 <div className='flex '>
                                     <button className='bg-blue-600 text-white active:bg-blue-400 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150' onClick={() => setShowModal(true)}>Announce</button>
                                 </div> : null}
@@ -183,7 +183,7 @@ const Announcement = () => {
                                             <h1 className=' select-none px-7 mb-3 underline underline-offset-8 capitalize text-3xl text-black font-semibold mx-auto'>
                                                 {item.title}
                                             </h1>
-                                            {(userRole === 'Admin') ?
+                                            {(userRole === "Admin" || userRole==="Educator") ?
                                                 <span className=" float-right ease-in-out transition-all duration-200 delay-150 invisible group-hover:visible bg-red-500 rounded-full w-8 h-8  text-white" onClick={() => fileRemove(item._id)}>
                                                     <AiOutlineClose size={23} className="mx-auto mt-1" />
                                                 </span> : null}
