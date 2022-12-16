@@ -38,22 +38,34 @@ const Grades = () =>{
                     <h1 className='mt-4 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                             Grades
                     </h1>
-                
-                    <ul className='w-2/3 mt-12 mx-auto border-2 border-gray-900 divide-y divide-gray-900'>
-                            
+                    <hr className="w-3/5 mx-auto h-2 mb-5" />
+                    
+                    <div className='w-2/3 py-3 mx-auto border-t-2 border-l border-r bg-gray-800 border-gray-900 mt-12 justify-around flex flex-row'>
+                        <h1 className='font-semibold text-gray-200 text-xl capitalize'>quiz name</h1>
+                        <h1 className='font-semibold text-gray-200 text-xl capitalize'>marks obt.</h1>
+                        <h1 className='font-semibold text-gray-200 text-xl capitalize'>total marks</h1>
+                    </div>
+
+
+                    <ul className='w-2/3  mx-auto border-b border-r border-l border-gray-900 divide-y divide-gray-900'>
+
                             {quizzes.map((user,key)=>{
                                 return(
                                     <li className='mb-2'>
                                         
-                                    <div className='flex ml-5 items-center'>
-                                        <div className="flex-1 flex-row ml-4 ">
-                                            <p className="text-lg font-medium text-gray-900 truncate">
+                                    {/* <div className='flex ml-5 items-center'> */}
+                                        <div className="flex justify-around flex-row py-1  ">
+                                            <p className=" capitalize text-lg text-gray-900 truncate">
                                                 {user.quizName}
                                             </p>
-                                            <p>{user.totalMarks}</p>
-                                            <p>{user.obtMarks}</p>
+                                            <p className="capitalize text-lg text-gray-900 truncate">
+                                            {user.obtMarks}
+                                            </p>
+                                            <p className=" capitalize text-lg text-gray-900 truncate">
+                                            {user.totalMarks}
+                                            </p>
                                         </div>
-                                    </div>
+                                    {/* </div> */}
                                     </li>
                                 )
                             })}

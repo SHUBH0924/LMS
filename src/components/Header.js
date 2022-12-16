@@ -57,7 +57,7 @@ const NavBar = () => {
 
           />
         </div>
-          <ul className={`md:flex space-x-6  md:items-center select-none md:pb-0 pb-6 mt-4 md:justify-end absolute md:static backdrop:blur-2xl bg-gradient-to-r from-purple-100 to bg-red-100 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
+          <ul className={`md:flex space-x-6  md:items-center select-none md:pb-0 pb-6  md:justify-end absolute md:static backdrop:blur-2xl bg-gradient-to-r from-purple-100 to bg-red-100 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
             
           {menus.map((menu, key) => {
             return (

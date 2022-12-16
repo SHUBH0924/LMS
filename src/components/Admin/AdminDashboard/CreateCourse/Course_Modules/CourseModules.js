@@ -313,9 +313,9 @@ const Module = (props) => {
     return (
         <>
 
-            <div className='relative w-full overflow-x-hidden'>
-                <div className='sticky top-0 z-30 '>
-                    <Header />
+            <div className='relative'>
+            <div className='sticky top-0 z-50'>
+                <Header />
                 </div>
                 <aside className="flex flex-row w-full">
                     {/* <Sidenav /> */}
@@ -345,14 +345,14 @@ const Module = (props) => {
                                     <div className='w-1/3 px-2 h-40 sm:h-64 flex-shrink-0 border-r-2 border-gray-500 mb-20 relative '>
                                         <div className='w-64  h-40 sm:w-96 sm:h-64 mx-auto md:-ml-32 group justify-items-end relative'>
                                             <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-96 h-64 rounded-xl '>
-                                                <MdAddAPhoto size={60} className="ml-40 mt-24 absolute text-white z-20" />
+                                                <MdAddAPhoto size={60} className="sm:ml-40 sm:mt-24 ml-20 mt-12 absolute text-white z-20" />
                                                 <input className="opacity-0 w-64  h-40 sm:w-96 sm:h-64 " type="file" accept='image/*' onChange={handleimageChange}/> 
                                                 <div className="bg-black h-64 opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
                                             </div>
                                             <img className="sm:w-96 h-full w-64 mx-auto  rounded-xl" src={Avatarpath} alt="course image" />
                                             
                                         </div>
-                                        <button class="bg-blue-500 hover:bg-blue-700 mb-8 mx-auto text-lg mt-4 text-white font-semibold py-2 px-4 rounded-md" onClick={handleImageSubmit}>
+                                        <button class="bg-blue-600 active:bg-blue-400 text-gray-200 font-semibold  text-md px-4 py-2 mt-4 rounded-md shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150" onClick={handleImageSubmit}>
                                                 Upload
                                         </button>
                                     </div>
@@ -388,7 +388,7 @@ const Module = (props) => {
 
                             return (
 
-                                <div className="container flex flex-col px-6 mx-auto p-4 border-blue-500">
+                                <div className="container flex flex-col px-1 md:px-6 mx-auto p-4 border-blue-500">
                                     <details className="w-3/4 mx-auto bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-300 border-blue-700">
 
                                         <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
@@ -406,7 +406,7 @@ const Module = (props) => {
                                             item.lectures.map((items, key) => {
                                                 return (
                                                     <>
-                                                        <div className="drop-file-preview__item mx-auto" style={{ width: "60%" }} >
+                                                        <button className="drop-file-preview__item text-lg font-light capitalize mx-auto" style={{ width: "60%" }} >
 
                                                             <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4"
                                                                 style={{ width: "100%" }}
@@ -419,7 +419,7 @@ const Module = (props) => {
                                                                 </div>
                                                             </div>
                                                             {(userRole === "Admin" || userRole==="Educator") && <span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id, items._id)}><AiOutlineClose /></span>}
-                                                        </div>
+                                                        </button>
                                                     </>
                                                 )
                                             })

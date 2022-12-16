@@ -66,8 +66,8 @@ function Dashboard() {
                                 color="#4fa94d"
                                 />
                             </div>:
-                            <div className="flex grid-flow-col justify-items-center ml-6 mr-5">
-                                <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 w-full py-6">
+                            <div className=" flex-shrink-0 flex  grid-flow-col justify-items-center px-4 w-full">
+                            <div className="mx-auto md:w-full  grid grid-col-1 shrink-0 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 lg:mx-auto w-full py-6">
                                     {course.map((item,key) =>{
                                         
                                         return(

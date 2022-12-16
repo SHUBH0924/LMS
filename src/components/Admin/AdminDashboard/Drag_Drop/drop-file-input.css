@@ -37,8 +37,6 @@ summary {
     opacity: 0.7;
 }
 
-
-
 .drop-file-input__label {
     text-align: center;
     color: #4653D1;
@@ -64,36 +62,40 @@ summary {
 }
 
 .drop-file-preview__item:hover{
-    background-color: #eeefef;
+    transform: scale(1.1);
+
     .drop-file-preview__item__details{
-        background-color: #eeefef;
+        transform: scale(1.1);
     }
 }
-
-
 
 .drop-file-preview__item {
     position: relative;
     display: flex;
     border:1px solid;
-    margin-bottom: 15px;
-    background-color: #dee0e0  ;
+    border-color: #674ea7;
+    margin-bottom: 10px;
+    background-color: #f5f0f2;
     padding: 10px;
-    border-radius: 5px;
-    font-family: sans-serif;
-    font-weight: 400;
+    border-radius: 0px;    
+    transition: transform .5s;
+}
+
+.drop-file-preview__item:active{
+    background-color: #eae1e5;
 }
 
 .drop-file-preview__item img {
     width: 55px;
-    
+    height: 55px;
+
 }
 
 .drop-file-preview__item__info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-weight: 700;
+    font-weight: 500;
     padding: 15px;
     
 }
