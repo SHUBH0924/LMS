@@ -341,22 +341,22 @@ const Module = (props) => {
                         <hr className="w-3/5 mx-auto h-2 mb-6" />
                         {
                             (userRole === "Admin"|| userRole === "Educator") ?
-                                (<div className='flex select-none flex-row  mb-10 w-full justify-center mx-auto '>
-                                <div className='w-1/3 flex-shrink-0 justify-end border-r-2 border-gray-500 relative invisible md:visible'>
-                                    <div className='w-4/5 h-72 group relative'>
-                                        <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-full h-72 rounded-xl '>
-                                            <MdAddAPhoto size={60} className="ml-44 mt-28 absolute text-white z-20" />
-                                            <input className=" w-full h-72 opacity-0" type="file" accept='image/*' onChange={handleimageChange}/> 
-                                            <div className="bg-black opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
+                                (<div className='flex select-none flex-col md:pl-40 lg:flex-row space-x-16 w-full justify-center mx-auto '>
+                                    <div className='w-1/3 px-2 h-40 sm:h-64 flex-shrink-0 border-r-2 border-gray-500 mb-20 relative '>
+                                        <div className='w-64  h-40 sm:w-96 sm:h-64 mx-auto md:-ml-32 group justify-items-end relative'>
+                                            <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-96 h-64 rounded-xl '>
+                                                <MdAddAPhoto size={60} className="ml-40 mt-24 absolute text-white z-20" />
+                                                <input className="opacity-0 w-64  h-40 sm:w-96 sm:h-64 " type="file" accept='image/*' onChange={handleimageChange}/> 
+                                                <div className="bg-black h-64 opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
+                                            </div>
+                                            <img className="sm:w-96 h-full w-64 mx-auto  rounded-xl" src={Avatarpath} alt="course image" />
+                                            
                                         </div>
-                                        
-                                        <img className="w-full h-full  rounded-xl" src={Avatarpath} alt="course image" />
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl" onClick={handleImageSubmit}>
-                                            Upload
+                                        <button class="bg-blue-500 hover:bg-blue-700 mb-8 mx-auto text-lg mt-4 text-white font-semibold py-2 px-4 rounded-md" onClick={handleImageSubmit}>
+                                                Upload
                                         </button>
                                     </div>
-                                </div>
-                                    <div className='flex flex-col justify-start space-y-10 pl-8 md:pl-16 '>
+                                    <div className='flex flex-col justify-start space-y-10  '>
                                         <div className='w-64 flex'>
                                             <button
                                                 className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:outline-none text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
