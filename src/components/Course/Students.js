@@ -82,16 +82,16 @@ function Students() {
                                         <img className='w-16 h-16 rounded-full' src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg">
                                         </img>
                                     </div>
-                                    <div class="flex-1 ml-4 ">
-                                        <p class="text-lg font-medium text-gray-900 truncate">
+                                    <div className="flex-1 ml-4 ">
+                                        <p className="text-lg font-medium text-gray-900 truncate">
                                             {user.name}
                                         </p>
-                                        <p class="text-md text-gray-600">
+                                        <p className="text-md text-gray-600">
                                             {user.email}
                                         </p>
                                     </div>
-                                    <div class="inline-flex mr-6 text-lg font-semibold text-gray-900">
-                                        <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg" 
+                                    <div className="inline-flex mr-6 text-lg font-semibold text-gray-900">
+                                        <button className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg" 
                                         onClick={() => DeleteStud(user._id)}>
                                             Remove
                                         </button>

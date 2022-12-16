@@ -17,6 +17,10 @@ function Dashboard() {
     const [course,setCourse] = useState([])
     const [loader,setloader] = useState(true)
 
+    useEffect(()=>{
+        auth.isAuthenticate()
+    },[])
+    
     useEffect(() => {
         axios.get(backendServer, {
             headers: {

@@ -8,7 +8,7 @@ const Card = ({ item, Button, onPublish }) => {
     return (
         <div className="mx-auto flex-shrink-0 group transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-md mb-12 rounded-lg max-w-xs  border-2 bg-[linear-gradient(135deg,_#fff9e7_50%,_#ffffff_40%)] border-gray-200">
             
-                <img className="relative h-60 w-70 mb-2 delay-150 group-hover:-translate-y-6 rounded-t-lg  duration-300 " src={image} alt="product image" />
+                <img className="relative h-60 w-70 mb-2 delay-150 group-hover:-translate-y-6 rounded-t-lg  duration-300 " src={`${process.env.REACT_APP_SERVER}/course/image/${item._id}`} alt="product image"/>
             
             <div className="px-5 pb-5">
                 <a href="#">

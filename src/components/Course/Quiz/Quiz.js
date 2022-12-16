@@ -29,13 +29,13 @@ function Quiz() {
 
     useEffect(() => {
 
-        axios.get(`${URL}/quiz/all`, {
+        axios.get(`${URL}/quiz/all/${slug}`, {
             headers: {
                 'Authorization': token
             }
         }).then(res => {
             console.log(res.data)
-            setQuiz(res.data.quiz)
+            setQuiz(res.data)
             setloading(false)
         }).catch(err=>{
             setloading(false)
@@ -46,14 +46,17 @@ function Quiz() {
 
 
     const createNewQuiz = ({ a }) => {
+        Object.assign(a,{'courseId':slug});
         axios.post(`${URL}/quiz`, a, {
             headers: {
                 'Authorization': token
             }
         }).then(res => {
             console.log(res)
+            setQuiz(oldarray => [...oldarray, a])
+        }).catch(err=>{
+            console.log(err)
         })
-        setQuiz(oldarray => [...oldarray, a])
     }
 
 

@@ -10,7 +10,7 @@ const Create_Course = (props) => {
   const [a, seta] = useState({
     // _id:uuid(),
     name: "",
-    educatorEmail:"",
+    author:"",
     license: "Private(CopyRight)",
     published: false,
     price: 0,
@@ -24,7 +24,7 @@ const Create_Course = (props) => {
     seta({
       ...a,
       name: "",
-      educatorEmail:"",
+      author:"",
       license: "Private(CopyRight)",
       published: false,
       price: 0,
@@ -83,7 +83,7 @@ const Create_Course = (props) => {
                     </div>
                     <div>
                       <label for="Educator" className="block mb-2 text-md font-medium text-gray-900">Educator Email</label>
-                      <input type="email" name="Educator" id="email" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-500 outline-none placeholder-gray-700 text-gray-600" required value={a.educatorEmail} onChange={e => seta({ ...a, educatorEmail: e.target.value })} />
+                      <input type="email" name="Educator" id="email" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-500 outline-none placeholder-gray-700 text-gray-600" required value={a.author} onChange={e => seta({ ...a, author: e.target.value })} />
                     </div>
                     <div>
                       <label for="Course" className="block mb-2 text-lg font-medium text-gray-900">Content License</label>

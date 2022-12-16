@@ -13,7 +13,6 @@ const NavBar = () => {
     { name: "Dashboard", link: "/", role: "both" },
     { name: "Users", link: "/users", role: "Admin" },
     { name: "My Courses", link: "/courses", role: "Student" },
-    // { name: "Calendar", link: "/calendar", role:"both"},
     { name: "Help", link: "/help", role: "both" },
     { name: "Profile", link: "/profile", role: "both" },
   ];
@@ -24,7 +23,6 @@ const NavBar = () => {
     auth.logout()
 
     toast.success("logged out")
-    // History.push('/Login')
   }
 
   let [open, setOpen] = useState(false);
