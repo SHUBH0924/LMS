@@ -15,7 +15,7 @@ const QuizPage = () => {
     const [questionList, setQuestionList] = useState([])
     const location = useLocation();
     const QuizId = location.state.quizId
-    // const courseId = location.state.courseId
+    const courseId = location.state.courseId
     // const auth = useAuth()
     const [quizName, setQuizName] = useState()
     const [description, setDescription] = useState()
@@ -135,7 +135,7 @@ const QuizPage = () => {
             <aside className="flex">
                 {/* <Sidenav /> */}
                 <div className='flex -mt-6 '>
-                    <Courses />
+                    <Courses courseId={courseId}/>
                 </div>
                 
                 {!submited?

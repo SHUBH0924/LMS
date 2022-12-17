@@ -1,66 +1,55 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { AuthProvider } from '../Auth/auth';
 import { useAuth } from '../Auth/auth';
 import toast from 'react-hot-toast';
-// import SimpleReactValidator from 'simple-react-validator';
-
-
 
 function Login() {
 
   const auth = useAuth()
   const Navigate = useNavigate();
+  const [email, setemail] = useState("")
+  const [password, setpassword] = useState("")
+  const URL = process.env.REACT_APP_SERVER
+  const [loading,setloading] = useState(false)
+
+  const mystyle = {
+    opacity : loading ? 0.5 : 1
+  };
   const NavigateToRegister = () => {
     Navigate('/register');
   };
-  // const simpleValidator = useRef(new SimpleReactValidator())
 
 
-  const [email, setemail] = useState("")
-  const [password, setpassword] = useState("")
-  // const [warning,setWarning] = useState("")
-  const URL = process.env.REACT_APP_SERVER
   const handleSubmit = (e) => {
     e.preventDefault();
+    setloading(true)
     const data = {
       email: email,
       password: password,
     }
 
     axios.post(`${URL}/login`, data).then(res => {
-      console.log(res) 
+      // console.log(res)
+      setloading(false) 
       if (res.data.status === "Authorised") {
         auth.login(res.data)
-        // if (res.data.role === "Admin"){
-        //   Navigate('/AdminDashboard');
-        // }
-        // if (res.data.role === "User"){
         Navigate('/');
-        // }
       }
 
       else {
-        // toast.error("Invalid credentials")
-        // setWarning("Invalid credentials")
+        toast.error("Invalid credentials")
       }
     }).catch(err => {
-      // console.log(e)
+      setloading(false) 
       if (err.response.status === 401) {
-        // console.log(err)
         toast.error(err.response.data)
       } else {
-        // console.log(err.message)
         toast.error(err.message)
       }
-      // toast.error("there are some error")
-      // setWarning("Invalid credentials")
     });
   }
-
-
 
   return (
     <div className='overflow-hidden'>
@@ -72,19 +61,41 @@ function Login() {
         </div>
         <div className="px-4 py-4 md:py-12 flex flex-shrink-0 flex-col w-4/5 md:w-auto md:px-16 bg-gray-100 rounded-2xl shadow-xl opacity-90 z-10">
           <div>
-            <h1 className="text-4xl w-auto md:w-80 mx-auto font-bold text-center mb-12 cursor-pointer" >Login</h1>
+            <h1 className="text-4xl w-auto md:w-80 mx-auto font-bold text-center mb-12 cursor-pointer" >
+              Login
+            </h1>
             <hr className='mb-8 -mt-4' />
-            <p className=" text-center mx-auto text-md mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Welcome Back
+            <p className=" text-center mx-auto text-md mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">
+              Welcome Back
             </p>
           </div>
           <form action=''>
             <div className="space-y-4">
-              <input type="email" autoComplete='off' placeholder="Email Address" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" value={email} onChange={(e) => setemail(e.target.value)} />
-              <input type="password" autoComplete='off' placeholder="Password" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" value={password} onChange={(e) => setpassword(e.target.value)} />
+              <input 
+                    type="email"
+                    autoComplete='off' 
+                    placeholder="Email Address" 
+                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" 
+                    value={email} 
+                    onChange={(e) => setemail(e.target.value)} />
+              <input 
+                    type="password" 
+                    autoComplete='off' 
+                    placeholder="Password" 
+                    className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" 
+                    value={password} onChange={(e) => setpassword(e.target.value)} />
             </div>
           </form>
           <div className="text-center mt-6">
-            <button onClick={handleSubmit} className="py-3 w-48 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-600 active:bg-green-600">Sign in</button>
+            <button 
+                  onClick={handleSubmit} 
+                  className="py-3 w-48 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-600 active:bg-green-600"
+                  disabled={loading}
+                  style={mystyle}
+                  >
+              Sign in
+            </button>
+            
             <p className="mt-4 text-sm">Need An Account? <span><button onClick={NavigateToRegister} className="py-3 w-50px text-l text-gray-700 bg-gray-100 rounded-2xl">Sign up</button></span>
             </p>
           </div>

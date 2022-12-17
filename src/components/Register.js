@@ -21,11 +21,16 @@ function Register() {
     const [errorMessage,setErrorMessage] = useState("")
     const [phone,setPhone] = useState("")
     const [passFlag,setPassFlag] = useState(false)
+    const [loading,setloading] = useState(false)
+
+    const mystyle = {
+        opacity : loading ? 0.5 : 1
+      };
+
     const validate = (value) => {
-        
         if (validator.isStrongPassword(value, {
-          minLength: 8, minLowercase: 1,
-          minUppercase: 1, minNumbers: 1, minSymbols: 1
+            minLength: 8, minLowercase: 1,
+            minUppercase: 1, minNumbers: 1, minSymbols: 1
         })) {
             setErrorMessage('')          
             setPassFlag(true)
@@ -38,14 +43,11 @@ function Register() {
             setErrorMessage('Password is invalid')
             setPassFlag(false)
         }
-        
-      }
+        }
 
-      function isValidEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-      }
-
-
+    function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+    }
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -74,9 +76,11 @@ function Register() {
             toast.error("Invalid Number")
         }
         else{
+            setloading(true)
             axios.post(`${URL}/register`,data).then(
                 res=>{
                     // console.log(res)
+                    setloading(false)
                     if(res.status === 201){
                         toast.success("registered")
                         NavigateToLogin()
@@ -85,7 +89,10 @@ function Register() {
                         toast.error(res.data._message)
                     }
                 }
-                ).catch(e=>console.log(e["error"]))
+                ).catch(e=>{
+                    toast.error(e.message)
+                    setloading(false)
+                })
             // console.log(data)
         }
         
@@ -148,7 +155,14 @@ function Register() {
                     </form>
                     
                     <div className="text-center mt-6">
-                        <button onClick={handleSubmit} className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-600 active:bg-green-600">Submit</button>
+                        <button 
+                            onClick={handleSubmit} 
+                            className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl hover:bg-green-600 active:bg-green-600"
+                            disabled={loading}
+                            style={mystyle}
+                            >
+                                Submit
+                        </button>
                         <p className="mt-4 text-sm">Already Have An Account? <span><button onClick={NavigateToLogin} className="py-3 w-50px text-l text-gray-900 bg-gray-100 rounded-2xl">Sign in</button></span>
                         </p>
                     </div>
