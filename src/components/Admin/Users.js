@@ -1,23 +1,38 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../Auth/auth'
+// import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import Sidenav from '../Layout/Sidenav'
 import { toast } from 'react-hot-toast'
+import Cookies from 'js-cookie'
+import {MutatingDots} from 'react-loader-spinner'
 
 function Users() {
-
+    
     const URL = process.env.REACT_APP_SERVER
-    const auth = useAuth()
-    const token = auth.token
+    // const auth = useAuth()
+    const token = Cookies.get('token')
     const [user, setUser] = useState([])
-
+    const [loader,setloader] = useState(true)
     useEffect(() => {
+        console.log(token)
         axios.get(`${URL}/user`, {
-            Authentication: token
+            headers: {
+                'Authorization': token
+            }
         }).then(res => {
             setUser(res.data)
+            setloader(false)
             // console.log(res.data)
+        }).catch(err=>{
+            // toast.error("Hello")
+            console.log(err)
+            if(err.response.status === 401){
+
+                toast.error( err.response.data)
+            }else{
+                toast.error(err.message)
+            }
         })
     }, [])
 
@@ -33,13 +48,6 @@ function Users() {
     const SubmitRole = (e, key) => {
         e.preventDefault()
         const usr = user[key]
-
-        // axios.patch(`${URL}/profile`,usr,{
-        //     Authentication:token
-        // }).then(res=>{
-        //     console.log(res)
-        // })
-        // console.log(usr)
         axios.patch(`${URL}/profile`, usr, {
             headers: {
                 'Authorization': token
@@ -87,6 +95,7 @@ function Users() {
             <aside className="flex">
                 {/* <Sidenav /> */}
                 <div className='flex flex-col w-full'>
+
                     <h1 className='mt-2 select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                         users
                     </h1>
@@ -99,15 +108,26 @@ function Users() {
                     <hr className='w-1/4 ml-20 h-3' />
 
 
-                    {user.map((user, key) => {
+                    {loader?<div className="mx-auto">
+                        <MutatingDots 
+                            height="100"
+                            width="100"
+                            color="#482f2d"
+                            secondaryColor= '#423982'
+                            radius='12.5'
+                            ariaLabel="mutating-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                            />
+                    </div>:user.map((user, key) => {
 
-                        let newValue = user.role
                         return (
                             <form>
 
                                 <div className='flex flex-row ml-20 '>
                                     <div className='w-4/6'>
-                                        <ul className="items-center w-full border text-gray-900 bg-white  border-gray-600 flex ">
+                                        <ul className="items-center w-full border text-gray-900 bg-white  border-gray-600 flex " key={key}>
                                             <li className="w-4/5 border-gray-800 ">
                                                 <div className="flex flex-col items-center bg-gray-800 py-2 pl-3">
                                                     <label htmlFor="Name" className=" pl-3 w-full text-lg font-semibold capitalize text-gray-100 ">{user.name}</label>

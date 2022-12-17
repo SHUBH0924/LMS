@@ -4,12 +4,14 @@ import Courses from '../Course/Courses';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../Auth/auth'
+import Cookies from 'js-cookie'
 
 const Grades = () =>{
     const { slug } = useParams();
-    const [grades,setGrades] = useState([])
-    const auth = useAuth()
-    const token = auth.token  
+    const token = Cookies.get('token')
+    // const userRole = Cookies.get('userRole')
+    // const auth = useAuth()
+    // const token = auth.token  
     const [quizzes,setQuizzes] = useState([])
 
     useEffect(()=>{

@@ -7,13 +7,16 @@ import { useAuth } from '../../Auth/auth'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast';
+import Cookies from 'js-cookie'
 
 
 function Students() {
     const URL = process.env.REACT_APP_SERVER
-    const auth = useAuth()
-    const token = auth.token
-    const userRole = auth.user
+    // const auth = useAuth()
+    // const token = auth.token
+    // const userRole = auth.user
+    const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
     const {slug} = useParams()
     const [stud,setStud] = useState([]);
 

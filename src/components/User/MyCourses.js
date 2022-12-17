@@ -8,10 +8,13 @@ import { useAuth } from '../../Auth/auth';
 import Header from '../Header'
 import { InfinitySpin } from 'react-loader-spinner'
 import toast from 'react-hot-toast'
+import Cookies from 'js-cookie'
 
 function Dashboard() {
-    const auth = useAuth()
-    const [token,setToken] = useState(auth.token)
+    const token = Cookies.get('token')
+    // const userRole = Cookies.get('userRole')
+    // const auth = useAuth()
+    // const [token,setToken] = useState(auth.token)
     const Navigate = useNavigate()
     const backendServer = `${process.env.REACT_APP_SERVER}/user/courses`
     const [course,setCourse] = useState([])

@@ -73,12 +73,12 @@ summary {
     position: relative;
     display: flex;
     border:1px solid;
-    border-color: #674ea7;
+    border-color: #0a2f3c;
     margin-bottom: 15px;
     background-color: #f5f0f2;
     padding: 10px;
-    border-radius: 15px 50px 30px;
-    border-right: 5px solid #1f65d5;    
+    border-radius: 10px 30px 15px;
+    border-right: 5px solid #0a2f3c;    
     transition: transform .5s;
 }
 

@@ -6,11 +6,13 @@ import PDFViewer from './PDFViewer';
 import axios from 'axios';
 import { useAuth } from '../../../../../../Auth/auth';
 import Header from '../../../../../Header'
+import Cookies from 'js-cookie'
 
 const Page = () => {
 
-  const auth = useAuth()
-  const token = auth.token
+    const token = Cookies.get('token')
+  // const auth = useAuth()
+  // const token = auth.token
   const location = useLocation();
   const lec = location.state.lectures
   const URL = process.env.REACT_APP_SERVER
@@ -24,18 +26,18 @@ const Page = () => {
   const playerRef = React.useRef(null);
 
   useEffect(() => {
-    axios.post(`${URL}/course/content`, {
-      courseId: courseId,
-      moduleId: moduleId,
-      lecId: id
-    }, {
-      headers: {
-        'Authorization': token
-      }
-    }).then(res => {
-      // console.log(res.data)
-      setContent(res.data)
-    })
+      axios.post(`${URL}/course/content`, {
+        courseId: courseId,
+        moduleId: moduleId,
+        lecId: id
+      }, {
+        headers: {
+          'Authorization': token
+        }
+      }).then(res => {
+        // console.log(res.data)
+        setContent(res.data)
+      })
   }, [id])
 
 
