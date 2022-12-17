@@ -1,34 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react'
-import Sidenav from "../Layout/Sidenav"
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { useAuth } from '../../Auth/auth';
-import DropFileInput from '../Admin/AdminDashboard/Drag_Drop/DropFileInput';
 import Header from '../Header'
 import Courses from '../Course/Courses';
-import { ImageConfig } from '../ImageConfig';
-import { useLocation } from 'react-router-dom';
 import JoditEditor from 'jodit-react';
-
+import Cookies from 'js-cookie'
 
 const Syllabus = (props) => {
-
-
-    const location = useLocation();
-    const auth = useAuth()
-    const token = auth.token
-    const userRole = auth.user
-    const Navigate = useNavigate();
+    // const location = useLocation();
+    const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
+    // const auth = useAuth()
+    // const token = auth.token
+    // const userRole = auth.user
     const editor = useRef(null)
     const [content, setContent] = useState('')
-
     // Slug is the course id
     const { slug } = useParams();
     const URL = process.env.REACT_APP_SERVER
-
-    const [Syllabus, setSyllabus] = useState()
-
 
     useEffect(() => {
         axios.get(`${URL}/course/syllabus/${slug}`, {
@@ -78,8 +68,6 @@ const Syllabus = (props) => {
                             syllabus
                         </h1>
                         <hr className="w-3/5 mx-auto h-2 mb-5" />
-
-                        {/* <hr className='w-1/4 ml-20 h-3' /> */}
 
                         <div
                             className='mx-auto text-2xl mb-8'

@@ -15,14 +15,17 @@ import quizimg from '../../../assets/test.png'
 import { Dna } from 'react-loader-spinner'
 import './quiz.css';
 import toast from 'react-hot-toast'
+import Cookies from 'js-cookie'
 
 function Quiz() {
     const [showModal, setShowModal] = useState(false)
     const URL = process.env.REACT_APP_SERVER
-    const auth = useAuth()
+    // const auth = useAuth()
     const { slug } = useParams()
-    const token = auth.token
-    const userRole = auth.user
+    const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
+    // const token = auth.token
+    // const userRole = auth.user
     const [quiz, setQuiz] = useState([])
     const Navigate = useNavigate()
     const [loading,setloading] = useState(true)

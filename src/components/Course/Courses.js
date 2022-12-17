@@ -9,12 +9,15 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { MdAssignment } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/auth";
+import Cookies from 'js-cookie'
 
 
 const Courses = ({courseId}) => {
 
-    const auth = useAuth()
-    const userRole = auth.user
+    // const auth = useAuth()
+    // const userRole = auth.user
+    // const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
     const menus = [
         { name: "Home ", link: "/", icon: SiHomeadvisor , role:"both"},
         { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:"both"},

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Sidenav from "../../../../Layout/Sidenav"
+// import Sidenav from "../../../../Layout/Sidenav"
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom';
 import NewModule from './NewModule';
@@ -10,20 +10,19 @@ import Header from '../../../../Header'
 import Courses from '../../../../Course/Courses';
 import { ImageConfig } from '../../../../ImageConfig';
 import '../.././Drag_Drop/drop-file-input.css';
-import { Link } from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai";
-import ci from '../../../../../assets/bg1.jpg'
 import { MdAddAPhoto } from "react-icons/md";
-import { RiErrorWarningFill } from "react-icons/ri";
 import ConfirmBox from '../../../../ConfirmBox';
 import { InfinitySpin } from 'react-loader-spinner'
-
+import Cookies from 'js-cookie'
 
 const Module = (props) => {
-
-    const auth = useAuth()
-    const token = auth.token
-    const userRole = auth.user
+    
+    // const auth = useAuth()
+    const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
+    // const token = auth.token
+    // const userRole = auth.user
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();
@@ -74,7 +73,7 @@ const Module = (props) => {
                 'Authorization': token
             }
         }).then(res => {
-            console.log(res)
+            // console.log(res)
             setloader(false)
             setPublish(res.data.published)
             setEnroll(res.data.enrolled)
@@ -341,7 +340,7 @@ const Module = (props) => {
                                         
                                         {/* <img className="w-full h-full  rounded-xl" src={Avatarpath} alt="course image" /> */}
                                         
-                                        <button class="bg-blue-600 my-4 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md" onClick={handleImageSubmit}>
+                                        <button className="bg-blue-600 my-4 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md" onClick={handleImageSubmit}>
                                             Upload
                                         </button>
                                     </div>
@@ -394,7 +393,7 @@ const Module = (props) => {
                                         {
                                             item.lectures.map((items, key) => {
                                                 return (
-                                                    <>
+                                                    <React.Fragment key={key}>
                                                         <button className="drop-file-preview__item text-lg font-light capitalize mx-auto" style={{ width: "60%" }} >
 
                                                             <div className="flex flex-row drop-file-preview__item__details mx-auto mr-12 ml-4"
@@ -409,7 +408,7 @@ const Module = (props) => {
                                                             </div>
                                                             {(userRole === "Admin" || userRole==="Educator") && <span className="drop-file-preview__item__del" onClick={() => fileRemove(item._id, items._id)}><AiOutlineClose /></span>}
                                                         </button>
-                                                    </>
+                                                    </React.Fragment>
                                                 )
                                             })
                                         }

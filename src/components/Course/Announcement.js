@@ -11,12 +11,15 @@ import { ImageConfig } from '../ImageConfig';
 import { useLocation } from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai"; 
 import {MutatingDots} from 'react-loader-spinner'
+import Cookies from 'js-cookie'
 
 const Announcement = () => {
     const [showModal, setShowModal] = React.useState(false);
-    const auth = useAuth()
-    const token = auth.token
-    const userRole = auth.user
+    const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
+    // const auth = useAuth()
+    // const token = auth.token
+    // const userRole = auth.user
     const Navigate = useNavigate();
     // Slug is the course id
     const { slug } = useParams();

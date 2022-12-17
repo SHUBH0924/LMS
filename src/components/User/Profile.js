@@ -1,17 +1,17 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import imag from '../../assets/bg1.jpg'
 import { useAuth } from '../../Auth/auth'
 import Header from '../Header'
 import { toast } from 'react-hot-toast'
 import Avatar from 'react-avatar'
 import pic from './programmer.png'
 import {MutatingDots} from 'react-loader-spinner'
-
+import Cookies from 'js-cookie'
 
 function Profile() {
     const auth = useAuth()
-    const [token, setToken] = useState(auth.token)
+    const token = Cookies.get('token')
+    // const [token, setToken] = useState(auth.token)
     const [name, setname] = useState("")
     const [email, setemail] = useState("")
     const [address, setaddress] = useState("")
@@ -98,17 +98,19 @@ function Profile() {
                     <hr className="w-3/5 mx-auto h-2 mb-5" />
 
                     {loader?
-                    <MutatingDots 
-                        height="100"
-                        width="100"
-                        color="#482f2d"
-                        secondaryColor= '#423982'
-                        radius='12.5'
-                        ariaLabel="mutating-dots-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                        />:
+                    <div className="mx-auto">
+                        <MutatingDots 
+                            height="100"
+                            width="100"
+                            color="#482f2d"
+                            secondaryColor= '#423982'
+                            radius='12.5'
+                            ariaLabel="mutating-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                            />
+                    </div>:
                     <form className="mt-6 ml-16 w-4/5 justify-center">
                         <div className="flex  flex-col xs:flex-row mb-4" >
                             {/* <label className="block text-sm font-medium text-gray-700">Photo</label> */}

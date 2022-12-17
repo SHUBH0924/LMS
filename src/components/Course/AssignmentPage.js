@@ -6,12 +6,15 @@ import axios from 'axios';
 import { useAuth } from '../../Auth/auth';
 import Header from '../Header'
 import { Input } from 'postcss';
+import Cookies from 'js-cookie'
 
 const AssignmentPage = (props) => {
 
-  const auth = useAuth()
-  const userRole =  auth.user;
-  const token = auth.token
+    const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
+  // const auth = useAuth()
+  // const userRole =  auth.user;
+  // const token = auth.token
   const location = useLocation();
   // const lec = location.state.assignmentDetail
   const URL = process.env.REACT_APP_SERVER

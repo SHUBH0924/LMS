@@ -8,19 +8,21 @@ import Header from '../../Header'
 import Courses from '../Courses';
 import { FidgetSpinner } from 'react-loader-spinner'
 import quizc from '../../../assets/star.png'
+import Cookies from 'js-cookie'
 
 const QuizPage = () => {
 
     const [questionList, setQuestionList] = useState([])
     const location = useLocation();
     const QuizId = location.state.quizId
-    const courseId = location.state.courseId
-    const auth = useAuth()
+    // const courseId = location.state.courseId
+    // const auth = useAuth()
     const [quizName, setQuizName] = useState()
     const [description, setDescription] = useState()
-    const token = auth.token
-    const userRole = auth.user
-    // const userId = auth.userId
+    const token = Cookies.get('token')
+    const userRole = Cookies.get('userRole')
+    // const token = auth.token
+    // const userRole = auth.user
     const [submited,setSubmited] = useState(false)
     const [ans,setans] = useState([])
     const [loading,setloading] = useState(true)
