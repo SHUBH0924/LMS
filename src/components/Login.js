@@ -31,7 +31,7 @@ function Login() {
     }
 
     axios.post(`${URL}/login`, data).then(res => {
-      // console.log(res)
+      console.log(res)
       setloading(false) 
       if (res.data.status === "Authorised") {
         auth.login(res.data)

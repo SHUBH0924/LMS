@@ -12,7 +12,6 @@ export const AuthProvider = ({children}) => {
     
     const login = (UserData) =>{
         console.log(UserData)
-
         setUserName(UserData.username)
         setuser(UserData.role)
         setToken(UserData.token)
