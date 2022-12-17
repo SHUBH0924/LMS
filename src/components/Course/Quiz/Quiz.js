@@ -15,6 +15,7 @@ import quizimg from '../../../assets/test.png'
 import { Dna } from 'react-loader-spinner'
 import './quiz.css';
 import toast from 'react-hot-toast'
+import astro  from '../../../assets/astronaut-1.svg'
 
 function Quiz() {
     const [showModal, setShowModal] = useState(false)
@@ -149,9 +150,10 @@ function Quiz() {
                         )
                             : (
                                 <div>
-                                    <h1 className='mt-6 mb-4 capitalize text-4xl mx-auto font-bold' style={{ textAlign: "center" }}>
+                                    <h1 className='mt-6 mb-4 capitalize text-4xl text-gray-600 mx-auto font-semibold' style={{ textAlign: "center" }}>
                                         There are no Quizzes
                                     </h1>
+                                    <img className='w-80 h-80 mx-auto' src={astro} />
                                 </div>
                             )
                           )

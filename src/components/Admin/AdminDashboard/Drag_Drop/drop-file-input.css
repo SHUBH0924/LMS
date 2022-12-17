@@ -74,10 +74,11 @@ summary {
     display: flex;
     border:1px solid;
     border-color: #674ea7;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     background-color: #f5f0f2;
     padding: 10px;
-    border-radius: 0px;    
+    border-radius: 15px 50px 30px;
+    border-right: 5px solid #1f65d5;    
     transition: transform .5s;
 }
 

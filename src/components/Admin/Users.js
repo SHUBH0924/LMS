@@ -110,8 +110,8 @@ function Users() {
                                         <ul className="items-center w-full border text-gray-900 bg-white  border-gray-600 flex ">
                                             <li className="w-4/5 border-gray-800 ">
                                                 <div className="flex flex-col items-center bg-gray-800 py-2 pl-3">
-                                                    <label htmlFor="Name" className=" pl-3 w-full text-xl font-semibold capitalize text-gray-100 ">{user.name}</label>
-                                                    <label htmlFor="Name" className="pl-2 ml-16 w-full text-md border-l capitalize text-gray-400 ">({user.email})</label>
+                                                    <label htmlFor="Name" className=" pl-3 w-full text-lg font-semibold capitalize text-gray-100 ">{user.name}</label>
+                                                    <label htmlFor="Name" className=" ml-16 w-full text-sm  text-gray-400 ">({user.email})</label>
                                                 </div>
                                             </li>
 

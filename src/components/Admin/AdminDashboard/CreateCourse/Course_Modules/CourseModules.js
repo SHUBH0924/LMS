@@ -327,8 +327,8 @@ const Module = (props) => {
                         <hr className="w-3/5 mx-auto h-2 mb-6" />
                         {
                             (userRole === "Admin"|| userRole === "Educator") ?
-                                (<div className='flex select-none flex-col md:pl-40 lg:flex-row space-x-16 w-full justify-center mx-auto '>
-                                    <div className='w-1/3 px-2 h-40 sm:h-64 flex-shrink-0 border-r-2 border-gray-500 mb-20 relative '>
+                                (<div className='flex select-none flex-col md:pl-40 lg:flex-row md:space-x-8 w-full justify-center mx-auto '>
+                                    <div className='w-1/4  px-2 h-40 sm:h-64 flex-shrink-0 border-r-2 border-gray-500 mb-20 relative '>
                                         <div className='w-64  h-40 sm:w-96 sm:h-64 mx-auto md:-ml-32 group justify-items-end relative'>
                                             <div className='absolute invisible group-hover:visible group-hover:delay-100 duration-200 transition-all group-hover:backdrop-blur-sm w-96 h-64 rounded-xl '>
                                                 <MdAddAPhoto size={60} className="sm:ml-40 sm:mt-24 ml-20 mt-12 absolute text-white z-20" />
@@ -345,15 +345,15 @@ const Module = (props) => {
                                             Upload
                                         </button>
                                     </div>
-                                    <div className='flex flex-col justify-start space-y-10  '>
-                                        <div className='w-64 flex'>
+                                    <div className='flex flex-col justify-start space-y-8 '>
+                                        <div className='w-64 flex ml-20'>
                                             <button
-                                                className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:outline-none text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
+                                                className="bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500  focus:outline-none text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-2 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-1 ease-linear transition-all duration-150"
                                                 type="button"
                                                 onClick={onPublish}>{publish ? "UnPublish" : "Publish"}
                                             </button>
                                         </div>
-                                        <div className='w-64 flex'>
+                                        <div className='w-64 ml-20 flex'>
                                         {(userRole === "Admin")?<button
                                                 className="bg-gradient-to-r from-red-500 to-red-600  focus:ring-red-4 focus:outline-none transition duration-150 ease-out text-white active:bg-red-700 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none  mr-1 mb-10"
                                                 type="button"
@@ -378,7 +378,7 @@ const Module = (props) => {
                             return (
 
                                 <div className="container flex flex-col px-1 md:px-6 mx-auto p-4 border-blue-500">
-                                    <details className="w-3/4 mx-auto bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-300 border-blue-700">
+                                    <details className="w-3/4 mx-auto py-2 bg-gray-50 hover:bg-gray-100 border-l-4 rounded-r-xl transition ease-in-out max-h-max duration-300 border-blue-700">
 
                                         <summary className="item__preview__mod select-none px-10 capitalize text-xl text-black font-semibold py-5">
                                             ➤ &ensp;  {item.name}

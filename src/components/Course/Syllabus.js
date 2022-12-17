@@ -10,6 +10,7 @@ import Courses from '../Course/Courses';
 import { ImageConfig } from '../ImageConfig';
 import { useLocation } from 'react-router-dom';
 import JoditEditor from 'jodit-react';
+import astro from "../../assets/astronaut-1.svg"
 
 
 const Syllabus = (props) => {
@@ -100,7 +101,14 @@ const Syllabus = (props) => {
                                 <div>
                                     <button className="appearance-none w-36 block mx-auto bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 text-black active:bg-lime-600 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-full shadow hover:shadow-lg outline-none   ease-linear transition-all duration-150" id="update" type="submit" onClick={handleSubmission}>Submit</button>
                                 </div>
-                            </div>):null
+                            </div>):(
+                                <div>
+                                    <h1 className='mt-6 mb-4 capitalize text-4xl text-gray-600 mx-auto font-semibold' style={{ textAlign: "center" }}>
+                                        no syllabus uploaded
+                                    </h1>
+                                    <img className='w-80 h-80 mx-auto' src={astro} />
+                                </div>
+                            )
                         }
                         
                     </div>

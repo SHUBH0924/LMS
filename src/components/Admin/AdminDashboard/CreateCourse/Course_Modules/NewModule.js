@@ -23,7 +23,7 @@ const NewModule = (props) => {
 
   return (
     <>
-      <div className='w-64 flex'>
+      <div className='w-64 -mt-8 ml-20 flex'>
         <button
           className="bg-blue-600 text-white active:bg-blue-400 font-bold uppercase text-sm px-6 py-3 mt-4 rounded-md shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"
           type="button"
