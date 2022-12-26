@@ -16,10 +16,10 @@ export const AuthProvider = ({children}) => {
         setuser(UserData.role)
         setToken(UserData.token)
         setUserId(UserData.userId)
-        Cookies.set('userId',UserData.userId, { expires: 1,secure: true })
-        Cookies.set('userRole',UserData.role, { expires: 1,secure: true })
-        Cookies.set('token',UserData.token, { expires: 1,secure: true })
-        Cookies.set('userName',UserData.username, { expires: 1,secure: true })
+        Cookies.set('userId',UserData.userId, { expires: 1,secure: false })
+        Cookies.set('userRole',UserData.role, { expires: 1,secure: false })
+        Cookies.set('token',UserData.token, { expires: 1,secure: false })
+        Cookies.set('userName',UserData.username, { expires: 1,secure: false })
     }
 
     const isAuthenticate = () =>{
