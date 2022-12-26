@@ -3,7 +3,9 @@ import io from "socket.io-client";
 
 // const socket = io.connect(process.env.REACT_APP_SERVER)
 // const socket = io.connect(process.env.REACT_APP_SERVER)
-export const socket = io.connect(process.env.REACT_APP_SERVER, {
+
+export const getSocket = () => {
+  return io.connect(process.env.REACT_APP_SERVER, {
     // reconnectionDelayMax: 10000,
     'reconnection': true,
   'reconnectionDelay': 500,
@@ -15,3 +17,4 @@ export const socket = io.connect(process.env.REACT_APP_SERVER, {
       "my-key": "my-value"
     }
   });
+};
