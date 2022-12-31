@@ -21,7 +21,9 @@ const Grades = () =>{
             }
         }).then(res=>{
             console.log(res)
-            setQuizzes(res.data.quizzes)
+            if(res.data.quizzes){
+                setQuizzes(res.data.quizzes)
+            }
         }).catch(err=>{
             console.log(err)
         })

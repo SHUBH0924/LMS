@@ -71,13 +71,13 @@ const Page = () => {
 
   return (
     <>
-      <div className='fixed top-0 w-full z-10 '>
+      <div className='sticky overflow-x-hidden top-0 w-full z-10 '>
         <Header />
       </div>
-      <div className='  flex mt-24 flex-row h-screen bg-white' style={{backgroundColor:"#ffffff"}}>
-                <aside className='w-96 fixed top-28 left-0 h-screen overflow-y-scroll scrollbar-hide  border-t-8 border-gray-600' style={{backgroundColor:"#fcfcfa"}}>
+      <div className='overflow-x-hidden flex-wrap flex flex-row h-screen bg-white' style={{backgroundColor:"#ffffff"}}>
+                <aside className='w-96 fixed -mt-2 left-0 h-screen overflow-y-scroll scrollbar-hide  border-t-2 border-gray-600' style={{backgroundColor:"#fcfcfa"}}>
 
-                  <h1 className='mt-2 ml-4 text-4xl font-bold text-black capitalize'>
+                  <h1 className=' ml-4 text-4xl font-bold text-black capitalize'>
                     
                   </h1>
 
@@ -86,19 +86,19 @@ const Page = () => {
                     return (
                       <div className='w-full'>
 
-                        <details style={{"width":"95%",backgroundColor:"#f5f5f5",boxShadow:"0px 1px 0px 1px rgba(0, 0, 0, 0.1,)"  }} className=" mx-auto border-b-4 border-gray-300 my-8 rounded-lg bg-transparent hover:shadow-inner" >
+                        <details style={{"width":"95%",backgroundColor:"#f5f5f5",boxShadow:"0px 1px 0px 1px rgba(0, 0, 0, 0.1,)"  }} className=" mx-auto border-b-2 border-gray-300 my-4 rounded-md bg-transparent hover:shadow-inner" >
                           <summary className="w-full capitalize text-xl select-none text-black font-semibold py-4 ml-4">
                           ➤ &ensp;{item.name}
                           </summary>
-                          <hr className='mx-6 border border-gray-500 bg-gray-500'/>
+                          <hr className=' bg-gray-500'/>
                           {
                               
                             item.lectures.map((items, key) => {
                               return (
                                 <>
                                 
-                                  <div className="flex my-5 mx-auto bg-transparent border-l-4 border-blue-300 mb-2 mt-4 pl-1 py-2"
-                                    style={{ width: "60%", backgroundColor:"#fafaf7" }}
+                                  <button className="flex my-5 ml-12 bg-transparent border-l-4 border-blue-300 mb-2 mt-4 pl-1 py-1"
+                                    style={{ width: "80%"}}
                                     
                                     onClick={() => {
                                       setId(items._id)
@@ -109,7 +109,7 @@ const Page = () => {
                                     }
                                     }>
                                   <h2 className=' text-md font-sans capitalize select-none text-gray mx-1 align-baseline font-semibold text-lg'> ◆ {items.name}</h2>
-                                  </div>
+                                  </button>
                                 </>
                               )
                             })
@@ -121,12 +121,12 @@ const Page = () => {
 
                 </aside>
 
-        <div className=' flex-1 flex-col ml-96 ' >
+        <div className=' flex-1 flex-col ml-96 w-screen flex-wrap' >
 
-          <h1 className='text-5xl ml-8 mt-8 font-semibold text-black '>
+          <h1 className='text-5xl ml-8 mt-4 font-semibold text-black '>
             {Title}
           </h1>
-          <hr className='mt-8 w-full h-2 border-2 border-black bg-black mx-auto' />
+          <hr className='mt-8 w-full  border-2 border-black bg-black mx-auto' />
           <div 
             className='ml-12 mr-12 mb-8'
             dangerouslySetInnerHTML={{ __html: content }} 

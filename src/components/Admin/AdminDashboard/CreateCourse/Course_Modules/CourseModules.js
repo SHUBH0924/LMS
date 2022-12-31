@@ -298,7 +298,7 @@ const Module = (props) => {
     return (
         <>
 
-            <div className='relative'>
+            <div className='relative overflow-x-hidden'>
             <div className='sticky top-0 z-50'>
                 <Header />
                 </div>
@@ -401,7 +401,7 @@ const Module = (props) => {
                                                                 onClick={() => onPageOpen(item, items)
                                                                 }>
                                                                 <img className="opacity-70 w-24" src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
-                                                                <div className="drop-file-preview__item__info" >
+                                                                <div className="drop-file-preview__item__info invisible sm:visible " >
                                                                     <h2>{items.name}</h2>
                                                                     {/* <p>{items.size}B</p> */}
                                                                 </div>

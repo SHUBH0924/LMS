@@ -19,15 +19,15 @@ const Courses = ({courseId}) => {
     // const token = Cookies.get('token')
     const userRole = Cookies.get('userRole')
     const menus = [
-        { name: "Home ", link: "/", icon: SiHomeadvisor , role:"both"},
-        { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:"both"},
-        { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:"both"},
-        { name: "Discussion", link: `/discussion/${courseId}`, icon: RiDiscussFill , role:"both"},
-        { name: "Grades", link: `/Grades/${courseId}`, icon:  SiGoogleanalytics ,role:"both"},
-        { name: "Students", link: `/Students/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:"Admin"},
-        { name: "Pages", link: `/course/${courseId}`, icon: AiFillBook ,role:"both"},
-        { name: "Quizzes", link: `/quiz/${courseId}`, icon: MdQuiz ,role:"both"},
-        { name: "Syllabus", link: `/syllabus/${courseId}`, icon: RiPagesFill, role:"both"},
+        { name: "Home ", link: "/", icon: SiHomeadvisor , role:["Admin","Educator","Student"]},
+        { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:["Admin","Educator","Student"]},
+        { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:["Admin","Educator","Student"]},
+        { name: "Discussion", link: `/discussion/${courseId}`, icon: RiDiscussFill , role:["Admin","Educator","Student"]},
+        { name: "Grades", link: `/Grades/${courseId}`, icon:  SiGoogleanalytics ,role:["Student"]},
+        { name: "Students", link: `/Students/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:["Admin","Educator"]},
+        { name: "Pages", link: `/course/${courseId}`, icon: AiFillBook ,role:["Admin","Educator","Student"]},
+        { name: "Quizzes", link: `/quiz/${courseId}`, icon: MdQuiz ,role:["Admin","Educator","Student"]},
+        { name: "Syllabus", link: `/syllabus/${courseId}`, icon: RiPagesFill, role:["Admin","Educator","Student"]},
     ];
     const [open,setOpen] = useState(false);
 
@@ -54,7 +54,7 @@ const Courses = ({courseId}) => {
                     {menus?.map((menu, i) => {
                         return(
                             <>
-                        {((menu.role === "both") || (menu.role === userRole)) ?
+                        {(menu.role.includes(userRole)) ?
                          <Link
                             to={menu.link}
                             key={i}

@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import Courses from './Courses'
 import { getSocket } from './Service/socket'
 import toast from 'react-hot-toast'
+import Cookies from 'js-cookie'
 // const socket = io.connect(process.env.REACT_APP_SERVER)
 
 const Discussion = () => {
@@ -54,9 +55,12 @@ const Discussion = () => {
   }, []);
 
 
+  const token = Cookies.get('token')
+  const userRole = Cookies.get('userRole')
+  const userName = Cookies.get('userName')
   const auth = useAuth()
-  const token = auth.token
-  const userName = auth.userName
+  // const token = auth.token
+  // const userName = auth.userName
   const inputRef = useRef();
   const [msgInputValue, setMsgInputValue] = useState("");
   const [messages, setMessages] = useState([]);
@@ -149,6 +153,7 @@ const Discussion = () => {
                     return (
                       <Message key={i} model={m}>
                         {/* <Message.Header sender="Emily" sentTime="just now" /> */}
+                        console.log(m.user)
                         <Message.Header sender={(m.user === userName) ? 'You' : m.user} />
                       </Message>
 
