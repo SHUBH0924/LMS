@@ -65,10 +65,10 @@ const AddQuiz = (props) => {
             className=" backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="  relative z-40 w-full md:w-2/5 my-10 mx-auto ">
               {/* {/content/} */}
-              <div className="border-slate-200 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-700 outline-none focus:outline-none">
+              <div className="border-gray-700 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-100 outline-none focus:outline-none">
                 {/* {/header/} */}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl text-white font-semibold">
+                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-800 rounded-t">
+                  <h3 className="text-3xl text-gray-800 font-semibold">
                     Create Quiz
                   </h3>
 
@@ -77,12 +77,12 @@ const AddQuiz = (props) => {
                 <div className="relative p-5 flex-auto">
                   <form className="space-y-10 w-full">
                     <div>
-                      <label for="Quiz" className="block mb-2 text-sm font-medium text-gray-300">Quiz Name</label>
-                      <input type="text" name="quiz" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.quizname} onChange={e => seta({ ...a, quizname: e.target.value })} />
+                      <label for="Quiz" className="block mb-2 text-sm font-medium text-gray-700">Quiz Name</label>
+                      <input type="text" name="quiz" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-600 placeholder-gray-800 text-gray-800" required value={a.quizname} onChange={e => seta({ ...a, quizname: e.target.value })} />
                     </div>
                     <div>
-                      <label for="Quiz" className="block mb-2 text-sm font-medium text-gray-300">Description</label>
-                      <textarea name="description" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white" required value={a.description} onChange={e => seta({ ...a, description: e.target.value })} />
+                      <label for="Quiz" className="block mb-2 text-sm font-medium text-gray-700">Description</label>
+                      <textarea name="description" id="text" className=" text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-200 border-gray-600 placeholder-gray-800 text-gray-800" required value={a.description} onChange={e => seta({ ...a, description: e.target.value })} />
                     </div>
                   </form>
 
@@ -97,7 +97,7 @@ const AddQuiz = (props) => {
                     Close
                   </button>
                   <button
-                    className="bg-blue-700 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-blue-700 text-gray-200 active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={handleSubmit}
                   >
@@ -107,7 +107,7 @@ const AddQuiz = (props) => {
               </div>
             </div>
           </div>
-          <div className=" opacity-50 fixed inset-0 z-40"></div>
+          <div className=" opacity-50 bg-black fixed inset-0 z-40"></div>
         </>
       ) : null}
     </>

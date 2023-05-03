@@ -51,7 +51,7 @@ const Create_Course = (props) => {
               <FcAcceptDatabase
                 size={30}
               />
-            <span className='ml-4 font-bold text-lg'>Create Course </span> 
+            <span className='ml-4 font-semibold text-lg'>Create Course </span> 
             </span>
           </button>
         </div>

@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { FcGenericSortingDesc } from "react-icons/fc";
-import {  MdQuiz,  } from "react-icons/md";
-import {  RiPagesFill, RiDiscussFill } from "react-icons/ri";
-import { AiFillBook } from "react-icons/ai";
-import { SiGoogleanalytics, SiHomeadvisor } from "react-icons/si";
-import { HiSpeakerphone } from "react-icons/hi";
-import { BsFillPeopleFill } from "react-icons/bs";
-import { MdAssignment } from "react-icons/md";
+import { FcHome, FcIdea, FcQuestions, FcCollaboration, FcNews, FcBullish, FcSpeaker, FcSms, FcDocument, FcConferenceCall, FcPlanner} from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Auth/auth";
 import Cookies from 'js-cookie'
@@ -19,15 +13,16 @@ const Courses = ({courseId}) => {
     // const token = Cookies.get('token')
     const userRole = Cookies.get('userRole')
     const menus = [
-        { name: "Home ", link: "/", icon: SiHomeadvisor , role:["Admin","Educator","Student"]},
-        { name: "Announcements", link: `/announcement/${courseId}`, icon: HiSpeakerphone , role:["Admin","Educator","Student"]},
-        { name: "Assignments", link: `/assignment/${courseId}`, icon: MdAssignment , role:["Admin","Educator","Student"]},
-        { name: "Discussion", link: `/discussion/${courseId}`, icon: RiDiscussFill , role:["Admin","Educator","Student"]},
-        { name: "Grades", link: `/Grades/${courseId}`, icon:  SiGoogleanalytics ,role:["Student"]},
-        { name: "Students", link: `/Students/${courseId}`, icon: BsFillPeopleFill, margin: true ,role:["Admin","Educator"]},
-        { name: "Pages", link: `/course/${courseId}`, icon: AiFillBook ,role:["Admin","Educator","Student"]},
-        { name: "Quizzes", link: `/quiz/${courseId}`, icon: MdQuiz ,role:["Admin","Educator","Student"]},
-        { name: "Syllabus", link: `/syllabus/${courseId}`, icon: RiPagesFill, role:["Admin","Educator","Student"]},
+        { name: "Home ", link: "/", icon: FcHome , role:["Admin","Educator","Student"]},
+        { name: "Announcements", link: `/announcement/${courseId}`, icon: FcSpeaker , role:["Admin","Educator","Student"]},
+        { name: "Assignments", link: `/assignment/${courseId}`, icon: FcNews, role:["Admin","Educator","Student"]},
+        { name: "Discussion", link: `/discussion/${courseId}`, icon: FcCollaboration , role:["Admin","Educator","Student"]},
+        { name: "Grades", link: `/Grades/${courseId}`, icon:  FcBullish ,role:["Student"]},
+        { name: "Students", link: `/Students/${courseId}`, icon: FcConferenceCall, margin: true ,role:["Admin","Educator"]},
+        { name: "Pages", link: `/course/${courseId}`, icon: FcDocument ,role:["Admin","Educator","Student"]},
+        { name: "Quizzes", link: `/quiz/${courseId}`, icon: FcQuestions ,role:["Admin","Educator","Student"]},
+        { name: "Syllabus", link: `/syllabus/${courseId}`, icon: FcPlanner, role:["Admin","Educator","Student"]},
+        { name: "Labs", link: `/labs`, icon: FcIdea, role:["Admin","Educator","Student"]},
     ];
     const [open,setOpen] = useState(false);
 
@@ -62,7 +57,7 @@ const Courses = ({courseId}) => {
                                 } group flex items-center text-md  gap-5 font-semibold p-2 hover:bg-blue-800 rounded-md`}
                         >
 
-                            <div>{React.createElement(menu.icon, { size: "23" })}</div>
+                            <div>{React.createElement(menu.icon, { size: "25" })}</div>
                             <h2
                                 
                                 className={`whitespace-pre duration-1000 ${!open && "opacity-0 translate-x-30 overflow-hidden"
@@ -76,7 +71,8 @@ const Courses = ({courseId}) => {
                             >
                                 {menu.name}
                             </h2>
-                        </Link>:null}
+                        </Link>
+                        :null}
                         </>     
                     )})}
                 </div>

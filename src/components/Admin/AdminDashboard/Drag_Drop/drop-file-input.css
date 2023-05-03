@@ -63,10 +63,6 @@ summary {
 
 .drop-file-preview__item:hover{
     transform: scale(1.1);
-
-    .drop-file-preview__item__details{
-        transform: scale(1.1);
-    }
 }
 
 .drop-file-preview__item {

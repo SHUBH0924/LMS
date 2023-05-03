@@ -15,6 +15,7 @@ import { MdAddAPhoto } from "react-icons/md";
 import ConfirmBox from '../../../../ConfirmBox';
 import { InfinitySpin } from 'react-loader-spinner'
 import Cookies from 'js-cookie'
+import cc from '../../../../../assets/bg2.jpg'
 
 const Module = (props) => {
     
@@ -334,7 +335,7 @@ const Module = (props) => {
                                                 <input className="opacity-0 w-64  h-40 sm:w-96 sm:h-64 " type="file" accept='image/*' onChange={handleimageChange}/> 
                                                 <div className="bg-black h-64 opacity-50 fixed inset-0 -z-10 rounded-xl "></div>
                                             </div>
-                                            <img className="sm:w-96 h-full w-64 mx-auto  rounded-xl" src={Avatarpath} alt="course image" />
+                                            <img className="sm:w-96 h-full w-64 mx-auto  rounded-xl" src={cc} alt="course image" />
                                             
                                         </div>
                                         
@@ -400,7 +401,7 @@ const Module = (props) => {
                                                                 style={{ width: "100%" }}
                                                                 onClick={() => onPageOpen(item, items)
                                                                 }>
-                                                                <img className="opacity-70 w-24" src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
+                                                                <img className="opacity-70 w-16" src={ImageConfig[items.type.split('/')[1]] || ImageConfig['default']} alt="" />
                                                                 <div className="drop-file-preview__item__info invisible sm:visible " >
                                                                     <h2>{items.name}</h2>
                                                                     {/* <p>{items.size}B</p> */}

@@ -28,6 +28,7 @@ import Grades from './components/Course/Grades'
 import QuizPage from './components/Course/Quiz/QuizPage'
 import QuizView from './components/User/QuizView'
 import Error from './components/Error'
+import Labs from './components/Course/Lab';
 
 
 const App = () => {
@@ -133,6 +134,8 @@ const App = () => {
                 <Route path="/Grades/:slug" element={<Grades />} />
 
                 <Route path="/syllabus/:slug" element={<Syllabus />} />
+
+                <Route path="/labs" element={<Labs />} />
               
               
                 <Route path="/course/:slug" element={

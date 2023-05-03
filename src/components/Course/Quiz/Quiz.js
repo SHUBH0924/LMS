@@ -88,7 +88,7 @@ function Quiz() {
                         <Courses courseId={slug} />
                     </div>
                     <div className='flex flex-col z-10 w-full'>
-                        <h1 className=' select-none px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
+                        <h1 className=' select-none  px-6 capitalize text-4xl text-black font-semibold py-6 mx-auto'>
                             quizzes
                         </h1>
 

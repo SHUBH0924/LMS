@@ -14,6 +14,7 @@ const Sidenav = () => {
         { name: "Profile", link: "/profile", icon: FcServices ,role:"both"},
         { name: "Calendar", link: "/calendar", icon: FcCalendar ,role:"both"},
         { name: "Help", link: "/help", icon: FcVoicePresentation ,role:"both"},
+        { name: "Lab", link: "/help", icon: FcVoicePresentation ,role:"both"},
    ];
     const userRole = auth.user
     const Logout = { name: "Logout", link: "/Login", icon: FcExport, role:"User" }
