@@ -124,11 +124,13 @@ const App = () => {
                 <Route path="/announcement/:slug" element={<Announcement />} />
 
                 <Route path="/assignment/:slug" element={<Assignment />} />
+
                 <Route path="/assignment/page/:assignmentId" element={<AssignmentPage />} />
 
                 <Route path="/discussion/:slug" element={<Discussion />} />
 
                 <Route path="/quiz/:slug" element={<Quiz />} />
+                
                 <Route path="/QuizPage/" element={<QuizPage />} />
 
                 <Route path="/Grades/:slug" element={<Grades />} />

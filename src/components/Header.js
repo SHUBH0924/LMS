@@ -43,10 +43,10 @@ const NavBar = () => {
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-black'>
           <span className='text-3xl flex-shrink-0 -ml-6 pt-1'>
-            <img className="w-16 mb-1 select-none" src={image} alt="Threat Guardian" />
+            <img className="w-36 mb-1 select-none" src={image} alt="Threat Guardian" />
           </span>
           <h1 className='text-3xl select-none invisible lg:visible
-          flex ml-3 capitalize'>Threat Guardians</h1> 
+          flex ml-3 capitalize'>Edu-Nation</h1> 
         </div>
         </a>
 

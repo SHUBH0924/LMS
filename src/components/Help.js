@@ -21,7 +21,7 @@ function Help() {
                     </h1>
                     <hr className="w-2/5 mx-auto h-2 mb-6" />
                     <div className="text-xl mt-12 mx-auto text-black font-semibold py-2 px-4">
-                        <h1>Reach out to the Threat Guardians Team and let us know how we can help you. We’ll respond as soon as we can.</h1>
+                        <h1>Reach out to the Edu-Nation Team and let us know how we can help you. We’ll respond as soon as we can.</h1>
                     </div>
                     <hr className='w-4/5 mx-auto'/>
 
@@ -32,7 +32,7 @@ function Help() {
                                size={48}
                             />
                              <p className='text-white text-xl font-semibold mx-auto mt-6'>
-                               support@threatguardians.com
+                               support@edunation.com
                             </p>
                         </a> 
                         <a href="tel:+919616619764" className='animate-bounce flex flex-row rounded-full w-full mb-3 h-20 bg-gray-800'>
