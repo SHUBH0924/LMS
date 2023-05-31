@@ -13,9 +13,24 @@ const Labs = () => {
   const token = Cookies.get("token");
   const userRole = Cookies.get("userRole");
   const [loading, setloading] = useState(false);
+  
+  useEffect(()=>{
+    if(Cookies.get("kasm_id")){
+      setloading(false)
+    }else{
+      setloading(true)
+    }
+  },[])
+
+  const startStyle = {
+    opacity : !loading ? 0.3 : 1
+  };
+  const killStyle = {
+    opacity : loading ? 0.3 : 1
+  };
 
   const openInNewTab = (url) => {
-    setloading(true);
+    // setloading(true);
     axios
       .get(`${process.env.REACT_APP_SERVER}/machine/`, {
         headers: {
@@ -27,32 +42,32 @@ const Labs = () => {
 
         if (res.data.error_message) {
           toast.error(res.data.error_message);
-          setloading(false);
+          // setloading(!loading);
         } else {
           const ur = `https://labs.megaproject.live${res.data.kasm_url}?disable_control_panel=1`;
           window.open(ur, "_blank", "noreferrer");
           Cookies.set("kasm_id", res.data.kasm_id, {
-            expires: 1,
+            expires: 3600,
             secure: false,
           });
           Cookies.set("kasm_url", res.data.kasm_url, {
-            expires: 1,
+            expires: 3600,
             secure: false,
           });
           Cookies.set("session_token", res.data.session_token, {
-            expires: 1,
+            expires: 3600,
             secure: false,
           });
           Cookies.set("user_id", res.data.user_id, {
-            expires: 1,
+            expires: 3600,
             secure: false,
           });
-
+          setloading(!loading)
           console.log();
         }
       })
       .catch((err) => {
-        setloading(false);
+        // setloading(false);
         console.log(err);
       });
   };
@@ -75,10 +90,10 @@ const Labs = () => {
         Cookies.remove("kasm_url");
         Cookies.remove("session_token");
         Cookies.remove("user_id");
-        setloading(false);
+        setloading(!loading);
       })
       .catch((err) => {
-        setloading(false);
+        // setloading(false);
         if (err.response.status === 401) {
           toast.error(err.response.data);
         } else {
@@ -120,17 +135,10 @@ const Labs = () => {
               </p>
             </div>
             <div className="w-3/5 mt-12 justify-evenly mx-auto flex flex-row">
-              {/* <button
-                className="bg-blue-600 mx-auto text-white h-12 active:bg-blue-400 font-bold uppercase text-sm px-6 py-3  rounded-md shadow hover:shadow-lg outline-none focus:outline-none  mb-1 ease-linear transition-all duration-150"
-                type="button"
-                // disabled={loading}
-                onClick={() =>
-                  openInNewTab("https://labs.megaproject.live/#/cast/lab")
-                }
-              >
-                Start machine
-              </button> */}
-              <button className="px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block mx-auto" onClick={() =>
+              <button className="px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block mx-auto" 
+              disabled={!loading}
+              style={startStyle}
+              onClick={() =>
                   openInNewTab("https://labs.megaproject.live/#/cast/lab")
                 }>
                 <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
@@ -141,7 +149,9 @@ const Labs = () => {
               </button>
               <button
                 className="relative inline-flex items-center mx-auto justify-start px-5 py-2 h-12 overflow-hidden  font-medium text-lg transition-all bg-red-500 rounded-xl group"
+                disabled={loading}
                 onClick={() => killSession()}
+                style={killStyle}
               >
                 <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-red-700 rounded group-hover:-mr-4 group-hover:-mt-4">
                   <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>

@@ -22,7 +22,7 @@ const Courses = ({courseId}) => {
         { name: "Pages", link: `/course/${courseId}`, icon: FcDocument ,role:["Admin","Educator","Student"]},
         { name: "Quizzes", link: `/quiz/${courseId}`, icon: FcQuestions ,role:["Admin","Educator","Student"]},
         { name: "Syllabus", link: `/syllabus/${courseId}`, icon: FcPlanner, role:["Admin","Educator","Student"]},
-        { name: "Labs", link: `/labs`, icon: FcIdea, role:["Admin","Educator","Student"]},
+        { name: "Labs", link: `/labs/${courseId}`, icon: FcIdea, role:["Admin","Educator","Student"]},
     ];
     const [open,setOpen] = useState(false);
 

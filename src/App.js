@@ -137,7 +137,7 @@ const App = () => {
 
                 <Route path="/syllabus/:slug" element={<Syllabus />} />
 
-                <Route path="/labs" element={<Labs />} />
+                <Route path="/labs/:slug" element={<Labs />} />
               
               
                 <Route path="/course/:slug" element={
